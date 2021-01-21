@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxGraduateDabianMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxGraduateDabianEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="STUID" property="stuid" jdbcType="VARCHAR" />
+    <result column="STUNAME" property="stuname" jdbcType="VARCHAR" />
+    <result column="STUTEL" property="stutel" jdbcType="VARCHAR" />
+    <result column="STUSCHOOLID" property="stuschoolid" jdbcType="VARCHAR" />
+    <result column="STUSCHOOLNAME" property="stuschoolname" jdbcType="VARCHAR" />
+    <result column="COLLAGEID" property="collageid" jdbcType="VARCHAR" />
+    <result column="COLLAGENAME" property="collagename" jdbcType="VARCHAR" />
+    <result column="STUGRADE" property="stugrade" jdbcType="VARCHAR" />
+    <result column="STUPROFESSID" property="stuprofessid" jdbcType="VARCHAR" />
+    <result column="STUPROFESSNAME" property="stuprofessname" jdbcType="VARCHAR" />
+    <result column="STUYEAR" property="stuyear" jdbcType="VARCHAR" />
+    <result column="SFGP" property="sfgp" jdbcType="VARCHAR" />
+    <result column="TEACHERID" property="teacherid" jdbcType="VARCHAR" />
+    <result column="TEACHERNAME" property="teachername" jdbcType="VARCHAR" />
+    <result column="TEACHERDEPTID" property="teacherdeptid" jdbcType="VARCHAR" />
+    <result column="TEACHERDEPTNAME" property="teacherdeptname" jdbcType="VARCHAR" />
+    <result column="DBDATE" property="dbdate" jdbcType="DATE" />
+    <result column="DBPOSITION" property="dbposition" jdbcType="VARCHAR" />
+    <result column="DBTOPIC" property="dbtopic" jdbcType="VARCHAR" />
+    <result column="FJLJ" property="fjlj" jdbcType="VARCHAR" />
+    <result column="FJNAME" property="fjname" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="DBST" property="dbst" jdbcType="VARCHAR" />
+    <result column="SHSTATE" property="shstate" jdbcType="VARCHAR" />
+    <result column="SHRID" property="shrid" jdbcType="VARCHAR" />
+    <result column="SHRNAME" property="shrname" jdbcType="VARCHAR" />
+    <result column="SHTIME" property="shtime" jdbcType="DATE" />
+    <result column="SHYJ" property="shyj" jdbcType="VARCHAR" />
+    <result column="REMINDST" property="remindst" jdbcType="VARCHAR" />
+    <result column="REMINDDATE" property="reminddate" jdbcType="DATE" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+    <result column="CREDITDATE" property="creditdate" jdbcType="DATE" />
+    <result column="UPTIME" property="uptime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, STUID, STUNAME, STUTEL, STUSCHOOLID, STUSCHOOLNAME, COLLAGEID, COLLAGENAME, STUGRADE, 
+    STUPROFESSID, STUPROFESSNAME, STUYEAR, SFGP, TEACHERID, TEACHERNAME, TEACHERDEPTID, 
+    TEACHERDEPTNAME, DBDATE, DBPOSITION, DBTOPIC, FJLJ, FJNAME, STATE, TYPE, DBST, SHSTATE, 
+    SHRID, SHRNAME, SHTIME, SHYJ, REMINDST, REMINDDATE, REMARK1, REMARK2, REMARK3, REMARK4, 
+    REMARK5, CREDITDATE, UPTIME
+  </sql>
+  <select id="selectListPageJxGraduateDabianBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxGraduateDabianSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_GRADUATE_DABIAN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxGraduateDabianBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxGraduateDabianSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_GRADUATE_DABIAN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxGraduateDabianByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_GRADUATE_DABIAN
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxGraduateDabianByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_GRADUATE_DABIAN
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxGraduateDabianBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxGraduateDabianSqlWhere" >
+    delete from JX_GRADUATE_DABIAN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxGraduateDabian" parameterType="com.saint.teaching.bean.JxGraduateDabianEntity" >
+    insert into JX_GRADUATE_DABIAN (XH, STUID, STUNAME, 
+      STUTEL, STUSCHOOLID, STUSCHOOLNAME, 
+      COLLAGEID, COLLAGENAME, STUGRADE, 
+      STUPROFESSID, STUPROFESSNAME, STUYEAR, 
+      SFGP, TEACHERID, TEACHERNAME, 
+      TEACHERDEPTID, TEACHERDEPTNAME, DBDATE, 
+      DBPOSITION, DBTOPIC, FJLJ, 
+      FJNAME, STATE, TYPE, 
+      DBST, SHSTATE, SHRID, 
+      SHRNAME, SHTIME, 
+      SHYJ, REMINDST, REMINDDATE, 
+      REMARK1, REMARK2, REMARK3, 
+      REMARK4, REMARK5, CREDITDATE, 
+      UPTIME)
+    values (#{xh,jdbcType=VARCHAR}, #{stuid,jdbcType=VARCHAR}, #{stuname,jdbcType=VARCHAR}, 
+      #{stutel,jdbcType=VARCHAR}, #{stuschoolid,jdbcType=VARCHAR}, #{stuschoolname,jdbcType=VARCHAR}, 
+      #{collageid,jdbcType=VARCHAR}, #{collagename,jdbcType=VARCHAR}, #{stugrade,jdbcType=VARCHAR}, 
+      #{stuprofessid,jdbcType=VARCHAR}, #{stuprofessname,jdbcType=VARCHAR}, #{stuyear,jdbcType=VARCHAR}, 
+      #{sfgp,jdbcType=VARCHAR}, #{teacherid,jdbcType=VARCHAR}, #{teachername,jdbcType=VARCHAR}, 
+      #{teacherdeptid,jdbcType=VARCHAR}, #{teacherdeptname,jdbcType=VARCHAR}, to_date(#{dbdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{dbposition,jdbcType=VARCHAR}, #{dbtopic,jdbcType=VARCHAR}, #{fjlj,jdbcType=VARCHAR}, 
+      #{fjname,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{dbst,jdbcType=VARCHAR}, #{shstate,jdbcType=VARCHAR}, #{shrid,jdbcType=VARCHAR}, 
+      #{shrname,jdbcType=VARCHAR}, to_date(#{shtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{shyj,jdbcType=VARCHAR}, #{remindst,jdbcType=VARCHAR}, to_date(#{reminddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, 
+      #{remark4,jdbcType=VARCHAR}, #{remark5,jdbcType=VARCHAR}, to_date(#{creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      to_date(#{uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'))
+  </insert>
+  <insert id="insertJxGraduateDabianSelective" parameterType="com.saint.teaching.bean.JxGraduateDabianEntity" >
+    insert into JX_GRADUATE_DABIAN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="stuid != null and stuid != ''" >
+        STUID,
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        STUNAME,
+      </if>
+      <if test="stutel != null and stutel != ''" >
+        STUTEL,
+      </if>
+      <if test="stuschoolid != null and stuschoolid != ''" >
+        STUSCHOOLID,
+      </if>
+      <if test="stuschoolname != null and stuschoolname != ''" >
+        STUSCHOOLNAME,
+      </if>
+      <if test="collageid != null and collageid != ''" >
+        COLLAGEID,
+      </if>
+      <if test="collagename != null and collagename != ''" >
+        COLLAGENAME,
+      </if>
+      <if test="stugrade != null and stugrade != ''" >
+        STUGRADE,
+      </if>
+      <if test="stuprofessid != null and stuprofessid != ''" >
+        STUPROFESSID,
+      </if>
+      <if test="stuprofessname != null and stuprofessname != ''" >
+        STUPROFESSNAME,
+      </if>
+      <if test="stuyear != null and stuyear != ''" >
+        STUYEAR,
+      </if>
+      <if test="sfgp != null and sfgp != ''" >
+        SFGP,
+      </if>
+      <if test="teacherid != null and teacherid != ''" >
+        TEACHERID,
+      </if>
+      <if test="teachername != null and teachername != ''" >
+        TEACHERNAME,
+      </if>
+      <if test="teacherdeptid != null and teacherdeptid != ''" >
+        TEACHERDEPTID,
+      </if>
+      <if test="teacherdeptname != null and teacherdeptname != ''" >
+        TEACHERDEPTNAME,
+      </if>
+      <if test="dbdate != null and dbdate != ''" >
+        DBDATE,
+      </if>
+      <if test="dbposition != null and dbposition != ''" >
+        DBPOSITION,
+      </if>
+      <if test="dbtopic != null and dbtopic != ''" >
+        DBTOPIC,
+      </if>
+      <if test="fjlj != null and fjlj != ''" >
+        FJLJ,
+      </if>
+      <if test="fjname != null and fjname != ''" >
+        FJNAME,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE,
+      </if>
+      <if test="dbst != null and dbst != ''" >
+        DBST,
+      </if>
+      <if test="shstate != null and shstate != ''" >
+        SHSTATE,
+      </if>
+      <if test="shrid != null and shrid != ''" >
+        SHRID,
+      </if>
+      <if test="shrname != null and shrname != ''" >
+        SHRNAME,
+      </if>
+      <if test="shtime != null and shtime != ''" >
+        SHTIME,
+      </if>
+      <if test="shyj != null and shyj != ''" >
+        SHYJ,
+      </if>
+      <if test="remindst != null and remindst != ''" >
+        REMINDST,
+      </if>
+      <if test="reminddate != null and reminddate != ''" >
+        REMINDDATE,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+      <if test="creditdate != null and creditdate != ''" >
+        CREDITDATE,
+      </if>
+      <if test="uptime != null and uptime != ''" >
+        UPTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="stuid != null and stuid != ''" >
+        #{stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="stutel != null and stutel != ''" >
+        #{stutel,jdbcType=VARCHAR},
+      </if>
+      <if test="stuschoolid != null and stuschoolid != ''" >
+        #{stuschoolid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuschoolname != null and stuschoolname != ''" >
+        #{stuschoolname,jdbcType=VARCHAR},
+      </if>
+      <if test="collageid != null and collageid != ''" >
+        #{collageid,jdbcType=VARCHAR},
+      </if>
+      <if test="collagename != null and collagename != ''" >
+        #{collagename,jdbcType=VARCHAR},
+      </if>
+      <if test="stugrade != null and stugrade != ''" >
+        #{stugrade,jdbcType=VARCHAR},
+      </if>
+      <if test="stuprofessid != null and stuprofessid != ''" >
+        #{stuprofessid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuprofessname != null and stuprofessname != ''" >
+        #{stuprofessname,jdbcType=VARCHAR},
+      </if>
+      <if test="stuyear != null and stuyear != ''" >
+        #{stuyear,jdbcType=VARCHAR},
+      </if>
+      <if test="sfgp != null and sfgp != ''" >
+        #{sfgp,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherid != null and teacherid != ''" >
+        #{teacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="teachername != null and teachername != ''" >
+        #{teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherdeptid != null and teacherdeptid != ''" >
+        #{teacherdeptid,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherdeptname != null and teacherdeptname != ''" >
+        #{teacherdeptname,jdbcType=VARCHAR},
+      </if>
+      <if test="dbdate != null and dbdate != ''" >
+        to_date(#{dbdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="dbposition != null and dbposition != ''" >
+        #{dbposition,jdbcType=VARCHAR},
+      </if>
+      <if test="dbtopic != null and dbtopic != ''" >
+        #{dbtopic,jdbcType=VARCHAR},
+      </if>
+      <if test="fjlj != null and fjlj != ''" >
+        #{fjlj,jdbcType=VARCHAR},
+      </if>
+      <if test="fjname != null and fjname != ''" >
+        #{fjname,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null and type != ''" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="dbst != null and dbst != ''" >
+        #{dbst,jdbcType=VARCHAR},
+      </if>
+      <if test="shstate != null and shstate != ''" >
+        #{shstate,jdbcType=VARCHAR},
+      </if>
+      <if test="shrid != null and shrid != ''" >
+        #{shrid,jdbcType=VARCHAR},
+      </if>
+      <if test="shrname != null and shrname != ''" >
+        #{shrname,jdbcType=VARCHAR},
+      </if>
+      <if test="shtime != null and shtime != ''" >
+        to_date(#{shtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="shyj != null and shyj != ''" >
+        #{shyj,jdbcType=VARCHAR},
+      </if>
+      <if test="remindst != null and remindst != ''" >
+        #{remindst,jdbcType=VARCHAR},
+      </if>
+      <if test="reminddate != null and reminddate != ''" >
+        to_date(#{reminddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="creditdate != null and creditdate != ''" >
+        to_date(#{creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="uptime != null and uptime != ''" >
+        to_date(#{uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxGraduateDabianBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxGraduateDabianSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_GRADUATE_DABIAN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxGraduateDabianBySqlWhereSelective" parameterType="map" >
+    update JX_GRADUATE_DABIAN
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuid != null and record.stuid != ''" >
+        STUID = #{record.stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuname != null and record.stuname != ''" >
+        STUNAME = #{record.stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stutel != null and record.stutel != ''" >
+        STUTEL = #{record.stutel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuschoolid != null and record.stuschoolid != ''" >
+        STUSCHOOLID = #{record.stuschoolid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuschoolname != null and record.stuschoolname != ''" >
+        STUSCHOOLNAME = #{record.stuschoolname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collageid != null and record.collageid != ''" >
+        COLLAGEID = #{record.collageid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collagename != null and record.collagename != ''" >
+        COLLAGENAME = #{record.collagename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stugrade != null and record.stugrade != ''" >
+        STUGRADE = #{record.stugrade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuprofessid != null and record.stuprofessid != ''" >
+        STUPROFESSID = #{record.stuprofessid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuprofessname != null and record.stuprofessname != ''" >
+        STUPROFESSNAME = #{record.stuprofessname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuyear != null and record.stuyear != ''" >
+        STUYEAR = #{record.stuyear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfgp != null and record.sfgp != ''" >
+        SFGP = #{record.sfgp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacherid != null and record.teacherid != ''" >
+        TEACHERID = #{record.teacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teachername != null and record.teachername != ''" >
+        TEACHERNAME = #{record.teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacherdeptid != null and record.teacherdeptid != ''" >
+        TEACHERDEPTID = #{record.teacherdeptid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacherdeptname != null and record.teacherdeptname != ''" >
+        TEACHERDEPTNAME = #{record.teacherdeptname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dbdate != null and record.dbdate != ''" >
+        DBDATE = to_date(#{record.dbdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.dbposition != null and record.dbposition != ''" >
+        DBPOSITION = #{record.dbposition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dbtopic != null and record.dbtopic != ''" >
+        DBTOPIC = #{record.dbtopic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fjlj != null and record.fjlj != ''" >
+        FJLJ = #{record.fjlj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fjname != null and record.fjname != ''" >
+        FJNAME = #{record.fjname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null and record.type != ''" >
+        TYPE = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dbst != null and record.dbst != ''" >
+        DBST = #{record.dbst,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shstate != null and record.shstate != ''" >
+        SHSTATE = #{record.shstate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shrid != null and record.shrid != ''" >
+        SHRID = #{record.shrid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shrname != null and record.shrname != ''" >
+        SHRNAME = #{record.shrname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shtime != null and record.shtime != ''" >
+        SHTIME = to_date(#{record.shtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.shyj != null and record.shyj != ''" >
+        SHYJ = #{record.shyj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remindst != null and record.remindst != ''" >
+        REMINDST = #{record.remindst,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reminddate != null and record.reminddate != ''" >
+        REMINDDATE = to_date(#{record.reminddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creditdate != null and record.creditdate != ''" >
+        CREDITDATE = to_date(#{record.creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.uptime != null and record.uptime != ''" >
+        UPTIME = to_date(#{record.uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxGraduateDabianBySqlWhere" parameterType="map" >
+    update JX_GRADUATE_DABIAN
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      STUID = #{record.stuid,jdbcType=VARCHAR},
+      STUNAME = #{record.stuname,jdbcType=VARCHAR},
+      STUTEL = #{record.stutel,jdbcType=VARCHAR},
+      STUSCHOOLID = #{record.stuschoolid,jdbcType=VARCHAR},
+      STUSCHOOLNAME = #{record.stuschoolname,jdbcType=VARCHAR},
+      COLLAGEID = #{record.collageid,jdbcType=VARCHAR},
+      COLLAGENAME = #{record.collagename,jdbcType=VARCHAR},
+      STUGRADE = #{record.stugrade,jdbcType=VARCHAR},
+      STUPROFESSID = #{record.stuprofessid,jdbcType=VARCHAR},
+      STUPROFESSNAME = #{record.stuprofessname,jdbcType=VARCHAR},
+      STUYEAR = #{record.stuyear,jdbcType=VARCHAR},
+      SFGP = #{record.sfgp,jdbcType=VARCHAR},
+      TEACHERID = #{record.teacherid,jdbcType=VARCHAR},
+      TEACHERNAME = #{record.teachername,jdbcType=VARCHAR},
+      TEACHERDEPTID = #{record.teacherdeptid,jdbcType=VARCHAR},
+      TEACHERDEPTNAME = #{record.teacherdeptname,jdbcType=VARCHAR},
+      DBDATE = to_date(#{record.dbdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      DBPOSITION = #{record.dbposition,jdbcType=VARCHAR},
+      DBTOPIC = #{record.dbtopic,jdbcType=VARCHAR},
+      FJLJ = #{record.fjlj,jdbcType=VARCHAR},
+      FJNAME = #{record.fjname,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      TYPE = #{record.type,jdbcType=VARCHAR},
+      DBST = #{record.dbst,jdbcType=VARCHAR},
+      SHSTATE = #{record.shstate,jdbcType=VARCHAR},
+      SHRID = #{record.shrid,jdbcType=VARCHAR},
+      SHRNAME = #{record.shrname,jdbcType=VARCHAR},
+      SHTIME = to_date(#{record.shtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SHYJ = #{record.shyj,jdbcType=VARCHAR},
+      REMINDST = #{record.remindst,jdbcType=VARCHAR},
+      REMINDDATE = to_date(#{record.reminddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      CREDITDATE = to_date(#{record.creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      UPTIME = to_date(#{record.uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxGraduateDabianByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxGraduateDabianEntity" >
+    update JX_GRADUATE_DABIAN
+    <set >
+      <if test="stuid != null and stuid != ''" >
+        STUID = #{stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        STUNAME = #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="stutel != null and stutel != ''" >
+        STUTEL = #{stutel,jdbcType=VARCHAR},
+      </if>
+      <if test="stuschoolid != null and stuschoolid != ''" >
+        STUSCHOOLID = #{stuschoolid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuschoolname != null and stuschoolname != ''" >
+        STUSCHOOLNAME = #{stuschoolname,jdbcType=VARCHAR},
+      </if>
+      <if test="collageid != null and collageid != ''" >
+        COLLAGEID = #{collageid,jdbcType=VARCHAR},
+      </if>
+      <if test="collagename != null and collagename != ''" >
+        COLLAGENAME = #{collagename,jdbcType=VARCHAR},
+      </if>
+      <if test="stugrade != null and stugrade != ''" >
+        STUGRADE = #{stugrade,jdbcType=VARCHAR},
+      </if>
+      <if test="stuprofessid != null and stuprofessid != ''" >
+        STUPROFESSID = #{stuprofessid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuprofessname != null and stuprofessname != ''" >
+        STUPROFESSNAME = #{stuprofessname,jdbcType=VARCHAR},
+      </if>
+      <if test="stuyear != null and stuyear != ''" >
+        STUYEAR = #{stuyear,jdbcType=VARCHAR},
+      </if>
+      <if test="sfgp != null and sfgp != ''" >
+        SFGP = #{sfgp,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherid != null and teacherid != ''" >
+        TEACHERID = #{teacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="teachername != null and teachername != ''" >
+        TEACHERNAME = #{teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherdeptid != null and teacherdeptid != ''" >
+        TEACHERDEPTID = #{teacherdeptid,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherdeptname != null and teacherdeptname != ''" >
+        TEACHERDEPTNAME = #{teacherdeptname,jdbcType=VARCHAR},
+      </if>
+      <if test="dbdate != null and dbdate != ''" >
+        DBDATE = to_date(#{dbdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="dbposition != null and dbposition != ''" >
+        DBPOSITION = #{dbposition,jdbcType=VARCHAR},
+      </if>
+      <if test="dbtopic != null and dbtopic != ''" >
+        DBTOPIC = #{dbtopic,jdbcType=VARCHAR},
+      </if>
+      <if test="fjlj != null and fjlj != ''" >
+        FJLJ = #{fjlj,jdbcType=VARCHAR},
+      </if>
+      <if test="fjname != null and fjname != ''" >
+        FJNAME = #{fjname,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="dbst != null and dbst != ''" >
+        DBST = #{dbst,jdbcType=VARCHAR},
+      </if>
+      <if test="shstate != null and shstate != ''" >
+        SHSTATE = #{shstate,jdbcType=VARCHAR},
+      </if>
+      <if test="shrid != null and shrid != ''" >
+        SHRID = #{shrid,jdbcType=VARCHAR},
+      </if>
+      <if test="shrname != null and shrname != ''" >
+        SHRNAME = #{shrname,jdbcType=VARCHAR},
+      </if>
+      <if test="shtime != null and shtime != ''" >
+        SHTIME = to_date(#{shtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="shyj != null and shyj != ''" >
+        SHYJ = #{shyj,jdbcType=VARCHAR},
+      </if>
+      <if test="remindst != null and remindst != ''" >
+        REMINDST = #{remindst,jdbcType=VARCHAR},
+      </if>
+      <if test="reminddate != null and reminddate != ''" >
+        REMINDDATE = to_date(#{reminddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="creditdate != null and creditdate != ''" >
+        CREDITDATE = to_date(#{creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="uptime != null and uptime != ''" >
+        UPTIME = to_date(#{uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxGraduateDabianByPrimaryKey" parameterType="com.saint.teaching.bean.JxGraduateDabianEntity" >
+    update JX_GRADUATE_DABIAN
+    set STUID = #{stuid,jdbcType=VARCHAR},
+      STUNAME = #{stuname,jdbcType=VARCHAR},
+      STUTEL = #{stutel,jdbcType=VARCHAR},
+      STUSCHOOLID = #{stuschoolid,jdbcType=VARCHAR},
+      STUSCHOOLNAME = #{stuschoolname,jdbcType=VARCHAR},
+      COLLAGEID = #{collageid,jdbcType=VARCHAR},
+      COLLAGENAME = #{collagename,jdbcType=VARCHAR},
+      STUGRADE = #{stugrade,jdbcType=VARCHAR},
+      STUPROFESSID = #{stuprofessid,jdbcType=VARCHAR},
+      STUPROFESSNAME = #{stuprofessname,jdbcType=VARCHAR},
+      STUYEAR = #{stuyear,jdbcType=VARCHAR},
+      SFGP = #{sfgp,jdbcType=VARCHAR},
+      TEACHERID = #{teacherid,jdbcType=VARCHAR},
+      TEACHERNAME = #{teachername,jdbcType=VARCHAR},
+      TEACHERDEPTID = #{teacherdeptid,jdbcType=VARCHAR},
+      TEACHERDEPTNAME = #{teacherdeptname,jdbcType=VARCHAR},
+      DBDATE = to_date(#{dbdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      DBPOSITION = #{dbposition,jdbcType=VARCHAR},
+      DBTOPIC = #{dbtopic,jdbcType=VARCHAR},
+      FJLJ = #{fjlj,jdbcType=VARCHAR},
+      FJNAME = #{fjname,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      DBST = #{dbst,jdbcType=VARCHAR},
+      SHSTATE = #{shstate,jdbcType=VARCHAR},
+      SHRID = #{shrid,jdbcType=VARCHAR},
+      SHRNAME = #{shrname,jdbcType=VARCHAR},
+      SHTIME = to_date(#{shtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SHYJ = #{shyj,jdbcType=VARCHAR},
+      REMINDST = #{remindst,jdbcType=VARCHAR},
+      REMINDDATE = to_date(#{reminddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR},
+      CREDITDATE = to_date(#{creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      UPTIME = to_date(#{uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

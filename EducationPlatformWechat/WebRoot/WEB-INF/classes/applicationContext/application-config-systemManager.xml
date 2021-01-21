@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns='http://www.springframework.org/schema/beans'
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xmlns:p='http://www.springframework.org/schema/p'
+	xmlns:context='http://www.springframework.org/schema/context'
+	xsi:schemaLocation='http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+ http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+ http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd'>
+ 	
+ 	<bean id="processService" class="com.saint.pub.services.imp.ProcessResultImpl">
+ 		<property name="frmZlLogService"><ref bean="frmZlLogService"/></property>
+ 		<property name="frmZlExlogService"><ref bean="frmZlExlogService"/></property>
+ 	</bean>
+ 	
+	<bean id="frmZlLogService" class="com.saint.systemManager.services.impl.FrmZlLogServiceImpl">
+		<property name="frmZlLogDao" ref="frmZlLogDao"></property>
+	</bean>
+	
+	<bean id="frmZlExlogService" class="com.saint.systemManager.services.impl.FrmZlExlogServiceImpl">
+		<property name="frmZlExlogDao" ref="frmZlExlogDao"></property>
+	</bean>
+	
+	<bean id="frmCodeService" class="com.saint.systemManager.services.impl.FrmCodeServiceImpl">
+		<property name="frmCodeDao" ref="frmCodeDao"></property>
+	</bean>
+	
+	<bean id="frmDepartmentService" class="com.saint.systemManager.services.impl.FrmDepartmentServiceImpl">
+		<property name="frmDepartmentDao" ref="frmDepartmentDao"></property>
+	</bean>
+	<bean id="frmSysparaTypeService" class="com.saint.systemManager.services.impl.FrmSysparaTypeServiceImpl">
+		<property name="FrmSysparaTypeDao" ref="FrmSysparaTypeDao"></property>
+	</bean>
+	<bean id="frmSysuserService" class="com.saint.systemManager.services.impl.FrmSysuserServiceImpl">
+		<property name="frmSysuserDao"><ref bean="frmSysuserDao"/></property>
+	</bean>
+	<!-- *************************************以下是DAO类********************************** -->
+	
+	<bean id="frmZlLogDao" class="com.saint.systemManager.dao.impl.FrmZlLogDaoImpl">
+		<property name="sqlSessionTemplate"><ref bean="sqlSessionTemplate"/></property>
+	</bean>
+	
+	<bean id="frmZlExlogDao" class="com.saint.systemManager.dao.impl.FrmZlExlogDaoImpl">
+		<property name="sqlSessionTemplate"><ref bean="sqlSessionTemplate"/></property>
+	</bean>
+	
+	<bean id="frmCodeDao" class="com.saint.systemManager.dao.impl.FrmCodeDaoImpl">
+		<property name="sqlSessionTemplate"><ref bean="sqlSessionTemplate"/></property>
+	</bean>
+	
+	<bean id="frmDepartmentDao" class="com.saint.systemManager.dao.impl.FrmDepartmentDaoImpl">
+		<property name="sqlSessionTemplate"><ref bean="sqlSessionTemplate"/></property>
+	</bean>
+	<bean id="FrmSysparaTypeDao" class="com.saint.systemManager.dao.impl.FrmSysparaTypeDaoImpl">
+		<property name="sqlSessionTemplate"><ref bean="sqlSessionTemplate"/></property>
+	</bean>
+	<bean id="frmSysuserDao" class="com.saint.systemManager.dao.impl.FrmSysuserDaoImpl">
+		<property name="sqlSessionTemplate"><ref bean="sqlSessionTemplate"/></property>
+	</bean>
+	<!-- 定时任务配置 -->
+	<!-- 
+	 <bean id="schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers"><list><ref local="databaseTaskManageTrigger"/></list></property>
+        <property name="schedulerName"><value>first</value></property>
+    </bean>
+	<bean id="databaseTaskManageJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass"><value>com.saint.frmworoad.sysManagerrk.task.DatabaseTaskManageJob</value></property>
+        <property name="applicationContextJobDataKey" value="applicationContext"/>
+    </bean>
+    <bean id="databaseTaskManageTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref local="databaseTaskManageJob"/>
+        </property>
+        <property name="cronExpression">
+            <value>1 0/2 * * * ?</value>
+        </property>
+    </bean>
+     -->
+
+</beans>
+

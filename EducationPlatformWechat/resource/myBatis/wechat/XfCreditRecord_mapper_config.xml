@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.wechat.XfCreditRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.wechat.manager.bean.XfCreditRecordEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="DEPT_ID" property="deptId" jdbcType="VARCHAR" />
+    <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+    <result column="MAN_ID" property="manId" jdbcType="DECIMAL" />
+    <result column="MAN_NAME" property="manName" jdbcType="VARCHAR" />
+    <result column="MAN_TYPE" property="manType" jdbcType="DECIMAL" />
+    <result column="CREDIT" property="credit" jdbcType="DECIMAL" />
+    <result column="HOURS" property="hours" jdbcType="DECIMAL" />
+    <result column="TYPE" property="type" jdbcType="DECIMAL" />
+    <result column="PRO_ID" property="proId" jdbcType="DECIMAL" />
+    <result column="PRO_NAME" property="proName" jdbcType="VARCHAR" />
+    <result column="ACT_ID" property="actId" jdbcType="VARCHAR" />
+    <result column="ACT_NAME" property="actName" jdbcType="VARCHAR" />
+    <result column="IS_CHECK" property="isCheck" jdbcType="DECIMAL" />
+    <result column="CHECK_SAY" property="checkSay" jdbcType="VARCHAR" />
+    <result column="VERIFY_UNIT" property="verifyUnit" jdbcType="VARCHAR" />
+    <result column="VERIFY_UNIT_NAME" property="verifyUnitName" jdbcType="VARCHAR" />
+    <result column="VERIFY_TIME" property="verifyTime" jdbcType="DATE" />
+    <result column="VERIFY_STATE" property="verifyState" jdbcType="DECIMAL" />
+    <result column="VERIFY_SAY" property="verifySay" jdbcType="VARCHAR" />
+    <result column="DECLARE_STATE" property="declareState" jdbcType="DECIMAL" />
+    <result column="DECLARE_TIME" property="declareTime" jdbcType="DATE" />
+    <result column="MODULE_SOURCE" property="moduleSource" jdbcType="DECIMAL" />
+    <result column="FUNCTION_SOURCE" property="functionSource" jdbcType="DECIMAL" />
+    <result column="PRINTTIME" property="printtime" jdbcType="DATE" />
+    <result column="IS_CERTIFICATE_PRINT" property="isCertificatePrint" jdbcType="DECIMAL" />
+    <result column="STATE" property="state" jdbcType="DECIMAL" />
+    <result column="ADD_TIME" property="addTime" jdbcType="DATE" />
+    <result column="ADD_YEAR" property="addYear" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="GXSJ" property="gxsj" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, DEPT_ID, DEPT_NAME, MAN_ID, MAN_NAME, MAN_TYPE, CREDIT, HOURS, TYPE, PRO_ID, 
+    PRO_NAME, ACT_ID, ACT_NAME, IS_CHECK, CHECK_SAY, VERIFY_UNIT, VERIFY_UNIT_NAME, VERIFY_TIME, 
+    VERIFY_STATE, VERIFY_SAY, DECLARE_STATE, DECLARE_TIME, MODULE_SOURCE, FUNCTION_SOURCE, 
+    PRINTTIME, IS_CERTIFICATE_PRINT, STATE, ADD_TIME, ADD_YEAR, REMARK1, REMARK2, REMARK3, 
+    GXSJ
+  </sql>
+  <select id="selectListPageXfCreditRecordBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.XfCreditRecordSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XF_CREDIT_RECORD
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListXfCreditRecordBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.XfCreditRecordSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XF_CREDIT_RECORD
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectXfCreditRecordByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from XF_CREDIT_RECORD
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteXfCreditRecordByPrimaryKey" parameterType="java.lang.String" >
+    delete from XF_CREDIT_RECORD
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteXfCreditRecordBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.XfCreditRecordSqlWhere" >
+    delete from XF_CREDIT_RECORD
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertXfCreditRecord" parameterType="com.saint.wechat.manager.bean.XfCreditRecordEntity" >
+    insert into XF_CREDIT_RECORD (XH, DEPT_ID, DEPT_NAME, 
+      MAN_ID, MAN_NAME, MAN_TYPE, 
+      CREDIT, HOURS, TYPE, 
+      PRO_ID, PRO_NAME, ACT_ID, 
+      ACT_NAME, IS_CHECK, CHECK_SAY, 
+      VERIFY_UNIT, VERIFY_UNIT_NAME, VERIFY_TIME, 
+      VERIFY_STATE, VERIFY_SAY, DECLARE_STATE, 
+      DECLARE_TIME, MODULE_SOURCE, 
+      FUNCTION_SOURCE, PRINTTIME, 
+      IS_CERTIFICATE_PRINT, STATE, ADD_TIME, 
+      ADD_YEAR, REMARK1, REMARK2, 
+      REMARK3, GXSJ
+      )
+    values (#{xh,jdbcType=VARCHAR}, #{deptId,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, 
+      #{manId,jdbcType=DECIMAL}, #{manName,jdbcType=VARCHAR}, #{manType,jdbcType=DECIMAL}, 
+      #{credit,jdbcType=DECIMAL}, #{hours,jdbcType=DECIMAL}, #{type,jdbcType=DECIMAL}, 
+      #{proId,jdbcType=DECIMAL}, #{proName,jdbcType=VARCHAR}, #{actId,jdbcType=VARCHAR}, 
+      #{actName,jdbcType=VARCHAR}, #{isCheck,jdbcType=DECIMAL}, #{checkSay,jdbcType=VARCHAR}, 
+      #{verifyUnit,jdbcType=VARCHAR}, #{verifyUnitName,jdbcType=VARCHAR}, to_date(#{verifyTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{verifyState,jdbcType=DECIMAL}, #{verifySay,jdbcType=VARCHAR}, #{declareState,jdbcType=DECIMAL}, 
+      to_date(#{declareTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{moduleSource,jdbcType=DECIMAL}, 
+      #{functionSource,jdbcType=DECIMAL}, to_date(#{printtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{isCertificatePrint,jdbcType=DECIMAL}, #{state,jdbcType=DECIMAL}, to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{addYear,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, 
+      #{remark3,jdbcType=VARCHAR}, to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+      )
+  </insert>
+  <insert id="insertXfCreditRecordSelective" parameterType="com.saint.wechat.manager.bean.XfCreditRecordEntity" >
+    insert into XF_CREDIT_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="deptId != null and deptId != ''" >
+        DEPT_ID,
+      </if>
+      <if test="deptName != null and deptName != ''" >
+        DEPT_NAME,
+      </if>
+      <if test="manId != null and manId != ''" >
+        MAN_ID,
+      </if>
+      <if test="manName != null and manName != ''" >
+        MAN_NAME,
+      </if>
+      <if test="manType != null and manType != ''" >
+        MAN_TYPE,
+      </if>
+      <if test="credit != null and credit != ''" >
+        CREDIT,
+      </if>
+      <if test="hours != null and hours != ''" >
+        HOURS,
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE,
+      </if>
+      <if test="proId != null and proId != ''" >
+        PRO_ID,
+      </if>
+      <if test="proName != null and proName != ''" >
+        PRO_NAME,
+      </if>
+      <if test="actId != null and actId != ''" >
+        ACT_ID,
+      </if>
+      <if test="actName != null and actName != ''" >
+        ACT_NAME,
+      </if>
+      <if test="isCheck != null and isCheck != ''" >
+        IS_CHECK,
+      </if>
+      <if test="checkSay != null and checkSay != ''" >
+        CHECK_SAY,
+      </if>
+      <if test="verifyUnit != null and verifyUnit != ''" >
+        VERIFY_UNIT,
+      </if>
+      <if test="verifyUnitName != null and verifyUnitName != ''" >
+        VERIFY_UNIT_NAME,
+      </if>
+      <if test="verifyTime != null and verifyTime != ''" >
+        VERIFY_TIME,
+      </if>
+      <if test="verifyState != null and verifyState != ''" >
+        VERIFY_STATE,
+      </if>
+      <if test="verifySay != null and verifySay != ''" >
+        VERIFY_SAY,
+      </if>
+      <if test="declareState != null and declareState != ''" >
+        DECLARE_STATE,
+      </if>
+      <if test="declareTime != null and declareTime != ''" >
+        DECLARE_TIME,
+      </if>
+      <if test="moduleSource != null and moduleSource != ''" >
+        MODULE_SOURCE,
+      </if>
+      <if test="functionSource != null and functionSource != ''" >
+        FUNCTION_SOURCE,
+      </if>
+      <if test="printtime != null and printtime != ''" >
+        PRINTTIME,
+      </if>
+      <if test="isCertificatePrint != null and isCertificatePrint != ''" >
+        IS_CERTIFICATE_PRINT,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="addTime != null and addTime != ''" >
+        ADD_TIME,
+      </if>
+      <if test="addYear != null and addYear != ''" >
+        ADD_YEAR,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null and deptId != ''" >
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null and deptName != ''" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="manId != null and manId != ''" >
+        #{manId,jdbcType=DECIMAL},
+      </if>
+      <if test="manName != null and manName != ''" >
+        #{manName,jdbcType=VARCHAR},
+      </if>
+      <if test="manType != null and manType != ''" >
+        #{manType,jdbcType=DECIMAL},
+      </if>
+      <if test="credit != null and credit != ''" >
+        #{credit,jdbcType=DECIMAL},
+      </if>
+      <if test="hours != null and hours != ''" >
+        #{hours,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null and type != ''" >
+        #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="proId != null and proId != ''" >
+        #{proId,jdbcType=DECIMAL},
+      </if>
+      <if test="proName != null and proName != ''" >
+        #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="actId != null and actId != ''" >
+        #{actId,jdbcType=VARCHAR},
+      </if>
+      <if test="actName != null and actName != ''" >
+        #{actName,jdbcType=VARCHAR},
+      </if>
+      <if test="isCheck != null and isCheck != ''" >
+        #{isCheck,jdbcType=DECIMAL},
+      </if>
+      <if test="checkSay != null and checkSay != ''" >
+        #{checkSay,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyUnit != null and verifyUnit != ''" >
+        #{verifyUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyUnitName != null and verifyUnitName != ''" >
+        #{verifyUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyTime != null and verifyTime != ''" >
+        to_date(#{verifyTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="verifyState != null and verifyState != ''" >
+        #{verifyState,jdbcType=DECIMAL},
+      </if>
+      <if test="verifySay != null and verifySay != ''" >
+        #{verifySay,jdbcType=VARCHAR},
+      </if>
+      <if test="declareState != null and declareState != ''" >
+        #{declareState,jdbcType=DECIMAL},
+      </if>
+      <if test="declareTime != null and declareTime != ''" >
+        to_date(#{declareTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="moduleSource != null and moduleSource != ''" >
+        #{moduleSource,jdbcType=DECIMAL},
+      </if>
+      <if test="functionSource != null and functionSource != ''" >
+        #{functionSource,jdbcType=DECIMAL},
+      </if>
+      <if test="printtime != null and printtime != ''" >
+        to_date(#{printtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="isCertificatePrint != null and isCertificatePrint != ''" >
+        #{isCertificatePrint,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null and addTime != ''" >
+        to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="addYear != null and addYear != ''" >
+        #{addYear,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </trim>
+  </insert>
+  <select id="countXfCreditRecordBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.XfCreditRecordSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from XF_CREDIT_RECORD
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateXfCreditRecordBySqlWhereSelective" parameterType="map" >
+    update XF_CREDIT_RECORD
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptId != null and record.deptId != ''" >
+        DEPT_ID = #{record.deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptName != null and record.deptName != ''" >
+        DEPT_NAME = #{record.deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manId != null and record.manId != ''" >
+        MAN_ID = #{record.manId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.manName != null and record.manName != ''" >
+        MAN_NAME = #{record.manName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manType != null and record.manType != ''" >
+        MAN_TYPE = #{record.manType,jdbcType=DECIMAL},
+      </if>
+      <if test="record.credit != null and record.credit != ''" >
+        CREDIT = #{record.credit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.hours != null and record.hours != ''" >
+        HOURS = #{record.hours,jdbcType=DECIMAL},
+      </if>
+      <if test="record.type != null and record.type != ''" >
+        TYPE = #{record.type,jdbcType=DECIMAL},
+      </if>
+      <if test="record.proId != null and record.proId != ''" >
+        PRO_ID = #{record.proId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.proName != null and record.proName != ''" >
+        PRO_NAME = #{record.proName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actId != null and record.actId != ''" >
+        ACT_ID = #{record.actId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actName != null and record.actName != ''" >
+        ACT_NAME = #{record.actName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isCheck != null and record.isCheck != ''" >
+        IS_CHECK = #{record.isCheck,jdbcType=DECIMAL},
+      </if>
+      <if test="record.checkSay != null and record.checkSay != ''" >
+        CHECK_SAY = #{record.checkSay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verifyUnit != null and record.verifyUnit != ''" >
+        VERIFY_UNIT = #{record.verifyUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verifyUnitName != null and record.verifyUnitName != ''" >
+        VERIFY_UNIT_NAME = #{record.verifyUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verifyTime != null and record.verifyTime != ''" >
+        VERIFY_TIME = to_date(#{record.verifyTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.verifyState != null and record.verifyState != ''" >
+        VERIFY_STATE = #{record.verifyState,jdbcType=DECIMAL},
+      </if>
+      <if test="record.verifySay != null and record.verifySay != ''" >
+        VERIFY_SAY = #{record.verifySay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.declareState != null and record.declareState != ''" >
+        DECLARE_STATE = #{record.declareState,jdbcType=DECIMAL},
+      </if>
+      <if test="record.declareTime != null and record.declareTime != ''" >
+        DECLARE_TIME = to_date(#{record.declareTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.moduleSource != null and record.moduleSource != ''" >
+        MODULE_SOURCE = #{record.moduleSource,jdbcType=DECIMAL},
+      </if>
+      <if test="record.functionSource != null and record.functionSource != ''" >
+        FUNCTION_SOURCE = #{record.functionSource,jdbcType=DECIMAL},
+      </if>
+      <if test="record.printtime != null and record.printtime != ''" >
+        PRINTTIME = to_date(#{record.printtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.isCertificatePrint != null and record.isCertificatePrint != ''" >
+        IS_CERTIFICATE_PRINT = #{record.isCertificatePrint,jdbcType=DECIMAL},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=DECIMAL},
+      </if>
+      <if test="record.addTime != null and record.addTime != ''" >
+        ADD_TIME = to_date(#{record.addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.addYear != null and record.addYear != ''" >
+        ADD_YEAR = #{record.addYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxsj != null and record.gxsj != ''" >
+        GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateXfCreditRecordBySqlWhere" parameterType="map" >
+    update XF_CREDIT_RECORD
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      DEPT_ID = #{record.deptId,jdbcType=VARCHAR},
+      DEPT_NAME = #{record.deptName,jdbcType=VARCHAR},
+      MAN_ID = #{record.manId,jdbcType=DECIMAL},
+      MAN_NAME = #{record.manName,jdbcType=VARCHAR},
+      MAN_TYPE = #{record.manType,jdbcType=DECIMAL},
+      CREDIT = #{record.credit,jdbcType=DECIMAL},
+      HOURS = #{record.hours,jdbcType=DECIMAL},
+      TYPE = #{record.type,jdbcType=DECIMAL},
+      PRO_ID = #{record.proId,jdbcType=DECIMAL},
+      PRO_NAME = #{record.proName,jdbcType=VARCHAR},
+      ACT_ID = #{record.actId,jdbcType=VARCHAR},
+      ACT_NAME = #{record.actName,jdbcType=VARCHAR},
+      IS_CHECK = #{record.isCheck,jdbcType=DECIMAL},
+      CHECK_SAY = #{record.checkSay,jdbcType=VARCHAR},
+      VERIFY_UNIT = #{record.verifyUnit,jdbcType=VARCHAR},
+      VERIFY_UNIT_NAME = #{record.verifyUnitName,jdbcType=VARCHAR},
+      VERIFY_TIME = to_date(#{record.verifyTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      VERIFY_STATE = #{record.verifyState,jdbcType=DECIMAL},
+      VERIFY_SAY = #{record.verifySay,jdbcType=VARCHAR},
+      DECLARE_STATE = #{record.declareState,jdbcType=DECIMAL},
+      DECLARE_TIME = to_date(#{record.declareTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      MODULE_SOURCE = #{record.moduleSource,jdbcType=DECIMAL},
+      FUNCTION_SOURCE = #{record.functionSource,jdbcType=DECIMAL},
+      PRINTTIME = to_date(#{record.printtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      IS_CERTIFICATE_PRINT = #{record.isCertificatePrint,jdbcType=DECIMAL},
+      STATE = #{record.state,jdbcType=DECIMAL},
+      ADD_TIME = to_date(#{record.addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ADD_YEAR = #{record.addYear,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateXfCreditRecordByPrimaryKeySelective" parameterType="com.saint.wechat.manager.bean.XfCreditRecordEntity" >
+    update XF_CREDIT_RECORD
+    <set >
+      <if test="deptId != null and deptId != ''" >
+        DEPT_ID = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null and deptName != ''" >
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="manId != null and manId != ''" >
+        MAN_ID = #{manId,jdbcType=DECIMAL},
+      </if>
+      <if test="manName != null and manName != ''" >
+        MAN_NAME = #{manName,jdbcType=VARCHAR},
+      </if>
+      <if test="manType != null and manType != ''" >
+        MAN_TYPE = #{manType,jdbcType=DECIMAL},
+      </if>
+      <if test="credit != null and credit != ''" >
+        CREDIT = #{credit,jdbcType=DECIMAL},
+      </if>
+      <if test="hours != null and hours != ''" >
+        HOURS = #{hours,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE = #{type,jdbcType=DECIMAL},
+      </if>
+      <if test="proId != null and proId != ''" >
+        PRO_ID = #{proId,jdbcType=DECIMAL},
+      </if>
+      <if test="proName != null and proName != ''" >
+        PRO_NAME = #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="actId != null and actId != ''" >
+        ACT_ID = #{actId,jdbcType=VARCHAR},
+      </if>
+      <if test="actName != null and actName != ''" >
+        ACT_NAME = #{actName,jdbcType=VARCHAR},
+      </if>
+      <if test="isCheck != null and isCheck != ''" >
+        IS_CHECK = #{isCheck,jdbcType=DECIMAL},
+      </if>
+      <if test="checkSay != null and checkSay != ''" >
+        CHECK_SAY = #{checkSay,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyUnit != null and verifyUnit != ''" >
+        VERIFY_UNIT = #{verifyUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyUnitName != null and verifyUnitName != ''" >
+        VERIFY_UNIT_NAME = #{verifyUnitName,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyTime != null and verifyTime != ''" >
+        VERIFY_TIME = to_date(#{verifyTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="verifyState != null and verifyState != ''" >
+        VERIFY_STATE = #{verifyState,jdbcType=DECIMAL},
+      </if>
+      <if test="verifySay != null and verifySay != ''" >
+        VERIFY_SAY = #{verifySay,jdbcType=VARCHAR},
+      </if>
+      <if test="declareState != null and declareState != ''" >
+        DECLARE_STATE = #{declareState,jdbcType=DECIMAL},
+      </if>
+      <if test="declareTime != null and declareTime != ''" >
+        DECLARE_TIME = to_date(#{declareTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="moduleSource != null and moduleSource != ''" >
+        MODULE_SOURCE = #{moduleSource,jdbcType=DECIMAL},
+      </if>
+      <if test="functionSource != null and functionSource != ''" >
+        FUNCTION_SOURCE = #{functionSource,jdbcType=DECIMAL},
+      </if>
+      <if test="printtime != null and printtime != ''" >
+        PRINTTIME = to_date(#{printtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="isCertificatePrint != null and isCertificatePrint != ''" >
+        IS_CERTIFICATE_PRINT = #{isCertificatePrint,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=DECIMAL},
+      </if>
+      <if test="addTime != null and addTime != ''" >
+        ADD_TIME = to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="addYear != null and addYear != ''" >
+        ADD_YEAR = #{addYear,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateXfCreditRecordByPrimaryKey" parameterType="com.saint.wechat.manager.bean.XfCreditRecordEntity" >
+    update XF_CREDIT_RECORD
+    set DEPT_ID = #{deptId,jdbcType=VARCHAR},
+      DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      MAN_ID = #{manId,jdbcType=DECIMAL},
+      MAN_NAME = #{manName,jdbcType=VARCHAR},
+      MAN_TYPE = #{manType,jdbcType=DECIMAL},
+      CREDIT = #{credit,jdbcType=DECIMAL},
+      HOURS = #{hours,jdbcType=DECIMAL},
+      TYPE = #{type,jdbcType=DECIMAL},
+      PRO_ID = #{proId,jdbcType=DECIMAL},
+      PRO_NAME = #{proName,jdbcType=VARCHAR},
+      ACT_ID = #{actId,jdbcType=VARCHAR},
+      ACT_NAME = #{actName,jdbcType=VARCHAR},
+      IS_CHECK = #{isCheck,jdbcType=DECIMAL},
+      CHECK_SAY = #{checkSay,jdbcType=VARCHAR},
+      VERIFY_UNIT = #{verifyUnit,jdbcType=VARCHAR},
+      VERIFY_UNIT_NAME = #{verifyUnitName,jdbcType=VARCHAR},
+      VERIFY_TIME = to_date(#{verifyTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      VERIFY_STATE = #{verifyState,jdbcType=DECIMAL},
+      VERIFY_SAY = #{verifySay,jdbcType=VARCHAR},
+      DECLARE_STATE = #{declareState,jdbcType=DECIMAL},
+      DECLARE_TIME = to_date(#{declareTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      MODULE_SOURCE = #{moduleSource,jdbcType=DECIMAL},
+      FUNCTION_SOURCE = #{functionSource,jdbcType=DECIMAL},
+      PRINTTIME = to_date(#{printtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      IS_CERTIFICATE_PRINT = #{isCertificatePrint,jdbcType=DECIMAL},
+      STATE = #{state,jdbcType=DECIMAL},
+      ADD_TIME = to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ADD_YEAR = #{addYear,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

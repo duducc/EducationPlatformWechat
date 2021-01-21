@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxStudentsLeaveCheckMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxStudentsLeaveCheckEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="STULEVID" property="stulevid" jdbcType="VARCHAR" />
+    <result column="CHECKORDER" property="checkorder" jdbcType="VARCHAR" />
+    <result column="CHECKPERID" property="checkperid" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="EXPLANATION" property="explanation" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createdate" jdbcType="DATE" />
+    <result column="UPTIME" property="uptime" jdbcType="DATE" />
+    <result column="CHECKPERDEPART" property="checkperdepart" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, STULEVID, CHECKORDER, CHECKPERID, STATE, EXPLANATION, CREATEDATE, UPTIME, CHECKPERDEPART, 
+    REMARK1, REMARK2, REMARK3
+  </sql>
+  <select id="selectListPageJxStudentsLeaveCheckBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxStudentsLeaveCheckSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_STUDENTS_LEAVE_CHECK
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxStudentsLeaveCheckBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxStudentsLeaveCheckSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_STUDENTS_LEAVE_CHECK
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxStudentsLeaveCheckByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_STUDENTS_LEAVE_CHECK
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxStudentsLeaveCheckByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_STUDENTS_LEAVE_CHECK
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxStudentsLeaveCheckBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxStudentsLeaveCheckSqlWhere" >
+    delete from JX_STUDENTS_LEAVE_CHECK
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxStudentsLeaveCheck" parameterType="com.saint.teaching.bean.JxStudentsLeaveCheckEntity" >
+    insert into JX_STUDENTS_LEAVE_CHECK (XH, STULEVID, CHECKORDER, 
+      CHECKPERID, STATE, EXPLANATION, 
+      CREATEDATE, UPTIME, 
+      CHECKPERDEPART, REMARK1, REMARK2, 
+      REMARK3)
+    values (SEQ_JX_STULEAVE.nextVal, #{stulevid,jdbcType=VARCHAR}, #{checkorder,jdbcType=VARCHAR}, 
+      #{checkperid,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{explanation,jdbcType=VARCHAR}, 
+      to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), to_date(#{uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{checkperdepart,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, 
+      #{remark3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertJxStudentsLeaveCheckSelective" parameterType="com.saint.teaching.bean.JxStudentsLeaveCheckEntity" >
+    insert into JX_STUDENTS_LEAVE_CHECK
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="stulevid != null and stulevid != ''" >
+        STULEVID,
+      </if>
+      <if test="checkorder != null and checkorder != ''" >
+        CHECKORDER,
+      </if>
+      <if test="checkperid != null and checkperid != ''" >
+        CHECKPERID,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="explanation != null and explanation != ''" >
+        EXPLANATION,
+      </if>
+      <if test="createdate != null and createdate != ''" >
+        CREATEDATE,
+      </if>
+      <if test="uptime != null and uptime != ''" >
+        UPTIME,
+      </if>
+      <if test="checkperdepart != null and checkperdepart != ''" >
+        CHECKPERDEPART,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="stulevid != null and stulevid != ''" >
+        #{stulevid,jdbcType=VARCHAR},
+      </if>
+      <if test="checkorder != null and checkorder != ''" >
+        #{checkorder,jdbcType=VARCHAR},
+      </if>
+      <if test="checkperid != null and checkperid != ''" >
+        #{checkperid,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="explanation != null and explanation != ''" >
+        #{explanation,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null and createdate != ''" >
+        to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="uptime != null and uptime != ''" >
+        to_date(#{uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="checkperdepart != null and checkperdepart != ''" >
+        #{checkperdepart,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxStudentsLeaveCheckBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxStudentsLeaveCheckSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_STUDENTS_LEAVE_CHECK
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxStudentsLeaveCheckBySqlWhereSelective" parameterType="map" >
+    update JX_STUDENTS_LEAVE_CHECK
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stulevid != null and record.stulevid != ''" >
+        STULEVID = #{record.stulevid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkorder != null and record.checkorder != ''" >
+        CHECKORDER = #{record.checkorder,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkperid != null and record.checkperid != ''" >
+        CHECKPERID = #{record.checkperid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.explanation != null and record.explanation != ''" >
+        EXPLANATION = #{record.explanation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdate != null and record.createdate != ''" >
+        CREATEDATE = to_date(#{record.createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.uptime != null and record.uptime != ''" >
+        UPTIME = to_date(#{record.uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.checkperdepart != null and record.checkperdepart != ''" >
+        CHECKPERDEPART = #{record.checkperdepart,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxStudentsLeaveCheckBySqlWhere" parameterType="map" >
+    update JX_STUDENTS_LEAVE_CHECK
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      STULEVID = #{record.stulevid,jdbcType=VARCHAR},
+      CHECKORDER = #{record.checkorder,jdbcType=VARCHAR},
+      CHECKPERID = #{record.checkperid,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      EXPLANATION = #{record.explanation,jdbcType=VARCHAR},
+      CREATEDATE = to_date(#{record.createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      UPTIME = to_date(#{record.uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      CHECKPERDEPART = #{record.checkperdepart,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxStudentsLeaveCheckByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxStudentsLeaveCheckEntity" >
+    update JX_STUDENTS_LEAVE_CHECK
+    <set >
+      <if test="stulevid != null and stulevid != ''" >
+        STULEVID = #{stulevid,jdbcType=VARCHAR},
+      </if>
+      <if test="checkorder != null and checkorder != ''" >
+        CHECKORDER = #{checkorder,jdbcType=VARCHAR},
+      </if>
+      <if test="checkperid != null and checkperid != ''" >
+        CHECKPERID = #{checkperid,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="explanation != null and explanation != ''" >
+        EXPLANATION = #{explanation,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null and createdate != ''" >
+        CREATEDATE = to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="uptime != null and uptime != ''" >
+        UPTIME = to_date(#{uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="checkperdepart != null and checkperdepart != ''" >
+        CHECKPERDEPART = #{checkperdepart,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxStudentsLeaveCheckByPrimaryKey" parameterType="com.saint.teaching.bean.JxStudentsLeaveCheckEntity" >
+    update JX_STUDENTS_LEAVE_CHECK
+    set STULEVID = #{stulevid,jdbcType=VARCHAR},
+      CHECKORDER = #{checkorder,jdbcType=VARCHAR},
+      CHECKPERID = #{checkperid,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      EXPLANATION = #{explanation,jdbcType=VARCHAR},
+      CREATEDATE = to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      UPTIME = to_date(#{uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      CHECKPERDEPART = #{checkperdepart,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR}
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

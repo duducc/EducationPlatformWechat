@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.wechat.WechatMenugroupMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.wechat.manager.bean.WechatMenugroupEntity" >
+    <id column="MENUSXH" property="menusxh" jdbcType="VARCHAR" />
+    <result column="CLIENTSXH" property="clientsxh" jdbcType="VARCHAR" />
+    <result column="MENUNAME" property="menuname" jdbcType="VARCHAR" />
+    <result column="MENUVALUE" property="menuvalue" jdbcType="VARCHAR" />
+    <result column="GXSJ" property="gxsj" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    MENUSXH, CLIENTSXH, MENUNAME, MENUVALUE, GXSJ
+  </sql>
+  <select id="selectListPageWechatMenugroupBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.WechatMenugroupSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from WECHAT_MENUGROUP
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListWechatMenugroupBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.WechatMenugroupSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from WECHAT_MENUGROUP
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectWechatMenugroupByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from WECHAT_MENUGROUP
+    where MENUSXH = #{menusxh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteWechatMenugroupByPrimaryKey" parameterType="java.lang.String" >
+    delete from WECHAT_MENUGROUP
+    where MENUSXH = #{menusxh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteWechatMenugroupBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.WechatMenugroupSqlWhere" >
+    delete from WECHAT_MENUGROUP
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertWechatMenugroup" parameterType="com.saint.wechat.manager.bean.WechatMenugroupEntity" >
+    insert into WECHAT_MENUGROUP (MENUSXH, CLIENTSXH, MENUNAME, 
+      MENUVALUE, GXSJ
+      )
+    values (#{menusxh,jdbcType=VARCHAR}, #{clientsxh,jdbcType=VARCHAR}, #{menuname,jdbcType=VARCHAR}, 
+      #{menuvalue,jdbcType=VARCHAR}, to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+      )
+  </insert>
+  <insert id="insertWechatMenugroupSelective" parameterType="com.saint.wechat.manager.bean.WechatMenugroupEntity" >
+    insert into WECHAT_MENUGROUP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="menusxh != null and menusxh != ''" >
+        MENUSXH,
+      </if>
+      <if test="clientsxh != null and clientsxh != ''" >
+        CLIENTSXH,
+      </if>
+      <if test="menuname != null and menuname != ''" >
+        MENUNAME,
+      </if>
+      <if test="menuvalue != null and menuvalue != ''" >
+        MENUVALUE,
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="menusxh != null and menusxh != ''" >
+        #{menusxh,jdbcType=VARCHAR},
+      </if>
+      <if test="clientsxh != null and clientsxh != ''" >
+        #{clientsxh,jdbcType=VARCHAR},
+      </if>
+      <if test="menuname != null and menuname != ''" >
+        #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="menuvalue != null and menuvalue != ''" >
+        #{menuvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </trim>
+  </insert>
+  <select id="countWechatMenugroupBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.WechatMenugroupSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from WECHAT_MENUGROUP
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateWechatMenugroupBySqlWhereSelective" parameterType="map" >
+    update WECHAT_MENUGROUP
+    <set >
+      <if test="record.menusxh != null and record.menusxh != ''" >
+        MENUSXH = #{record.menusxh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientsxh != null and record.clientsxh != ''" >
+        CLIENTSXH = #{record.clientsxh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuname != null and record.menuname != ''" >
+        MENUNAME = #{record.menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuvalue != null and record.menuvalue != ''" >
+        MENUVALUE = #{record.menuvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxsj != null and record.gxsj != ''" >
+        GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateWechatMenugroupBySqlWhere" parameterType="map" >
+    update WECHAT_MENUGROUP
+    set MENUSXH = #{record.menusxh,jdbcType=VARCHAR},
+      CLIENTSXH = #{record.clientsxh,jdbcType=VARCHAR},
+      MENUNAME = #{record.menuname,jdbcType=VARCHAR},
+      MENUVALUE = #{record.menuvalue,jdbcType=VARCHAR},
+      GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateWechatMenugroupByPrimaryKeySelective" parameterType="com.saint.wechat.manager.bean.WechatMenugroupEntity" >
+    update WECHAT_MENUGROUP
+    <set >
+      <if test="clientsxh != null and clientsxh != ''" >
+        CLIENTSXH = #{clientsxh,jdbcType=VARCHAR},
+      </if>
+      <if test="menuname != null and menuname != ''" >
+        MENUNAME = #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="menuvalue != null and menuvalue != ''" >
+        MENUVALUE = #{menuvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    where MENUSXH = #{menusxh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateWechatMenugroupByPrimaryKey" parameterType="com.saint.wechat.manager.bean.WechatMenugroupEntity" >
+    update WECHAT_MENUGROUP
+    set CLIENTSXH = #{clientsxh,jdbcType=VARCHAR},
+      MENUNAME = #{menuname,jdbcType=VARCHAR},
+      MENUVALUE = #{menuvalue,jdbcType=VARCHAR},
+      GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where MENUSXH = #{menusxh,jdbcType=VARCHAR}
+  </update>
+</mapper>

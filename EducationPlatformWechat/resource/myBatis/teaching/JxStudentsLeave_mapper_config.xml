@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxStudentsLeaveMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxStudentsLeaveEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="STUID" property="stuid" jdbcType="VARCHAR" />
+    <result column="STUNAME" property="stuname" jdbcType="VARCHAR" />
+    <result column="EMPLX" property="emplx" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="CAUSE" property="cause" jdbcType="VARCHAR" />
+    <result column="LEAVEDATESTART" property="leavedatestart" jdbcType="DATE" />
+    <result column="LEAVEDATEEND" property="leavedateend" jdbcType="DATE" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="PICPATHO" property="picpatho" jdbcType="VARCHAR" />
+    <result column="PICPATHT" property="picpatht" jdbcType="VARCHAR" />
+    <result column="PICPATHS" property="picpaths" jdbcType="VARCHAR" />
+    <result column="COURSEID" property="courseid" jdbcType="VARCHAR" />
+    <result column="COURSENAME" property="coursename" jdbcType="VARCHAR" />
+    <result column="ARRANGEXH" property="arrangexh" jdbcType="VARCHAR" />
+    <result column="JSHNR" property="jshnr" jdbcType="VARCHAR" />
+    <result column="CHECKPERID" property="checkperid" jdbcType="VARCHAR" />
+    <result column="TEACHERID" property="teacherid" jdbcType="VARCHAR" />
+    <result column="TEACHERNAME" property="teachername" jdbcType="VARCHAR" />
+    <result column="LUNXUNDEPT" property="lunxundept" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, STUID, STUNAME, EMPLX, STATE, CAUSE, LEAVEDATESTART, LEAVEDATEEND, TYPE, PICPATHO, 
+    PICPATHT, PICPATHS, COURSEID, COURSENAME, ARRANGEXH, JSHNR, CHECKPERID, TEACHERID, 
+    TEACHERNAME, LUNXUNDEPT, REMARK1, REMARK2, REMARK3
+  </sql>
+  <select id="selectXhJxStudentLeaveBySql" parameterType="com.saint.teaching.sqlWhere.JxStudentsLeaveSqlWhere" resultType="java.lang.Integer" >
+    	SELECT SEQ_JX_STULEAVE.NEXTVAL FROM DUAL
+  </select>
+  <select id="selectListPageJxStudentsLeaveBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxStudentsLeaveSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_STUDENTS_LEAVE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxStudentsLeaveBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxStudentsLeaveSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_STUDENTS_LEAVE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxStudentsLeaveByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_STUDENTS_LEAVE
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxStudentsLeaveByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_STUDENTS_LEAVE
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxStudentsLeaveBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxStudentsLeaveSqlWhere" >
+    delete from JX_STUDENTS_LEAVE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxStudentsLeave" parameterType="com.saint.teaching.bean.JxStudentsLeaveEntity" >
+    insert into JX_STUDENTS_LEAVE (XH, STUID, STUNAME, 
+      EMPLX, STATE, CAUSE, 
+      LEAVEDATESTART, LEAVEDATEEND, 
+      TYPE, PICPATHO, PICPATHT, 
+      PICPATHS, COURSEID, COURSENAME, 
+      ARRANGEXH, JSHNR, CHECKPERID, 
+      TEACHERID, TEACHERNAME, LUNXUNDEPT, 
+      REMARK1, REMARK2, REMARK3
+      )
+    values (#{xh,jdbcType=VARCHAR}, #{stuid,jdbcType=VARCHAR}, #{stuname,jdbcType=VARCHAR}, 
+      #{emplx,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{cause,jdbcType=VARCHAR}, 
+      to_date(#{leavedatestart,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), to_date(#{leavedateend,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{type,jdbcType=VARCHAR}, #{picpatho,jdbcType=VARCHAR}, #{picpatht,jdbcType=VARCHAR}, 
+      #{picpaths,jdbcType=VARCHAR}, #{courseid,jdbcType=VARCHAR}, #{coursename,jdbcType=VARCHAR}, 
+      #{arrangexh,jdbcType=VARCHAR}, #{jshnr,jdbcType=VARCHAR}, #{checkperid,jdbcType=VARCHAR}, 
+      #{teacherid,jdbcType=VARCHAR}, #{teachername,jdbcType=VARCHAR}, #{lunxundept,jdbcType=VARCHAR}, 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertJxStudentsLeaveSelective" parameterType="com.saint.teaching.bean.JxStudentsLeaveEntity" >
+    insert into JX_STUDENTS_LEAVE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="stuid != null and stuid != ''" >
+        STUID,
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        STUNAME,
+      </if>
+      <if test="emplx != null and emplx != ''" >
+        EMPLX,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="cause != null and cause != ''" >
+        CAUSE,
+      </if>
+      <if test="leavedatestart != null and leavedatestart != ''" >
+        LEAVEDATESTART,
+      </if>
+      <if test="leavedateend != null and leavedateend != ''" >
+        LEAVEDATEEND,
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE,
+      </if>
+      <if test="picpatho != null and picpatho != ''" >
+        PICPATHO,
+      </if>
+      <if test="picpatht != null and picpatht != ''" >
+        PICPATHT,
+      </if>
+      <if test="picpaths != null and picpaths != ''" >
+        PICPATHS,
+      </if>
+      <if test="courseid != null and courseid != ''" >
+        COURSEID,
+      </if>
+      <if test="coursename != null and coursename != ''" >
+        COURSENAME,
+      </if>
+      <if test="arrangexh != null and arrangexh != ''" >
+        ARRANGEXH,
+      </if>
+      <if test="jshnr != null and jshnr != ''" >
+        JSHNR,
+      </if>
+      <if test="checkperid != null and checkperid != ''" >
+        CHECKPERID,
+      </if>
+      <if test="teacherid != null and teacherid != ''" >
+        TEACHERID,
+      </if>
+      <if test="teachername != null and teachername != ''" >
+        TEACHERNAME,
+      </if>
+      <if test="lunxundept != null and lunxundept != ''" >
+        LUNXUNDEPT,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="stuid != null and stuid != ''" >
+        #{stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="emplx != null and emplx != ''" >
+        #{emplx,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="cause != null and cause != ''" >
+        #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="leavedatestart != null and leavedatestart != ''" >
+        to_date(#{leavedatestart,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="leavedateend != null and leavedateend != ''" >
+        to_date(#{leavedateend,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="type != null and type != ''" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="picpatho != null and picpatho != ''" >
+        #{picpatho,jdbcType=VARCHAR},
+      </if>
+      <if test="picpatht != null and picpatht != ''" >
+        #{picpatht,jdbcType=VARCHAR},
+      </if>
+      <if test="picpaths != null and picpaths != ''" >
+        #{picpaths,jdbcType=VARCHAR},
+      </if>
+      <if test="courseid != null and courseid != ''" >
+        #{courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null and coursename != ''" >
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="arrangexh != null and arrangexh != ''" >
+        #{arrangexh,jdbcType=VARCHAR},
+      </if>
+      <if test="jshnr != null and jshnr != ''" >
+        #{jshnr,jdbcType=VARCHAR},
+      </if>
+      <if test="checkperid != null and checkperid != ''" >
+        #{checkperid,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherid != null and teacherid != ''" >
+        #{teacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="teachername != null and teachername != ''" >
+        #{teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="lunxundept != null and lunxundept != ''" >
+        #{lunxundept,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxStudentsLeaveBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxStudentsLeaveSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_STUDENTS_LEAVE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxStudentsLeaveBySqlWhereSelective" parameterType="map" >
+    update JX_STUDENTS_LEAVE
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuid != null and record.stuid != ''" >
+        STUID = #{record.stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuname != null and record.stuname != ''" >
+        STUNAME = #{record.stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emplx != null and record.emplx != ''" >
+        EMPLX = #{record.emplx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cause != null and record.cause != ''" >
+        CAUSE = #{record.cause,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leavedatestart != null and record.leavedatestart != ''" >
+        LEAVEDATESTART = to_date(#{record.leavedatestart,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.leavedateend != null and record.leavedateend != ''" >
+        LEAVEDATEEND = to_date(#{record.leavedateend,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.type != null and record.type != ''" >
+        TYPE = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picpatho != null and record.picpatho != ''" >
+        PICPATHO = #{record.picpatho,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picpatht != null and record.picpatht != ''" >
+        PICPATHT = #{record.picpatht,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picpaths != null and record.picpaths != ''" >
+        PICPATHS = #{record.picpaths,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseid != null and record.courseid != ''" >
+        COURSEID = #{record.courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coursename != null and record.coursename != ''" >
+        COURSENAME = #{record.coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arrangexh != null and record.arrangexh != ''" >
+        ARRANGEXH = #{record.arrangexh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jshnr != null and record.jshnr != ''" >
+        JSHNR = #{record.jshnr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkperid != null and record.checkperid != ''" >
+        CHECKPERID = #{record.checkperid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacherid != null and record.teacherid != ''" >
+        TEACHERID = #{record.teacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teachername != null and record.teachername != ''" >
+        TEACHERNAME = #{record.teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lunxundept != null and record.lunxundept != ''" >
+        LUNXUNDEPT = #{record.lunxundept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxStudentsLeaveBySqlWhere" parameterType="map" >
+    update JX_STUDENTS_LEAVE
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      STUID = #{record.stuid,jdbcType=VARCHAR},
+      STUNAME = #{record.stuname,jdbcType=VARCHAR},
+      EMPLX = #{record.emplx,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      CAUSE = #{record.cause,jdbcType=VARCHAR},
+      LEAVEDATESTART = to_date(#{record.leavedatestart,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      LEAVEDATEEND = to_date(#{record.leavedateend,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      TYPE = #{record.type,jdbcType=VARCHAR},
+      PICPATHO = #{record.picpatho,jdbcType=VARCHAR},
+      PICPATHT = #{record.picpatht,jdbcType=VARCHAR},
+      PICPATHS = #{record.picpaths,jdbcType=VARCHAR},
+      COURSEID = #{record.courseid,jdbcType=VARCHAR},
+      COURSENAME = #{record.coursename,jdbcType=VARCHAR},
+      ARRANGEXH = #{record.arrangexh,jdbcType=VARCHAR},
+      JSHNR = #{record.jshnr,jdbcType=VARCHAR},
+      CHECKPERID = #{record.checkperid,jdbcType=VARCHAR},
+      TEACHERID = #{record.teacherid,jdbcType=VARCHAR},
+      TEACHERNAME = #{record.teachername,jdbcType=VARCHAR},
+      LUNXUNDEPT = #{record.lunxundept,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxStudentsLeaveByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxStudentsLeaveEntity" >
+    update JX_STUDENTS_LEAVE
+    <set >
+      <if test="stuid != null and stuid != ''" >
+        STUID = #{stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        STUNAME = #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="emplx != null and emplx != ''" >
+        EMPLX = #{emplx,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="cause != null and cause != ''" >
+        CAUSE = #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="leavedatestart != null and leavedatestart != ''" >
+        LEAVEDATESTART = to_date(#{leavedatestart,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="leavedateend != null and leavedateend != ''" >
+        LEAVEDATEEND = to_date(#{leavedateend,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="picpatho != null and picpatho != ''" >
+        PICPATHO = #{picpatho,jdbcType=VARCHAR},
+      </if>
+      <if test="picpatht != null and picpatht != ''" >
+        PICPATHT = #{picpatht,jdbcType=VARCHAR},
+      </if>
+      <if test="picpaths != null and picpaths != ''" >
+        PICPATHS = #{picpaths,jdbcType=VARCHAR},
+      </if>
+      <if test="courseid != null and courseid != ''" >
+        COURSEID = #{courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null and coursename != ''" >
+        COURSENAME = #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="arrangexh != null and arrangexh != ''" >
+        ARRANGEXH = #{arrangexh,jdbcType=VARCHAR},
+      </if>
+      <if test="jshnr != null and jshnr != ''" >
+        JSHNR = #{jshnr,jdbcType=VARCHAR},
+      </if>
+      <if test="checkperid != null and checkperid != ''" >
+        CHECKPERID = #{checkperid,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherid != null and teacherid != ''" >
+        TEACHERID = #{teacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="teachername != null and teachername != ''" >
+        TEACHERNAME = #{teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="lunxundept != null and lunxundept != ''" >
+        LUNXUNDEPT = #{lunxundept,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxStudentsLeaveByPrimaryKey" parameterType="com.saint.teaching.bean.JxStudentsLeaveEntity" >
+    update JX_STUDENTS_LEAVE
+    set STUID = #{stuid,jdbcType=VARCHAR},
+      STUNAME = #{stuname,jdbcType=VARCHAR},
+      EMPLX = #{emplx,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      CAUSE = #{cause,jdbcType=VARCHAR},
+      LEAVEDATESTART = to_date(#{leavedatestart,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      LEAVEDATEEND = to_date(#{leavedateend,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      TYPE = #{type,jdbcType=VARCHAR},
+      PICPATHO = #{picpatho,jdbcType=VARCHAR},
+      PICPATHT = #{picpatht,jdbcType=VARCHAR},
+      PICPATHS = #{picpaths,jdbcType=VARCHAR},
+      COURSEID = #{courseid,jdbcType=VARCHAR},
+      COURSENAME = #{coursename,jdbcType=VARCHAR},
+      ARRANGEXH = #{arrangexh,jdbcType=VARCHAR},
+      JSHNR = #{jshnr,jdbcType=VARCHAR},
+      CHECKPERID = #{checkperid,jdbcType=VARCHAR},
+      TEACHERID = #{teacherid,jdbcType=VARCHAR},
+      TEACHERNAME = #{teachername,jdbcType=VARCHAR},
+      LUNXUNDEPT = #{lunxundept,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR}
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <select id="selectListJxStudentsLeaveByStuid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_STUDENTS_LEAVE
+    where STUID = #{stuid,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

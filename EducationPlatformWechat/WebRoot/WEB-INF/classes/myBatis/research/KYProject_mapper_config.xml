@@ -1,0 +1,1158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.research.KYProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.research.bean.KYProjectEntity" >
+    <id column="PROSEQUENCE" property="prosequence" jdbcType="VARCHAR" />
+    <result column="PRONAME" property="proname" jdbcType="VARCHAR" />
+    <result column="PROGRADE" property="prograde" jdbcType="VARCHAR" />
+    <result column="PRONATURE" property="pronature" jdbcType="VARCHAR" />
+    <result column="PROTYPEID" property="protypeid" jdbcType="VARCHAR" />
+    <result column="PROTYPESUBID" property="protypesubid" jdbcType="VARCHAR" />
+    <result column="HOSPITALID" property="hospitalid" jdbcType="VARCHAR" />
+    <result column="HOSPITALNAME" property="hospitalname" jdbcType="VARCHAR" />
+    <result column="DEPID" property="depid" jdbcType="VARCHAR" />
+    <result column="STARTDATE" property="startdate" jdbcType="VARCHAR" />
+    <result column="PLANDATE" property="plandate" jdbcType="VARCHAR" />
+    <result column="REALDATE" property="realdate" jdbcType="VARCHAR" />
+    <result column="PMID" property="pmid" jdbcType="VARCHAR" />
+    <result column="PMNAME" property="pmname" jdbcType="VARCHAR" />
+    <result column="PMTEL" property="pmtel" jdbcType="VARCHAR" />
+    <result column="PMEMAIL" property="pmemail" jdbcType="VARCHAR" />
+    <result column="PROMARK" property="promark" jdbcType="VARCHAR" />
+    <result column="PROSTATE" property="prostate" jdbcType="VARCHAR" />
+    <result column="SUBMITREMARK" property="submitremark" jdbcType="VARCHAR" />
+    <result column="SETREMARK" property="setremark" jdbcType="VARCHAR" />
+    <result column="SUBMITDATE" property="submitdate" jdbcType="VARCHAR" />
+    <result column="SETDATE" property="setdate" jdbcType="VARCHAR" />
+    <result column="CHECKDATE" property="checkdate" jdbcType="VARCHAR" />
+    <result column="CREATEUSERID" property="createuserid" jdbcType="VARCHAR" />
+    <result column="CREATEUSERNAME" property="createusername" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createdate" jdbcType="VARCHAR" />
+    <result column="RESULTTYPE" property="resulttype" jdbcType="VARCHAR" />
+    <result column="CONTRACTFUNDS" property="contractfunds" jdbcType="DECIMAL" />
+    <result column="COMPANIONFUNDS" property="companionfunds" jdbcType="DECIMAL" />
+    <result column="SUBJECTTYPE" property="subjecttype" jdbcType="VARCHAR" />
+    <result column="EXPLORETYPE" property="exploretype" jdbcType="VARCHAR" />
+    <result column="CONTRACTTYPE" property="contracttype" jdbcType="VARCHAR" />
+    <result column="DESIGNMAJOR" property="designmajor" jdbcType="VARCHAR" />
+    <result column="DEVFILED" property="devfiled" jdbcType="VARCHAR" />
+    <result column="TECHNIQUESOURCE" property="techniquesource" jdbcType="VARCHAR" />
+    <result column="INTELLECTUALPROPERTY" property="intellectualproperty" jdbcType="VARCHAR" />
+    <result column="PLANINCREASEVALUE" property="planincreasevalue" jdbcType="DECIMAL" />
+    <result column="PLANTOTALVALUE" property="plantotalvalue" jdbcType="DECIMAL" />
+    <result column="PROTECHNIQUEDETAIL" property="protechniquedetail" jdbcType="VARCHAR" />
+    <result column="HISTORICALACHIEVEMENTS" property="historicalachievements" jdbcType="VARCHAR" />
+    <result column="CHECKSTATE" property="checkstate" jdbcType="VARCHAR" />
+    <result column="CHECKOBJECTID" property="checkobjectid" jdbcType="VARCHAR" />
+    <result column="ISUSERCHECK" property="isusercheck" jdbcType="VARCHAR" />
+    <result column="CHECKORDER" property="checkorder" jdbcType="VARCHAR" />
+    <result column="CHECKGROUPID" property="checkgroupid" jdbcType="VARCHAR" />
+    <result column="REMARKS1" property="remarks1" jdbcType="VARCHAR" />
+    <result column="REMARKS2" property="remarks2" jdbcType="VARCHAR" />
+    <result column="REMARKS3" property="remarks3" jdbcType="VARCHAR" />
+    <result column="REMARKS4" property="remarks4" jdbcType="VARCHAR" />
+    <result column="REMARKS5" property="remarks5" jdbcType="VARCHAR" />
+    <result column="OPERATEUSERID" property="operateuserid" jdbcType="VARCHAR" />
+    <result column="OPERATEUSERNAME" property="operateusername" jdbcType="VARCHAR" />
+    <result column="OPERATEDATE" property="operatedate" jdbcType="VARCHAR" />
+    <result column="SAVEDATE" property="savedate" jdbcType="VARCHAR" />
+    <result column="NAMES" property="userNames" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PROSEQUENCE, PRONAME, PROGRADE, PRONATURE, PROTYPEID, PROTYPESUBID, HOSPITALID, HOSPITALNAME, 
+    DEPID, STARTDATE, PLANDATE, REALDATE, PMID, PMNAME, PMTEL, PMEMAIL, PROMARK, PROSTATE, 
+    SUBMITREMARK, SETREMARK, SUBMITDATE, SETDATE, CHECKDATE, CREATEUSERID, CREATEUSERNAME, 
+    CREATEDATE, RESULTTYPE, CONTRACTFUNDS, COMPANIONFUNDS, SUBJECTTYPE, EXPLORETYPE, 
+    CONTRACTTYPE, DESIGNMAJOR, DEVFILED, TECHNIQUESOURCE, INTELLECTUALPROPERTY, PLANINCREASEVALUE, 
+    PLANTOTALVALUE, PROTECHNIQUEDETAIL, HISTORICALACHIEVEMENTS, CHECKSTATE, CHECKOBJECTID, 
+    ISUSERCHECK, CHECKORDER, CHECKGROUPID, REMARKS1, REMARKS2, REMARKS3, REMARKS4, REMARKS5, 
+    OPERATEUSERID, OPERATEUSERNAME, OPERATEDATE, SAVEDATE
+  </sql>
+  <select id="selectListPageKYProjectBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.research.sqlWhere.KYProjectSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+   
+   	PROSEQUENCE, PRONAME, PROGRADE, PRONATURE, PROTYPEID, PROTYPESUBID, HOSPITALID, HOSPITALNAME, 
+    DEPID, STARTDATE, PLANDATE, REALDATE, PMID, PMNAME, e.USERTEL as PMTEL, PMEMAIL, PROMARK, PROSTATE, 
+    SUBMITREMARK, SETREMARK, SUBMITDATE, SETDATE, CHECKDATE, CREATEUSERID, CREATEUSERNAME, 
+    CREATEDATE, RESULTTYPE, CONTRACTFUNDS, COMPANIONFUNDS, SUBJECTTYPE, EXPLORETYPE, 
+    CONTRACTTYPE, DESIGNMAJOR, DEVFILED, TECHNIQUESOURCE, INTELLECTUALPROPERTY, PLANINCREASEVALUE, 
+    PLANTOTALVALUE, PROTECHNIQUEDETAIL, HISTORICALACHIEVEMENTS, CHECKSTATE, CHECKOBJECTID, 
+    ISUSERCHECK, CHECKORDER, CHECKGROUPID, REMARKS1, REMARKS2, REMARKS3, REMARKS4, REMARKS5, 
+    OPERATEUSERID, OPERATEUSERNAME, OPERATEDATE, SAVEDATE
+	
+    from KY_PROJECT  k
+    
+    LEFT JOIN XF_EMPLOYEE e ON k.PMID = e.USERNUMBER 
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <select id="selectListPageProject" resultMap="BaseResultMap" parameterType="com.saint.research.sqlWhere.KYProjectSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,k.PROSEQUENCE , k.PMID,
+	k.PRONAME ,k.HOSPITALNAME ,k.PROGRADE,k.STARTDATE,k.PLANDATE,k.PMNAME,k.PMTEL,k.PROSTATE, k.SAVEDATE , WM_CONCAT(u.USERNAME)  NAMES
+    from KY_PROJECT  k
+    
+    LEFT  JOIN KY_PROJECTUSER u ON k.PROSEQUENCE = u.PROSEQUENCE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+	GROUP BY  k.PROSEQUENCE ,k.PRONAME, k.HOSPITALNAME ,k.PMNAME,k.PMTEL,k.PROSTATE, k.SAVEDATE ,k.PMID,k.PROGRADE,k.STARTDATE,k.PLANDATE
+  </select>
+  
+  <select id="selectListKYProjectBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.research.sqlWhere.KYProjectSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    
+    PROSEQUENCE, PRONAME, PROGRADE, PRONATURE, PROTYPEID, PROTYPESUBID, HOSPITALID, HOSPITALNAME, 
+    DEPID, STARTDATE, PLANDATE, REALDATE, PMID, PMNAME, e.USERTEL as PMTEL, PMEMAIL, PROMARK, PROSTATE, 
+    SUBMITREMARK, SETREMARK, SUBMITDATE, SETDATE, CHECKDATE, CREATEUSERID, CREATEUSERNAME, 
+    CREATEDATE, RESULTTYPE, CONTRACTFUNDS, COMPANIONFUNDS, SUBJECTTYPE, EXPLORETYPE, 
+    CONTRACTTYPE, DESIGNMAJOR, DEVFILED, TECHNIQUESOURCE, INTELLECTUALPROPERTY, PLANINCREASEVALUE, 
+    PLANTOTALVALUE, PROTECHNIQUEDETAIL, HISTORICALACHIEVEMENTS, CHECKSTATE, CHECKOBJECTID, 
+    ISUSERCHECK, CHECKORDER, CHECKGROUPID, REMARKS1, REMARKS2, REMARKS3, REMARKS4, REMARKS5, 
+    OPERATEUSERID, OPERATEUSERNAME, OPERATEDATE, SAVEDATE
+    
+    from KY_PROJECT k
+    
+    LEFT JOIN XF_EMPLOYEE e ON k.PMID = e.USERNUMBER 
+    
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectKYProjectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from KY_PROJECT
+    where PROSEQUENCE = #{prosequence,jdbcType=VARCHAR}
+  </select>
+  <select id="selectKYProjectSequence" parameterType="com.saint.research.sqlWhere.KYProjectSqlWhere" resultType="java.lang.Integer" >
+    SELECT SQ_KYPROJECT_SEQ.NEXTVAL FROM DUAL
+  </select>
+  <delete id="deleteKYProjectByPrimaryKey" parameterType="java.lang.String" >
+    delete from KY_PROJECT
+    where PROSEQUENCE = #{prosequence,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteKYProjectBySqlWhere" parameterType="com.saint.research.sqlWhere.KYProjectSqlWhere" >
+    delete from KY_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertKYProject" parameterType="com.saint.research.bean.KYProjectEntity" >
+    insert into KY_PROJECT (PROSEQUENCE, PRONAME, PROGRADE, 
+      PRONATURE, PROTYPEID, PROTYPESUBID, 
+      HOSPITALID, HOSPITALNAME, DEPID, 
+      STARTDATE, PLANDATE, 
+      REALDATE, PMID, 
+      PMNAME, PMTEL, PMEMAIL, 
+      PROMARK, PROSTATE, SUBMITREMARK, 
+      SETREMARK, SUBMITDATE, 
+      SETDATE, CHECKDATE, 
+      CREATEUSERID, CREATEUSERNAME, CREATEDATE, 
+      RESULTTYPE, CONTRACTFUNDS, COMPANIONFUNDS, 
+      SUBJECTTYPE, EXPLORETYPE, CONTRACTTYPE, 
+      DESIGNMAJOR, DEVFILED, TECHNIQUESOURCE, 
+      INTELLECTUALPROPERTY, PLANINCREASEVALUE, 
+      PLANTOTALVALUE, PROTECHNIQUEDETAIL, HISTORICALACHIEVEMENTS, 
+      CHECKSTATE, CHECKOBJECTID, ISUSERCHECK, 
+      CHECKORDER, CHECKGROUPID, REMARKS1, 
+      REMARKS2, REMARKS3, REMARKS4, 
+      REMARKS5, OPERATEUSERID, OPERATEUSERNAME, 
+      OPERATEDATE, SAVEDATE
+      )
+    values (#{prosequence,jdbcType=VARCHAR}, #{proname,jdbcType=VARCHAR}, #{prograde,jdbcType=VARCHAR}, 
+      #{pronature,jdbcType=VARCHAR}, #{protypeid,jdbcType=VARCHAR}, #{protypesubid,jdbcType=VARCHAR}, 
+      #{hospitalid,jdbcType=VARCHAR}, #{hospitalname,jdbcType=VARCHAR}, #{depid,jdbcType=VARCHAR}, 
+      to_date(#{startdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), to_date(#{plandate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      to_date(#{realdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{pmid,jdbcType=VARCHAR}, 
+      #{pmname,jdbcType=VARCHAR}, #{pmtel,jdbcType=VARCHAR}, #{pmemail,jdbcType=VARCHAR}, 
+      #{promark,jdbcType=VARCHAR}, #{prostate,jdbcType=VARCHAR}, #{submitremark,jdbcType=VARCHAR}, 
+      #{setremark,jdbcType=VARCHAR}, to_date(#{submitdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      to_date(#{setdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), to_date(#{checkdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{createuserid,jdbcType=VARCHAR}, #{createusername,jdbcType=VARCHAR}, to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{resulttype,jdbcType=VARCHAR}, #{contractfunds,jdbcType=DECIMAL}, #{companionfunds,jdbcType=DECIMAL}, 
+      #{subjecttype,jdbcType=VARCHAR}, #{exploretype,jdbcType=VARCHAR}, #{contracttype,jdbcType=VARCHAR}, 
+      #{designmajor,jdbcType=VARCHAR}, #{devfiled,jdbcType=VARCHAR}, #{techniquesource,jdbcType=VARCHAR}, 
+      #{intellectualproperty,jdbcType=VARCHAR}, #{planincreasevalue,jdbcType=DECIMAL}, 
+      #{plantotalvalue,jdbcType=DECIMAL}, #{protechniquedetail,jdbcType=VARCHAR}, #{historicalachievements,jdbcType=VARCHAR}, 
+      #{checkstate,jdbcType=VARCHAR}, #{checkobjectid,jdbcType=VARCHAR}, #{isusercheck,jdbcType=VARCHAR}, 
+      #{checkorder,jdbcType=VARCHAR}, #{checkgroupid,jdbcType=VARCHAR}, #{remarks1,jdbcType=VARCHAR}, 
+      #{remarks2,jdbcType=VARCHAR}, #{remarks3,jdbcType=VARCHAR}, #{remarks4,jdbcType=VARCHAR}, 
+      #{remarks5,jdbcType=VARCHAR}, #{operateuserid,jdbcType=VARCHAR}, #{operateusername,jdbcType=VARCHAR}, 
+      to_date(#{operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), to_date(#{savedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+      )
+  </insert>
+  <insert id="insertKYProjectSelective" parameterType="com.saint.research.bean.KYProjectEntity" >
+    insert into KY_PROJECT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="prosequence != null and prosequence != ''" >
+        PROSEQUENCE,
+      </if>
+      <if test="proname != null and proname != ''" >
+        PRONAME,
+      </if>
+      <if test="prograde != null and prograde != ''" >
+        PROGRADE,
+      </if>
+      <if test="pronature != null and pronature != ''" >
+        PRONATURE,
+      </if>
+      <if test="protypeid != null and protypeid != ''" >
+        PROTYPEID,
+      </if>
+      <if test="protypesubid != null and protypesubid != ''" >
+        PROTYPESUBID,
+      </if>
+      <if test="hospitalid != null and hospitalid != ''" >
+        HOSPITALID,
+      </if>
+      <if test="hospitalname != null and hospitalname != ''" >
+        HOSPITALNAME,
+      </if>
+      <if test="depid != null and depid != ''" >
+        DEPID,
+      </if>
+      <if test="startdate != null and startdate != ''" >
+        STARTDATE,
+      </if>
+      <if test="plandate != null and plandate != ''" >
+        PLANDATE,
+      </if>
+      <if test="realdate != null and realdate != ''" >
+        REALDATE,
+      </if>
+      <if test="pmid != null and pmid != ''" >
+        PMID,
+      </if>
+      <if test="pmname != null and pmname != ''" >
+        PMNAME,
+      </if>
+      <if test="pmtel != null and pmtel != ''" >
+        PMTEL,
+      </if>
+      <if test="pmemail != null and pmemail != ''" >
+        PMEMAIL,
+      </if>
+      <if test="promark != null and promark != ''" >
+        PROMARK,
+      </if>
+      <if test="prostate != null and prostate != ''" >
+        PROSTATE,
+      </if>
+      <if test="submitremark != null and submitremark != ''" >
+        SUBMITREMARK,
+      </if>
+      <if test="setremark != null and setremark != ''" >
+        SETREMARK,
+      </if>
+      <if test="submitdate != null and submitdate != ''" >
+        SUBMITDATE,
+      </if>
+      <if test="setdate != null and setdate != ''" >
+        SETDATE,
+      </if>
+      <if test="checkdate != null and checkdate != ''" >
+        CHECKDATE,
+      </if>
+      <if test="createuserid != null and createuserid != ''" >
+        CREATEUSERID,
+      </if>
+      <if test="createusername != null and createusername != ''" >
+        CREATEUSERNAME,
+      </if>
+      <if test="createdate != null and createdate != ''" >
+        CREATEDATE,
+      </if>
+      <if test="resulttype != null and resulttype != ''" >
+        RESULTTYPE,
+      </if>
+      <if test="contractfunds != null and contractfunds != ''" >
+        CONTRACTFUNDS,
+      </if>
+      <if test="companionfunds != null and companionfunds != ''" >
+        COMPANIONFUNDS,
+      </if>
+      <if test="subjecttype != null and subjecttype != ''" >
+        SUBJECTTYPE,
+      </if>
+      <if test="exploretype != null and exploretype != ''" >
+        EXPLORETYPE,
+      </if>
+      <if test="contracttype != null and contracttype != ''" >
+        CONTRACTTYPE,
+      </if>
+      <if test="designmajor != null and designmajor != ''" >
+        DESIGNMAJOR,
+      </if>
+      <if test="devfiled != null and devfiled != ''" >
+        DEVFILED,
+      </if>
+      <if test="techniquesource != null and techniquesource != ''" >
+        TECHNIQUESOURCE,
+      </if>
+      <if test="intellectualproperty != null and intellectualproperty != ''" >
+        INTELLECTUALPROPERTY,
+      </if>
+      <if test="planincreasevalue != null and planincreasevalue != ''" >
+        PLANINCREASEVALUE,
+      </if>
+      <if test="plantotalvalue != null and plantotalvalue != ''" >
+        PLANTOTALVALUE,
+      </if>
+      <if test="protechniquedetail != null and protechniquedetail != ''" >
+        PROTECHNIQUEDETAIL,
+      </if>
+      <if test="historicalachievements != null and historicalachievements != ''" >
+        HISTORICALACHIEVEMENTS,
+      </if>
+      <if test="checkstate != null and checkstate != ''" >
+        CHECKSTATE,
+      </if>
+      <if test="checkobjectid != null and checkobjectid != ''" >
+        CHECKOBJECTID,
+      </if>
+      <if test="isusercheck != null and isusercheck != ''" >
+        ISUSERCHECK,
+      </if>
+      <if test="checkorder != null and checkorder != ''" >
+        CHECKORDER,
+      </if>
+      <if test="checkgroupid != null and checkgroupid != ''" >
+        CHECKGROUPID,
+      </if>
+      <if test="remarks1 != null and remarks1 != ''" >
+        REMARKS1,
+      </if>
+      <if test="remarks2 != null and remarks2 != ''" >
+        REMARKS2,
+      </if>
+      <if test="remarks3 != null and remarks3 != ''" >
+        REMARKS3,
+      </if>
+      <if test="remarks4 != null and remarks4 != ''" >
+        REMARKS4,
+      </if>
+      <if test="remarks5 != null and remarks5 != ''" >
+        REMARKS5,
+      </if>
+      <if test="operateuserid != null and operateuserid != ''" >
+        OPERATEUSERID,
+      </if>
+      <if test="operateusername != null and operateusername != ''" >
+        OPERATEUSERNAME,
+      </if>
+      <if test="operatedate != null and operatedate != ''" >
+        OPERATEDATE,
+      </if>
+      <if test="savedate != null and savedate != ''" >
+        SAVEDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="prosequence != null and prosequence != ''" >
+        #{prosequence,jdbcType=VARCHAR},
+      </if>
+      <if test="proname != null and proname != ''" >
+        #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="prograde != null and prograde != ''" >
+        #{prograde,jdbcType=VARCHAR},
+      </if>
+      <if test="pronature != null and pronature != ''" >
+        #{pronature,jdbcType=VARCHAR},
+      </if>
+      <if test="protypeid != null and protypeid != ''" >
+        #{protypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="protypesubid != null and protypesubid != ''" >
+        #{protypesubid,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalid != null and hospitalid != ''" >
+        #{hospitalid,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalname != null and hospitalname != ''" >
+        #{hospitalname,jdbcType=VARCHAR},
+      </if>
+      <if test="depid != null and depid != ''" >
+        #{depid,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null and startdate != ''" >
+        to_date(#{startdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="plandate != null and plandate != ''" >
+        to_date(#{plandate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="realdate != null and realdate != ''" >
+        to_date(#{realdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="pmid != null and pmid != ''" >
+        #{pmid,jdbcType=VARCHAR},
+      </if>
+      <if test="pmname != null and pmname != ''" >
+        #{pmname,jdbcType=VARCHAR},
+      </if>
+      <if test="pmtel != null and pmtel != ''" >
+        #{pmtel,jdbcType=VARCHAR},
+      </if>
+      <if test="pmemail != null and pmemail != ''" >
+        #{pmemail,jdbcType=VARCHAR},
+      </if>
+      <if test="promark != null and promark != ''" >
+        #{promark,jdbcType=VARCHAR},
+      </if>
+      <if test="prostate != null and prostate != ''" >
+        #{prostate,jdbcType=VARCHAR},
+      </if>
+      <if test="submitremark != null and submitremark != ''" >
+        #{submitremark,jdbcType=VARCHAR},
+      </if>
+      <if test="setremark != null and setremark != ''" >
+        #{setremark,jdbcType=VARCHAR},
+      </if>
+      <if test="submitdate != null and submitdate != ''" >
+        to_date(#{submitdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="setdate != null and setdate != ''" >
+        to_date(#{setdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="checkdate != null and checkdate != ''" >
+        to_date(#{checkdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="createuserid != null and createuserid != ''" >
+        #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="createusername != null and createusername != ''" >
+        #{createusername,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null and createdate != ''" >
+        to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="resulttype != null and resulttype != ''" >
+        #{resulttype,jdbcType=VARCHAR},
+      </if>
+      <if test="contractfunds != null and contractfunds != ''" >
+        #{contractfunds,jdbcType=DECIMAL},
+      </if>
+      <if test="companionfunds != null and companionfunds != ''" >
+        #{companionfunds,jdbcType=DECIMAL},
+      </if>
+      <if test="subjecttype != null and subjecttype != ''" >
+        #{subjecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="exploretype != null and exploretype != ''" >
+        #{exploretype,jdbcType=VARCHAR},
+      </if>
+      <if test="contracttype != null and contracttype != ''" >
+        #{contracttype,jdbcType=VARCHAR},
+      </if>
+      <if test="designmajor != null and designmajor != ''" >
+        #{designmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="devfiled != null and devfiled != ''" >
+        #{devfiled,jdbcType=VARCHAR},
+      </if>
+      <if test="techniquesource != null and techniquesource != ''" >
+        #{techniquesource,jdbcType=VARCHAR},
+      </if>
+      <if test="intellectualproperty != null and intellectualproperty != ''" >
+        #{intellectualproperty,jdbcType=VARCHAR},
+      </if>
+      <if test="planincreasevalue != null and planincreasevalue != ''" >
+        #{planincreasevalue,jdbcType=DECIMAL},
+      </if>
+      <if test="plantotalvalue != null and plantotalvalue != ''" >
+        #{plantotalvalue,jdbcType=DECIMAL},
+      </if>
+      <if test="protechniquedetail != null and protechniquedetail != ''" >
+        #{protechniquedetail,jdbcType=VARCHAR},
+      </if>
+      <if test="historicalachievements != null and historicalachievements != ''" >
+        #{historicalachievements,jdbcType=VARCHAR},
+      </if>
+      <if test="checkstate != null and checkstate != ''" >
+        #{checkstate,jdbcType=VARCHAR},
+      </if>
+      <if test="checkobjectid != null and checkobjectid != ''" >
+        #{checkobjectid,jdbcType=VARCHAR},
+      </if>
+      <if test="isusercheck != null and isusercheck != ''" >
+        #{isusercheck,jdbcType=VARCHAR},
+      </if>
+      <if test="checkorder != null and checkorder != ''" >
+        #{checkorder,jdbcType=VARCHAR},
+      </if>
+      <if test="checkgroupid != null and checkgroupid != ''" >
+        #{checkgroupid,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks1 != null and remarks1 != ''" >
+        #{remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks2 != null and remarks2 != ''" >
+        #{remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks3 != null and remarks3 != ''" >
+        #{remarks3,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks4 != null and remarks4 != ''" >
+        #{remarks4,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks5 != null and remarks5 != ''" >
+        #{remarks5,jdbcType=VARCHAR},
+      </if>
+      <if test="operateuserid != null and operateuserid != ''" >
+        #{operateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="operateusername != null and operateusername != ''" >
+        #{operateusername,jdbcType=VARCHAR},
+      </if>
+      <if test="operatedate != null and operatedate != ''" >
+        to_date(#{operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="savedate != null and savedate != ''" >
+        to_date(#{savedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </trim>
+  </insert>
+  <select id="countKYProjectBySqlWhere" parameterType="com.saint.research.sqlWhere.KYProjectSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from KY_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateKYProjectBySqlWhereSelective" parameterType="map" >
+    update KY_PROJECT
+    <set >
+      <if test="record.prosequence != null and record.prosequence != ''" >
+        PROSEQUENCE = #{record.prosequence,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proname != null and record.proname != ''" >
+        PRONAME = #{record.proname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prograde != null and record.prograde != ''" >
+        PROGRADE = #{record.prograde,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pronature != null and record.pronature != ''" >
+        PRONATURE = #{record.pronature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.protypeid != null and record.protypeid != ''" >
+        PROTYPEID = #{record.protypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.protypesubid != null and record.protypesubid != ''" >
+        PROTYPESUBID = #{record.protypesubid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hospitalid != null and record.hospitalid != ''" >
+        HOSPITALID = #{record.hospitalid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hospitalname != null and record.hospitalname != ''" >
+        HOSPITALNAME = #{record.hospitalname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depid != null and record.depid != ''" >
+        DEPID = #{record.depid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startdate != null and record.startdate != ''" >
+        STARTDATE = to_date(#{record.startdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.plandate != null and record.plandate != ''" >
+        PLANDATE = to_date(#{record.plandate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.realdate != null and record.realdate != ''" >
+        REALDATE = to_date(#{record.realdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.pmid != null and record.pmid != ''" >
+        PMID = #{record.pmid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pmname != null and record.pmname != ''" >
+        PMNAME = #{record.pmname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pmtel != null and record.pmtel != ''" >
+        PMTEL = #{record.pmtel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pmemail != null and record.pmemail != ''" >
+        PMEMAIL = #{record.pmemail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.promark != null and record.promark != ''" >
+        PROMARK = #{record.promark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prostate != null and record.prostate != ''" >
+        PROSTATE = #{record.prostate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.submitremark != null and record.submitremark != ''" >
+        SUBMITREMARK = #{record.submitremark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.setremark != null and record.setremark != ''" >
+        SETREMARK = #{record.setremark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.submitdate != null and record.submitdate != ''" >
+        SUBMITDATE = to_date(#{record.submitdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.setdate != null and record.setdate != ''" >
+        SETDATE = to_date(#{record.setdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.checkdate != null and record.checkdate != ''" >
+        CHECKDATE = to_date(#{record.checkdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.createuserid != null and record.createuserid != ''" >
+        CREATEUSERID = #{record.createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createusername != null and record.createusername != ''" >
+        CREATEUSERNAME = #{record.createusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdate != null and record.createdate != ''" >
+        CREATEDATE = to_date(#{record.createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.resulttype != null and record.resulttype != ''" >
+        RESULTTYPE = #{record.resulttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractfunds != null and record.contractfunds != ''" >
+        CONTRACTFUNDS = #{record.contractfunds,jdbcType=DECIMAL},
+      </if>
+      <if test="record.companionfunds != null and record.companionfunds != ''" >
+        COMPANIONFUNDS = #{record.companionfunds,jdbcType=DECIMAL},
+      </if>
+      <if test="record.subjecttype != null and record.subjecttype != ''" >
+        SUBJECTTYPE = #{record.subjecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exploretype != null and record.exploretype != ''" >
+        EXPLORETYPE = #{record.exploretype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contracttype != null and record.contracttype != ''" >
+        CONTRACTTYPE = #{record.contracttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.designmajor != null and record.designmajor != ''" >
+        DESIGNMAJOR = #{record.designmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.devfiled != null and record.devfiled != ''" >
+        DEVFILED = #{record.devfiled,jdbcType=VARCHAR},
+      </if>
+      <if test="record.techniquesource != null and record.techniquesource != ''" >
+        TECHNIQUESOURCE = #{record.techniquesource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.intellectualproperty != null and record.intellectualproperty != ''" >
+        INTELLECTUALPROPERTY = #{record.intellectualproperty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.planincreasevalue != null and record.planincreasevalue != ''" >
+        PLANINCREASEVALUE = #{record.planincreasevalue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.plantotalvalue != null and record.plantotalvalue != ''" >
+        PLANTOTALVALUE = #{record.plantotalvalue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.protechniquedetail != null and record.protechniquedetail != ''" >
+        PROTECHNIQUEDETAIL = #{record.protechniquedetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.historicalachievements != null and record.historicalachievements != ''" >
+        HISTORICALACHIEVEMENTS = #{record.historicalachievements,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkstate != null and record.checkstate != ''" >
+        CHECKSTATE = #{record.checkstate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkobjectid != null and record.checkobjectid != ''" >
+        CHECKOBJECTID = #{record.checkobjectid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isusercheck != null and record.isusercheck != ''" >
+        ISUSERCHECK = #{record.isusercheck,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkorder != null and record.checkorder != ''" >
+        CHECKORDER = #{record.checkorder,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkgroupid != null and record.checkgroupid != ''" >
+        CHECKGROUPID = #{record.checkgroupid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks1 != null and record.remarks1 != ''" >
+        REMARKS1 = #{record.remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks2 != null and record.remarks2 != ''" >
+        REMARKS2 = #{record.remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks3 != null and record.remarks3 != ''" >
+        REMARKS3 = #{record.remarks3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks4 != null and record.remarks4 != ''" >
+        REMARKS4 = #{record.remarks4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks5 != null and record.remarks5 != ''" >
+        REMARKS5 = #{record.remarks5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateuserid != null and record.operateuserid != ''" >
+        OPERATEUSERID = #{record.operateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateusername != null and record.operateusername != ''" >
+        OPERATEUSERNAME = #{record.operateusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatedate != null and record.operatedate != ''" >
+        OPERATEDATE = to_date(#{record.operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.savedate != null and record.savedate != ''" >
+        SAVEDATE = to_date(#{record.savedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateKYProjectBySqlWhere" parameterType="map" >
+    update KY_PROJECT
+    set PROSEQUENCE = #{record.prosequence,jdbcType=VARCHAR},
+      PRONAME = #{record.proname,jdbcType=VARCHAR},
+      PROGRADE = #{record.prograde,jdbcType=VARCHAR},
+      PRONATURE = #{record.pronature,jdbcType=VARCHAR},
+      PROTYPEID = #{record.protypeid,jdbcType=VARCHAR},
+      PROTYPESUBID = #{record.protypesubid,jdbcType=VARCHAR},
+      HOSPITALID = #{record.hospitalid,jdbcType=VARCHAR},
+      HOSPITALNAME = #{record.hospitalname,jdbcType=VARCHAR},
+      DEPID = #{record.depid,jdbcType=VARCHAR},
+      STARTDATE = to_date(#{record.startdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      PLANDATE = to_date(#{record.plandate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REALDATE = to_date(#{record.realdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      PMID = #{record.pmid,jdbcType=VARCHAR},
+      PMNAME = #{record.pmname,jdbcType=VARCHAR},
+      PMTEL = #{record.pmtel,jdbcType=VARCHAR},
+      PMEMAIL = #{record.pmemail,jdbcType=VARCHAR},
+      PROMARK = #{record.promark,jdbcType=VARCHAR},
+      PROSTATE = #{record.prostate,jdbcType=VARCHAR},
+      SUBMITREMARK = #{record.submitremark,jdbcType=VARCHAR},
+      SETREMARK = #{record.setremark,jdbcType=VARCHAR},
+      SUBMITDATE = to_date(#{record.submitdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SETDATE = to_date(#{record.setdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      CHECKDATE = to_date(#{record.checkdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      CREATEUSERID = #{record.createuserid,jdbcType=VARCHAR},
+      CREATEUSERNAME = #{record.createusername,jdbcType=VARCHAR},
+      CREATEDATE = to_date(#{record.createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      RESULTTYPE = #{record.resulttype,jdbcType=VARCHAR},
+      CONTRACTFUNDS = #{record.contractfunds,jdbcType=DECIMAL},
+      COMPANIONFUNDS = #{record.companionfunds,jdbcType=DECIMAL},
+      SUBJECTTYPE = #{record.subjecttype,jdbcType=VARCHAR},
+      EXPLORETYPE = #{record.exploretype,jdbcType=VARCHAR},
+      CONTRACTTYPE = #{record.contracttype,jdbcType=VARCHAR},
+      DESIGNMAJOR = #{record.designmajor,jdbcType=VARCHAR},
+      DEVFILED = #{record.devfiled,jdbcType=VARCHAR},
+      TECHNIQUESOURCE = #{record.techniquesource,jdbcType=VARCHAR},
+      INTELLECTUALPROPERTY = #{record.intellectualproperty,jdbcType=VARCHAR},
+      PLANINCREASEVALUE = #{record.planincreasevalue,jdbcType=DECIMAL},
+      PLANTOTALVALUE = #{record.plantotalvalue,jdbcType=DECIMAL},
+      PROTECHNIQUEDETAIL = #{record.protechniquedetail,jdbcType=VARCHAR},
+      HISTORICALACHIEVEMENTS = #{record.historicalachievements,jdbcType=VARCHAR},
+      CHECKSTATE = #{record.checkstate,jdbcType=VARCHAR},
+      CHECKOBJECTID = #{record.checkobjectid,jdbcType=VARCHAR},
+      ISUSERCHECK = #{record.isusercheck,jdbcType=VARCHAR},
+      CHECKORDER = #{record.checkorder,jdbcType=VARCHAR},
+      CHECKGROUPID = #{record.checkgroupid,jdbcType=VARCHAR},
+      REMARKS1 = #{record.remarks1,jdbcType=VARCHAR},
+      REMARKS2 = #{record.remarks2,jdbcType=VARCHAR},
+      REMARKS3 = #{record.remarks3,jdbcType=VARCHAR},
+      REMARKS4 = #{record.remarks4,jdbcType=VARCHAR},
+      REMARKS5 = #{record.remarks5,jdbcType=VARCHAR},
+      OPERATEUSERID = #{record.operateuserid,jdbcType=VARCHAR},
+      OPERATEUSERNAME = #{record.operateusername,jdbcType=VARCHAR},
+      OPERATEDATE = to_date(#{record.operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SAVEDATE = to_date(#{record.savedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateKYProjectByPrimaryKeySelective" parameterType="com.saint.research.bean.KYProjectEntity" >
+    update KY_PROJECT
+    <set >
+      <if test="proname != null and proname != ''" >
+        PRONAME = #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="prograde != null and prograde != ''" >
+        PROGRADE = #{prograde,jdbcType=VARCHAR},
+      </if>
+      <if test="pronature != null and pronature != ''" >
+        PRONATURE = #{pronature,jdbcType=VARCHAR},
+      </if>
+      <if test="protypeid != null and protypeid != ''" >
+        PROTYPEID = #{protypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="protypesubid != null and protypesubid != ''" >
+        PROTYPESUBID = #{protypesubid,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalid != null and hospitalid != ''" >
+        HOSPITALID = #{hospitalid,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalname != null and hospitalname != ''" >
+        HOSPITALNAME = #{hospitalname,jdbcType=VARCHAR},
+      </if>
+      <if test="depid != null and depid != ''" >
+        DEPID = #{depid,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null and startdate != ''" >
+        STARTDATE = to_date(#{startdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="plandate != null and plandate != ''" >
+        PLANDATE = to_date(#{plandate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="realdate != null and realdate != ''" >
+        REALDATE = to_date(#{realdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="pmid != null and pmid != ''" >
+        PMID = #{pmid,jdbcType=VARCHAR},
+      </if>
+      <if test="pmname != null and pmname != ''" >
+        PMNAME = #{pmname,jdbcType=VARCHAR},
+      </if>
+      <if test="pmtel != null and pmtel != ''" >
+        PMTEL = #{pmtel,jdbcType=VARCHAR},
+      </if>
+      <if test="pmemail != null and pmemail != ''" >
+        PMEMAIL = #{pmemail,jdbcType=VARCHAR},
+      </if>
+      <if test="promark != null and promark != ''" >
+        PROMARK = #{promark,jdbcType=VARCHAR},
+      </if>
+      <if test="prostate != null and prostate != ''" >
+        PROSTATE = #{prostate,jdbcType=VARCHAR},
+      </if>
+      <if test="submitremark != null and submitremark != ''" >
+        SUBMITREMARK = #{submitremark,jdbcType=VARCHAR},
+      </if>
+      <if test="setremark != null and setremark != ''" >
+        SETREMARK = #{setremark,jdbcType=VARCHAR},
+      </if>
+      <if test="submitdate != null and submitdate != ''" >
+        SUBMITDATE = to_date(#{submitdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="setdate != null and setdate != ''" >
+        SETDATE = to_date(#{setdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="checkdate != null and checkdate != ''" >
+        CHECKDATE = to_date(#{checkdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="createuserid != null and createuserid != ''" >
+        CREATEUSERID = #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="createusername != null and createusername != ''" >
+        CREATEUSERNAME = #{createusername,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null and createdate != ''" >
+        CREATEDATE = to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="resulttype != null and resulttype != ''" >
+        RESULTTYPE = #{resulttype,jdbcType=VARCHAR},
+      </if>
+      <if test="contractfunds != null and contractfunds != ''" >
+        CONTRACTFUNDS = #{contractfunds,jdbcType=DECIMAL},
+      </if>
+      <if test="companionfunds != null and companionfunds != ''" >
+        COMPANIONFUNDS = #{companionfunds,jdbcType=DECIMAL},
+      </if>
+      <if test="subjecttype != null and subjecttype != ''" >
+        SUBJECTTYPE = #{subjecttype,jdbcType=VARCHAR},
+      </if>
+      <if test="exploretype != null and exploretype != ''" >
+        EXPLORETYPE = #{exploretype,jdbcType=VARCHAR},
+      </if>
+      <if test="contracttype != null and contracttype != ''" >
+        CONTRACTTYPE = #{contracttype,jdbcType=VARCHAR},
+      </if>
+      <if test="designmajor != null and designmajor != ''" >
+        DESIGNMAJOR = #{designmajor,jdbcType=VARCHAR},
+      </if>
+      <if test="devfiled != null and devfiled != ''" >
+        DEVFILED = #{devfiled,jdbcType=VARCHAR},
+      </if>
+      <if test="techniquesource != null and techniquesource != ''" >
+        TECHNIQUESOURCE = #{techniquesource,jdbcType=VARCHAR},
+      </if>
+      <if test="intellectualproperty != null and intellectualproperty != ''" >
+        INTELLECTUALPROPERTY = #{intellectualproperty,jdbcType=VARCHAR},
+      </if>
+      <if test="planincreasevalue != null and planincreasevalue != ''" >
+        PLANINCREASEVALUE = #{planincreasevalue,jdbcType=DECIMAL},
+      </if>
+      <if test="plantotalvalue != null and plantotalvalue != ''" >
+        PLANTOTALVALUE = #{plantotalvalue,jdbcType=DECIMAL},
+      </if>
+      <if test="protechniquedetail != null and protechniquedetail != ''" >
+        PROTECHNIQUEDETAIL = #{protechniquedetail,jdbcType=VARCHAR},
+      </if>
+      <if test="historicalachievements != null and historicalachievements != ''" >
+        HISTORICALACHIEVEMENTS = #{historicalachievements,jdbcType=VARCHAR},
+      </if>
+      <if test="checkstate != null and checkstate != ''" >
+        CHECKSTATE = #{checkstate,jdbcType=VARCHAR},
+      </if>
+      <if test="checkobjectid != null and checkobjectid != ''" >
+        CHECKOBJECTID = #{checkobjectid,jdbcType=VARCHAR},
+      </if>
+      <if test="isusercheck != null and isusercheck != ''" >
+        ISUSERCHECK = #{isusercheck,jdbcType=VARCHAR},
+      </if>
+      <if test="checkorder != null and checkorder != ''" >
+        CHECKORDER = #{checkorder,jdbcType=VARCHAR},
+      </if>
+      <if test="checkgroupid != null and checkgroupid != ''" >
+        CHECKGROUPID = #{checkgroupid,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks1 != null and remarks1 != ''" >
+        REMARKS1 = #{remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks2 != null and remarks2 != ''" >
+        REMARKS2 = #{remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks3 != null and remarks3 != ''" >
+        REMARKS3 = #{remarks3,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks4 != null and remarks4 != ''" >
+        REMARKS4 = #{remarks4,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks5 != null and remarks5 != ''" >
+        REMARKS5 = #{remarks5,jdbcType=VARCHAR},
+      </if>
+      <if test="operateuserid != null and operateuserid != ''" >
+        OPERATEUSERID = #{operateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="operateusername != null and operateusername != ''" >
+        OPERATEUSERNAME = #{operateusername,jdbcType=VARCHAR},
+      </if>
+      <if test="operatedate != null and operatedate != ''" >
+        OPERATEDATE = to_date(#{operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="savedate != null and savedate != ''" >
+        SAVEDATE = to_date(#{savedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    where PROSEQUENCE = #{prosequence,jdbcType=VARCHAR}
+  </update>
+  <update id="updateKYProjectByPrimaryKey" parameterType="com.saint.research.bean.KYProjectEntity" >
+    update KY_PROJECT
+    set PRONAME = #{proname,jdbcType=VARCHAR},
+      PROGRADE = #{prograde,jdbcType=VARCHAR},
+      PRONATURE = #{pronature,jdbcType=VARCHAR},
+      PROTYPEID = #{protypeid,jdbcType=VARCHAR},
+      PROTYPESUBID = #{protypesubid,jdbcType=VARCHAR},
+      HOSPITALID = #{hospitalid,jdbcType=VARCHAR},
+      HOSPITALNAME = #{hospitalname,jdbcType=VARCHAR},
+      DEPID = #{depid,jdbcType=VARCHAR},
+      STARTDATE = to_date(#{startdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      PLANDATE = to_date(#{plandate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REALDATE = to_date(#{realdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      PMID = #{pmid,jdbcType=VARCHAR},
+      PMNAME = #{pmname,jdbcType=VARCHAR},
+      PMTEL = #{pmtel,jdbcType=VARCHAR},
+      PMEMAIL = #{pmemail,jdbcType=VARCHAR},
+      PROMARK = #{promark,jdbcType=VARCHAR},
+      PROSTATE = #{prostate,jdbcType=VARCHAR},
+      SUBMITREMARK = #{submitremark,jdbcType=VARCHAR},
+      SETREMARK = #{setremark,jdbcType=VARCHAR},
+      SUBMITDATE = to_date(#{submitdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SETDATE = to_date(#{setdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      CHECKDATE = to_date(#{checkdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      CREATEUSERID = #{createuserid,jdbcType=VARCHAR},
+      CREATEUSERNAME = #{createusername,jdbcType=VARCHAR},
+      CREATEDATE = to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      RESULTTYPE = #{resulttype,jdbcType=VARCHAR},
+      CONTRACTFUNDS = #{contractfunds,jdbcType=DECIMAL},
+      COMPANIONFUNDS = #{companionfunds,jdbcType=DECIMAL},
+      SUBJECTTYPE = #{subjecttype,jdbcType=VARCHAR},
+      EXPLORETYPE = #{exploretype,jdbcType=VARCHAR},
+      CONTRACTTYPE = #{contracttype,jdbcType=VARCHAR},
+      DESIGNMAJOR = #{designmajor,jdbcType=VARCHAR},
+      DEVFILED = #{devfiled,jdbcType=VARCHAR},
+      TECHNIQUESOURCE = #{techniquesource,jdbcType=VARCHAR},
+      INTELLECTUALPROPERTY = #{intellectualproperty,jdbcType=VARCHAR},
+      PLANINCREASEVALUE = #{planincreasevalue,jdbcType=DECIMAL},
+      PLANTOTALVALUE = #{plantotalvalue,jdbcType=DECIMAL},
+      PROTECHNIQUEDETAIL = #{protechniquedetail,jdbcType=VARCHAR},
+      HISTORICALACHIEVEMENTS = #{historicalachievements,jdbcType=VARCHAR},
+      CHECKSTATE = #{checkstate,jdbcType=VARCHAR},
+      CHECKOBJECTID = #{checkobjectid,jdbcType=VARCHAR},
+      ISUSERCHECK = #{isusercheck,jdbcType=VARCHAR},
+      CHECKORDER = #{checkorder,jdbcType=VARCHAR},
+      CHECKGROUPID = #{checkgroupid,jdbcType=VARCHAR},
+      REMARKS1 = #{remarks1,jdbcType=VARCHAR},
+      REMARKS2 = #{remarks2,jdbcType=VARCHAR},
+      REMARKS3 = #{remarks3,jdbcType=VARCHAR},
+      REMARKS4 = #{remarks4,jdbcType=VARCHAR},
+      REMARKS5 = #{remarks5,jdbcType=VARCHAR},
+      OPERATEUSERID = #{operateuserid,jdbcType=VARCHAR},
+      OPERATEUSERNAME = #{operateusername,jdbcType=VARCHAR},
+      OPERATEDATE = to_date(#{operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SAVEDATE = to_date(#{savedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where PROSEQUENCE = #{prosequence,jdbcType=VARCHAR}
+  </update>
+  
+   <select id="selectListKYProject" resultType="java.lang.String" parameterType="java.util.Map" >
+   	select distinct(t.PROSEQUENCE) from KY_PROJECTUSER t 
+	LEFT JOIN  KY_PROJECT k ON k.PROSEQUENCE = t.PROSEQUENCE
+   	where 
+     t.USERID in 
+   	 <foreach item="item" index="index" collection="USERIDS" 
+                         open="(" separator="," close=")">
+                        #{item}
+     </foreach> 
+      <if test="PROSTATES != null" >
+      	 and k.PROSTATE in 
+         <foreach item="item1" index="index" collection="PROSTATES" 
+                         open="(" separator="," close=")">
+                        #{item1}
+     	</foreach> 
+      </if>
+  </select>
+  
+  <select id="selectListPageKYProjectDetailBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.research.sqlWhere.KYProjectSqlWhere" >
+	select
+	    <if test="distinct" >
+	      distinct
+	    </if>
+	       'true' as QUERYID,
+	       h.PROSEQUENCE,
+	       h.PRONAME,
+	       h.pmname,
+	       h.STARTDATE,
+	       h.PLANDATE,
+	       round(h.tszb, 4) * 100 remarks5,
+	       nvl(t.WCZB, 0) companionfunds
+	  FROM (select K.PROSEQUENCE,
+	               K.PRONAME,
+	               k.pmname,
+	               K.STARTDATE,
+	               K.PLANDATE,
+	               case
+	                 when (PLANDATE - STARTDATE) = 0 then
+	                  0
+	                 else
+	                  (CASE
+	                    WHEN SYSDATE > STARTDATE THEN
+	                     TO_DATE(TO_CHAR(SYSDATE, 'YYYY/MM/DD'), 'YYYY/MM/DD') -
+	                     STARTDATE
+	                    ELSE
+	                     0
+	                  END) / (PLANDATE - STARTDATE)
+	               end tszb
+	        
+	          FROM KY_PROJECT K
+	          LEFT JOIN XF_EMPLOYEE E
+	            ON K.PMID = E.USERNUMBER
+	         <if test="_parameter != null" >
+		      <include refid="Sql_Where_Clause" />
+		     </if>) H
+	  LEFT JOIN (SELECT A.PROSEQUENCE,
+	                    SUM(A.PROPORTION * B.SUBPROPORTION) / 100 WCZB
+	               FROM KY_PROJECTPLAN A, KY_PROJECTGRESS B
+	              WHERE A.PROSEQUENCE = B.PROSEQUENCE
+	                AND A.XH = B.TASKNUM
+	              GROUP BY A.PROSEQUENCE) T
+	    ON H.PROSEQUENCE = T.PROSEQUENCE
+	 order by remarks5 desc, companionfunds
+
+  </select>
+ 
+ 
+   <select id="selectListPageKYProjectcheck" resultMap="BaseResultMap" parameterType="com.saint.research.sqlWhere.KYProjectSqlWhere" >
+		 SELECT 'true' as QUERYID,
+		        H.PROSEQUENCE, PRONAME, PROGRADE, PRONATURE, PROTYPEID, PROTYPESUBID, HOSPITALID, HOSPITALNAME, 
+		        DEPID, STARTDATE, PLANDATE, REALDATE, PMID, PMNAME,PMTEL, PMEMAIL, PROMARK, PROSTATE, 
+		        SUBMITREMARK, SETREMARK, SUBMITDATE, SETDATE, CHECKDATE, CREATEUSERID, CREATEUSERNAME, 
+		        CREATEDATE, RESULTTYPE, CONTRACTFUNDS,T.WCZB as  COMPANIONFUNDS, SUBJECTTYPE, EXPLORETYPE, 
+		        CONTRACTTYPE, DESIGNMAJOR, DEVFILED, TECHNIQUESOURCE, INTELLECTUALPROPERTY, PLANINCREASEVALUE, 
+		        PLANTOTALVALUE, PROTECHNIQUEDETAIL, HISTORICALACHIEVEMENTS, CHECKSTATE, CHECKOBJECTID, 
+		        ISUSERCHECK, CHECKORDER, CHECKGROUPID, REMARKS1, REMARKS2, REMARKS3, REMARKS4, REMARKS5, 
+		        OPERATEUSERID, OPERATEUSERNAME, OPERATEDATE, SAVEDATE
+		  FROM (select  PROSEQUENCE, PRONAME, PROGRADE, PRONATURE, PROTYPEID, PROTYPESUBID, HOSPITALID, HOSPITALNAME, 
+		                DEPID, STARTDATE, PLANDATE, REALDATE, PMID, PMNAME, e.USERTEL as PMTEL, PMEMAIL, PROMARK, PROSTATE, 
+		                SUBMITREMARK, SETREMARK, SUBMITDATE, SETDATE, CHECKDATE, CREATEUSERID, CREATEUSERNAME, 
+		                CREATEDATE, RESULTTYPE, CONTRACTFUNDS, COMPANIONFUNDS, SUBJECTTYPE, EXPLORETYPE, 
+		                CONTRACTTYPE, DESIGNMAJOR, DEVFILED, TECHNIQUESOURCE, INTELLECTUALPROPERTY, PLANINCREASEVALUE, 
+		                PLANTOTALVALUE, PROTECHNIQUEDETAIL, HISTORICALACHIEVEMENTS, CHECKSTATE, CHECKOBJECTID, 
+		                ISUSERCHECK, CHECKORDER, CHECKGROUPID, REMARKS1, REMARKS2, REMARKS3, REMARKS4, REMARKS5, 
+		                OPERATEUSERID, OPERATEUSERNAME, OPERATEDATE, SAVEDATE
+		          FROM KY_PROJECT K
+		          LEFT JOIN XF_EMPLOYEE E
+		            ON K.PMID = E.USERNUMBER
+		         	<if test="_parameter != null" >
+				      <include refid="Sql_Where_Clause" />
+				    </if>) H
+		  LEFT JOIN (SELECT A.PROSEQUENCE,
+		                    SUM(nvl(A.PROPORTION, 0) * nvl(B.SUBPROPORTION, 0)) / 100 WCZB
+		               FROM KY_PROJECTPLAN A, KY_PROJECTGRESS B
+		              WHERE A.PROSEQUENCE = B.PROSEQUENCE
+		                AND A.XH = B.TASKNUM
+		              GROUP BY A.PROSEQUENCE) T
+		    ON H.PROSEQUENCE = T.PROSEQUENCE
+		 WHERE t.WCZB = 100
+
+  </select>
+  
+  <select id="selectCountKYProjectByYear" resultType="java.lang.Integer" parameterType="java.lang.String" >
+   	select count(prosequence) numb from ky_project  
+	 where to_char(createdate,'yyyy') = #{year}
+  </select>
+</mapper>

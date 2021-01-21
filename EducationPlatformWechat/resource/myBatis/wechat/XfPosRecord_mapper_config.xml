@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.wechat.XfPosRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.wechat.manager.bean.XfPosRecordEntity" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="COURSE_ID" property="course_id" jdbcType="VARCHAR" />
+    <result column="EMP_NUMBER" property="emp_number" jdbcType="VARCHAR" />
+    <result column="DEPT_ID" property="dept_id" jdbcType="VARCHAR" />
+    <result column="DAKA_TIME" property="daka_time" jdbcType="VARCHAR" />
+    <result column="ADD_YEAR" property="add_year" jdbcType="VARCHAR" />
+    <result column="ADD_TIME" property="add_time" jdbcType="VARCHAR" />
+    <result column="ISVALID" property="isvalid" jdbcType="VARCHAR" />
+    <result column="ISGRANT" property="isgrant" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    	ID,
+		COURSE_ID,
+		EMP_NUMBER,
+		DEPT_ID,
+		DAKA_TIME,
+		ADD_YEAR,
+		ADD_TIME,
+		ISVALID,
+		ISGRANT,
+  </sql>
+  <select id="selectListPageXfPosRecordBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.bean.XfPosRecordEntity" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XF_POS_RECORD
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListXfPosRecode" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.bean.XfPosRecordEntity" >
+    select
+    COURSE_ID,ISGRANT
+    from XF_POS_RECORD
+    where EMP_NUMBER = #{emp_number,jdbcType=VARCHAR}
+  </select>
+  <select id="selectListXfPosRecodebyIsGrant" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.bean.XfPosRecordEntity" >
+    select
+    COURSE_ID
+    from XF_POS_RECORD
+    where EMP_NUMBER = #{emp_number,jdbcType=VARCHAR}
+    AND ISGRANT = #{isgrant,jdbcType=VARCHAR}
+  </select>
+</mapper>

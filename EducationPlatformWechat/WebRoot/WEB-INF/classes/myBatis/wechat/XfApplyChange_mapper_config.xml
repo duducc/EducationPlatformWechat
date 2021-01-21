@@ -1,0 +1,754 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.wechat.XfApplyChangeMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.wechat.manager.bean.XfApplyChangeEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="OPENID" property="openid" jdbcType="VARCHAR" />
+    <result column="YITONGCODE" property="yitongcode" jdbcType="VARCHAR" />
+    <result column="USERXM" property="userxm" jdbcType="VARCHAR" />
+    <result column="SFZHM" property="sfzhm" jdbcType="VARCHAR" />
+    <result column="USERSEX" property="usersex" jdbcType="VARCHAR" />
+    <result column="YIYUAN" property="yiyuan" jdbcType="VARCHAR" />
+    <result column="YIYUANMC" property="yiyuanmc" jdbcType="VARCHAR" />
+    <result column="DEPT" property="dept" jdbcType="VARCHAR" />
+    <result column="DEPTMC" property="deptmc" jdbcType="VARCHAR" />
+    <result column="ZHICHENG" property="zhicheng" jdbcType="VARCHAR" />
+    <result column="ZHICHENGMC" property="zhichengmc" jdbcType="VARCHAR" />
+    <result column="YHLB" property="yhlb" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="SQRDZ" property="sqrdz" jdbcType="VARCHAR" />
+    <result column="SQRLXFS" property="sqrlxfs" jdbcType="VARCHAR" />
+    <result column="BLTYPE" property="bltype" jdbcType="VARCHAR" />
+    <result column="SQSJ" property="sqsj" jdbcType="DATE" />
+    <result column="SPBJ" property="spbj" jdbcType="VARCHAR" />
+    <result column="SPR" property="spr" jdbcType="VARCHAR" />
+    <result column="SPSJ" property="spsj" jdbcType="DATE" />
+    <result column="ZKRYXM" property="zkryxm" jdbcType="VARCHAR" />
+    <result column="ZKRLXFS" property="zkrlxfs" jdbcType="VARCHAR" />
+    <result column="KDGSMC" property="kdgsmc" jdbcType="VARCHAR" />
+    <result column="KDDH" property="kddh" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+    <result column="GXSJ" property="gxsj" jdbcType="DATE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.saint.wechat.manager.bean.XfApplyChangeEntity" extends="BaseResultMap" >
+    <result column="SQRZP" property="sqrzp" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, OPENID, YITONGCODE, USERXM, SFZHM, USERSEX, YIYUAN, YIYUANMC, DEPT, DEPTMC, ZHICHENG, 
+    ZHICHENGMC, YHLB, STATE, SQRDZ, SQRLXFS, BLTYPE, SQSJ, SPBJ, SPR, SPSJ, ZKRYXM, ZKRLXFS, 
+    KDGSMC, KDDH, REMARK1, REMARK2, REMARK3, REMARK4, REMARK5, GXSJ
+  </sql>
+  <sql id="Blob_Column_List" >
+    SQRZP
+  </sql>
+  <select id="selectXfApplyChangeBySqlWhereWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.saint.wechat.manager.sqlWhere.XfApplyChangeSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from XF_APPLY_CHANGE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListPageXfApplyChangeBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.XfApplyChangeSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XF_APPLY_CHANGE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListXfApplyChangeBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.XfApplyChangeSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XF_APPLY_CHANGE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectXfApplyChangeByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from XF_APPLY_CHANGE
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteXfApplyChangeByPrimaryKey" parameterType="java.lang.String" >
+    delete from XF_APPLY_CHANGE
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteXfApplyChangeBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.XfApplyChangeSqlWhere" >
+    delete from XF_APPLY_CHANGE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertXfApplyChange" parameterType="com.saint.wechat.manager.bean.XfApplyChangeEntity" >
+    <selectKey resultType="String" keyProperty="xh" order="BEFORE">
+			select SQ_APPLY_CHANGE.nextVal from dual
+		</selectKey>
+    insert into XF_APPLY_CHANGE (XH, OPENID, YITONGCODE, 
+      USERXM, SFZHM, USERSEX, 
+      YIYUAN, YIYUANMC, DEPT, 
+      DEPTMC, ZHICHENG, ZHICHENGMC, 
+      YHLB, STATE, SQRDZ, 
+      SQRLXFS, BLTYPE, SQSJ, 
+      SPBJ, SPR, SPSJ, 
+      ZKRYXM, ZKRLXFS, KDGSMC, 
+      KDDH, REMARK1, REMARK2, 
+      REMARK3, REMARK4, REMARK5, 
+      GXSJ, SQRZP)
+    values (#{xh,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{yitongcode,jdbcType=VARCHAR}, 
+      #{userxm,jdbcType=VARCHAR}, #{sfzhm,jdbcType=VARCHAR}, #{usersex,jdbcType=VARCHAR}, 
+      #{yiyuan,jdbcType=VARCHAR}, #{yiyuanmc,jdbcType=VARCHAR}, #{dept,jdbcType=VARCHAR}, 
+      #{deptmc,jdbcType=VARCHAR}, #{zhicheng,jdbcType=VARCHAR}, #{zhichengmc,jdbcType=VARCHAR}, 
+      #{yhlb,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{sqrdz,jdbcType=VARCHAR}, 
+      #{sqrlxfs,jdbcType=VARCHAR}, #{bltype,jdbcType=VARCHAR}, to_date(#{sqsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{spbj,jdbcType=VARCHAR}, #{spr,jdbcType=VARCHAR}, to_date(#{spsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{zkryxm,jdbcType=VARCHAR}, #{zkrlxfs,jdbcType=VARCHAR}, #{kdgsmc,jdbcType=VARCHAR}, 
+      #{kddh,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, 
+      #{remark3,jdbcType=VARCHAR}, #{remark4,jdbcType=VARCHAR}, #{remark5,jdbcType=VARCHAR}, 
+      to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{sqrzp,jdbcType=CLOB})
+  </insert>
+  <insert id="insertXfApplyChangeSelective" parameterType="com.saint.wechat.manager.bean.XfApplyChangeEntity" >
+  	<selectKey resultType="String" keyProperty="xh" order="BEFORE">
+			select SQ_APPLY_CHANGE.nextVal from dual
+		</selectKey>
+		
+    insert into XF_APPLY_CHANGE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="openid != null and openid != ''" >
+        OPENID,
+      </if>
+      <if test="yitongcode != null and yitongcode != ''" >
+        YITONGCODE,
+      </if>
+      <if test="userxm != null and userxm != ''" >
+        USERXM,
+      </if>
+      <if test="sfzhm != null and sfzhm != ''" >
+        SFZHM,
+      </if>
+      <if test="usersex != null and usersex != ''" >
+        USERSEX,
+      </if>
+      <if test="yiyuan != null and yiyuan != ''" >
+        YIYUAN,
+      </if>
+      <if test="yiyuanmc != null and yiyuanmc != ''" >
+        YIYUANMC,
+      </if>
+      <if test="dept != null and dept != ''" >
+        DEPT,
+      </if>
+      <if test="deptmc != null and deptmc != ''" >
+        DEPTMC,
+      </if>
+      <if test="zhicheng != null and zhicheng != ''" >
+        ZHICHENG,
+      </if>
+      <if test="zhichengmc != null and zhichengmc != ''" >
+        ZHICHENGMC,
+      </if>
+      <if test="yhlb != null and yhlb != ''" >
+        YHLB,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="sqrdz != null and sqrdz != ''" >
+        SQRDZ,
+      </if>
+      <if test="sqrlxfs != null and sqrlxfs != ''" >
+        SQRLXFS,
+      </if>
+      <if test="bltype != null and bltype != ''" >
+        BLTYPE,
+      </if>
+      <if test="sqsj != null and sqsj != ''" >
+        SQSJ,
+      </if>
+      <if test="spbj != null and spbj != ''" >
+        SPBJ,
+      </if>
+      <if test="spr != null and spr != ''" >
+        SPR,
+      </if>
+      <if test="spsj != null and spsj != ''" >
+        SPSJ,
+      </if>
+      <if test="zkryxm != null and zkryxm != ''" >
+        ZKRYXM,
+      </if>
+      <if test="zkrlxfs != null and zkrlxfs != ''" >
+        ZKRLXFS,
+      </if>
+      <if test="kdgsmc != null and kdgsmc != ''" >
+        KDGSMC,
+      </if>
+      <if test="kddh != null and kddh != ''" >
+        KDDH,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ,
+      </if>
+      <if test="sqrzp != null and sqrzp != ''" >
+        SQRZP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null and openid != ''" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="yitongcode != null and yitongcode != ''" >
+        #{yitongcode,jdbcType=VARCHAR},
+      </if>
+      <if test="userxm != null and userxm != ''" >
+        #{userxm,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzhm != null and sfzhm != ''" >
+        #{sfzhm,jdbcType=VARCHAR},
+      </if>
+      <if test="usersex != null and usersex != ''" >
+        #{usersex,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyuan != null and yiyuan != ''" >
+        #{yiyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyuanmc != null and yiyuanmc != ''" >
+        #{yiyuanmc,jdbcType=VARCHAR},
+      </if>
+      <if test="dept != null and dept != ''" >
+        #{dept,jdbcType=VARCHAR},
+      </if>
+      <if test="deptmc != null and deptmc != ''" >
+        #{deptmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zhicheng != null and zhicheng != ''" >
+        #{zhicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="zhichengmc != null and zhichengmc != ''" >
+        #{zhichengmc,jdbcType=VARCHAR},
+      </if>
+      <if test="yhlb != null and yhlb != ''" >
+        #{yhlb,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="sqrdz != null and sqrdz != ''" >
+        #{sqrdz,jdbcType=VARCHAR},
+      </if>
+      <if test="sqrlxfs != null and sqrlxfs != ''" >
+        #{sqrlxfs,jdbcType=VARCHAR},
+      </if>
+      <if test="bltype != null and bltype != ''" >
+        #{bltype,jdbcType=VARCHAR},
+      </if>
+      <if test="sqsj != null and sqsj != ''" >
+        to_date(#{sqsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="spbj != null and spbj != ''" >
+        #{spbj,jdbcType=VARCHAR},
+      </if>
+      <if test="spr != null and spr != ''" >
+        #{spr,jdbcType=VARCHAR},
+      </if>
+      <if test="spsj != null and spsj != ''" >
+        to_date(#{spsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="zkryxm != null and zkryxm != ''" >
+        #{zkryxm,jdbcType=VARCHAR},
+      </if>
+      <if test="zkrlxfs != null and zkrlxfs != ''" >
+        #{zkrlxfs,jdbcType=VARCHAR},
+      </if>
+      <if test="kdgsmc != null and kdgsmc != ''" >
+        #{kdgsmc,jdbcType=VARCHAR},
+      </if>
+      <if test="kddh != null and kddh != ''" >
+        #{kddh,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="sqrzp != null and sqrzp != ''" >
+        #{sqrzp,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <select id="countXfApplyChangeBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.XfApplyChangeSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from XF_APPLY_CHANGE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateXfApplyChangeBySqlWhereSelective" parameterType="map" >
+    update XF_APPLY_CHANGE
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openid != null and record.openid != ''" >
+        OPENID = #{record.openid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yitongcode != null and record.yitongcode != ''" >
+        YITONGCODE = #{record.yitongcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userxm != null and record.userxm != ''" >
+        USERXM = #{record.userxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfzhm != null and record.sfzhm != ''" >
+        SFZHM = #{record.sfzhm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usersex != null and record.usersex != ''" >
+        USERSEX = #{record.usersex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yiyuan != null and record.yiyuan != ''" >
+        YIYUAN = #{record.yiyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yiyuanmc != null and record.yiyuanmc != ''" >
+        YIYUANMC = #{record.yiyuanmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dept != null and record.dept != ''" >
+        DEPT = #{record.dept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptmc != null and record.deptmc != ''" >
+        DEPTMC = #{record.deptmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhicheng != null and record.zhicheng != ''" >
+        ZHICHENG = #{record.zhicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhichengmc != null and record.zhichengmc != ''" >
+        ZHICHENGMC = #{record.zhichengmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yhlb != null and record.yhlb != ''" >
+        YHLB = #{record.yhlb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sqrdz != null and record.sqrdz != ''" >
+        SQRDZ = #{record.sqrdz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sqrlxfs != null and record.sqrlxfs != ''" >
+        SQRLXFS = #{record.sqrlxfs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bltype != null and record.bltype != ''" >
+        BLTYPE = #{record.bltype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sqsj != null and record.sqsj != ''" >
+        SQSJ = to_date(#{record.sqsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.spbj != null and record.spbj != ''" >
+        SPBJ = #{record.spbj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spr != null and record.spr != ''" >
+        SPR = #{record.spr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spsj != null and record.spsj != ''" >
+        SPSJ = to_date(#{record.spsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.zkryxm != null and record.zkryxm != ''" >
+        ZKRYXM = #{record.zkryxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zkrlxfs != null and record.zkrlxfs != ''" >
+        ZKRLXFS = #{record.zkrlxfs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kdgsmc != null and record.kdgsmc != ''" >
+        KDGSMC = #{record.kdgsmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kddh != null and record.kddh != ''" >
+        KDDH = #{record.kddh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxsj != null and record.gxsj != ''" >
+        GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.sqrzp != null and record.sqrzp != ''" >
+        SQRZP = #{record.sqrzp,jdbcType=CLOB},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateXfApplyChangeBySqlWhereWithBLOBs" parameterType="map" >
+    update XF_APPLY_CHANGE
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      OPENID = #{record.openid,jdbcType=VARCHAR},
+      YITONGCODE = #{record.yitongcode,jdbcType=VARCHAR},
+      USERXM = #{record.userxm,jdbcType=VARCHAR},
+      SFZHM = #{record.sfzhm,jdbcType=VARCHAR},
+      USERSEX = #{record.usersex,jdbcType=VARCHAR},
+      YIYUAN = #{record.yiyuan,jdbcType=VARCHAR},
+      YIYUANMC = #{record.yiyuanmc,jdbcType=VARCHAR},
+      DEPT = #{record.dept,jdbcType=VARCHAR},
+      DEPTMC = #{record.deptmc,jdbcType=VARCHAR},
+      ZHICHENG = #{record.zhicheng,jdbcType=VARCHAR},
+      ZHICHENGMC = #{record.zhichengmc,jdbcType=VARCHAR},
+      YHLB = #{record.yhlb,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      SQRDZ = #{record.sqrdz,jdbcType=VARCHAR},
+      SQRLXFS = #{record.sqrlxfs,jdbcType=VARCHAR},
+      BLTYPE = #{record.bltype,jdbcType=VARCHAR},
+      SQSJ = to_date(#{record.sqsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SPBJ = #{record.spbj,jdbcType=VARCHAR},
+      SPR = #{record.spr,jdbcType=VARCHAR},
+      SPSJ = to_date(#{record.spsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ZKRYXM = #{record.zkryxm,jdbcType=VARCHAR},
+      ZKRLXFS = #{record.zkrlxfs,jdbcType=VARCHAR},
+      KDGSMC = #{record.kdgsmc,jdbcType=VARCHAR},
+      KDDH = #{record.kddh,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SQRZP = #{record.sqrzp,jdbcType=CLOB}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateXfApplyChangeBySqlWhere" parameterType="map" >
+    update XF_APPLY_CHANGE
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      OPENID = #{record.openid,jdbcType=VARCHAR},
+      YITONGCODE = #{record.yitongcode,jdbcType=VARCHAR},
+      USERXM = #{record.userxm,jdbcType=VARCHAR},
+      SFZHM = #{record.sfzhm,jdbcType=VARCHAR},
+      USERSEX = #{record.usersex,jdbcType=VARCHAR},
+      YIYUAN = #{record.yiyuan,jdbcType=VARCHAR},
+      YIYUANMC = #{record.yiyuanmc,jdbcType=VARCHAR},
+      DEPT = #{record.dept,jdbcType=VARCHAR},
+      DEPTMC = #{record.deptmc,jdbcType=VARCHAR},
+      ZHICHENG = #{record.zhicheng,jdbcType=VARCHAR},
+      ZHICHENGMC = #{record.zhichengmc,jdbcType=VARCHAR},
+      YHLB = #{record.yhlb,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      SQRDZ = #{record.sqrdz,jdbcType=VARCHAR},
+      SQRLXFS = #{record.sqrlxfs,jdbcType=VARCHAR},
+      BLTYPE = #{record.bltype,jdbcType=VARCHAR},
+      SQSJ = to_date(#{record.sqsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SPBJ = #{record.spbj,jdbcType=VARCHAR},
+      SPR = #{record.spr,jdbcType=VARCHAR},
+      SPSJ = to_date(#{record.spsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ZKRYXM = #{record.zkryxm,jdbcType=VARCHAR},
+      ZKRLXFS = #{record.zkrlxfs,jdbcType=VARCHAR},
+      KDGSMC = #{record.kdgsmc,jdbcType=VARCHAR},
+      KDDH = #{record.kddh,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateXfApplyChangeByPrimaryKeySelective" parameterType="com.saint.wechat.manager.bean.XfApplyChangeEntity" >
+    update XF_APPLY_CHANGE
+    <set >
+      <if test="openid != null and openid != ''" >
+        OPENID = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="yitongcode != null and yitongcode != ''" >
+        YITONGCODE = #{yitongcode,jdbcType=VARCHAR},
+      </if>
+      <if test="userxm != null and userxm != ''" >
+        USERXM = #{userxm,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzhm != null and sfzhm != ''" >
+        SFZHM = #{sfzhm,jdbcType=VARCHAR},
+      </if>
+      <if test="usersex != null and usersex != ''" >
+        USERSEX = #{usersex,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyuan != null and yiyuan != ''" >
+        YIYUAN = #{yiyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyuanmc != null and yiyuanmc != ''" >
+        YIYUANMC = #{yiyuanmc,jdbcType=VARCHAR},
+      </if>
+      <if test="dept != null and dept != ''" >
+        DEPT = #{dept,jdbcType=VARCHAR},
+      </if>
+      <if test="deptmc != null and deptmc != ''" >
+        DEPTMC = #{deptmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zhicheng != null and zhicheng != ''" >
+        ZHICHENG = #{zhicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="zhichengmc != null and zhichengmc != ''" >
+        ZHICHENGMC = #{zhichengmc,jdbcType=VARCHAR},
+      </if>
+      <if test="yhlb != null and yhlb != ''" >
+        YHLB = #{yhlb,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="sqrdz != null and sqrdz != ''" >
+        SQRDZ = #{sqrdz,jdbcType=VARCHAR},
+      </if>
+      <if test="sqrlxfs != null and sqrlxfs != ''" >
+        SQRLXFS = #{sqrlxfs,jdbcType=VARCHAR},
+      </if>
+      <if test="bltype != null and bltype != ''" >
+        BLTYPE = #{bltype,jdbcType=VARCHAR},
+      </if>
+      <if test="sqsj != null and sqsj != ''" >
+        SQSJ = to_date(#{sqsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="spbj != null and spbj != ''" >
+        SPBJ = #{spbj,jdbcType=VARCHAR},
+      </if>
+      <if test="spr != null and spr != ''" >
+        SPR = #{spr,jdbcType=VARCHAR},
+      </if>
+      <if test="spsj != null and spsj != ''" >
+        SPSJ = to_date(#{spsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="zkryxm != null and zkryxm != ''" >
+        ZKRYXM = #{zkryxm,jdbcType=VARCHAR},
+      </if>
+      <if test="zkrlxfs != null and zkrlxfs != ''" >
+        ZKRLXFS = #{zkrlxfs,jdbcType=VARCHAR},
+      </if>
+      <if test="kdgsmc != null and kdgsmc != ''" >
+        KDGSMC = #{kdgsmc,jdbcType=VARCHAR},
+      </if>
+      <if test="kddh != null and kddh != ''" >
+        KDDH = #{kddh,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="sqrzp != null and sqrzp != ''" >
+        SQRZP = #{sqrzp,jdbcType=CLOB},
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateXfApplyChangeByPrimaryKeyWithBLOBs" parameterType="com.saint.wechat.manager.bean.XfApplyChangeEntity" >
+    update XF_APPLY_CHANGE
+    set OPENID = #{openid,jdbcType=VARCHAR},
+      YITONGCODE = #{yitongcode,jdbcType=VARCHAR},
+      USERXM = #{userxm,jdbcType=VARCHAR},
+      SFZHM = #{sfzhm,jdbcType=VARCHAR},
+      USERSEX = #{usersex,jdbcType=VARCHAR},
+      YIYUAN = #{yiyuan,jdbcType=VARCHAR},
+      YIYUANMC = #{yiyuanmc,jdbcType=VARCHAR},
+      DEPT = #{dept,jdbcType=VARCHAR},
+      DEPTMC = #{deptmc,jdbcType=VARCHAR},
+      ZHICHENG = #{zhicheng,jdbcType=VARCHAR},
+      ZHICHENGMC = #{zhichengmc,jdbcType=VARCHAR},
+      YHLB = #{yhlb,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      SQRDZ = #{sqrdz,jdbcType=VARCHAR},
+      SQRLXFS = #{sqrlxfs,jdbcType=VARCHAR},
+      BLTYPE = #{bltype,jdbcType=VARCHAR},
+      SQSJ = to_date(#{sqsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SPBJ = #{spbj,jdbcType=VARCHAR},
+      SPR = #{spr,jdbcType=VARCHAR},
+      SPSJ = to_date(#{spsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ZKRYXM = #{zkryxm,jdbcType=VARCHAR},
+      ZKRLXFS = #{zkrlxfs,jdbcType=VARCHAR},
+      KDGSMC = #{kdgsmc,jdbcType=VARCHAR},
+      KDDH = #{kddh,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR},
+      GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SQRZP = #{sqrzp,jdbcType=CLOB}
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateXfApplyChangeByPrimaryKey" parameterType="com.saint.wechat.manager.bean.XfApplyChangeEntity" >
+    update XF_APPLY_CHANGE
+    set OPENID = #{openid,jdbcType=VARCHAR},
+      YITONGCODE = #{yitongcode,jdbcType=VARCHAR},
+      USERXM = #{userxm,jdbcType=VARCHAR},
+      SFZHM = #{sfzhm,jdbcType=VARCHAR},
+      USERSEX = #{usersex,jdbcType=VARCHAR},
+      YIYUAN = #{yiyuan,jdbcType=VARCHAR},
+      YIYUANMC = #{yiyuanmc,jdbcType=VARCHAR},
+      DEPT = #{dept,jdbcType=VARCHAR},
+      DEPTMC = #{deptmc,jdbcType=VARCHAR},
+      ZHICHENG = #{zhicheng,jdbcType=VARCHAR},
+      ZHICHENGMC = #{zhichengmc,jdbcType=VARCHAR},
+      YHLB = #{yhlb,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      SQRDZ = #{sqrdz,jdbcType=VARCHAR},
+      SQRLXFS = #{sqrlxfs,jdbcType=VARCHAR},
+      BLTYPE = #{bltype,jdbcType=VARCHAR},
+      SQSJ = to_date(#{sqsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SPBJ = #{spbj,jdbcType=VARCHAR},
+      SPR = #{spr,jdbcType=VARCHAR},
+      SPSJ = to_date(#{spsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ZKRYXM = #{zkryxm,jdbcType=VARCHAR},
+      ZKRLXFS = #{zkrlxfs,jdbcType=VARCHAR},
+      KDGSMC = #{kdgsmc,jdbcType=VARCHAR},
+      KDDH = #{kddh,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR},
+      GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

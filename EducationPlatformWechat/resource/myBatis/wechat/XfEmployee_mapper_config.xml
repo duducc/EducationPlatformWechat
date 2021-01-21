@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.wechat.XfEmployeeMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.wechat.manager.bean.XfEmployeeEntity" >
+    <id column="USERNUMBER" property="usernumber" jdbcType="VARCHAR" />
+    <result column="USER_OID_ID" property="userOidId" jdbcType="VARCHAR" />
+    <result column="USERNAME" property="username" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="CHAR" />
+    <result column="IDCARD" property="idcard" jdbcType="VARCHAR" />
+    <result column="QQ" property="qq" jdbcType="VARCHAR" />
+    <result column="CARDTYPE" property="cardtype" jdbcType="VARCHAR" />
+    <result column="DEPART" property="depart" jdbcType="VARCHAR" />
+    <result column="YIYUAN" property="yiyuan" jdbcType="VARCHAR" />
+    <result column="ZHUANYE" property="zhuanye" jdbcType="VARCHAR" />
+    <result column="ZT" property="zt" jdbcType="VARCHAR" />
+    <result column="XUELI" property="xueli" jdbcType="VARCHAR" />
+    <result column="SHENGRI" property="shengri" jdbcType="VARCHAR" />
+    <result column="ZHICHENG" property="zhicheng" jdbcType="VARCHAR" />
+    <result column="ZHICHENGLV" property="zhichenglv" jdbcType="VARCHAR" />
+    <result column="MINZU" property="minzu" jdbcType="VARCHAR" />
+    <result column="ZHENGZI" property="zhengzi" jdbcType="VARCHAR" />
+    <result column="ZHIWU" property="zhiwu" jdbcType="VARCHAR" />
+    <result column="XUEWEI" property="xuewei" jdbcType="VARCHAR" />
+    <result column="DIAODONGZHUANGTAI" property="diaodongzhuangtai" jdbcType="VARCHAR" />
+    <result column="BYYUABXIAO" property="byyuabxiao" jdbcType="VARCHAR" />
+    <result column="USERTEL" property="usertel" jdbcType="VARCHAR" />
+    <result column="USERPHONE" property="userphone" jdbcType="VARCHAR" />
+    <result column="USEREMAIL" property="useremail" jdbcType="VARCHAR" />
+    <result column="PFTTC_NUMBERS" property="pfttcNumbers" jdbcType="VARCHAR" />
+    <result column="USER_ZYID" property="userZyid" jdbcType="VARCHAR" />
+    <result column="PHOTO" property="photo" jdbcType="VARCHAR" />
+    <result column="ADD_TIME" property="addTime" jdbcType="DATE" />
+    <result column="BANKA_RES" property="bankaRes" jdbcType="VARCHAR" />
+    <result column="XKBS" property="xkbs" jdbcType="DECIMAL" />
+    <result column="XKRQ" property="xkrq" jdbcType="VARCHAR" />
+    <result column="DQSJ" property="dqsj" jdbcType="VARCHAR" />
+    <result column="URESOURCE" property="uresource" jdbcType="DECIMAL" />
+    <result column="BEIZHU" property="beizhu" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="UPDATETIME" property="updatetime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    USERNUMBER, USER_OID_ID, USERNAME, SEX, IDCARD, QQ, CARDTYPE, DEPART, YIYUAN, ZHUANYE, 
+    ZT, XUELI, SHENGRI, ZHICHENG, ZHICHENGLV, MINZU, ZHENGZI, ZHIWU, XUEWEI, DIAODONGZHUANGTAI, 
+    BYYUABXIAO, USERTEL, USERPHONE, USEREMAIL, PFTTC_NUMBERS, USER_ZYID, PHOTO, ADD_TIME, 
+    BANKA_RES, XKBS, XKRQ, DQSJ, URESOURCE, BEIZHU, STATE, UPDATETIME
+  </sql>
+  <select id="selectListPageXfEmployeeBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.XfEmployeeSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XF_EMPLOYEE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListXfEmployeeBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.XfEmployeeSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XF_EMPLOYEE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxschoolmanager" parameterType="com.saint.wechat.manager.sqlWhere.XfEmployeeSqlWhere" resultType="java.lang.Integer" >
+    SELECT SEQ_JX_SCHOOLMANAGER.NEXTVAL FROM DUAL
+  </select>
+  <select id="selectXfEmployeeByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from XF_EMPLOYEE
+    where USERNUMBER = #{usernumber,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteXfEmployeeByPrimaryKey" parameterType="java.lang.String" >
+    delete from XF_EMPLOYEE
+    where USERNUMBER = #{usernumber,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteXfEmployeeBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.XfEmployeeSqlWhere" >
+    delete from XF_EMPLOYEE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertXfEmployee" parameterType="com.saint.wechat.manager.bean.XfEmployeeEntity" >
+    insert into XF_EMPLOYEE (USERNUMBER, USER_OID_ID, USERNAME, 
+      SEX, IDCARD, QQ, CARDTYPE, 
+      DEPART, YIYUAN, ZHUANYE, 
+      ZT, XUELI, SHENGRI, 
+      ZHICHENG, ZHICHENGLV, MINZU, 
+      ZHENGZI, ZHIWU, XUEWEI, 
+      DIAODONGZHUANGTAI, BYYUABXIAO, USERTEL, 
+      USERPHONE, USEREMAIL, PFTTC_NUMBERS, 
+      USER_ZYID, PHOTO, ADD_TIME, 
+      BANKA_RES, XKBS, XKRQ, 
+      DQSJ, URESOURCE, BEIZHU, 
+      STATE, UPDATETIME
+      )
+    values (#{usernumber,jdbcType=VARCHAR}, #{userOidId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=CHAR}, #{idcard,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{cardtype,jdbcType=VARCHAR}, 
+      #{depart,jdbcType=VARCHAR}, #{yiyuan,jdbcType=VARCHAR}, #{zhuanye,jdbcType=VARCHAR}, 
+      #{zt,jdbcType=VARCHAR}, #{xueli,jdbcType=VARCHAR}, #{shengri,jdbcType=VARCHAR}, 
+      #{zhicheng,jdbcType=VARCHAR}, #{zhichenglv,jdbcType=VARCHAR}, #{minzu,jdbcType=VARCHAR}, 
+      #{zhengzi,jdbcType=VARCHAR}, #{zhiwu,jdbcType=VARCHAR}, #{xuewei,jdbcType=VARCHAR}, 
+      #{diaodongzhuangtai,jdbcType=VARCHAR}, #{byyuabxiao,jdbcType=VARCHAR}, #{usertel,jdbcType=VARCHAR}, 
+      #{userphone,jdbcType=VARCHAR}, #{useremail,jdbcType=VARCHAR}, #{pfttcNumbers,jdbcType=VARCHAR}, 
+      #{userZyid,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{bankaRes,jdbcType=VARCHAR}, #{xkbs,jdbcType=DECIMAL}, #{xkrq,jdbcType=VARCHAR}, 
+      #{dqsj,jdbcType=VARCHAR}, #{uresource,jdbcType=DECIMAL}, #{beizhu,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, to_date(#{updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+      )
+  </insert>
+  <insert id="insertXfEmployeeSelective" parameterType="com.saint.wechat.manager.bean.XfEmployeeEntity" >
+    insert into XF_EMPLOYEE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="usernumber != null and usernumber != ''" >
+        USERNUMBER,
+      </if>
+      <if test="userOidId != null and userOidId != ''" >
+        USER_OID_ID,
+      </if>
+      <if test="username != null and username != ''" >
+        USERNAME,
+      </if>
+      <if test="sex != null and sex != ''" >
+        SEX,
+      </if>
+      <if test="idcard != null and idcard != ''" >
+        IDCARD,
+      </if>
+      <if test="qq != null and qq != ''" >
+        QQ,
+      </if>
+      <if test="cardtype != null and cardtype != ''" >
+        CARDTYPE,
+      </if>
+      <if test="depart != null and depart != ''" >
+        DEPART,
+      </if>
+      <if test="yiyuan != null and yiyuan != ''" >
+        YIYUAN,
+      </if>
+      <if test="zhuanye != null and zhuanye != ''" >
+        ZHUANYE,
+      </if>
+      <if test="zt != null and zt != ''" >
+        ZT,
+      </if>
+      <if test="xueli != null and xueli != ''" >
+        XUELI,
+      </if>
+      <if test="shengri != null and shengri != ''" >
+        SHENGRI,
+      </if>
+      <if test="zhicheng != null and zhicheng != ''" >
+        ZHICHENG,
+      </if>
+      <if test="zhichenglv != null and zhichenglv != ''" >
+        ZHICHENGLV,
+      </if>
+      <if test="minzu != null and minzu != ''" >
+        MINZU,
+      </if>
+      <if test="zhengzi != null and zhengzi != ''" >
+        ZHENGZI,
+      </if>
+      <if test="zhiwu != null and zhiwu != ''" >
+        ZHIWU,
+      </if>
+      <if test="xuewei != null and xuewei != ''" >
+        XUEWEI,
+      </if>
+      <if test="diaodongzhuangtai != null and diaodongzhuangtai != ''" >
+        DIAODONGZHUANGTAI,
+      </if>
+      <if test="byyuabxiao != null and byyuabxiao != ''" >
+        BYYUABXIAO,
+      </if>
+      <if test="usertel != null and usertel != ''" >
+        USERTEL,
+      </if>
+      <if test="userphone != null and userphone != ''" >
+        USERPHONE,
+      </if>
+      <if test="useremail != null and useremail != ''" >
+        USEREMAIL,
+      </if>
+      <if test="pfttcNumbers != null and pfttcNumbers != ''" >
+        PFTTC_NUMBERS,
+      </if>
+      <if test="userZyid != null and userZyid != ''" >
+        USER_ZYID,
+      </if>
+      <if test="photo != null and photo != ''" >
+        PHOTO,
+      </if>
+      <if test="addTime != null and addTime != ''" >
+        ADD_TIME,
+      </if>
+      <if test="bankaRes != null and bankaRes != ''" >
+        BANKA_RES,
+      </if>
+      <if test="xkbs != null and xkbs != ''" >
+        XKBS,
+      </if>
+      <if test="xkrq != null and xkrq != ''" >
+        XKRQ,
+      </if>
+      <if test="dqsj != null and dqsj != ''" >
+        DQSJ,
+      </if>
+      <if test="uresource != null and uresource != ''" >
+        URESOURCE,
+      </if>
+      <if test="beizhu != null and beizhu != ''" >
+        BEIZHU,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="updatetime != null and updatetime != ''" >
+        UPDATETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="usernumber != null and usernumber != ''" >
+        #{usernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userOidId != null and userOidId != ''" >
+        #{userOidId,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null and username != ''" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null and sex != ''" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="idcard != null and idcard != ''" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null and qq != ''" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtype != null and cardtype != ''" >
+        #{cardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="depart != null and depart != ''" >
+        #{depart,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyuan != null and yiyuan != ''" >
+        #{yiyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuanye != null and zhuanye != ''" >
+        #{zhuanye,jdbcType=VARCHAR},
+      </if>
+      <if test="zt != null and zt != ''" >
+        #{zt,jdbcType=VARCHAR},
+      </if>
+      <if test="xueli != null and xueli != ''" >
+        #{xueli,jdbcType=VARCHAR},
+      </if>
+      <if test="shengri != null and shengri != ''" >
+        #{shengri,jdbcType=VARCHAR},
+      </if>
+      <if test="zhicheng != null and zhicheng != ''" >
+        #{zhicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="zhichenglv != null and zhichenglv != ''" >
+        #{zhichenglv,jdbcType=VARCHAR},
+      </if>
+      <if test="minzu != null and minzu != ''" >
+        #{minzu,jdbcType=VARCHAR},
+      </if>
+      <if test="zhengzi != null and zhengzi != ''" >
+        #{zhengzi,jdbcType=VARCHAR},
+      </if>
+      <if test="zhiwu != null and zhiwu != ''" >
+        #{zhiwu,jdbcType=VARCHAR},
+      </if>
+      <if test="xuewei != null and xuewei != ''" >
+        #{xuewei,jdbcType=VARCHAR},
+      </if>
+      <if test="diaodongzhuangtai != null and diaodongzhuangtai != ''" >
+        #{diaodongzhuangtai,jdbcType=VARCHAR},
+      </if>
+      <if test="byyuabxiao != null and byyuabxiao != ''" >
+        #{byyuabxiao,jdbcType=VARCHAR},
+      </if>
+      <if test="usertel != null and usertel != ''" >
+        #{usertel,jdbcType=VARCHAR},
+      </if>
+      <if test="userphone != null and userphone != ''" >
+        #{userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="useremail != null and useremail != ''" >
+        #{useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="pfttcNumbers != null and pfttcNumbers != ''" >
+        #{pfttcNumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="userZyid != null and userZyid != ''" >
+        #{userZyid,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null and photo != ''" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null and addTime != ''" >
+        to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="bankaRes != null and bankaRes != ''" >
+        #{bankaRes,jdbcType=VARCHAR},
+      </if>
+      <if test="xkbs != null and xkbs != ''" >
+        #{xkbs,jdbcType=DECIMAL},
+      </if>
+      <if test="xkrq != null and xkrq != ''" >
+        #{xkrq,jdbcType=VARCHAR},
+      </if>
+      <if test="dqsj != null and dqsj != ''" >
+        #{dqsj,jdbcType=VARCHAR},
+      </if>
+      <if test="uresource != null and uresource != ''" >
+        #{uresource,jdbcType=DECIMAL},
+      </if>
+      <if test="beizhu != null and beizhu != ''" >
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null and updatetime != ''" >
+        to_date(#{updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </trim>
+  </insert>
+  <select id="countXfEmployeeBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.XfEmployeeSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from XF_EMPLOYEE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateXfEmployeeBySqlWhereSelective" parameterType="map" >
+    update XF_EMPLOYEE
+    <set >
+      <if test="record.usernumber != null and record.usernumber != ''" >
+        USERNUMBER = #{record.usernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userOidId != null and record.userOidId != ''" >
+        USER_OID_ID = #{record.userOidId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null and record.username != ''" >
+        USERNAME = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null and record.sex != ''" >
+        SEX = #{record.sex,jdbcType=CHAR},
+      </if>
+      <if test="record.idcard != null and record.idcard != ''" >
+        IDCARD = #{record.idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qq != null and record.qq != ''" >
+        QQ = #{record.qq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardtype != null and record.cardtype != ''" >
+        CARDTYPE = #{record.cardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depart != null and record.depart != ''" >
+        DEPART = #{record.depart,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yiyuan != null and record.yiyuan != ''" >
+        YIYUAN = #{record.yiyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhuanye != null and record.zhuanye != ''" >
+        ZHUANYE = #{record.zhuanye,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zt != null and record.zt != ''" >
+        ZT = #{record.zt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xueli != null and record.xueli != ''" >
+        XUELI = #{record.xueli,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shengri != null and record.shengri != ''" >
+        SHENGRI = #{record.shengri,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhicheng != null and record.zhicheng != ''" >
+        ZHICHENG = #{record.zhicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhichenglv != null and record.zhichenglv != ''" >
+        ZHICHENGLV = #{record.zhichenglv,jdbcType=VARCHAR},
+      </if>
+      <if test="record.minzu != null and record.minzu != ''" >
+        MINZU = #{record.minzu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhengzi != null and record.zhengzi != ''" >
+        ZHENGZI = #{record.zhengzi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhiwu != null and record.zhiwu != ''" >
+        ZHIWU = #{record.zhiwu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xuewei != null and record.xuewei != ''" >
+        XUEWEI = #{record.xuewei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diaodongzhuangtai != null and record.diaodongzhuangtai != ''" >
+        DIAODONGZHUANGTAI = #{record.diaodongzhuangtai,jdbcType=VARCHAR},
+      </if>
+      <if test="record.byyuabxiao != null and record.byyuabxiao != ''" >
+        BYYUABXIAO = #{record.byyuabxiao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usertel != null and record.usertel != ''" >
+        USERTEL = #{record.usertel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userphone != null and record.userphone != ''" >
+        USERPHONE = #{record.userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useremail != null and record.useremail != ''" >
+        USEREMAIL = #{record.useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pfttcNumbers != null and record.pfttcNumbers != ''" >
+        PFTTC_NUMBERS = #{record.pfttcNumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userZyid != null and record.userZyid != ''" >
+        USER_ZYID = #{record.userZyid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photo != null and record.photo != ''" >
+        PHOTO = #{record.photo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null and record.addTime != ''" >
+        ADD_TIME = to_date(#{record.addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.bankaRes != null and record.bankaRes != ''" >
+        BANKA_RES = #{record.bankaRes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkbs != null and record.xkbs != ''" >
+        XKBS = #{record.xkbs,jdbcType=DECIMAL},
+      </if>
+      <if test="record.xkrq != null and record.xkrq != ''" >
+        XKRQ = #{record.xkrq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dqsj != null and record.dqsj != ''" >
+        DQSJ = #{record.dqsj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uresource != null and record.uresource != ''" >
+        URESOURCE = #{record.uresource,jdbcType=DECIMAL},
+      </if>
+      <if test="record.beizhu != null and record.beizhu != ''" >
+        BEIZHU = #{record.beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null and record.updatetime != ''" >
+        UPDATETIME = to_date(#{record.updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateXfEmployeeBySqlWhere" parameterType="map" >
+    update XF_EMPLOYEE
+    set USERNUMBER = #{record.usernumber,jdbcType=VARCHAR},
+      USER_OID_ID = #{record.userOidId,jdbcType=VARCHAR},
+      USERNAME = #{record.username,jdbcType=VARCHAR},
+      SEX = #{record.sex,jdbcType=CHAR},
+      IDCARD = #{record.idcard,jdbcType=VARCHAR},
+      QQ = #{record.qq,jdbcType=VARCHAR},
+      CARDTYPE = #{record.cardtype,jdbcType=VARCHAR},
+      DEPART = #{record.depart,jdbcType=VARCHAR},
+      YIYUAN = #{record.yiyuan,jdbcType=VARCHAR},
+      ZHUANYE = #{record.zhuanye,jdbcType=VARCHAR},
+      ZT = #{record.zt,jdbcType=VARCHAR},
+      XUELI = #{record.xueli,jdbcType=VARCHAR},
+      SHENGRI = #{record.shengri,jdbcType=VARCHAR},
+      ZHICHENG = #{record.zhicheng,jdbcType=VARCHAR},
+      ZHICHENGLV = #{record.zhichenglv,jdbcType=VARCHAR},
+      MINZU = #{record.minzu,jdbcType=VARCHAR},
+      ZHENGZI = #{record.zhengzi,jdbcType=VARCHAR},
+      ZHIWU = #{record.zhiwu,jdbcType=VARCHAR},
+      XUEWEI = #{record.xuewei,jdbcType=VARCHAR},
+      DIAODONGZHUANGTAI = #{record.diaodongzhuangtai,jdbcType=VARCHAR},
+      BYYUABXIAO = #{record.byyuabxiao,jdbcType=VARCHAR},
+      USERTEL = #{record.usertel,jdbcType=VARCHAR},
+      USERPHONE = #{record.userphone,jdbcType=VARCHAR},
+      USEREMAIL = #{record.useremail,jdbcType=VARCHAR},
+      PFTTC_NUMBERS = #{record.pfttcNumbers,jdbcType=VARCHAR},
+      USER_ZYID = #{record.userZyid,jdbcType=VARCHAR},
+      PHOTO = #{record.photo,jdbcType=VARCHAR},
+      ADD_TIME = to_date(#{record.addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      BANKA_RES = #{record.bankaRes,jdbcType=VARCHAR},
+      XKBS = #{record.xkbs,jdbcType=DECIMAL},
+      XKRQ = #{record.xkrq,jdbcType=VARCHAR},
+      DQSJ = #{record.dqsj,jdbcType=VARCHAR},
+      URESOURCE = #{record.uresource,jdbcType=DECIMAL},
+      BEIZHU = #{record.beizhu,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      UPDATETIME = to_date(#{record.updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateXfEmployeeByPrimaryKeySelective" parameterType="com.saint.wechat.manager.bean.XfEmployeeEntity" >
+    update XF_EMPLOYEE
+    <set>
+      <if test="userOidId != null and userOidId != ''" >
+        USER_OID_ID = #{userOidId,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null and username != ''" >
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null and sex != ''" >
+        SEX = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="idcard != null and idcard != ''" >
+        IDCARD = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null and qq != ''" >
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtype != null and cardtype != ''" >
+        CARDTYPE = #{cardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="depart != null and depart != ''" >
+        DEPART = #{depart,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyuan != null and yiyuan != ''" >
+        YIYUAN = #{yiyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuanye != null and zhuanye != ''" >
+        ZHUANYE = #{zhuanye,jdbcType=VARCHAR},
+      </if>
+      <if test="zt != null and zt != ''" >
+        ZT = #{zt,jdbcType=VARCHAR},
+      </if>
+      <if test="xueli != null and xueli != ''" >
+        XUELI = #{xueli,jdbcType=VARCHAR},
+      </if>
+      <if test="shengri != null and shengri != ''" >
+        SHENGRI = #{shengri,jdbcType=VARCHAR},
+      </if>
+      <if test="zhicheng != null and zhicheng != ''" >
+        ZHICHENG = #{zhicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="zhichenglv != null and zhichenglv != ''" >
+        ZHICHENGLV = #{zhichenglv,jdbcType=VARCHAR},
+      </if>
+      <if test="minzu != null and minzu != ''" >
+        MINZU = #{minzu,jdbcType=VARCHAR},
+      </if>
+      <if test="zhengzi != null and zhengzi != ''" >
+        ZHENGZI = #{zhengzi,jdbcType=VARCHAR},
+      </if>
+      <if test="zhiwu != null and zhiwu != ''" >
+        ZHIWU = #{zhiwu,jdbcType=VARCHAR},
+      </if>
+      <if test="xuewei != null and xuewei != ''" >
+        XUEWEI = #{xuewei,jdbcType=VARCHAR},
+      </if>
+      <if test="diaodongzhuangtai != null and diaodongzhuangtai != ''" >
+        DIAODONGZHUANGTAI = #{diaodongzhuangtai,jdbcType=VARCHAR},
+      </if>
+      <if test="byyuabxiao != null and byyuabxiao != ''" >
+        BYYUABXIAO = #{byyuabxiao,jdbcType=VARCHAR},
+      </if>
+      <if test="usertel != null and usertel != ''" >
+        USERTEL = #{usertel,jdbcType=VARCHAR},
+      </if>
+      <if test="userphone != null and userphone != ''" >
+        USERPHONE = #{userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="useremail != null and useremail != ''" >
+        USEREMAIL = #{useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="pfttcNumbers != null and pfttcNumbers != ''" >
+        PFTTC_NUMBERS = #{pfttcNumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="userZyid != null and userZyid != ''" >
+        USER_ZYID = #{userZyid,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null and photo != ''" >
+        PHOTO = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null and addTime != ''" >
+        ADD_TIME = to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="bankaRes != null and bankaRes != ''" >
+        BANKA_RES = #{bankaRes,jdbcType=VARCHAR},
+      </if>
+      <if test="xkbs != null and xkbs != ''" >
+        XKBS = #{xkbs,jdbcType=DECIMAL},
+      </if>
+      <if test="xkrq != null and xkrq != ''" >
+        XKRQ = #{xkrq,jdbcType=VARCHAR},
+      </if>
+      <if test="dqsj != null and dqsj != ''" >
+        DQSJ = #{dqsj,jdbcType=VARCHAR},
+      </if>
+      <if test="uresource != null and uresource != ''" >
+        URESOURCE = #{uresource,jdbcType=DECIMAL},
+      </if>
+      <if test="beizhu != null and beizhu != ''" >
+        BEIZHU = #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null and updatetime != ''" >
+        UPDATETIME = to_date(#{updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    where USERNUMBER = #{usernumber,jdbcType=VARCHAR}
+  </update>
+  <update id="updateXfEmployeeByPrimaryKey" parameterType="com.saint.wechat.manager.bean.XfEmployeeEntity" >
+    update XF_EMPLOYEE
+    set USER_OID_ID = #{userOidId,jdbcType=VARCHAR},
+      USERNAME = #{username,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=CHAR},
+      IDCARD = #{idcard,jdbcType=VARCHAR},
+      QQ = #{qq,jdbcType=VARCHAR},
+      CARDTYPE = #{cardtype,jdbcType=VARCHAR},
+      DEPART = #{depart,jdbcType=VARCHAR},
+      YIYUAN = #{yiyuan,jdbcType=VARCHAR},
+      ZHUANYE = #{zhuanye,jdbcType=VARCHAR},
+      ZT = #{zt,jdbcType=VARCHAR},
+      XUELI = #{xueli,jdbcType=VARCHAR},
+      SHENGRI = #{shengri,jdbcType=VARCHAR},
+      ZHICHENG = #{zhicheng,jdbcType=VARCHAR},
+      ZHICHENGLV = #{zhichenglv,jdbcType=VARCHAR},
+      MINZU = #{minzu,jdbcType=VARCHAR},
+      ZHENGZI = #{zhengzi,jdbcType=VARCHAR},
+      ZHIWU = #{zhiwu,jdbcType=VARCHAR},
+      XUEWEI = #{xuewei,jdbcType=VARCHAR},
+      DIAODONGZHUANGTAI = #{diaodongzhuangtai,jdbcType=VARCHAR},
+      BYYUABXIAO = #{byyuabxiao,jdbcType=VARCHAR},
+      USERTEL = #{usertel,jdbcType=VARCHAR},
+      USERPHONE = #{userphone,jdbcType=VARCHAR},
+      USEREMAIL = #{useremail,jdbcType=VARCHAR},
+      PFTTC_NUMBERS = #{pfttcNumbers,jdbcType=VARCHAR},
+      USER_ZYID = #{userZyid,jdbcType=VARCHAR},
+      PHOTO = #{photo,jdbcType=VARCHAR},
+      ADD_TIME = to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      BANKA_RES = #{bankaRes,jdbcType=VARCHAR},
+      XKBS = #{xkbs,jdbcType=DECIMAL},
+      XKRQ = #{xkrq,jdbcType=VARCHAR},
+      DQSJ = #{dqsj,jdbcType=VARCHAR},
+      URESOURCE = #{uresource,jdbcType=DECIMAL},
+      BEIZHU = #{beizhu,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      UPDATETIME = to_date(#{updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where USERNUMBER = #{usernumber,jdbcType=VARCHAR}
+  </update>
+</mapper>

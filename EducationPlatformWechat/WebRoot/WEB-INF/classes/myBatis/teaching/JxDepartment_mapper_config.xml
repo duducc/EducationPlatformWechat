@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxDepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxDepartmentEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="CLASSID" property="classid" jdbcType="VARCHAR" />
+    <result column="CLASSNAME" property="classname" jdbcType="VARCHAR" />
+    <result column="DEPID" property="depid" jdbcType="VARCHAR" />
+    <result column="DEPNAME" property="depname" jdbcType="VARCHAR" />
+    <result column="FZR" property="fzr" jdbcType="VARCHAR" />
+    <result column="LXR" property="lxr" jdbcType="VARCHAR" />
+    <result column="LXDH" property="lxdh" jdbcType="VARCHAR" />
+    <result column="EXPLAIN" property="explain" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, CLASSID, CLASSNAME, DEPID, DEPNAME, FZR, LXR, LXDH, EXPLAIN, STATE, REMARK1, 
+    REMARK2, REMARK3, REMARK4, REMARK5
+  </sql>
+  <select id="selectListPageJxDepartmentBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxDepartmentSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_DEPARTMENT
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxDepartmentBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxDepartmentSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_DEPARTMENT
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxDepartmentByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_DEPARTMENT
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxDepartmentByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_DEPARTMENT
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxDepartmentBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxDepartmentSqlWhere" >
+    delete from JX_DEPARTMENT
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxDepartment" parameterType="com.saint.teaching.bean.JxDepartmentEntity" >
+    insert into JX_DEPARTMENT (XH, CLASSID, CLASSNAME, 
+      DEPID, DEPNAME, FZR, 
+      LXR, LXDH, EXPLAIN, 
+      STATE, REMARK1, REMARK2, 
+      REMARK3, REMARK4, REMARK5
+      )
+    values (#{xh,jdbcType=VARCHAR}, #{classid,jdbcType=VARCHAR}, #{classname,jdbcType=VARCHAR}, 
+      #{depid,jdbcType=VARCHAR}, #{depname,jdbcType=VARCHAR}, #{fzr,jdbcType=VARCHAR}, 
+      #{lxr,jdbcType=VARCHAR}, #{lxdh,jdbcType=VARCHAR}, #{explain,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, 
+      #{remark3,jdbcType=VARCHAR}, #{remark4,jdbcType=VARCHAR}, #{remark5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertJxDepartmentSelective" parameterType="com.saint.teaching.bean.JxDepartmentEntity" >
+    insert into JX_DEPARTMENT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="classid != null and classid != ''" >
+        CLASSID,
+      </if>
+      <if test="classname != null and classname != ''" >
+        CLASSNAME,
+      </if>
+      <if test="depid != null and depid != ''" >
+        DEPID,
+      </if>
+      <if test="depname != null and depname != ''" >
+        DEPNAME,
+      </if>
+      <if test="fzr != null and fzr != ''" >
+        FZR,
+      </if>
+      <if test="lxr != null and lxr != ''" >
+        LXR,
+      </if>
+      <if test="lxdh != null and lxdh != ''" >
+        LXDH,
+      </if>
+      <if test="explain != null and explain != ''" >
+        EXPLAIN,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null and classid != ''" >
+        #{classid,jdbcType=VARCHAR},
+      </if>
+      <if test="classname != null and classname != ''" >
+        #{classname,jdbcType=VARCHAR},
+      </if>
+      <if test="depid != null and depid != ''" >
+        #{depid,jdbcType=VARCHAR},
+      </if>
+      <if test="depname != null and depname != ''" >
+        #{depname,jdbcType=VARCHAR},
+      </if>
+      <if test="fzr != null and fzr != ''" >
+        #{fzr,jdbcType=VARCHAR},
+      </if>
+      <if test="lxr != null and lxr != ''" >
+        #{lxr,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null and lxdh != ''" >
+        #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="explain != null and explain != ''" >
+        #{explain,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxDepartmentBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxDepartmentSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_DEPARTMENT
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxDepartmentBySqlWhereSelective" parameterType="map" >
+    update JX_DEPARTMENT
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classid != null and record.classid != ''" >
+        CLASSID = #{record.classid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classname != null and record.classname != ''" >
+        CLASSNAME = #{record.classname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depid != null and record.depid != ''" >
+        DEPID = #{record.depid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depname != null and record.depname != ''" >
+        DEPNAME = #{record.depname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fzr != null and record.fzr != ''" >
+        FZR = #{record.fzr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lxr != null and record.lxr != ''" >
+        LXR = #{record.lxr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lxdh != null and record.lxdh != ''" >
+        LXDH = #{record.lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.explain != null and record.explain != ''" >
+        EXPLAIN = #{record.explain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxDepartmentBySqlWhere" parameterType="map" >
+    update JX_DEPARTMENT
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      CLASSID = #{record.classid,jdbcType=VARCHAR},
+      CLASSNAME = #{record.classname,jdbcType=VARCHAR},
+      DEPID = #{record.depid,jdbcType=VARCHAR},
+      DEPNAME = #{record.depname,jdbcType=VARCHAR},
+      FZR = #{record.fzr,jdbcType=VARCHAR},
+      LXR = #{record.lxr,jdbcType=VARCHAR},
+      LXDH = #{record.lxdh,jdbcType=VARCHAR},
+      EXPLAIN = #{record.explain,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxDepartmentByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxDepartmentEntity" >
+    update JX_DEPARTMENT
+    <set >
+      <if test="classid != null and classid != ''" >
+        CLASSID = #{classid,jdbcType=VARCHAR},
+      </if>
+      <if test="classname != null and classname != ''" >
+        CLASSNAME = #{classname,jdbcType=VARCHAR},
+      </if>
+      <if test="depid != null and depid != ''" >
+        DEPID = #{depid,jdbcType=VARCHAR},
+      </if>
+      <if test="depname != null and depname != ''" >
+        DEPNAME = #{depname,jdbcType=VARCHAR},
+      </if>
+      <if test="fzr != null and fzr != ''" >
+        FZR = #{fzr,jdbcType=VARCHAR},
+      </if>
+      <if test="lxr != null and lxr != ''" >
+        LXR = #{lxr,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null and lxdh != ''" >
+        LXDH = #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="explain != null and explain != ''" >
+        EXPLAIN = #{explain,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxDepartmentByPrimaryKey" parameterType="com.saint.teaching.bean.JxDepartmentEntity" >
+    update JX_DEPARTMENT
+    set CLASSID = #{classid,jdbcType=VARCHAR},
+      CLASSNAME = #{classname,jdbcType=VARCHAR},
+      DEPID = #{depid,jdbcType=VARCHAR},
+      DEPNAME = #{depname,jdbcType=VARCHAR},
+      FZR = #{fzr,jdbcType=VARCHAR},
+      LXR = #{lxr,jdbcType=VARCHAR},
+      LXDH = #{lxdh,jdbcType=VARCHAR},
+      EXPLAIN = #{explain,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR}
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

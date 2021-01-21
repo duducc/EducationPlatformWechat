@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxTeacherMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxTeacherEntity" >
+    <id column="USERNUMBER" property="usernumber" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DEPTID" property="deptid" jdbcType="VARCHAR" />
+    <result column="DEPTNAME" property="deptname" jdbcType="VARCHAR" />
+    <result column="AGE" property="age" jdbcType="DECIMAL" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="IDCARD" property="idcard" jdbcType="VARCHAR" />
+    <result column="USERTEL" property="usertel" jdbcType="VARCHAR" />
+    <result column="OFFICETEL" property="officetel" jdbcType="VARCHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="DATE" />
+    <result column="EMIAL" property="emial" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="TEACHTYPE" property="teachtype" jdbcType="VARCHAR" />
+    <result column="EDUCATION" property="education" jdbcType="VARCHAR" />
+    <result column="DEGREE" property="degree" jdbcType="VARCHAR" />
+    <result column="SCHOOL" property="school" jdbcType="VARCHAR" />
+    <result column="BESTEDUCATION" property="besteducation" jdbcType="VARCHAR" />
+    <result column="BESTSCHOOL" property="bestschool" jdbcType="VARCHAR" />
+    <result column="BESTDEGREE" property="bestdegree" jdbcType="VARCHAR" />
+    <result column="ZHICHENG" property="zhicheng" jdbcType="VARCHAR" />
+    <result column="GAINTIME" property="gaintime" jdbcType="DATE" />
+    <result column="ENGAGETIME" property="engagetime" jdbcType="DATE" />
+    <result column="PLACEDEPT" property="placedept" jdbcType="VARCHAR" />
+    <result column="PLACENAME" property="placename" jdbcType="VARCHAR" />
+    <result column="COURSEID" property="courseid" jdbcType="VARCHAR" />
+    <result column="COURSENAME" property="coursename" jdbcType="VARCHAR" />
+    <result column="DIRECTION" property="direction" jdbcType="VARCHAR" />
+    <result column="OPENBANK" property="openbank" jdbcType="VARCHAR" />
+    <result column="BANKNUM" property="banknum" jdbcType="VARCHAR" />
+    <result column="PAYONE" property="payone" jdbcType="VARCHAR" />
+    <result column="PAYTWO" property="paytwo" jdbcType="VARCHAR" />
+    <result column="PAYTHREE" property="paythree" jdbcType="VARCHAR" />
+    <result column="PAYFOUR" property="payfour" jdbcType="VARCHAR" />
+    <result column="PAYFIX" property="payfix" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+    <result column="CREATTIME" property="creattime" jdbcType="DATE" />
+    <result column="CREATPER" property="creatper" jdbcType="VARCHAR" />
+    <result column="ADDNAME" property="addname" jdbcType="VARCHAR" />
+    <result column="UPDATETIME" property="updatetime" jdbcType="DATE" />
+    <result column="GETEDUDATE" property="getedudate" jdbcType="DATE" />
+    <result column="BESTEDUDATE" property="bestedudate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    USERNUMBER, NAME, DEPTID, DEPTNAME, AGE, SEX, IDCARD, USERTEL, OFFICETEL, BIRTHDAY, 
+    EMIAL, STATE, TEACHTYPE, EDUCATION, DEGREE, SCHOOL, BESTEDUCATION, BESTSCHOOL, BESTDEGREE, 
+    ZHICHENG, GAINTIME, ENGAGETIME, PLACEDEPT, PLACENAME, COURSEID, COURSENAME, DIRECTION, 
+    OPENBANK, BANKNUM, PAYONE, PAYTWO, PAYTHREE, PAYFOUR, PAYFIX, REMARK1, REMARK2, REMARK3, 
+    REMARK4, REMARK5, CREATTIME, CREATPER, ADDNAME, UPDATETIME, GETEDUDATE, BESTEDUDATE
+  </sql>
+  <select id="selectListPageJxTeacherBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxTeacherSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_TEACHER
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxTeacherBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxTeacherSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_TEACHER
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxTeacherByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_TEACHER
+    where USERNUMBER = #{usernumber,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxTeacherByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_TEACHER
+    where USERNUMBER = #{usernumber,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxTeacherBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxTeacherSqlWhere" >
+    delete from JX_TEACHER
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxTeacher" parameterType="com.saint.teaching.bean.JxTeacherEntity" >
+    insert into JX_TEACHER (USERNUMBER, NAME, DEPTID, 
+      DEPTNAME, AGE, SEX, 
+      IDCARD, USERTEL, OFFICETEL, 
+      BIRTHDAY, EMIAL, 
+      STATE, TEACHTYPE, EDUCATION, 
+      DEGREE, SCHOOL, BESTEDUCATION, 
+      BESTSCHOOL, BESTDEGREE, ZHICHENG, 
+      GAINTIME, ENGAGETIME, 
+      PLACEDEPT, PLACENAME, COURSEID, 
+      COURSENAME, DIRECTION, OPENBANK, 
+      BANKNUM, PAYONE, PAYTWO, 
+      PAYTHREE, PAYFOUR, PAYFIX, 
+      REMARK1, REMARK2, REMARK3, 
+      REMARK4, REMARK5, CREATTIME, 
+      CREATPER, ADDNAME, UPDATETIME, BESTEDUDATE, GETEDUDATE
+      )
+    values (#{usernumber,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{deptid,jdbcType=VARCHAR}, 
+      #{deptname,jdbcType=VARCHAR}, #{age,jdbcType=DECIMAL}, #{sex,jdbcType=VARCHAR}, 
+      #{idcard,jdbcType=VARCHAR}, #{usertel,jdbcType=VARCHAR}, #{officetel,jdbcType=VARCHAR}, 
+      to_date(#{birthday,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{emial,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{teachtype,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{degree,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, #{besteducation,jdbcType=VARCHAR}, 
+      #{bestschool,jdbcType=VARCHAR}, #{bestdegree,jdbcType=VARCHAR}, #{zhicheng,jdbcType=VARCHAR}, 
+      to_date(#{gaintime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), to_date(#{engagetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{placedept,jdbcType=VARCHAR}, #{placename,jdbcType=VARCHAR}, #{courseid,jdbcType=VARCHAR}, 
+      #{coursename,jdbcType=VARCHAR}, #{direction,jdbcType=VARCHAR}, #{openbank,jdbcType=VARCHAR}, 
+      #{banknum,jdbcType=VARCHAR}, #{payone,jdbcType=VARCHAR}, #{paytwo,jdbcType=VARCHAR}, 
+      #{paythree,jdbcType=VARCHAR}, #{payfour,jdbcType=VARCHAR}, #{payfix,jdbcType=VARCHAR}, 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, 
+      #{remark4,jdbcType=VARCHAR}, #{remark5,jdbcType=VARCHAR}, to_date(#{creattime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{creatper,jdbcType=VARCHAR}, #{addname,jdbcType=VARCHAR}, to_date(#{updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      to_date(#{getedudate,jdbcType=DATE},'yyyy'), to_date(#{bestedudate,jdbcType=DATE},'yyyy')
+      )
+  </insert>
+  <insert id="insertJxTeacherSelective" parameterType="com.saint.teaching.bean.JxTeacherEntity" >
+    insert into JX_TEACHER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="usernumber != null and usernumber != ''" >
+        USERNUMBER,
+      </if>
+      <if test="name != null and name != ''" >
+        NAME,
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        DEPTID,
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        DEPTNAME,
+      </if>
+      <if test="age != null and age != ''" >
+        AGE,
+      </if>
+      <if test="sex != null and sex != ''" >
+        SEX,
+      </if>
+      <if test="idcard != null and idcard != ''" >
+        IDCARD,
+      </if>
+      <if test="usertel != null and usertel != ''" >
+        USERTEL,
+      </if>
+      <if test="officetel != null and officetel != ''" >
+        OFFICETEL,
+      </if>
+      <if test="birthday != null and birthday != ''" >
+        BIRTHDAY,
+      </if>
+      <if test="emial != null and emial != ''" >
+        EMIAL,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="teachtype != null and teachtype != ''" >
+        TEACHTYPE,
+      </if>
+      <if test="education != null and education != ''" >
+        EDUCATION,
+      </if>
+      <if test="degree != null and degree != ''" >
+        DEGREE,
+      </if>
+      <if test="school != null and school != ''" >
+        SCHOOL,
+      </if>
+      <if test="besteducation != null and besteducation != ''" >
+        BESTEDUCATION,
+      </if>
+      <if test="bestschool != null and bestschool != ''" >
+        BESTSCHOOL,
+      </if>
+      <if test="bestdegree != null and bestdegree != ''" >
+        BESTDEGREE,
+      </if>
+      <if test="zhicheng != null and zhicheng != ''" >
+        ZHICHENG,
+      </if>
+      <if test="gaintime != null and gaintime != ''" >
+        GAINTIME,
+      </if>
+      <if test="engagetime != null and engagetime != ''" >
+        ENGAGETIME,
+      </if>
+      <if test="placedept != null and placedept != ''" >
+        PLACEDEPT,
+      </if>
+      <if test="placename != null and placename != ''" >
+        PLACENAME,
+      </if>
+      <if test="courseid != null and courseid != ''" >
+        COURSEID,
+      </if>
+      <if test="coursename != null and coursename != ''" >
+        COURSENAME,
+      </if>
+      <if test="direction != null and direction != ''" >
+        DIRECTION,
+      </if>
+      <if test="openbank != null and openbank != ''" >
+        OPENBANK,
+      </if>
+      <if test="banknum != null and banknum != ''" >
+        BANKNUM,
+      </if>
+      <if test="payone != null and payone != ''" >
+        PAYONE,
+      </if>
+      <if test="paytwo != null and paytwo != ''" >
+        PAYTWO,
+      </if>
+      <if test="paythree != null and paythree != ''" >
+        PAYTHREE,
+      </if>
+      <if test="payfour != null and payfour != ''" >
+        PAYFOUR,
+      </if>
+      <if test="payfix != null and payfix != ''" >
+        PAYFIX,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+      <if test="creattime != null and creattime != ''" >
+        CREATTIME,
+      </if>
+      <if test="creatper != null and creatper != ''" >
+        CREATPER,
+      </if>
+      <if test="addname != null and addname != ''" >
+        ADDNAME,
+      </if>
+      <if test="updatetime != null and updatetime != ''" >
+        UPDATETIME,
+      </if>
+      
+      <if test="getedudate != null and getedudate != ''" >
+        GETEDUDATE,
+      </if>
+      <if test="bestedudate != null and bestedudate != ''" >
+        BESTEDUDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="usernumber != null and usernumber != ''" >
+        #{usernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null and name != ''" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null and age != ''" >
+        #{age,jdbcType=DECIMAL},
+      </if>
+      <if test="sex != null and sex != ''" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null and idcard != ''" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="usertel != null and usertel != ''" >
+        #{usertel,jdbcType=VARCHAR},
+      </if>
+      <if test="officetel != null and officetel != ''" >
+        #{officetel,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null and birthday != ''" >
+        to_date(#{birthday,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="emial != null and emial != ''" >
+        #{emial,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="teachtype != null and teachtype != ''" >
+        #{teachtype,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null and education != ''" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null and degree != ''" >
+        #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null and school != ''" >
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="besteducation != null and besteducation != ''" >
+        #{besteducation,jdbcType=VARCHAR},
+      </if>
+      <if test="bestschool != null and bestschool != ''" >
+        #{bestschool,jdbcType=VARCHAR},
+      </if>
+      <if test="bestdegree != null and bestdegree != ''" >
+        #{bestdegree,jdbcType=VARCHAR},
+      </if>
+      <if test="zhicheng != null and zhicheng != ''" >
+        #{zhicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="gaintime != null and gaintime != ''" >
+        to_date(#{gaintime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="engagetime != null and engagetime != ''" >
+        to_date(#{engagetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="placedept != null and placedept != ''" >
+        #{placedept,jdbcType=VARCHAR},
+      </if>
+      <if test="placename != null and placename != ''" >
+        #{placename,jdbcType=VARCHAR},
+      </if>
+      <if test="courseid != null and courseid != ''" >
+        #{courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null and coursename != ''" >
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null and direction != ''" >
+        #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="openbank != null and openbank != ''" >
+        #{openbank,jdbcType=VARCHAR},
+      </if>
+      <if test="banknum != null and banknum != ''" >
+        #{banknum,jdbcType=VARCHAR},
+      </if>
+      <if test="payone != null and payone != ''" >
+        #{payone,jdbcType=VARCHAR},
+      </if>
+      <if test="paytwo != null and paytwo != ''" >
+        #{paytwo,jdbcType=VARCHAR},
+      </if>
+      <if test="paythree != null and paythree != ''" >
+        #{paythree,jdbcType=VARCHAR},
+      </if>
+      <if test="payfour != null and payfour != ''" >
+        #{payfour,jdbcType=VARCHAR},
+      </if>
+      <if test="payfix != null and payfix != ''" >
+        #{payfix,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="creattime != null and creattime != ''" >
+        to_date(#{creattime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="creatper != null and creatper != ''" >
+        #{creatper,jdbcType=VARCHAR},
+      </if>
+      <if test="addname != null and addname != ''" >
+        #{addname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null and updatetime != ''" >
+        to_date(#{updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      
+      <if test="getedudate != null and getedudate != ''" >
+        to_date(#{getedudate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="bestedudate != null and bestedudate != ''" >
+        to_date(#{bestedudate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxTeacherBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxTeacherSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_TEACHER
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxTeacherBySqlWhereSelective" parameterType="map" >
+    update JX_TEACHER
+    <set >
+      <if test="record.usernumber != null and record.usernumber != ''" >
+        USERNUMBER = #{record.usernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null and record.name != ''" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptid != null and record.deptid != ''" >
+        DEPTID = #{record.deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptname != null and record.deptname != ''" >
+        DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.age != null and record.age != ''" >
+        AGE = #{record.age,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sex != null and record.sex != ''" >
+        SEX = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcard != null and record.idcard != ''" >
+        IDCARD = #{record.idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usertel != null and record.usertel != ''" >
+        USERTEL = #{record.usertel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.officetel != null and record.officetel != ''" >
+        OFFICETEL = #{record.officetel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null and record.birthday != ''" >
+        BIRTHDAY = to_date(#{record.birthday,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.emial != null and record.emial != ''" >
+        EMIAL = #{record.emial,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teachtype != null and record.teachtype != ''" >
+        TEACHTYPE = #{record.teachtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education != null and record.education != ''" >
+        EDUCATION = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.degree != null and record.degree != ''" >
+        DEGREE = #{record.degree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.school != null and record.school != ''" >
+        SCHOOL = #{record.school,jdbcType=VARCHAR},
+      </if>
+      <if test="record.besteducation != null and record.besteducation != ''" >
+        BESTEDUCATION = #{record.besteducation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bestschool != null and record.bestschool != ''" >
+        BESTSCHOOL = #{record.bestschool,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bestdegree != null and record.bestdegree != ''" >
+        BESTDEGREE = #{record.bestdegree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhicheng != null and record.zhicheng != ''" >
+        ZHICHENG = #{record.zhicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gaintime != null and record.gaintime != ''" >
+        GAINTIME = to_date(#{record.gaintime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.engagetime != null and record.engagetime != ''" >
+        ENGAGETIME = to_date(#{record.engagetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.placedept != null and record.placedept != ''" >
+        PLACEDEPT = #{record.placedept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.placename != null and record.placename != ''" >
+        PLACENAME = #{record.placename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseid != null and record.courseid != ''" >
+        COURSEID = #{record.courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coursename != null and record.coursename != ''" >
+        COURSENAME = #{record.coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.direction != null and record.direction != ''" >
+        DIRECTION = #{record.direction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openbank != null and record.openbank != ''" >
+        OPENBANK = #{record.openbank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.banknum != null and record.banknum != ''" >
+        BANKNUM = #{record.banknum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payone != null and record.payone != ''" >
+        PAYONE = #{record.payone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paytwo != null and record.paytwo != ''" >
+        PAYTWO = #{record.paytwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paythree != null and record.paythree != ''" >
+        PAYTHREE = #{record.paythree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payfour != null and record.payfour != ''" >
+        PAYFOUR = #{record.payfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payfix != null and record.payfix != ''" >
+        PAYFIX = #{record.payfix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creattime != null and record.creattime != ''" >
+        CREATTIME = to_date(#{record.creattime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.creatper != null and record.creatper != ''" >
+        CREATPER = #{record.creatper,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addname != null and record.addname != ''" >
+        ADDNAME = #{record.addname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null and record.updatetime != ''" >
+        UPDATETIME = to_date(#{record.updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      
+      <if test="record.getedudate != null and record.getedudate != ''" >
+        GETEDUDATE = to_date(#{record.getedudate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.bestedudate != null and record.bestedudate != ''" >
+        BESTEDUDATE = to_date(#{record.bestedudate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxTeacherBySqlWhere" parameterType="map" >
+    update JX_TEACHER
+    set USERNUMBER = #{record.usernumber,jdbcType=VARCHAR},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      DEPTID = #{record.deptid,jdbcType=VARCHAR},
+      DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      AGE = #{record.age,jdbcType=DECIMAL},
+      SEX = #{record.sex,jdbcType=VARCHAR},
+      IDCARD = #{record.idcard,jdbcType=VARCHAR},
+      USERTEL = #{record.usertel,jdbcType=VARCHAR},
+      OFFICETEL = #{record.officetel,jdbcType=VARCHAR},
+      BIRTHDAY = to_date(#{record.birthday,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      EMIAL = #{record.emial,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      TEACHTYPE = #{record.teachtype,jdbcType=VARCHAR},
+      EDUCATION = #{record.education,jdbcType=VARCHAR},
+      DEGREE = #{record.degree,jdbcType=VARCHAR},
+      SCHOOL = #{record.school,jdbcType=VARCHAR},
+      BESTEDUCATION = #{record.besteducation,jdbcType=VARCHAR},
+      BESTSCHOOL = #{record.bestschool,jdbcType=VARCHAR},
+      BESTDEGREE = #{record.bestdegree,jdbcType=VARCHAR},
+      ZHICHENG = #{record.zhicheng,jdbcType=VARCHAR},
+      GAINTIME = to_date(#{record.gaintime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ENGAGETIME = to_date(#{record.engagetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      PLACEDEPT = #{record.placedept,jdbcType=VARCHAR},
+      PLACENAME = #{record.placename,jdbcType=VARCHAR},
+      COURSEID = #{record.courseid,jdbcType=VARCHAR},
+      COURSENAME = #{record.coursename,jdbcType=VARCHAR},
+      DIRECTION = #{record.direction,jdbcType=VARCHAR},
+      OPENBANK = #{record.openbank,jdbcType=VARCHAR},
+      BANKNUM = #{record.banknum,jdbcType=VARCHAR},
+      PAYONE = #{record.payone,jdbcType=VARCHAR},
+      PAYTWO = #{record.paytwo,jdbcType=VARCHAR},
+      PAYTHREE = #{record.paythree,jdbcType=VARCHAR},
+      PAYFOUR = #{record.payfour,jdbcType=VARCHAR},
+      PAYFIX = #{record.payfix,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      CREATTIME = to_date(#{record.creattime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      CREATPER = #{record.creatper,jdbcType=VARCHAR},
+      ADDNAME = #{record.addname,jdbcType=VARCHAR},
+      UPDATETIME = to_date(#{record.updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      GETEDUDATE = to_date(#{record.getedudate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      BESTEDUDATE = to_date(#{record.bestedudate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxTeacherByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxTeacherEntity" >
+    update JX_TEACHER
+    <set >
+      <if test="name != null and name != ''" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        DEPTID = #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null and age != ''" >
+        AGE = #{age,jdbcType=DECIMAL},
+      </if>
+      <if test="sex != null and sex != ''" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null and idcard != ''" >
+        IDCARD = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="usertel != null and usertel != ''" >
+        USERTEL = #{usertel,jdbcType=VARCHAR},
+      </if>
+      <if test="officetel != null and officetel != ''" >
+        OFFICETEL = #{officetel,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null and birthday != ''" >
+        BIRTHDAY = to_date(#{birthday,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="emial != null and emial != ''" >
+        EMIAL = #{emial,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="teachtype != null and teachtype != ''" >
+        TEACHTYPE = #{teachtype,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null and education != ''" >
+        EDUCATION = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null and degree != ''" >
+        DEGREE = #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null and school != ''" >
+        SCHOOL = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="besteducation != null and besteducation != ''" >
+        BESTEDUCATION = #{besteducation,jdbcType=VARCHAR},
+      </if>
+      <if test="bestschool != null and bestschool != ''" >
+        BESTSCHOOL = #{bestschool,jdbcType=VARCHAR},
+      </if>
+      <if test="bestdegree != null and bestdegree != ''" >
+        BESTDEGREE = #{bestdegree,jdbcType=VARCHAR},
+      </if>
+      <if test="zhicheng != null and zhicheng != ''" >
+        ZHICHENG = #{zhicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="gaintime != null and gaintime != ''" >
+        GAINTIME = to_date(#{gaintime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="engagetime != null and engagetime != ''" >
+        ENGAGETIME = to_date(#{engagetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="placedept != null and placedept != ''" >
+        PLACEDEPT = #{placedept,jdbcType=VARCHAR},
+      </if>
+      <if test="placename != null and placename != ''" >
+        PLACENAME = #{placename,jdbcType=VARCHAR},
+      </if>
+      <if test="courseid != null and courseid != ''" >
+        COURSEID = #{courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null and coursename != ''" >
+        COURSENAME = #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null and direction != ''" >
+        DIRECTION = #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="openbank != null and openbank != ''" >
+        OPENBANK = #{openbank,jdbcType=VARCHAR},
+      </if>
+      <if test="banknum != null and banknum != ''" >
+        BANKNUM = #{banknum,jdbcType=VARCHAR},
+      </if>
+      <if test="payone != null and payone != ''" >
+        PAYONE = #{payone,jdbcType=VARCHAR},
+      </if>
+      <if test="paytwo != null and paytwo != ''" >
+        PAYTWO = #{paytwo,jdbcType=VARCHAR},
+      </if>
+      <if test="paythree != null and paythree != ''" >
+        PAYTHREE = #{paythree,jdbcType=VARCHAR},
+      </if>
+      <if test="payfour != null and payfour != ''" >
+        PAYFOUR = #{payfour,jdbcType=VARCHAR},
+      </if>
+      <if test="payfix != null and payfix != ''" >
+        PAYFIX = #{payfix,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="creattime != null and creattime != ''" >
+        CREATTIME = to_date(#{creattime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="creatper != null and creatper != ''" >
+        CREATPER = #{creatper,jdbcType=VARCHAR},
+      </if>
+      <if test="addname != null and addname != ''" >
+        ADDNAME = #{addname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null and updatetime != ''" >
+        UPDATETIME = to_date(#{updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      
+      <if test="getedudate != null and getedudate != ''" >
+        GETEDUDATE = to_date(#{getedudate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="bestedudate != null and bestedudate != ''" >
+        BESTEDUDATE = to_date(#{bestedudate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    where USERNUMBER = #{usernumber,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxTeacherByPrimaryKey" parameterType="com.saint.teaching.bean.JxTeacherEntity" >
+    update JX_TEACHER
+    set NAME = #{name,jdbcType=VARCHAR},
+      DEPTID = #{deptid,jdbcType=VARCHAR},
+      DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      AGE = #{age,jdbcType=DECIMAL},
+      SEX = #{sex,jdbcType=VARCHAR},
+      IDCARD = #{idcard,jdbcType=VARCHAR},
+      USERTEL = #{usertel,jdbcType=VARCHAR},
+      OFFICETEL = #{officetel,jdbcType=VARCHAR},
+      BIRTHDAY = to_date(#{birthday,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      EMIAL = #{emial,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      TEACHTYPE = #{teachtype,jdbcType=VARCHAR},
+      EDUCATION = #{education,jdbcType=VARCHAR},
+      DEGREE = #{degree,jdbcType=VARCHAR},
+      SCHOOL = #{school,jdbcType=VARCHAR},
+      BESTEDUCATION = #{besteducation,jdbcType=VARCHAR},
+      BESTSCHOOL = #{bestschool,jdbcType=VARCHAR},
+      BESTDEGREE = #{bestdegree,jdbcType=VARCHAR},
+      ZHICHENG = #{zhicheng,jdbcType=VARCHAR},
+      GAINTIME = to_date(#{gaintime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ENGAGETIME = to_date(#{engagetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      PLACEDEPT = #{placedept,jdbcType=VARCHAR},
+      PLACENAME = #{placename,jdbcType=VARCHAR},
+      COURSEID = #{courseid,jdbcType=VARCHAR},
+      COURSENAME = #{coursename,jdbcType=VARCHAR},
+      DIRECTION = #{direction,jdbcType=VARCHAR},
+      OPENBANK = #{openbank,jdbcType=VARCHAR},
+      BANKNUM = #{banknum,jdbcType=VARCHAR},
+      PAYONE = #{payone,jdbcType=VARCHAR},
+      PAYTWO = #{paytwo,jdbcType=VARCHAR},
+      PAYTHREE = #{paythree,jdbcType=VARCHAR},
+      PAYFOUR = #{payfour,jdbcType=VARCHAR},
+      PAYFIX = #{payfix,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR},
+      CREATTIME = to_date(#{creattime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      CREATPER = #{creatper,jdbcType=VARCHAR},
+      ADDNAME = #{addname,jdbcType=VARCHAR},
+      UPDATETIME = to_date(#{updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      GETEDUDATE = to_date(#{getedudate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      BESTEDUDATE = to_date(#{bestedudate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where USERNUMBER = #{usernumber,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,1598 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxTeachingDblMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxTeachingDblEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="STU_ID" property="stuId" jdbcType="VARCHAR" />
+    <result column="STU_NAME" property="stuName" jdbcType="VARCHAR" />
+    <result column="TEACHER_ID" property="teacherId" jdbcType="VARCHAR" />
+    <result column="TEACHER_NAME" property="teacherName" jdbcType="VARCHAR" />
+    <result column="DEPTID" property="deptid" jdbcType="VARCHAR" />
+    <result column="DEPTNAME" property="deptname" jdbcType="VARCHAR" />
+    <result column="CLASSID" property="classid" jdbcType="VARCHAR" />
+    <result column="CLASSNAME" property="classname" jdbcType="VARCHAR" />
+    <result column="ZUID" property="zuid" jdbcType="VARCHAR" />
+    <result column="ZUNAME" property="zuname" jdbcType="VARCHAR" />
+    <result column="ZTTIME" property="zttime" jdbcType="DATE" />
+    <result column="POSITION" property="position" jdbcType="VARCHAR" />
+    <result column="IMGPATH" property="imgpath" jdbcType="VARCHAR" />
+    <result column="FILEPATH" property="filepath" jdbcType="VARCHAR" />
+    <result column="BRNAME" property="brname" jdbcType="VARCHAR" />
+    <result column="BRZY" property="brzy" jdbcType="VARCHAR" />
+    <result column="BRSEX" property="brsex" jdbcType="VARCHAR" />
+    <result column="BRDRESS" property="brdress" jdbcType="VARCHAR" />
+    <result column="BRAGE" property="brage" jdbcType="DECIMAL" />
+    <result column="BRRYDATE" property="brrydate" jdbcType="DATE" />
+    <result column="BRMZ" property="brmz" jdbcType="VARCHAR" />
+    <result column="BRBSHCJDATE" property="brbshcjdate" jdbcType="DATE" />
+    <result column="BRJG" property="brjg" jdbcType="VARCHAR" />
+    <result column="BSXHSRID" property="bsxhsrid" jdbcType="VARCHAR" />
+    <result column="BSXHSRNAME" property="bsxhsrname" jdbcType="VARCHAR" />
+    <result column="BRMARR" property="brmarr" jdbcType="VARCHAR" />
+    <result column="BRKKCHD" property="brkkchd" jdbcType="VARCHAR" />
+    <result column="BHUSU" property="bhusu" jdbcType="VARCHAR" />
+    <result column="BRXBSH" property="brxbsh" jdbcType="VARCHAR" />
+    <result column="BRJWSH" property="brjwsh" jdbcType="VARCHAR" />
+    <result column="BRXTHG" property="brxthg" jdbcType="VARCHAR" />
+    <result column="HXXT" property="hxxt" jdbcType="VARCHAR" />
+    <result column="XHXT" property="xhxt" jdbcType="VARCHAR" />
+    <result column="MNXT" property="mnxt" jdbcType="VARCHAR" />
+    <result column="ZXXT" property="zxxt" jdbcType="VARCHAR" />
+    <result column="JRGGXT" property="jrggxt" jdbcType="VARCHAR" />
+    <result column="SHJXT" property="shjxt" jdbcType="VARCHAR" />
+    <result column="BRGRSH" property="brgrsh" jdbcType="VARCHAR" />
+    <result column="HYSH" property="hysh" jdbcType="VARCHAR" />
+    <result column="YJSHYS" property="yjshys" jdbcType="VARCHAR" />
+    <result column="JZUSH" property="jzush" jdbcType="VARCHAR" />
+    <result column="GMSH" property="gmsh" jdbcType="VARCHAR" />
+    <result column="SHXSH" property="shxsh" jdbcType="VARCHAR" />
+    <result column="TGJCT" property="tgjct" jdbcType="VARCHAR" />
+    <result column="TGJCP" property="tgjcp" jdbcType="VARCHAR" />
+    <result column="TGJCR" property="tgjcr" jdbcType="VARCHAR" />
+    <result column="TGJCBM" property="tgjcbm" jdbcType="VARCHAR" />
+    <result column="TYBZHK" property="tybzhk" jdbcType="VARCHAR" />
+    <result column="TPFNM" property="tpfnm" jdbcType="VARCHAR" />
+    <result column="TLBJ" property="tlbj" jdbcType="VARCHAR" />
+    <result column="TYAN" property="tyan" jdbcType="VARCHAR" />
+    <result column="TER" property="ter" jdbcType="VARCHAR" />
+    <result column="TBI" property="tbi" jdbcType="VARCHAR" />
+    <result column="TKOU" property="tkou" jdbcType="VARCHAR" />
+    <result column="TJINB" property="tjinb" jdbcType="VARCHAR" />
+    <result column="XFSHT" property="xfsht" jdbcType="VARCHAR" />
+    <result column="XFCHU" property="xfchu" jdbcType="VARCHAR" />
+    <result column="XFKOU" property="xfkou" jdbcType="VARCHAR" />
+    <result column="XFTING" property="xfting" jdbcType="VARCHAR" />
+    <result column="XINSHT" property="xinsht" jdbcType="VARCHAR" />
+    <result column="XINFCHU" property="xinfchu" jdbcType="VARCHAR" />
+    <result column="XINFKOU" property="xinfkou" jdbcType="VARCHAR" />
+    <result column="XINFTING" property="xinfting" jdbcType="VARCHAR" />
+    <result column="TZWXG" property="tzwxg" jdbcType="VARCHAR" />
+    <result column="FBSHT" property="fbsht" jdbcType="VARCHAR" />
+    <result column="FBFCHU" property="fbfchu" jdbcType="VARCHAR" />
+    <result column="FBFKOU" property="fbfkou" jdbcType="VARCHAR" />
+    <result column="FBFTING" property="fbfting" jdbcType="VARCHAR" />
+    <result column="TGMSZQ" property="tgmszq" jdbcType="VARCHAR" />
+    <result column="TJZSZH" property="tjzszh" jdbcType="VARCHAR" />
+    <result column="TSHJXT" property="tshjxt" jdbcType="VARCHAR" />
+    <result column="TZKQK" property="tzkqk" jdbcType="VARCHAR" />
+    <result column="BLZHY" property="blzhy" jdbcType="VARCHAR" />
+    <result column="RYZHD" property="ryzhd" jdbcType="VARCHAR" />
+    <result column="QIANM" property="qianm" jdbcType="VARCHAR" />
+    <result column="LJIIR" property="ljiir" jdbcType="VARCHAR" />
+    <result column="LJIIL" property="ljiil" jdbcType="VARCHAR" />
+    <result column="LJIIIR" property="ljiiir" jdbcType="VARCHAR" />
+    <result column="LJIIIL" property="ljiiil" jdbcType="VARCHAR" />
+    <result column="LJIVR" property="ljivr" jdbcType="VARCHAR" />
+    <result column="LJIVL" property="ljivl" jdbcType="VARCHAR" />
+    <result column="LJVR" property="ljvr" jdbcType="VARCHAR" />
+    <result column="LJVL" property="ljvl" jdbcType="VARCHAR" />
+    <result column="EEIZHU" property="eeizhu" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="CREDITDATE" property="creditdate" jdbcType="DATE" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, STU_ID, STU_NAME, TEACHER_ID, TEACHER_NAME, DEPTID, DEPTNAME, CLASSID, CLASSNAME, 
+    ZUID, ZUNAME, ZTTIME, POSITION, IMGPATH, FILEPATH, BRNAME, BRZY, BRSEX, BRDRESS, 
+    BRAGE, BRRYDATE, BRMZ, BRBSHCJDATE, BRJG, BSXHSRID, BSXHSRNAME, BRMARR, BRKKCHD, 
+    BHUSU, BRXBSH, BRJWSH, BRXTHG, HXXT, XHXT, MNXT, ZXXT, JRGGXT, SHJXT, BRGRSH, HYSH, 
+    YJSHYS, JZUSH, GMSH, SHXSH, TGJCT, TGJCP, TGJCR, TGJCBM, TYBZHK, TPFNM, TLBJ, TYAN, 
+    TER, TBI, TKOU, TJINB, XFSHT, XFCHU, XFKOU, XFTING, XINSHT, XINFCHU, XINFKOU, XINFTING, 
+    TZWXG, FBSHT, FBFCHU, FBFKOU, FBFTING, TGMSZQ, TJZSZH, TSHJXT, TZKQK, BLZHY, RYZHD, 
+    QIANM, LJIIR, LJIIL, LJIIIR, LJIIIL, LJIVR, LJIVL, LJVR, LJVL, EEIZHU, STATE, CREDITDATE, 
+    REMARK1, REMARK2, REMARK3, REMARK4, REMARK5
+  </sql>
+  <select id="selectListPageJxTeachingDblBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxTeachingDblSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_TEACHING_DBL
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxTeachingDblBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxTeachingDblSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_TEACHING_DBL
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxTeachingDblByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_TEACHING_DBL
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxTeachingDblByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_TEACHING_DBL
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxTeachingDblBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxTeachingDblSqlWhere" >
+    delete from JX_TEACHING_DBL
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxTeachingDbl" parameterType="com.saint.teaching.bean.JxTeachingDblEntity" >
+    insert into JX_TEACHING_DBL (XH, STU_ID, STU_NAME, 
+      TEACHER_ID, TEACHER_NAME, DEPTID, 
+      DEPTNAME, CLASSID, CLASSNAME, 
+      ZUID, ZUNAME, ZTTIME, 
+      POSITION, IMGPATH, FILEPATH, 
+      BRNAME, BRZY, BRSEX, 
+      BRDRESS, BRAGE, BRRYDATE, 
+      BRMZ, BRBSHCJDATE, 
+      BRJG, BSXHSRID, BSXHSRNAME, 
+      BRMARR, BRKKCHD, BHUSU, 
+      BRXBSH, BRJWSH, BRXTHG, 
+      HXXT, XHXT, MNXT, ZXXT, 
+      JRGGXT, SHJXT, BRGRSH, 
+      HYSH, YJSHYS, JZUSH, 
+      GMSH, SHXSH, TGJCT, 
+      TGJCP, TGJCR, TGJCBM, 
+      TYBZHK, TPFNM, TLBJ, 
+      TYAN, TER, TBI, TKOU, 
+      TJINB, XFSHT, XFCHU, 
+      XFKOU, XFTING, XINSHT, 
+      XINFCHU, XINFKOU, XINFTING, 
+      TZWXG, FBSHT, FBFCHU, 
+      FBFKOU, FBFTING, TGMSZQ, 
+      TJZSZH, TSHJXT, TZKQK, 
+      BLZHY, RYZHD, QIANM, 
+      LJIIR, LJIIL, LJIIIR, 
+      LJIIIL, LJIVR, LJIVL, 
+      LJVR, LJVL, EEIZHU, 
+      STATE, CREDITDATE, 
+      REMARK1, REMARK2, REMARK3, 
+      REMARK4, REMARK5)
+    values (#{xh,jdbcType=VARCHAR}, #{stuId,jdbcType=VARCHAR}, #{stuName,jdbcType=VARCHAR}, 
+      #{teacherId,jdbcType=VARCHAR}, #{teacherName,jdbcType=VARCHAR}, #{deptid,jdbcType=VARCHAR}, 
+      #{deptname,jdbcType=VARCHAR}, #{classid,jdbcType=VARCHAR}, #{classname,jdbcType=VARCHAR}, 
+      #{zuid,jdbcType=VARCHAR}, #{zuname,jdbcType=VARCHAR}, to_date(#{zttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{position,jdbcType=VARCHAR}, #{imgpath,jdbcType=VARCHAR}, #{filepath,jdbcType=VARCHAR}, 
+      #{brname,jdbcType=VARCHAR}, #{brzy,jdbcType=VARCHAR}, #{brsex,jdbcType=VARCHAR}, 
+      #{brdress,jdbcType=VARCHAR}, #{brage,jdbcType=DECIMAL}, to_date(#{brrydate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{brmz,jdbcType=VARCHAR}, to_date(#{brbshcjdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{brjg,jdbcType=VARCHAR}, #{bsxhsrid,jdbcType=VARCHAR}, #{bsxhsrname,jdbcType=VARCHAR}, 
+      #{brmarr,jdbcType=VARCHAR}, #{brkkchd,jdbcType=VARCHAR}, #{bhusu,jdbcType=VARCHAR}, 
+      #{brxbsh,jdbcType=VARCHAR}, #{brjwsh,jdbcType=VARCHAR}, #{brxthg,jdbcType=VARCHAR}, 
+      #{hxxt,jdbcType=VARCHAR}, #{xhxt,jdbcType=VARCHAR}, #{mnxt,jdbcType=VARCHAR}, #{zxxt,jdbcType=VARCHAR}, 
+      #{jrggxt,jdbcType=VARCHAR}, #{shjxt,jdbcType=VARCHAR}, #{brgrsh,jdbcType=VARCHAR}, 
+      #{hysh,jdbcType=VARCHAR}, #{yjshys,jdbcType=VARCHAR}, #{jzush,jdbcType=VARCHAR}, 
+      #{gmsh,jdbcType=VARCHAR}, #{shxsh,jdbcType=VARCHAR}, #{tgjct,jdbcType=VARCHAR}, 
+      #{tgjcp,jdbcType=VARCHAR}, #{tgjcr,jdbcType=VARCHAR}, #{tgjcbm,jdbcType=VARCHAR}, 
+      #{tybzhk,jdbcType=VARCHAR}, #{tpfnm,jdbcType=VARCHAR}, #{tlbj,jdbcType=VARCHAR}, 
+      #{tyan,jdbcType=VARCHAR}, #{ter,jdbcType=VARCHAR}, #{tbi,jdbcType=VARCHAR}, #{tkou,jdbcType=VARCHAR}, 
+      #{tjinb,jdbcType=VARCHAR}, #{xfsht,jdbcType=VARCHAR}, #{xfchu,jdbcType=VARCHAR}, 
+      #{xfkou,jdbcType=VARCHAR}, #{xfting,jdbcType=VARCHAR}, #{xinsht,jdbcType=VARCHAR}, 
+      #{xinfchu,jdbcType=VARCHAR}, #{xinfkou,jdbcType=VARCHAR}, #{xinfting,jdbcType=VARCHAR}, 
+      #{tzwxg,jdbcType=VARCHAR}, #{fbsht,jdbcType=VARCHAR}, #{fbfchu,jdbcType=VARCHAR}, 
+      #{fbfkou,jdbcType=VARCHAR}, #{fbfting,jdbcType=VARCHAR}, #{tgmszq,jdbcType=VARCHAR}, 
+      #{tjzszh,jdbcType=VARCHAR}, #{tshjxt,jdbcType=VARCHAR}, #{tzkqk,jdbcType=VARCHAR}, 
+      #{blzhy,jdbcType=VARCHAR}, #{ryzhd,jdbcType=VARCHAR}, #{qianm,jdbcType=VARCHAR}, 
+      #{ljiir,jdbcType=VARCHAR}, #{ljiil,jdbcType=VARCHAR}, #{ljiiir,jdbcType=VARCHAR}, 
+      #{ljiiil,jdbcType=VARCHAR}, #{ljivr,jdbcType=VARCHAR}, #{ljivl,jdbcType=VARCHAR}, 
+      #{ljvr,jdbcType=VARCHAR}, #{ljvl,jdbcType=VARCHAR}, #{eeizhu,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, to_date(#{creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, 
+      #{remark4,jdbcType=VARCHAR}, #{remark5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertJxTeachingDblSelective" parameterType="com.saint.teaching.bean.JxTeachingDblEntity" >
+    insert into JX_TEACHING_DBL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="stuId != null and stuId != ''" >
+        STU_ID,
+      </if>
+      <if test="stuName != null and stuName != ''" >
+        STU_NAME,
+      </if>
+      <if test="teacherId != null and teacherId != ''" >
+        TEACHER_ID,
+      </if>
+      <if test="teacherName != null and teacherName != ''" >
+        TEACHER_NAME,
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        DEPTID,
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        DEPTNAME,
+      </if>
+      <if test="classid != null and classid != ''" >
+        CLASSID,
+      </if>
+      <if test="classname != null and classname != ''" >
+        CLASSNAME,
+      </if>
+      <if test="zuid != null and zuid != ''" >
+        ZUID,
+      </if>
+      <if test="zuname != null and zuname != ''" >
+        ZUNAME,
+      </if>
+      <if test="zttime != null and zttime != ''" >
+        ZTTIME,
+      </if>
+      <if test="position != null and position != ''" >
+        POSITION,
+      </if>
+      <if test="imgpath != null and imgpath != ''" >
+        IMGPATH,
+      </if>
+      <if test="filepath != null and filepath != ''" >
+        FILEPATH,
+      </if>
+      <if test="brname != null and brname != ''" >
+        BRNAME,
+      </if>
+      <if test="brzy != null and brzy != ''" >
+        BRZY,
+      </if>
+      <if test="brsex != null and brsex != ''" >
+        BRSEX,
+      </if>
+      <if test="brdress != null and brdress != ''" >
+        BRDRESS,
+      </if>
+      <if test="brage != null and brage != ''" >
+        BRAGE,
+      </if>
+      <if test="brrydate != null and brrydate != ''" >
+        BRRYDATE,
+      </if>
+      <if test="brmz != null and brmz != ''" >
+        BRMZ,
+      </if>
+      <if test="brbshcjdate != null and brbshcjdate != ''" >
+        BRBSHCJDATE,
+      </if>
+      <if test="brjg != null and brjg != ''" >
+        BRJG,
+      </if>
+      <if test="bsxhsrid != null and bsxhsrid != ''" >
+        BSXHSRID,
+      </if>
+      <if test="bsxhsrname != null and bsxhsrname != ''" >
+        BSXHSRNAME,
+      </if>
+      <if test="brmarr != null and brmarr != ''" >
+        BRMARR,
+      </if>
+      <if test="brkkchd != null and brkkchd != ''" >
+        BRKKCHD,
+      </if>
+      <if test="bhusu != null and bhusu != ''" >
+        BHUSU,
+      </if>
+      <if test="brxbsh != null and brxbsh != ''" >
+        BRXBSH,
+      </if>
+      <if test="brjwsh != null and brjwsh != ''" >
+        BRJWSH,
+      </if>
+      <if test="brxthg != null and brxthg != ''" >
+        BRXTHG,
+      </if>
+      <if test="hxxt != null and hxxt != ''" >
+        HXXT,
+      </if>
+      <if test="xhxt != null and xhxt != ''" >
+        XHXT,
+      </if>
+      <if test="mnxt != null and mnxt != ''" >
+        MNXT,
+      </if>
+      <if test="zxxt != null and zxxt != ''" >
+        ZXXT,
+      </if>
+      <if test="jrggxt != null and jrggxt != ''" >
+        JRGGXT,
+      </if>
+      <if test="shjxt != null and shjxt != ''" >
+        SHJXT,
+      </if>
+      <if test="brgrsh != null and brgrsh != ''" >
+        BRGRSH,
+      </if>
+      <if test="hysh != null and hysh != ''" >
+        HYSH,
+      </if>
+      <if test="yjshys != null and yjshys != ''" >
+        YJSHYS,
+      </if>
+      <if test="jzush != null and jzush != ''" >
+        JZUSH,
+      </if>
+      <if test="gmsh != null and gmsh != ''" >
+        GMSH,
+      </if>
+      <if test="shxsh != null and shxsh != ''" >
+        SHXSH,
+      </if>
+      <if test="tgjct != null and tgjct != ''" >
+        TGJCT,
+      </if>
+      <if test="tgjcp != null and tgjcp != ''" >
+        TGJCP,
+      </if>
+      <if test="tgjcr != null and tgjcr != ''" >
+        TGJCR,
+      </if>
+      <if test="tgjcbm != null and tgjcbm != ''" >
+        TGJCBM,
+      </if>
+      <if test="tybzhk != null and tybzhk != ''" >
+        TYBZHK,
+      </if>
+      <if test="tpfnm != null and tpfnm != ''" >
+        TPFNM,
+      </if>
+      <if test="tlbj != null and tlbj != ''" >
+        TLBJ,
+      </if>
+      <if test="tyan != null and tyan != ''" >
+        TYAN,
+      </if>
+      <if test="ter != null and ter != ''" >
+        TER,
+      </if>
+      <if test="tbi != null and tbi != ''" >
+        TBI,
+      </if>
+      <if test="tkou != null and tkou != ''" >
+        TKOU,
+      </if>
+      <if test="tjinb != null and tjinb != ''" >
+        TJINB,
+      </if>
+      <if test="xfsht != null and xfsht != ''" >
+        XFSHT,
+      </if>
+      <if test="xfchu != null and xfchu != ''" >
+        XFCHU,
+      </if>
+      <if test="xfkou != null and xfkou != ''" >
+        XFKOU,
+      </if>
+      <if test="xfting != null and xfting != ''" >
+        XFTING,
+      </if>
+      <if test="xinsht != null and xinsht != ''" >
+        XINSHT,
+      </if>
+      <if test="xinfchu != null and xinfchu != ''" >
+        XINFCHU,
+      </if>
+      <if test="xinfkou != null and xinfkou != ''" >
+        XINFKOU,
+      </if>
+      <if test="xinfting != null and xinfting != ''" >
+        XINFTING,
+      </if>
+      <if test="tzwxg != null and tzwxg != ''" >
+        TZWXG,
+      </if>
+      <if test="fbsht != null and fbsht != ''" >
+        FBSHT,
+      </if>
+      <if test="fbfchu != null and fbfchu != ''" >
+        FBFCHU,
+      </if>
+      <if test="fbfkou != null and fbfkou != ''" >
+        FBFKOU,
+      </if>
+      <if test="fbfting != null and fbfting != ''" >
+        FBFTING,
+      </if>
+      <if test="tgmszq != null and tgmszq != ''" >
+        TGMSZQ,
+      </if>
+      <if test="tjzszh != null and tjzszh != ''" >
+        TJZSZH,
+      </if>
+      <if test="tshjxt != null and tshjxt != ''" >
+        TSHJXT,
+      </if>
+      <if test="tzkqk != null and tzkqk != ''" >
+        TZKQK,
+      </if>
+      <if test="blzhy != null and blzhy != ''" >
+        BLZHY,
+      </if>
+      <if test="ryzhd != null and ryzhd != ''" >
+        RYZHD,
+      </if>
+      <if test="qianm != null and qianm != ''" >
+        QIANM,
+      </if>
+      <if test="ljiir != null and ljiir != ''" >
+        LJIIR,
+      </if>
+      <if test="ljiil != null and ljiil != ''" >
+        LJIIL,
+      </if>
+      <if test="ljiiir != null and ljiiir != ''" >
+        LJIIIR,
+      </if>
+      <if test="ljiiil != null and ljiiil != ''" >
+        LJIIIL,
+      </if>
+      <if test="ljivr != null and ljivr != ''" >
+        LJIVR,
+      </if>
+      <if test="ljivl != null and ljivl != ''" >
+        LJIVL,
+      </if>
+      <if test="ljvr != null and ljvr != ''" >
+        LJVR,
+      </if>
+      <if test="ljvl != null and ljvl != ''" >
+        LJVL,
+      </if>
+      <if test="eeizhu != null and eeizhu != ''" >
+        EEIZHU,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="creditdate != null and creditdate != ''" >
+        CREDITDATE,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="stuId != null and stuId != ''" >
+        #{stuId,jdbcType=VARCHAR},
+      </if>
+      <if test="stuName != null and stuName != ''" >
+        #{stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null and teacherId != ''" >
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null and teacherName != ''" >
+        #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null and classid != ''" >
+        #{classid,jdbcType=VARCHAR},
+      </if>
+      <if test="classname != null and classname != ''" >
+        #{classname,jdbcType=VARCHAR},
+      </if>
+      <if test="zuid != null and zuid != ''" >
+        #{zuid,jdbcType=VARCHAR},
+      </if>
+      <if test="zuname != null and zuname != ''" >
+        #{zuname,jdbcType=VARCHAR},
+      </if>
+      <if test="zttime != null and zttime != ''" >
+        to_date(#{zttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="position != null and position != ''" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="imgpath != null and imgpath != ''" >
+        #{imgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null and filepath != ''" >
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="brname != null and brname != ''" >
+        #{brname,jdbcType=VARCHAR},
+      </if>
+      <if test="brzy != null and brzy != ''" >
+        #{brzy,jdbcType=VARCHAR},
+      </if>
+      <if test="brsex != null and brsex != ''" >
+        #{brsex,jdbcType=VARCHAR},
+      </if>
+      <if test="brdress != null and brdress != ''" >
+        #{brdress,jdbcType=VARCHAR},
+      </if>
+      <if test="brage != null and brage != ''" >
+        #{brage,jdbcType=DECIMAL},
+      </if>
+      <if test="brrydate != null and brrydate != ''" >
+        to_date(#{brrydate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="brmz != null and brmz != ''" >
+        #{brmz,jdbcType=VARCHAR},
+      </if>
+      <if test="brbshcjdate != null and brbshcjdate != ''" >
+        to_date(#{brbshcjdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="brjg != null and brjg != ''" >
+        #{brjg,jdbcType=VARCHAR},
+      </if>
+      <if test="bsxhsrid != null and bsxhsrid != ''" >
+        #{bsxhsrid,jdbcType=VARCHAR},
+      </if>
+      <if test="bsxhsrname != null and bsxhsrname != ''" >
+        #{bsxhsrname,jdbcType=VARCHAR},
+      </if>
+      <if test="brmarr != null and brmarr != ''" >
+        #{brmarr,jdbcType=VARCHAR},
+      </if>
+      <if test="brkkchd != null and brkkchd != ''" >
+        #{brkkchd,jdbcType=VARCHAR},
+      </if>
+      <if test="bhusu != null and bhusu != ''" >
+        #{bhusu,jdbcType=VARCHAR},
+      </if>
+      <if test="brxbsh != null and brxbsh != ''" >
+        #{brxbsh,jdbcType=VARCHAR},
+      </if>
+      <if test="brjwsh != null and brjwsh != ''" >
+        #{brjwsh,jdbcType=VARCHAR},
+      </if>
+      <if test="brxthg != null and brxthg != ''" >
+        #{brxthg,jdbcType=VARCHAR},
+      </if>
+      <if test="hxxt != null and hxxt != ''" >
+        #{hxxt,jdbcType=VARCHAR},
+      </if>
+      <if test="xhxt != null and xhxt != ''" >
+        #{xhxt,jdbcType=VARCHAR},
+      </if>
+      <if test="mnxt != null and mnxt != ''" >
+        #{mnxt,jdbcType=VARCHAR},
+      </if>
+      <if test="zxxt != null and zxxt != ''" >
+        #{zxxt,jdbcType=VARCHAR},
+      </if>
+      <if test="jrggxt != null and jrggxt != ''" >
+        #{jrggxt,jdbcType=VARCHAR},
+      </if>
+      <if test="shjxt != null and shjxt != ''" >
+        #{shjxt,jdbcType=VARCHAR},
+      </if>
+      <if test="brgrsh != null and brgrsh != ''" >
+        #{brgrsh,jdbcType=VARCHAR},
+      </if>
+      <if test="hysh != null and hysh != ''" >
+        #{hysh,jdbcType=VARCHAR},
+      </if>
+      <if test="yjshys != null and yjshys != ''" >
+        #{yjshys,jdbcType=VARCHAR},
+      </if>
+      <if test="jzush != null and jzush != ''" >
+        #{jzush,jdbcType=VARCHAR},
+      </if>
+      <if test="gmsh != null and gmsh != ''" >
+        #{gmsh,jdbcType=VARCHAR},
+      </if>
+      <if test="shxsh != null and shxsh != ''" >
+        #{shxsh,jdbcType=VARCHAR},
+      </if>
+      <if test="tgjct != null and tgjct != ''" >
+        #{tgjct,jdbcType=VARCHAR},
+      </if>
+      <if test="tgjcp != null and tgjcp != ''" >
+        #{tgjcp,jdbcType=VARCHAR},
+      </if>
+      <if test="tgjcr != null and tgjcr != ''" >
+        #{tgjcr,jdbcType=VARCHAR},
+      </if>
+      <if test="tgjcbm != null and tgjcbm != ''" >
+        #{tgjcbm,jdbcType=VARCHAR},
+      </if>
+      <if test="tybzhk != null and tybzhk != ''" >
+        #{tybzhk,jdbcType=VARCHAR},
+      </if>
+      <if test="tpfnm != null and tpfnm != ''" >
+        #{tpfnm,jdbcType=VARCHAR},
+      </if>
+      <if test="tlbj != null and tlbj != ''" >
+        #{tlbj,jdbcType=VARCHAR},
+      </if>
+      <if test="tyan != null and tyan != ''" >
+        #{tyan,jdbcType=VARCHAR},
+      </if>
+      <if test="ter != null and ter != ''" >
+        #{ter,jdbcType=VARCHAR},
+      </if>
+      <if test="tbi != null and tbi != ''" >
+        #{tbi,jdbcType=VARCHAR},
+      </if>
+      <if test="tkou != null and tkou != ''" >
+        #{tkou,jdbcType=VARCHAR},
+      </if>
+      <if test="tjinb != null and tjinb != ''" >
+        #{tjinb,jdbcType=VARCHAR},
+      </if>
+      <if test="xfsht != null and xfsht != ''" >
+        #{xfsht,jdbcType=VARCHAR},
+      </if>
+      <if test="xfchu != null and xfchu != ''" >
+        #{xfchu,jdbcType=VARCHAR},
+      </if>
+      <if test="xfkou != null and xfkou != ''" >
+        #{xfkou,jdbcType=VARCHAR},
+      </if>
+      <if test="xfting != null and xfting != ''" >
+        #{xfting,jdbcType=VARCHAR},
+      </if>
+      <if test="xinsht != null and xinsht != ''" >
+        #{xinsht,jdbcType=VARCHAR},
+      </if>
+      <if test="xinfchu != null and xinfchu != ''" >
+        #{xinfchu,jdbcType=VARCHAR},
+      </if>
+      <if test="xinfkou != null and xinfkou != ''" >
+        #{xinfkou,jdbcType=VARCHAR},
+      </if>
+      <if test="xinfting != null and xinfting != ''" >
+        #{xinfting,jdbcType=VARCHAR},
+      </if>
+      <if test="tzwxg != null and tzwxg != ''" >
+        #{tzwxg,jdbcType=VARCHAR},
+      </if>
+      <if test="fbsht != null and fbsht != ''" >
+        #{fbsht,jdbcType=VARCHAR},
+      </if>
+      <if test="fbfchu != null and fbfchu != ''" >
+        #{fbfchu,jdbcType=VARCHAR},
+      </if>
+      <if test="fbfkou != null and fbfkou != ''" >
+        #{fbfkou,jdbcType=VARCHAR},
+      </if>
+      <if test="fbfting != null and fbfting != ''" >
+        #{fbfting,jdbcType=VARCHAR},
+      </if>
+      <if test="tgmszq != null and tgmszq != ''" >
+        #{tgmszq,jdbcType=VARCHAR},
+      </if>
+      <if test="tjzszh != null and tjzszh != ''" >
+        #{tjzszh,jdbcType=VARCHAR},
+      </if>
+      <if test="tshjxt != null and tshjxt != ''" >
+        #{tshjxt,jdbcType=VARCHAR},
+      </if>
+      <if test="tzkqk != null and tzkqk != ''" >
+        #{tzkqk,jdbcType=VARCHAR},
+      </if>
+      <if test="blzhy != null and blzhy != ''" >
+        #{blzhy,jdbcType=VARCHAR},
+      </if>
+      <if test="ryzhd != null and ryzhd != ''" >
+        #{ryzhd,jdbcType=VARCHAR},
+      </if>
+      <if test="qianm != null and qianm != ''" >
+        #{qianm,jdbcType=VARCHAR},
+      </if>
+      <if test="ljiir != null and ljiir != ''" >
+        #{ljiir,jdbcType=VARCHAR},
+      </if>
+      <if test="ljiil != null and ljiil != ''" >
+        #{ljiil,jdbcType=VARCHAR},
+      </if>
+      <if test="ljiiir != null and ljiiir != ''" >
+        #{ljiiir,jdbcType=VARCHAR},
+      </if>
+      <if test="ljiiil != null and ljiiil != ''" >
+        #{ljiiil,jdbcType=VARCHAR},
+      </if>
+      <if test="ljivr != null and ljivr != ''" >
+        #{ljivr,jdbcType=VARCHAR},
+      </if>
+      <if test="ljivl != null and ljivl != ''" >
+        #{ljivl,jdbcType=VARCHAR},
+      </if>
+      <if test="ljvr != null and ljvr != ''" >
+        #{ljvr,jdbcType=VARCHAR},
+      </if>
+      <if test="ljvl != null and ljvl != ''" >
+        #{ljvl,jdbcType=VARCHAR},
+      </if>
+      <if test="eeizhu != null and eeizhu != ''" >
+        #{eeizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="creditdate != null and creditdate != ''" >
+        to_date(#{creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxTeachingDblBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxTeachingDblSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_TEACHING_DBL
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxTeachingDblBySqlWhereSelective" parameterType="map" >
+    update JX_TEACHING_DBL
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuId != null and record.stuId != ''" >
+        STU_ID = #{record.stuId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuName != null and record.stuName != ''" >
+        STU_NAME = #{record.stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacherId != null and record.teacherId != ''" >
+        TEACHER_ID = #{record.teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacherName != null and record.teacherName != ''" >
+        TEACHER_NAME = #{record.teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptid != null and record.deptid != ''" >
+        DEPTID = #{record.deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptname != null and record.deptname != ''" >
+        DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classid != null and record.classid != ''" >
+        CLASSID = #{record.classid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classname != null and record.classname != ''" >
+        CLASSNAME = #{record.classname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zuid != null and record.zuid != ''" >
+        ZUID = #{record.zuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zuname != null and record.zuname != ''" >
+        ZUNAME = #{record.zuname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zttime != null and record.zttime != ''" >
+        ZTTIME = to_date(#{record.zttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.position != null and record.position != ''" >
+        POSITION = #{record.position,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgpath != null and record.imgpath != ''" >
+        IMGPATH = #{record.imgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filepath != null and record.filepath != ''" >
+        FILEPATH = #{record.filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brname != null and record.brname != ''" >
+        BRNAME = #{record.brname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brzy != null and record.brzy != ''" >
+        BRZY = #{record.brzy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brsex != null and record.brsex != ''" >
+        BRSEX = #{record.brsex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brdress != null and record.brdress != ''" >
+        BRDRESS = #{record.brdress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brage != null and record.brage != ''" >
+        BRAGE = #{record.brage,jdbcType=DECIMAL},
+      </if>
+      <if test="record.brrydate != null and record.brrydate != ''" >
+        BRRYDATE = to_date(#{record.brrydate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.brmz != null and record.brmz != ''" >
+        BRMZ = #{record.brmz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brbshcjdate != null and record.brbshcjdate != ''" >
+        BRBSHCJDATE = to_date(#{record.brbshcjdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.brjg != null and record.brjg != ''" >
+        BRJG = #{record.brjg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bsxhsrid != null and record.bsxhsrid != ''" >
+        BSXHSRID = #{record.bsxhsrid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bsxhsrname != null and record.bsxhsrname != ''" >
+        BSXHSRNAME = #{record.bsxhsrname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brmarr != null and record.brmarr != ''" >
+        BRMARR = #{record.brmarr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brkkchd != null and record.brkkchd != ''" >
+        BRKKCHD = #{record.brkkchd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bhusu != null and record.bhusu != ''" >
+        BHUSU = #{record.bhusu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brxbsh != null and record.brxbsh != ''" >
+        BRXBSH = #{record.brxbsh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brjwsh != null and record.brjwsh != ''" >
+        BRJWSH = #{record.brjwsh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brxthg != null and record.brxthg != ''" >
+        BRXTHG = #{record.brxthg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hxxt != null and record.hxxt != ''" >
+        HXXT = #{record.hxxt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xhxt != null and record.xhxt != ''" >
+        XHXT = #{record.xhxt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mnxt != null and record.mnxt != ''" >
+        MNXT = #{record.mnxt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zxxt != null and record.zxxt != ''" >
+        ZXXT = #{record.zxxt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jrggxt != null and record.jrggxt != ''" >
+        JRGGXT = #{record.jrggxt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shjxt != null and record.shjxt != ''" >
+        SHJXT = #{record.shjxt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brgrsh != null and record.brgrsh != ''" >
+        BRGRSH = #{record.brgrsh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hysh != null and record.hysh != ''" >
+        HYSH = #{record.hysh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yjshys != null and record.yjshys != ''" >
+        YJSHYS = #{record.yjshys,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jzush != null and record.jzush != ''" >
+        JZUSH = #{record.jzush,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmsh != null and record.gmsh != ''" >
+        GMSH = #{record.gmsh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shxsh != null and record.shxsh != ''" >
+        SHXSH = #{record.shxsh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tgjct != null and record.tgjct != ''" >
+        TGJCT = #{record.tgjct,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tgjcp != null and record.tgjcp != ''" >
+        TGJCP = #{record.tgjcp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tgjcr != null and record.tgjcr != ''" >
+        TGJCR = #{record.tgjcr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tgjcbm != null and record.tgjcbm != ''" >
+        TGJCBM = #{record.tgjcbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tybzhk != null and record.tybzhk != ''" >
+        TYBZHK = #{record.tybzhk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tpfnm != null and record.tpfnm != ''" >
+        TPFNM = #{record.tpfnm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tlbj != null and record.tlbj != ''" >
+        TLBJ = #{record.tlbj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tyan != null and record.tyan != ''" >
+        TYAN = #{record.tyan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ter != null and record.ter != ''" >
+        TER = #{record.ter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tbi != null and record.tbi != ''" >
+        TBI = #{record.tbi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tkou != null and record.tkou != ''" >
+        TKOU = #{record.tkou,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tjinb != null and record.tjinb != ''" >
+        TJINB = #{record.tjinb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xfsht != null and record.xfsht != ''" >
+        XFSHT = #{record.xfsht,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xfchu != null and record.xfchu != ''" >
+        XFCHU = #{record.xfchu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xfkou != null and record.xfkou != ''" >
+        XFKOU = #{record.xfkou,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xfting != null and record.xfting != ''" >
+        XFTING = #{record.xfting,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xinsht != null and record.xinsht != ''" >
+        XINSHT = #{record.xinsht,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xinfchu != null and record.xinfchu != ''" >
+        XINFCHU = #{record.xinfchu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xinfkou != null and record.xinfkou != ''" >
+        XINFKOU = #{record.xinfkou,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xinfting != null and record.xinfting != ''" >
+        XINFTING = #{record.xinfting,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tzwxg != null and record.tzwxg != ''" >
+        TZWXG = #{record.tzwxg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fbsht != null and record.fbsht != ''" >
+        FBSHT = #{record.fbsht,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fbfchu != null and record.fbfchu != ''" >
+        FBFCHU = #{record.fbfchu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fbfkou != null and record.fbfkou != ''" >
+        FBFKOU = #{record.fbfkou,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fbfting != null and record.fbfting != ''" >
+        FBFTING = #{record.fbfting,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tgmszq != null and record.tgmszq != ''" >
+        TGMSZQ = #{record.tgmszq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tjzszh != null and record.tjzszh != ''" >
+        TJZSZH = #{record.tjzszh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tshjxt != null and record.tshjxt != ''" >
+        TSHJXT = #{record.tshjxt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tzkqk != null and record.tzkqk != ''" >
+        TZKQK = #{record.tzkqk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blzhy != null and record.blzhy != ''" >
+        BLZHY = #{record.blzhy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ryzhd != null and record.ryzhd != ''" >
+        RYZHD = #{record.ryzhd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qianm != null and record.qianm != ''" >
+        QIANM = #{record.qianm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ljiir != null and record.ljiir != ''" >
+        LJIIR = #{record.ljiir,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ljiil != null and record.ljiil != ''" >
+        LJIIL = #{record.ljiil,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ljiiir != null and record.ljiiir != ''" >
+        LJIIIR = #{record.ljiiir,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ljiiil != null and record.ljiiil != ''" >
+        LJIIIL = #{record.ljiiil,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ljivr != null and record.ljivr != ''" >
+        LJIVR = #{record.ljivr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ljivl != null and record.ljivl != ''" >
+        LJIVL = #{record.ljivl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ljvr != null and record.ljvr != ''" >
+        LJVR = #{record.ljvr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ljvl != null and record.ljvl != ''" >
+        LJVL = #{record.ljvl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eeizhu != null and record.eeizhu != ''" >
+        EEIZHU = #{record.eeizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creditdate != null and record.creditdate != ''" >
+        CREDITDATE = to_date(#{record.creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxTeachingDblBySqlWhere" parameterType="map" >
+    update JX_TEACHING_DBL
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      STU_ID = #{record.stuId,jdbcType=VARCHAR},
+      STU_NAME = #{record.stuName,jdbcType=VARCHAR},
+      TEACHER_ID = #{record.teacherId,jdbcType=VARCHAR},
+      TEACHER_NAME = #{record.teacherName,jdbcType=VARCHAR},
+      DEPTID = #{record.deptid,jdbcType=VARCHAR},
+      DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      CLASSID = #{record.classid,jdbcType=VARCHAR},
+      CLASSNAME = #{record.classname,jdbcType=VARCHAR},
+      ZUID = #{record.zuid,jdbcType=VARCHAR},
+      ZUNAME = #{record.zuname,jdbcType=VARCHAR},
+      ZTTIME = to_date(#{record.zttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      POSITION = #{record.position,jdbcType=VARCHAR},
+      IMGPATH = #{record.imgpath,jdbcType=VARCHAR},
+      FILEPATH = #{record.filepath,jdbcType=VARCHAR},
+      BRNAME = #{record.brname,jdbcType=VARCHAR},
+      BRZY = #{record.brzy,jdbcType=VARCHAR},
+      BRSEX = #{record.brsex,jdbcType=VARCHAR},
+      BRDRESS = #{record.brdress,jdbcType=VARCHAR},
+      BRAGE = #{record.brage,jdbcType=DECIMAL},
+      BRRYDATE = to_date(#{record.brrydate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      BRMZ = #{record.brmz,jdbcType=VARCHAR},
+      BRBSHCJDATE = to_date(#{record.brbshcjdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      BRJG = #{record.brjg,jdbcType=VARCHAR},
+      BSXHSRID = #{record.bsxhsrid,jdbcType=VARCHAR},
+      BSXHSRNAME = #{record.bsxhsrname,jdbcType=VARCHAR},
+      BRMARR = #{record.brmarr,jdbcType=VARCHAR},
+      BRKKCHD = #{record.brkkchd,jdbcType=VARCHAR},
+      BHUSU = #{record.bhusu,jdbcType=VARCHAR},
+      BRXBSH = #{record.brxbsh,jdbcType=VARCHAR},
+      BRJWSH = #{record.brjwsh,jdbcType=VARCHAR},
+      BRXTHG = #{record.brxthg,jdbcType=VARCHAR},
+      HXXT = #{record.hxxt,jdbcType=VARCHAR},
+      XHXT = #{record.xhxt,jdbcType=VARCHAR},
+      MNXT = #{record.mnxt,jdbcType=VARCHAR},
+      ZXXT = #{record.zxxt,jdbcType=VARCHAR},
+      JRGGXT = #{record.jrggxt,jdbcType=VARCHAR},
+      SHJXT = #{record.shjxt,jdbcType=VARCHAR},
+      BRGRSH = #{record.brgrsh,jdbcType=VARCHAR},
+      HYSH = #{record.hysh,jdbcType=VARCHAR},
+      YJSHYS = #{record.yjshys,jdbcType=VARCHAR},
+      JZUSH = #{record.jzush,jdbcType=VARCHAR},
+      GMSH = #{record.gmsh,jdbcType=VARCHAR},
+      SHXSH = #{record.shxsh,jdbcType=VARCHAR},
+      TGJCT = #{record.tgjct,jdbcType=VARCHAR},
+      TGJCP = #{record.tgjcp,jdbcType=VARCHAR},
+      TGJCR = #{record.tgjcr,jdbcType=VARCHAR},
+      TGJCBM = #{record.tgjcbm,jdbcType=VARCHAR},
+      TYBZHK = #{record.tybzhk,jdbcType=VARCHAR},
+      TPFNM = #{record.tpfnm,jdbcType=VARCHAR},
+      TLBJ = #{record.tlbj,jdbcType=VARCHAR},
+      TYAN = #{record.tyan,jdbcType=VARCHAR},
+      TER = #{record.ter,jdbcType=VARCHAR},
+      TBI = #{record.tbi,jdbcType=VARCHAR},
+      TKOU = #{record.tkou,jdbcType=VARCHAR},
+      TJINB = #{record.tjinb,jdbcType=VARCHAR},
+      XFSHT = #{record.xfsht,jdbcType=VARCHAR},
+      XFCHU = #{record.xfchu,jdbcType=VARCHAR},
+      XFKOU = #{record.xfkou,jdbcType=VARCHAR},
+      XFTING = #{record.xfting,jdbcType=VARCHAR},
+      XINSHT = #{record.xinsht,jdbcType=VARCHAR},
+      XINFCHU = #{record.xinfchu,jdbcType=VARCHAR},
+      XINFKOU = #{record.xinfkou,jdbcType=VARCHAR},
+      XINFTING = #{record.xinfting,jdbcType=VARCHAR},
+      TZWXG = #{record.tzwxg,jdbcType=VARCHAR},
+      FBSHT = #{record.fbsht,jdbcType=VARCHAR},
+      FBFCHU = #{record.fbfchu,jdbcType=VARCHAR},
+      FBFKOU = #{record.fbfkou,jdbcType=VARCHAR},
+      FBFTING = #{record.fbfting,jdbcType=VARCHAR},
+      TGMSZQ = #{record.tgmszq,jdbcType=VARCHAR},
+      TJZSZH = #{record.tjzszh,jdbcType=VARCHAR},
+      TSHJXT = #{record.tshjxt,jdbcType=VARCHAR},
+      TZKQK = #{record.tzkqk,jdbcType=VARCHAR},
+      BLZHY = #{record.blzhy,jdbcType=VARCHAR},
+      RYZHD = #{record.ryzhd,jdbcType=VARCHAR},
+      QIANM = #{record.qianm,jdbcType=VARCHAR},
+      LJIIR = #{record.ljiir,jdbcType=VARCHAR},
+      LJIIL = #{record.ljiil,jdbcType=VARCHAR},
+      LJIIIR = #{record.ljiiir,jdbcType=VARCHAR},
+      LJIIIL = #{record.ljiiil,jdbcType=VARCHAR},
+      LJIVR = #{record.ljivr,jdbcType=VARCHAR},
+      LJIVL = #{record.ljivl,jdbcType=VARCHAR},
+      LJVR = #{record.ljvr,jdbcType=VARCHAR},
+      LJVL = #{record.ljvl,jdbcType=VARCHAR},
+      EEIZHU = #{record.eeizhu,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      CREDITDATE = to_date(#{record.creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxTeachingDblByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxTeachingDblEntity" >
+    update JX_TEACHING_DBL
+    <set >
+      <if test="stuId != null and stuId != ''" >
+        STU_ID = #{stuId,jdbcType=VARCHAR},
+      </if>
+      <if test="stuName != null and stuName != ''" >
+        STU_NAME = #{stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null and teacherId != ''" >
+        TEACHER_ID = #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null and teacherName != ''" >
+        TEACHER_NAME = #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        DEPTID = #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null and classid != ''" >
+        CLASSID = #{classid,jdbcType=VARCHAR},
+      </if>
+      <if test="classname != null and classname != ''" >
+        CLASSNAME = #{classname,jdbcType=VARCHAR},
+      </if>
+      <if test="zuid != null and zuid != ''" >
+        ZUID = #{zuid,jdbcType=VARCHAR},
+      </if>
+      <if test="zuname != null and zuname != ''" >
+        ZUNAME = #{zuname,jdbcType=VARCHAR},
+      </if>
+      <if test="zttime != null and zttime != ''" >
+        ZTTIME = to_date(#{zttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="position != null and position != ''" >
+        POSITION = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="imgpath != null and imgpath != ''" >
+        IMGPATH = #{imgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null and filepath != ''" >
+        FILEPATH = #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="brname != null and brname != ''" >
+        BRNAME = #{brname,jdbcType=VARCHAR},
+      </if>
+      <if test="brzy != null and brzy != ''" >
+        BRZY = #{brzy,jdbcType=VARCHAR},
+      </if>
+      <if test="brsex != null and brsex != ''" >
+        BRSEX = #{brsex,jdbcType=VARCHAR},
+      </if>
+      <if test="brdress != null and brdress != ''" >
+        BRDRESS = #{brdress,jdbcType=VARCHAR},
+      </if>
+      <if test="brage != null and brage != ''" >
+        BRAGE = #{brage,jdbcType=DECIMAL},
+      </if>
+      <if test="brrydate != null and brrydate != ''" >
+        BRRYDATE = to_date(#{brrydate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="brmz != null and brmz != ''" >
+        BRMZ = #{brmz,jdbcType=VARCHAR},
+      </if>
+      <if test="brbshcjdate != null and brbshcjdate != ''" >
+        BRBSHCJDATE = to_date(#{brbshcjdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="brjg != null and brjg != ''" >
+        BRJG = #{brjg,jdbcType=VARCHAR},
+      </if>
+      <if test="bsxhsrid != null and bsxhsrid != ''" >
+        BSXHSRID = #{bsxhsrid,jdbcType=VARCHAR},
+      </if>
+      <if test="bsxhsrname != null and bsxhsrname != ''" >
+        BSXHSRNAME = #{bsxhsrname,jdbcType=VARCHAR},
+      </if>
+      <if test="brmarr != null and brmarr != ''" >
+        BRMARR = #{brmarr,jdbcType=VARCHAR},
+      </if>
+      <if test="brkkchd != null and brkkchd != ''" >
+        BRKKCHD = #{brkkchd,jdbcType=VARCHAR},
+      </if>
+      <if test="bhusu != null and bhusu != ''" >
+        BHUSU = #{bhusu,jdbcType=VARCHAR},
+      </if>
+      <if test="brxbsh != null and brxbsh != ''" >
+        BRXBSH = #{brxbsh,jdbcType=VARCHAR},
+      </if>
+      <if test="brjwsh != null and brjwsh != ''" >
+        BRJWSH = #{brjwsh,jdbcType=VARCHAR},
+      </if>
+      <if test="brxthg != null and brxthg != ''" >
+        BRXTHG = #{brxthg,jdbcType=VARCHAR},
+      </if>
+      <if test="hxxt != null and hxxt != ''" >
+        HXXT = #{hxxt,jdbcType=VARCHAR},
+      </if>
+      <if test="xhxt != null and xhxt != ''" >
+        XHXT = #{xhxt,jdbcType=VARCHAR},
+      </if>
+      <if test="mnxt != null and mnxt != ''" >
+        MNXT = #{mnxt,jdbcType=VARCHAR},
+      </if>
+      <if test="zxxt != null and zxxt != ''" >
+        ZXXT = #{zxxt,jdbcType=VARCHAR},
+      </if>
+      <if test="jrggxt != null and jrggxt != ''" >
+        JRGGXT = #{jrggxt,jdbcType=VARCHAR},
+      </if>
+      <if test="shjxt != null and shjxt != ''" >
+        SHJXT = #{shjxt,jdbcType=VARCHAR},
+      </if>
+      <if test="brgrsh != null and brgrsh != ''" >
+        BRGRSH = #{brgrsh,jdbcType=VARCHAR},
+      </if>
+      <if test="hysh != null and hysh != ''" >
+        HYSH = #{hysh,jdbcType=VARCHAR},
+      </if>
+      <if test="yjshys != null and yjshys != ''" >
+        YJSHYS = #{yjshys,jdbcType=VARCHAR},
+      </if>
+      <if test="jzush != null and jzush != ''" >
+        JZUSH = #{jzush,jdbcType=VARCHAR},
+      </if>
+      <if test="gmsh != null and gmsh != ''" >
+        GMSH = #{gmsh,jdbcType=VARCHAR},
+      </if>
+      <if test="shxsh != null and shxsh != ''" >
+        SHXSH = #{shxsh,jdbcType=VARCHAR},
+      </if>
+      <if test="tgjct != null and tgjct != ''" >
+        TGJCT = #{tgjct,jdbcType=VARCHAR},
+      </if>
+      <if test="tgjcp != null and tgjcp != ''" >
+        TGJCP = #{tgjcp,jdbcType=VARCHAR},
+      </if>
+      <if test="tgjcr != null and tgjcr != ''" >
+        TGJCR = #{tgjcr,jdbcType=VARCHAR},
+      </if>
+      <if test="tgjcbm != null and tgjcbm != ''" >
+        TGJCBM = #{tgjcbm,jdbcType=VARCHAR},
+      </if>
+      <if test="tybzhk != null and tybzhk != ''" >
+        TYBZHK = #{tybzhk,jdbcType=VARCHAR},
+      </if>
+      <if test="tpfnm != null and tpfnm != ''" >
+        TPFNM = #{tpfnm,jdbcType=VARCHAR},
+      </if>
+      <if test="tlbj != null and tlbj != ''" >
+        TLBJ = #{tlbj,jdbcType=VARCHAR},
+      </if>
+      <if test="tyan != null and tyan != ''" >
+        TYAN = #{tyan,jdbcType=VARCHAR},
+      </if>
+      <if test="ter != null and ter != ''" >
+        TER = #{ter,jdbcType=VARCHAR},
+      </if>
+      <if test="tbi != null and tbi != ''" >
+        TBI = #{tbi,jdbcType=VARCHAR},
+      </if>
+      <if test="tkou != null and tkou != ''" >
+        TKOU = #{tkou,jdbcType=VARCHAR},
+      </if>
+      <if test="tjinb != null and tjinb != ''" >
+        TJINB = #{tjinb,jdbcType=VARCHAR},
+      </if>
+      <if test="xfsht != null and xfsht != ''" >
+        XFSHT = #{xfsht,jdbcType=VARCHAR},
+      </if>
+      <if test="xfchu != null and xfchu != ''" >
+        XFCHU = #{xfchu,jdbcType=VARCHAR},
+      </if>
+      <if test="xfkou != null and xfkou != ''" >
+        XFKOU = #{xfkou,jdbcType=VARCHAR},
+      </if>
+      <if test="xfting != null and xfting != ''" >
+        XFTING = #{xfting,jdbcType=VARCHAR},
+      </if>
+      <if test="xinsht != null and xinsht != ''" >
+        XINSHT = #{xinsht,jdbcType=VARCHAR},
+      </if>
+      <if test="xinfchu != null and xinfchu != ''" >
+        XINFCHU = #{xinfchu,jdbcType=VARCHAR},
+      </if>
+      <if test="xinfkou != null and xinfkou != ''" >
+        XINFKOU = #{xinfkou,jdbcType=VARCHAR},
+      </if>
+      <if test="xinfting != null and xinfting != ''" >
+        XINFTING = #{xinfting,jdbcType=VARCHAR},
+      </if>
+      <if test="tzwxg != null and tzwxg != ''" >
+        TZWXG = #{tzwxg,jdbcType=VARCHAR},
+      </if>
+      <if test="fbsht != null and fbsht != ''" >
+        FBSHT = #{fbsht,jdbcType=VARCHAR},
+      </if>
+      <if test="fbfchu != null and fbfchu != ''" >
+        FBFCHU = #{fbfchu,jdbcType=VARCHAR},
+      </if>
+      <if test="fbfkou != null and fbfkou != ''" >
+        FBFKOU = #{fbfkou,jdbcType=VARCHAR},
+      </if>
+      <if test="fbfting != null and fbfting != ''" >
+        FBFTING = #{fbfting,jdbcType=VARCHAR},
+      </if>
+      <if test="tgmszq != null and tgmszq != ''" >
+        TGMSZQ = #{tgmszq,jdbcType=VARCHAR},
+      </if>
+      <if test="tjzszh != null and tjzszh != ''" >
+        TJZSZH = #{tjzszh,jdbcType=VARCHAR},
+      </if>
+      <if test="tshjxt != null and tshjxt != ''" >
+        TSHJXT = #{tshjxt,jdbcType=VARCHAR},
+      </if>
+      <if test="tzkqk != null and tzkqk != ''" >
+        TZKQK = #{tzkqk,jdbcType=VARCHAR},
+      </if>
+      <if test="blzhy != null and blzhy != ''" >
+        BLZHY = #{blzhy,jdbcType=VARCHAR},
+      </if>
+      <if test="ryzhd != null and ryzhd != ''" >
+        RYZHD = #{ryzhd,jdbcType=VARCHAR},
+      </if>
+      <if test="qianm != null and qianm != ''" >
+        QIANM = #{qianm,jdbcType=VARCHAR},
+      </if>
+      <if test="ljiir != null and ljiir != ''" >
+        LJIIR = #{ljiir,jdbcType=VARCHAR},
+      </if>
+      <if test="ljiil != null and ljiil != ''" >
+        LJIIL = #{ljiil,jdbcType=VARCHAR},
+      </if>
+      <if test="ljiiir != null and ljiiir != ''" >
+        LJIIIR = #{ljiiir,jdbcType=VARCHAR},
+      </if>
+      <if test="ljiiil != null and ljiiil != ''" >
+        LJIIIL = #{ljiiil,jdbcType=VARCHAR},
+      </if>
+      <if test="ljivr != null and ljivr != ''" >
+        LJIVR = #{ljivr,jdbcType=VARCHAR},
+      </if>
+      <if test="ljivl != null and ljivl != ''" >
+        LJIVL = #{ljivl,jdbcType=VARCHAR},
+      </if>
+      <if test="ljvr != null and ljvr != ''" >
+        LJVR = #{ljvr,jdbcType=VARCHAR},
+      </if>
+      <if test="ljvl != null and ljvl != ''" >
+        LJVL = #{ljvl,jdbcType=VARCHAR},
+      </if>
+      <if test="eeizhu != null and eeizhu != ''" >
+        EEIZHU = #{eeizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="creditdate != null and creditdate != ''" >
+        CREDITDATE = to_date(#{creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxTeachingDblByPrimaryKey" parameterType="com.saint.teaching.bean.JxTeachingDblEntity" >
+    update JX_TEACHING_DBL
+    set STU_ID = #{stuId,jdbcType=VARCHAR},
+      STU_NAME = #{stuName,jdbcType=VARCHAR},
+      TEACHER_ID = #{teacherId,jdbcType=VARCHAR},
+      TEACHER_NAME = #{teacherName,jdbcType=VARCHAR},
+      DEPTID = #{deptid,jdbcType=VARCHAR},
+      DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      CLASSID = #{classid,jdbcType=VARCHAR},
+      CLASSNAME = #{classname,jdbcType=VARCHAR},
+      ZUID = #{zuid,jdbcType=VARCHAR},
+      ZUNAME = #{zuname,jdbcType=VARCHAR},
+      ZTTIME = to_date(#{zttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      POSITION = #{position,jdbcType=VARCHAR},
+      IMGPATH = #{imgpath,jdbcType=VARCHAR},
+      FILEPATH = #{filepath,jdbcType=VARCHAR},
+      BRNAME = #{brname,jdbcType=VARCHAR},
+      BRZY = #{brzy,jdbcType=VARCHAR},
+      BRSEX = #{brsex,jdbcType=VARCHAR},
+      BRDRESS = #{brdress,jdbcType=VARCHAR},
+      BRAGE = #{brage,jdbcType=DECIMAL},
+      BRRYDATE = to_date(#{brrydate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      BRMZ = #{brmz,jdbcType=VARCHAR},
+      BRBSHCJDATE = to_date(#{brbshcjdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      BRJG = #{brjg,jdbcType=VARCHAR},
+      BSXHSRID = #{bsxhsrid,jdbcType=VARCHAR},
+      BSXHSRNAME = #{bsxhsrname,jdbcType=VARCHAR},
+      BRMARR = #{brmarr,jdbcType=VARCHAR},
+      BRKKCHD = #{brkkchd,jdbcType=VARCHAR},
+      BHUSU = #{bhusu,jdbcType=VARCHAR},
+      BRXBSH = #{brxbsh,jdbcType=VARCHAR},
+      BRJWSH = #{brjwsh,jdbcType=VARCHAR},
+      BRXTHG = #{brxthg,jdbcType=VARCHAR},
+      HXXT = #{hxxt,jdbcType=VARCHAR},
+      XHXT = #{xhxt,jdbcType=VARCHAR},
+      MNXT = #{mnxt,jdbcType=VARCHAR},
+      ZXXT = #{zxxt,jdbcType=VARCHAR},
+      JRGGXT = #{jrggxt,jdbcType=VARCHAR},
+      SHJXT = #{shjxt,jdbcType=VARCHAR},
+      BRGRSH = #{brgrsh,jdbcType=VARCHAR},
+      HYSH = #{hysh,jdbcType=VARCHAR},
+      YJSHYS = #{yjshys,jdbcType=VARCHAR},
+      JZUSH = #{jzush,jdbcType=VARCHAR},
+      GMSH = #{gmsh,jdbcType=VARCHAR},
+      SHXSH = #{shxsh,jdbcType=VARCHAR},
+      TGJCT = #{tgjct,jdbcType=VARCHAR},
+      TGJCP = #{tgjcp,jdbcType=VARCHAR},
+      TGJCR = #{tgjcr,jdbcType=VARCHAR},
+      TGJCBM = #{tgjcbm,jdbcType=VARCHAR},
+      TYBZHK = #{tybzhk,jdbcType=VARCHAR},
+      TPFNM = #{tpfnm,jdbcType=VARCHAR},
+      TLBJ = #{tlbj,jdbcType=VARCHAR},
+      TYAN = #{tyan,jdbcType=VARCHAR},
+      TER = #{ter,jdbcType=VARCHAR},
+      TBI = #{tbi,jdbcType=VARCHAR},
+      TKOU = #{tkou,jdbcType=VARCHAR},
+      TJINB = #{tjinb,jdbcType=VARCHAR},
+      XFSHT = #{xfsht,jdbcType=VARCHAR},
+      XFCHU = #{xfchu,jdbcType=VARCHAR},
+      XFKOU = #{xfkou,jdbcType=VARCHAR},
+      XFTING = #{xfting,jdbcType=VARCHAR},
+      XINSHT = #{xinsht,jdbcType=VARCHAR},
+      XINFCHU = #{xinfchu,jdbcType=VARCHAR},
+      XINFKOU = #{xinfkou,jdbcType=VARCHAR},
+      XINFTING = #{xinfting,jdbcType=VARCHAR},
+      TZWXG = #{tzwxg,jdbcType=VARCHAR},
+      FBSHT = #{fbsht,jdbcType=VARCHAR},
+      FBFCHU = #{fbfchu,jdbcType=VARCHAR},
+      FBFKOU = #{fbfkou,jdbcType=VARCHAR},
+      FBFTING = #{fbfting,jdbcType=VARCHAR},
+      TGMSZQ = #{tgmszq,jdbcType=VARCHAR},
+      TJZSZH = #{tjzszh,jdbcType=VARCHAR},
+      TSHJXT = #{tshjxt,jdbcType=VARCHAR},
+      TZKQK = #{tzkqk,jdbcType=VARCHAR},
+      BLZHY = #{blzhy,jdbcType=VARCHAR},
+      RYZHD = #{ryzhd,jdbcType=VARCHAR},
+      QIANM = #{qianm,jdbcType=VARCHAR},
+      LJIIR = #{ljiir,jdbcType=VARCHAR},
+      LJIIL = #{ljiil,jdbcType=VARCHAR},
+      LJIIIR = #{ljiiir,jdbcType=VARCHAR},
+      LJIIIL = #{ljiiil,jdbcType=VARCHAR},
+      LJIVR = #{ljivr,jdbcType=VARCHAR},
+      LJIVL = #{ljivl,jdbcType=VARCHAR},
+      LJVR = #{ljvr,jdbcType=VARCHAR},
+      LJVL = #{ljvl,jdbcType=VARCHAR},
+      EEIZHU = #{eeizhu,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      CREDITDATE = to_date(#{creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR}
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

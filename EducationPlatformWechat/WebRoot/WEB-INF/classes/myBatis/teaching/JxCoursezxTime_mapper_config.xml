@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxCoursezxTimeMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxCoursezxTimeEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="ZXTYPE" property="zxtype" jdbcType="VARCHAR" />
+    <result column="ZXNAME" property="zxname" jdbcType="VARCHAR" />
+    <result column="ZXDATE" property="zxdate" jdbcType="VARCHAR" />
+    <result column="ZXKJ" property="zxkj" jdbcType="VARCHAR" />
+    <result column="KJSJD" property="kjsjd" jdbcType="VARCHAR" />
+    <result column="KJSHC" property="kjshc" jdbcType="VARCHAR" />
+    <result column="GLBM" property="glbm" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, ZXTYPE, ZXNAME, ZXDATE, ZXKJ, KJSJD, KJSHC, GLBM, REMARK1, REMARK2, REMARK3, REMARK4, REMARK5
+  </sql>
+  <select id="selectListPageJxCoursezxTimeBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxCoursezxTimeSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_COURSEZXTIME
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxCoursezxTimeBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxCoursezxTimeSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_COURSEZXTIME
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxCoursezxTimeByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_COURSEZXTIME
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxCoursezxTimeByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_COURSEZXTIME
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxCoursezxTimeBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxCoursezxTimeSqlWhere" >
+    delete from JX_COURSEZXTIME
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxCoursezxTime" parameterType="com.saint.teaching.bean.JxCoursezxTimeEntity" >
+    insert into JX_COURSEZXTIME (XH, ZXTYPE, ZXNAME, ZXDATE, 
+      ZXKJ, KJSJD, KJSHC, GLBM, 
+      REMARK1, REMARK2, REMARK3, 
+      REMARK4, REMARK5)
+    values (#{xh,jdbcType=VARCHAR}, #{zxtype,jdbcType=VARCHAR}, #{zxname,jdbcType=VARCHAR}, #{zxdate,jdbcType=VARCHAR}, 
+      #{zxkj,jdbcType=VARCHAR}, #{kjsjd,jdbcType=VARCHAR}, #{kjshc,jdbcType=VARCHAR}, #{glbm,jdbcType=VARCHAR},
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, 
+      #{remark4,jdbcType=VARCHAR}, #{remark5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertJxCoursezxTimeSelective" parameterType="com.saint.teaching.bean.JxCoursezxTimeEntity" >
+    insert into JX_COURSEZXTIME
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="zxtype != null and zxtype != ''" >
+        ZXTYPE,
+      </if>
+      <if test="zxname != null and zxname != ''" >
+        ZXNAME,
+      </if>
+      <if test="zxdate != null and zxdate != ''" >
+        ZXDATE,
+      </if>
+      <if test="zxkj != null and zxkj != ''" >
+        ZXKJ,
+      </if>
+      <if test="kjsjd != null and kjsjd != ''" >
+        KJSJD,
+      </if>
+      <if test="kjshc != null and kjshc != ''" >
+        KJSHC,
+      </if>
+      <if test="glbm != null and glbm != ''" >
+        GLBM,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="zxtype != null and zxtype != ''" >
+        #{zxtype,jdbcType=VARCHAR},
+      </if>
+      <if test="zxname != null and zxname != ''" >
+        #{zxname,jdbcType=VARCHAR},
+      </if>
+      <if test="zxdate != null and zxdate != ''" >
+        #{zxdate,jdbcType=VARCHAR},
+      </if>
+      <if test="zxkj != null and zxkj != ''" >
+        #{zxkj,jdbcType=VARCHAR},
+      </if>
+      <if test="kjsjd != null and kjsjd != ''" >
+        #{kjsjd,jdbcType=VARCHAR},
+      </if>
+      <if test="kjshc != null and kjshc != ''" >
+        #{kjshc,jdbcType=VARCHAR},
+      </if>
+      <if test="glbm != null and glbm != ''" >
+        #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxCoursezxTimeBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxCoursezxTimeSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_COURSEZXTIME
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxCoursezxTimeBySqlWhereSelective" parameterType="map" >
+    update JX_COURSEZXTIME
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zxtype != null and record.zxtype != ''" >
+        ZXTYPE = #{record.zxtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zxname != null and record.zxname != ''" >
+        ZXNAME = #{record.zxname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zxdate != null and record.zxdate != ''" >
+        ZXDATE = #{record.zxdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zxkj != null and record.zxkj != ''" >
+        ZXKJ = #{record.zxkj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kjsjd != null and record.kjsjd != ''" >
+        KJSJD = #{record.kjsjd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kjshc != null and record.kjshc != ''" >
+        KJSHC = #{record.kjshc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glbm != null and record.glbm != ''" >
+        GLBM = #{record.glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxCoursezxTimeBySqlWhere" parameterType="map" >
+    update JX_COURSEZXTIME
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      ZXTYPE = #{record.zxtype,jdbcType=VARCHAR},
+      ZXNAME = #{record.zxname,jdbcType=VARCHAR},
+      ZXDATE = #{record.zxdate,jdbcType=VARCHAR},
+      ZXKJ = #{record.zxkj,jdbcType=VARCHAR},
+      KJSJD = #{record.kjsjd,jdbcType=VARCHAR},
+      KJSHC = #{record.kjshc,jdbcType=VARCHAR},
+      GLBM = #{record.glbm,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxCoursezxTimeByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxCoursezxTimeEntity" >
+    update JX_COURSEZXTIME
+    <set >
+      <if test="zxtype != null and zxtype != ''" >
+        ZXTYPE = #{zxtype,jdbcType=VARCHAR},
+      </if>
+      <if test="zxname != null and zxname != ''" >
+        ZXNAME = #{zxname,jdbcType=VARCHAR},
+      </if>
+      <if test="zxdate != null and zxdate != ''" >
+        ZXDATE = #{zxdate,jdbcType=VARCHAR},
+      </if>
+      <if test="zxkj != null and zxkj != ''" >
+        ZXKJ = #{zxkj,jdbcType=VARCHAR},
+      </if>
+      <if test="kjsjd != null and kjsjd != ''" >
+        KJSJD = #{kjsjd,jdbcType=VARCHAR},
+      </if>
+      <if test="kjshc != null and kjshc != ''" >
+        KJSHC = #{kjshc,jdbcType=VARCHAR},
+      </if>
+      <if test="glbm != null and glbm != ''" >
+        GLBM = #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxCoursezxTimeByPrimaryKey" parameterType="com.saint.teaching.bean.JxCoursezxTimeEntity" >
+    update JX_COURSEZXTIME
+    set ZXTYPE = #{zxtype,jdbcType=VARCHAR},
+    	ZXNAME = #{zxname,jdbcType=VARCHAR},
+      ZXDATE = #{zxdate,jdbcType=VARCHAR},
+      ZXKJ = #{zxkj,jdbcType=VARCHAR},
+      KJSJD = #{kjsjd,jdbcType=VARCHAR},
+      KJSHC = #{kjshc,jdbcType=VARCHAR},
+      GLBM = #{glbm,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR}
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.wechat.XfCourseSignupMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.wechat.manager.bean.XfCourseSignupEntity" >
+    <id column="COURSE_ID" property="courseId" jdbcType="VARCHAR" />
+    <id column="YITONG_CARD" property="yitongCard" jdbcType="VARCHAR" />
+    <result column="XM" property="xm" jdbcType="VARCHAR" />
+    <result column="PRO_ID" property="proId" jdbcType="VARCHAR" />
+    <result column="PRO_NAME" property="proName" jdbcType="VARCHAR" />
+    <result column="COURSES_TASK" property="coursesTask" jdbcType="VARCHAR" />
+    <result column="COURSES_CONTENT" property="coursesContent" jdbcType="VARCHAR" />
+    <result column="CREDIT" property="credit" jdbcType="DECIMAL" />
+    <result column="HOURS" property="hours" jdbcType="DECIMAL" />
+    <result column="METHOD" property="method" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="SIGNUP_DATE" property="signupDate" jdbcType="DATE" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="GXSJ" property="gxsj" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    COURSE_ID, YITONG_CARD, XM, PRO_ID, PRO_NAME, COURSES_TASK, COURSES_CONTENT, CREDIT, 
+    HOURS, METHOD, STATE, SIGNUP_DATE, REMARK1, REMARK2, REMARK3, GXSJ
+  </sql>
+  <select id="selectListPageXfCourseSignupBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.XfCourseSignupSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XF_COURSE_SIGNUP
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListXfCourseSignupBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.XfCourseSignupSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XF_COURSE_SIGNUP
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectXfCourseSignupByPrimaryKey" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.bean.XfCourseSignupKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from XF_COURSE_SIGNUP
+    where COURSE_ID = #{courseId,jdbcType=VARCHAR}
+      and YITONG_CARD = #{yitongCard,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteXfCourseSignupByPrimaryKey" parameterType="com.saint.wechat.manager.bean.XfCourseSignupKey" >
+    delete from XF_COURSE_SIGNUP
+    where COURSE_ID = #{courseId,jdbcType=VARCHAR}
+      and YITONG_CARD = #{yitongCard,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteXfCourseSignupBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.XfCourseSignupSqlWhere" >
+    delete from XF_COURSE_SIGNUP
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertXfCourseSignup" parameterType="com.saint.wechat.manager.bean.XfCourseSignupEntity" >
+    insert into XF_COURSE_SIGNUP (COURSE_ID, YITONG_CARD, XM, 
+      PRO_ID, PRO_NAME, COURSES_TASK, 
+      COURSES_CONTENT, CREDIT, HOURS, 
+      METHOD, STATE, SIGNUP_DATE, 
+      REMARK1, REMARK2, REMARK3, 
+      GXSJ)
+    values (#{courseId,jdbcType=VARCHAR}, #{yitongCard,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, 
+      #{proId,jdbcType=VARCHAR}, #{proName,jdbcType=VARCHAR}, #{coursesTask,jdbcType=VARCHAR}, 
+      #{coursesContent,jdbcType=VARCHAR}, #{credit,jdbcType=DECIMAL}, #{hours,jdbcType=DECIMAL}, 
+      #{method,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, to_date(#{signupDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, 
+      to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'))
+  </insert>
+  <insert id="insertXfCourseSignupSelective" parameterType="com.saint.wechat.manager.bean.XfCourseSignupEntity" >
+    insert into XF_COURSE_SIGNUP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="courseId != null and courseId != ''" >
+        COURSE_ID,
+      </if>
+      <if test="yitongCard != null and yitongCard != ''" >
+        YITONG_CARD,
+      </if>
+      <if test="xm != null and xm != ''" >
+        XM,
+      </if>
+      <if test="proId != null and proId != ''" >
+        PRO_ID,
+      </if>
+      <if test="proName != null and proName != ''" >
+        PRO_NAME,
+      </if>
+      <if test="coursesTask != null and coursesTask != ''" >
+        COURSES_TASK,
+      </if>
+      <if test="coursesContent != null and coursesContent != ''" >
+        COURSES_CONTENT,
+      </if>
+      <if test="credit != null and credit != ''" >
+        CREDIT,
+      </if>
+      <if test="hours != null and hours != ''" >
+        HOURS,
+      </if>
+      <if test="method != null and method != ''" >
+        METHOD,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="signupDate != null and signupDate != ''" >
+        SIGNUP_DATE,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="courseId != null and courseId != ''" >
+        #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="yitongCard != null and yitongCard != ''" >
+        #{yitongCard,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null and xm != ''" >
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="proId != null and proId != ''" >
+        #{proId,jdbcType=VARCHAR},
+      </if>
+      <if test="proName != null and proName != ''" >
+        #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="coursesTask != null and coursesTask != ''" >
+        #{coursesTask,jdbcType=VARCHAR},
+      </if>
+      <if test="coursesContent != null and coursesContent != ''" >
+        #{coursesContent,jdbcType=VARCHAR},
+      </if>
+      <if test="credit != null and credit != ''" >
+        #{credit,jdbcType=DECIMAL},
+      </if>
+      <if test="hours != null and hours != ''" >
+        #{hours,jdbcType=DECIMAL},
+      </if>
+      <if test="method != null and method != ''" >
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="signupDate != null and signupDate != ''" >
+        to_date(#{signupDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </trim>
+  </insert>
+  <select id="countXfCourseSignupBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.XfCourseSignupSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from XF_COURSE_SIGNUP
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateXfCourseSignupBySqlWhereSelective" parameterType="map" >
+    update XF_COURSE_SIGNUP
+    <set >
+      <if test="record.courseId != null and record.courseId != ''" >
+        COURSE_ID = #{record.courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yitongCard != null and record.yitongCard != ''" >
+        YITONG_CARD = #{record.yitongCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xm != null and record.xm != ''" >
+        XM = #{record.xm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proId != null and record.proId != ''" >
+        PRO_ID = #{record.proId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proName != null and record.proName != ''" >
+        PRO_NAME = #{record.proName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coursesTask != null and record.coursesTask != ''" >
+        COURSES_TASK = #{record.coursesTask,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coursesContent != null and record.coursesContent != ''" >
+        COURSES_CONTENT = #{record.coursesContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.credit != null and record.credit != ''" >
+        CREDIT = #{record.credit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.hours != null and record.hours != ''" >
+        HOURS = #{record.hours,jdbcType=DECIMAL},
+      </if>
+      <if test="record.method != null and record.method != ''" >
+        METHOD = #{record.method,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signupDate != null and record.signupDate != ''" >
+        SIGNUP_DATE = to_date(#{record.signupDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxsj != null and record.gxsj != ''" >
+        GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateXfCourseSignupBySqlWhere" parameterType="map" >
+    update XF_COURSE_SIGNUP
+    set COURSE_ID = #{record.courseId,jdbcType=VARCHAR},
+      YITONG_CARD = #{record.yitongCard,jdbcType=VARCHAR},
+      XM = #{record.xm,jdbcType=VARCHAR},
+      PRO_ID = #{record.proId,jdbcType=VARCHAR},
+      PRO_NAME = #{record.proName,jdbcType=VARCHAR},
+      COURSES_TASK = #{record.coursesTask,jdbcType=VARCHAR},
+      COURSES_CONTENT = #{record.coursesContent,jdbcType=VARCHAR},
+      CREDIT = #{record.credit,jdbcType=DECIMAL},
+      HOURS = #{record.hours,jdbcType=DECIMAL},
+      METHOD = #{record.method,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      SIGNUP_DATE = to_date(#{record.signupDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateXfCourseSignupByPrimaryKeySelective" parameterType="com.saint.wechat.manager.bean.XfCourseSignupEntity" >
+    update XF_COURSE_SIGNUP
+    <set >
+      <if test="xm != null and xm != ''" >
+        XM = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="proId != null and proId != ''" >
+        PRO_ID = #{proId,jdbcType=VARCHAR},
+      </if>
+      <if test="proName != null and proName != ''" >
+        PRO_NAME = #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="coursesTask != null and coursesTask != ''" >
+        COURSES_TASK = #{coursesTask,jdbcType=VARCHAR},
+      </if>
+      <if test="coursesContent != null and coursesContent != ''" >
+        COURSES_CONTENT = #{coursesContent,jdbcType=VARCHAR},
+      </if>
+      <if test="credit != null and credit != ''" >
+        CREDIT = #{credit,jdbcType=DECIMAL},
+      </if>
+      <if test="hours != null and hours != ''" >
+        HOURS = #{hours,jdbcType=DECIMAL},
+      </if>
+      <if test="method != null and method != ''" >
+        METHOD = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="signupDate != null and signupDate != ''" >
+        SIGNUP_DATE = to_date(#{signupDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    where COURSE_ID = #{courseId,jdbcType=VARCHAR}
+      and YITONG_CARD = #{yitongCard,jdbcType=VARCHAR}
+  </update>
+  <update id="updateXfCourseSignupByPrimaryKey" parameterType="com.saint.wechat.manager.bean.XfCourseSignupEntity" >
+    update XF_COURSE_SIGNUP
+    set XM = #{xm,jdbcType=VARCHAR},
+      PRO_ID = #{proId,jdbcType=VARCHAR},
+      PRO_NAME = #{proName,jdbcType=VARCHAR},
+      COURSES_TASK = #{coursesTask,jdbcType=VARCHAR},
+      COURSES_CONTENT = #{coursesContent,jdbcType=VARCHAR},
+      CREDIT = #{credit,jdbcType=DECIMAL},
+      HOURS = #{hours,jdbcType=DECIMAL},
+      METHOD = #{method,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      SIGNUP_DATE = to_date(#{signupDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where COURSE_ID = #{courseId,jdbcType=VARCHAR}
+      and YITONG_CARD = #{yitongCard,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.wechat.WechatBindMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.wechat.manager.bean.WechatBindEntity" >
+    <id column="OPEN_ID" property="openId" jdbcType="VARCHAR" />
+    <id column="CLIENTSXH" property="clientsxh" jdbcType="VARCHAR" />
+    <result column="YITONG_CARD" property="yitongCard" jdbcType="VARCHAR" />
+    <result column="DEPT_ID" property="deptId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+    <result column="IS_ADMIN" property="isAdmin" jdbcType="DECIMAL" />
+    <result column="ISLQXX" property="islqxx" jdbcType="VARCHAR" />
+    <result column="NICKNAME" property="nickname" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="COUNTRY" property="country" jdbcType="VARCHAR" />
+    <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+    <result column="LANGUAGE" property="language" jdbcType="VARCHAR" />
+    <result column="HEADIMGURL" property="headimgurl" jdbcType="VARCHAR" />
+    <result column="SFZMHM" property="sfzmhm" jdbcType="VARCHAR" />
+    <result column="XM" property="xm" jdbcType="VARCHAR" />
+    <result column="YHLB" property="yhlb" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+    <result column="GXSJ" property="gxsj" jdbcType="DATE" />
+    
+    <result column="TEMPTICKET" property="tempticket" jdbcType="VARCHAR" />
+    <result column="TEMPNONCESTR" property="tempnoncestr" jdbcType="VARCHAR" />
+    <result column="TEMPTIMESTAMP" property="temptimestamp" jdbcType="VARCHAR" />
+    <result column="TEMPSIGNATURE" property="tempsignature" jdbcType="VARCHAR" />
+    <result column="APIURL" property="apiurl" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMap_S" type="com.saint.wechat.manager.bean.WechatSigntagEntity" >
+    	<id column="OPENID" property="openid" jdbcType="VARCHAR" />
+    	<result column="COURSEID" property="courseid" jdbcType="VARCHAR" />
+    	<result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    OPEN_ID, CLIENTSXH, YITONG_CARD, DEPT_ID, CREATE_TIME, IS_ADMIN, ISLQXX, NICKNAME, 
+    SEX, CITY, COUNTRY, PROVINCE, LANGUAGE, HEADIMGURL, SFZMHM, XM, YHLB, STATE, REMARK1, 
+    REMARK2, REMARK3, REMARK4, REMARK5, GXSJ,TEMPTICKET,TEMPNONCESTR,TEMPTIMESTAMP,TEMPSIGNATURE,APIURL
+  </sql>
+  <sql id="Base_Column_List_S" >
+    OPENID, COURSEID, REMARK
+  </sql>
+  <select id="selectListPageWechatBindBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.WechatBindSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from WECHAT_BIND
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListWechatBindBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.WechatBindSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from WECHAT_BIND
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectWechatBindByPrimaryKey" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.bean.WechatBindKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from WECHAT_BIND
+    where OPEN_ID = #{openId,jdbcType=VARCHAR}
+      and CLIENTSXH = #{clientsxh,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteWechatBindByPrimaryKey" parameterType="com.saint.wechat.manager.bean.WechatBindKey" >
+    delete from WECHAT_BIND
+    where OPEN_ID = #{openId,jdbcType=VARCHAR}
+      and CLIENTSXH = #{clientsxh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteWechatBindBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.WechatBindSqlWhere" >
+    delete from WECHAT_BIND
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertWechatBind" parameterType="com.saint.wechat.manager.bean.WechatBindEntity" >
+    insert into WECHAT_BIND (OPEN_ID, CLIENTSXH, YITONG_CARD, 
+      DEPT_ID, CREATE_TIME, IS_ADMIN, 
+      ISLQXX, NICKNAME, SEX, 
+      CITY, COUNTRY, PROVINCE, 
+      LANGUAGE, HEADIMGURL, SFZMHM, 
+      XM, YHLB, STATE, REMARK1, 
+      REMARK2, REMARK3, REMARK4, 
+      REMARK5, GXSJ,TEMPTICKET,TEMPNONCESTR,TEMPTIMESTAMP,TEMPSIGNATURE,APIURL
+      )
+    values (#{openId,jdbcType=VARCHAR}, #{clientsxh,jdbcType=VARCHAR}, #{yitongCard,jdbcType=VARCHAR}, 
+      #{deptId,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{isAdmin,jdbcType=DECIMAL}, 
+      #{islqxx,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{language,jdbcType=VARCHAR}, #{headimgurl,jdbcType=VARCHAR}, #{sfzmhm,jdbcType=VARCHAR}, 
+      #{xm,jdbcType=VARCHAR}, #{yhlb,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, 
+      #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, #{remark4,jdbcType=VARCHAR}, 
+      #{remark5,jdbcType=VARCHAR}, to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{tempticket,jdbcType=VARCHAR}, #{tempnoncestr,jdbcType=VARCHAR}, #{temptimestamp,jdbcType=VARCHAR}, #{tempsignature,jdbcType=VARCHAR},
+      #{apiurl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertWechatBindSelective" parameterType="com.saint.wechat.manager.bean.WechatBindEntity" >
+    insert into WECHAT_BIND
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="openId != null and openId != ''" >
+        OPEN_ID,
+      </if>
+      <if test="clientsxh != null and clientsxh != ''" >
+        CLIENTSXH,
+      </if>
+      <if test="yitongCard != null and yitongCard != ''" >
+        YITONG_CARD,
+      </if>
+      <if test="deptId != null and deptId != ''" >
+        DEPT_ID,
+      </if>
+      <if test="createTime != null and createTime != ''" >
+        CREATE_TIME,
+      </if>
+      <if test="isAdmin != null and isAdmin != ''" >
+        IS_ADMIN,
+      </if>
+      <if test="islqxx != null and islqxx != ''" >
+        ISLQXX,
+      </if>
+      <if test="nickname != null and nickname != ''" >
+        NICKNAME,
+      </if>
+      <if test="sex != null and sex != ''" >
+        SEX,
+      </if>
+      <if test="city != null and city != ''" >
+        CITY,
+      </if>
+      <if test="country != null and country != ''" >
+        COUNTRY,
+      </if>
+      <if test="province != null and province != ''" >
+        PROVINCE,
+      </if>
+      <if test="language != null and language != ''" >
+        LANGUAGE,
+      </if>
+      <if test="headimgurl != null and headimgurl != ''" >
+        HEADIMGURL,
+      </if>
+      <if test="sfzmhm != null and sfzmhm != ''" >
+        SFZMHM,
+      </if>
+      <if test="xm != null and xm != ''" >
+        XM,
+      </if>
+      <if test="yhlb != null and yhlb != ''" >
+        YHLB,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ,
+      </if>
+      
+      <if test="tempticket != null and tempticket != ''" >
+        TEMPTICKET,
+      </if>
+      <if test="tempnoncestr != null and tempnoncestr != ''" >
+        TEMPNONCESTR,
+      </if>
+      <if test="temptimestamp != null and temptimestamp != ''" >
+        TEMPTIMESTAMP,
+      </if>
+      <if test="tempsignature != null and tempsignature != ''" >
+        TEMPSIGNATURE,
+      </if>
+      <if test="apiurl != null and apiurl != ''" >
+        APIURL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="openId != null and openId != ''" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="clientsxh != null and clientsxh != ''" >
+        #{clientsxh,jdbcType=VARCHAR},
+      </if>
+      <if test="yitongCard != null and yitongCard != ''" >
+        #{yitongCard,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null and deptId != ''" >
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null and createTime != ''" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isAdmin != null and isAdmin != ''" >
+        #{isAdmin,jdbcType=DECIMAL},
+      </if>
+      <if test="islqxx != null and islqxx != ''" >
+        #{islqxx,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null and nickname != ''" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null and sex != ''" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null and city != ''" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null and country != ''" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null and province != ''" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null and language != ''" >
+        #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="headimgurl != null and headimgurl != ''" >
+        #{headimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzmhm != null and sfzmhm != ''" >
+        #{sfzmhm,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null and xm != ''" >
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="yhlb != null and yhlb != ''" >
+        #{yhlb,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      
+      <if test="tempticket != null and tempticket != ''" >
+        #{tempticket,jdbcType=VARCHAR},
+      </if>
+      <if test="tempnoncestr != null and tempnoncestr != ''" >
+        #{tempnoncestr,jdbcType=VARCHAR},
+      </if>
+      <if test="temptimestamp != null and temptimestamp != ''" >
+        #{temptimestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="tempsignature != null and tempsignature != ''" >
+        #{tempsignature,jdbcType=VARCHAR},
+      </if>
+      <if test="apiurl != null and apiurl != ''" >
+        #{apiurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countWechatBindBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.WechatBindSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from WECHAT_BIND
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateWechatBindBySqlWhereSelective" parameterType="map" >
+    update WECHAT_BIND
+    <set >
+      <if test="record.openId != null and record.openId != ''" >
+        OPEN_ID = #{record.openId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientsxh != null and record.clientsxh != ''" >
+        CLIENTSXH = #{record.clientsxh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yitongCard != null and record.yitongCard != ''" >
+        YITONG_CARD = #{record.yitongCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptId != null and record.deptId != ''" >
+        DEPT_ID = #{record.deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null and record.createTime != ''" >
+        CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAdmin != null and record.isAdmin != ''" >
+        IS_ADMIN = #{record.isAdmin,jdbcType=DECIMAL},
+      </if>
+      <if test="record.islqxx != null and record.islqxx != ''" >
+        ISLQXX = #{record.islqxx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickname != null and record.nickname != ''" >
+        NICKNAME = #{record.nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null and record.sex != ''" >
+        SEX = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null and record.city != ''" >
+        CITY = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.country != null and record.country != ''" >
+        COUNTRY = #{record.country,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null and record.province != ''" >
+        PROVINCE = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.language != null and record.language != ''" >
+        LANGUAGE = #{record.language,jdbcType=VARCHAR},
+      </if>
+      <if test="record.headimgurl != null and record.headimgurl != ''" >
+        HEADIMGURL = #{record.headimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfzmhm != null and record.sfzmhm != ''" >
+        SFZMHM = #{record.sfzmhm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xm != null and record.xm != ''" >
+        XM = #{record.xm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yhlb != null and record.yhlb != ''" >
+        YHLB = #{record.yhlb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxsj != null and record.gxsj != ''" >
+        GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      
+      <if test="record.tempticket != null and record.tempticket != ''" >
+        TEMPTICKET = #{record.tempticket,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tempnoncestr != null and record.tempnoncestr != ''" >
+        TEMPNONCESTR = #{record.tempnoncestr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temptimestamp != null and record.temptimestamp != ''" >
+        TEMPTIMESTAMP = #{record.temptimestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tempsignature != null and record.tempsignature != ''" >
+        TEMPSIGNATURE = #{record.tempsignature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apiurl != null and record.apiurl != ''" >
+        APIURL = #{record.apiurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateWechatBindBySqlWhere" parameterType="map" >
+    update WECHAT_BIND
+    set OPEN_ID = #{record.openId,jdbcType=VARCHAR},
+      CLIENTSXH = #{record.clientsxh,jdbcType=VARCHAR},
+      YITONG_CARD = #{record.yitongCard,jdbcType=VARCHAR},
+      DEPT_ID = #{record.deptId,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=VARCHAR},
+      IS_ADMIN = #{record.isAdmin,jdbcType=DECIMAL},
+      ISLQXX = #{record.islqxx,jdbcType=VARCHAR},
+      NICKNAME = #{record.nickname,jdbcType=VARCHAR},
+      SEX = #{record.sex,jdbcType=VARCHAR},
+      CITY = #{record.city,jdbcType=VARCHAR},
+      COUNTRY = #{record.country,jdbcType=VARCHAR},
+      PROVINCE = #{record.province,jdbcType=VARCHAR},
+      LANGUAGE = #{record.language,jdbcType=VARCHAR},
+      HEADIMGURL = #{record.headimgurl,jdbcType=VARCHAR},
+      SFZMHM = #{record.sfzmhm,jdbcType=VARCHAR},
+      XM = #{record.xm,jdbcType=VARCHAR},
+      YHLB = #{record.yhlb,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      
+      TEMPTICKET = #{record.tempticket,jdbcType=VARCHAR},
+      TEMPNONCESTR = #{record.tempnoncestr,jdbcType=VARCHAR},
+      TEMPTIMESTAMP = #{record.temptimestamp,jdbcType=VARCHAR},
+      TEMPSIGNATURE = #{record.tempsignature,jdbcType=VARCHAR},
+      APIURL = #{record.apiurl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateWechatBindByPrimaryKeySelective" parameterType="com.saint.wechat.manager.bean.WechatBindEntity" >
+    update WECHAT_BIND
+    <set >
+      <if test="yitongCard != null and yitongCard != ''" >
+        YITONG_CARD = #{yitongCard,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null and deptId != ''" >
+        DEPT_ID = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null and createTime != ''" >
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isAdmin != null and isAdmin != ''" >
+        IS_ADMIN = #{isAdmin,jdbcType=DECIMAL},
+      </if>
+      <if test="islqxx != null and islqxx != ''" >
+        ISLQXX = #{islqxx,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null and nickname != ''" >
+        NICKNAME = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null and sex != ''" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null and city != ''" >
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null and country != ''" >
+        COUNTRY = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null and province != ''" >
+        PROVINCE = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null and language != ''" >
+        LANGUAGE = #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="headimgurl != null and headimgurl != ''" >
+        HEADIMGURL = #{headimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzmhm != null and sfzmhm != ''" >
+        SFZMHM = #{sfzmhm,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null and xm != ''" >
+        XM = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="yhlb != null and yhlb != ''" >
+        YHLB = #{yhlb,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      
+      <if test="tempticket != null and tempticket != ''" >
+        TEMPTICKET = #{tempticket,jdbcType=VARCHAR},
+      </if>
+      <if test="tempnoncestr != null and tempnoncestr != ''" >
+        TEMPNONCESTR = #{tempnoncestr,jdbcType=VARCHAR},
+      </if>
+      <if test="temptimestamp != null and temptimestamp != ''" >
+        TEMPTIMESTAMP = #{temptimestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="tempsignature != null and tempsignature != ''" >
+        TEMPSIGNATURE = #{tempsignature,jdbcType=VARCHAR},
+      </if>
+      <if test="apiurl != null and apiurl != ''" >
+        APIURL = #{apiurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OPEN_ID = #{openId,jdbcType=VARCHAR}
+      and CLIENTSXH = #{clientsxh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateWechatBindByPrimaryKey" parameterType="com.saint.wechat.manager.bean.WechatBindEntity" >
+    update WECHAT_BIND
+    set YITONG_CARD = #{yitongCard,jdbcType=VARCHAR},
+      DEPT_ID = #{deptId,jdbcType=VARCHAR},
+      IS_ADMIN = #{isAdmin,jdbcType=DECIMAL},
+      ISLQXX = #{islqxx,jdbcType=VARCHAR},
+      NICKNAME = #{nickname,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      COUNTRY = #{country,jdbcType=VARCHAR},
+      PROVINCE = #{province,jdbcType=VARCHAR},
+      LANGUAGE = #{language,jdbcType=VARCHAR},
+      HEADIMGURL = #{headimgurl,jdbcType=VARCHAR},
+      SFZMHM = #{sfzmhm,jdbcType=VARCHAR},
+      XM = #{xm,jdbcType=VARCHAR},
+      YHLB = #{yhlb,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR},
+      GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      
+      TEMPTICKET = #{tempticket,jdbcType=VARCHAR},
+      TEMPNONCESTR = #{tempnoncestr,jdbcType=VARCHAR},
+      TEMPTIMESTAMP = #{temptimestamp,jdbcType=VARCHAR},
+      TEMPSIGNATURE = #{tempsignature,jdbcType=VARCHAR},
+      APIURL = #{apiurl,jdbcType=VARCHAR}
+    where OPEN_ID = #{openId,jdbcType=VARCHAR}
+      and CLIENTSXH = #{clientsxh,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectWechatSigntagByPrimaryKey" resultMap="BaseResultMap_S" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List_S" />
+    from WECHAT_SIGNTAG
+    where OPENID = #{openid,jdbcType=VARCHAR}
+  </select>
+  <insert id="insertWechatSigntag" parameterType="com.saint.wechat.manager.bean.WechatSigntagEntity" >
+    insert into WECHAT_SIGNTAG (OPENID, COURSEID, REMARK)
+    values (#{openid,jdbcType=VARCHAR}, #{courseid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <delete id="deleteWechatSigntagByPrimaryKey" parameterType="java.lang.String" >
+    delete from WECHAT_SIGNTAG
+    where OPENID = #{openid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

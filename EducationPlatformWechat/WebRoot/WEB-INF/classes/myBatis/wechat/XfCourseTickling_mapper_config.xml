@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.wechat.XfCourseTicklingMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.wechat.manager.bean.XfCourseTicklingEntity" >
+    <id column="USERNUMBER" property="usernumber" jdbcType="VARCHAR" />
+    <id column="COURSEID" property="courseid" jdbcType="VARCHAR" />
+    <result column="USERNAME" property="username" jdbcType="VARCHAR" />
+    <result column="PROID" property="proid" jdbcType="VARCHAR" />
+    <result column="PRONAME" property="proname" jdbcType="VARCHAR" />
+    <result column="HOLDUNIT" property="holdunit" jdbcType="VARCHAR" />
+    <result column="COURSENAME" property="coursename" jdbcType="VARCHAR" />
+    <result column="SUBJECTONE" property="subjectone" jdbcType="VARCHAR" />
+    <result column="SUBJECTTWO" property="subjecttwo" jdbcType="VARCHAR" />
+    <result column="SUBJECTTHREE" property="subjectthree" jdbcType="VARCHAR" />
+    <result column="SUBJECTFOUR" property="subjectfour" jdbcType="VARCHAR" />
+    <result column="SUBJECTFIVE" property="subjectfive" jdbcType="VARCHAR" />
+    <result column="SUBJECTSIX" property="subjectsix" jdbcType="VARCHAR" />
+    <result column="SUBJECTSEVEN" property="subjectseven" jdbcType="VARCHAR" />
+    <result column="ADDTIME" property="addtime" jdbcType="DATE" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    USERNUMBER, COURSEID, USERNAME, PROID, PRONAME, HOLDUNIT, COURSENAME, SUBJECTONE, 
+    SUBJECTTWO, SUBJECTTHREE, SUBJECTFOUR, SUBJECTFIVE, SUBJECTSIX, SUBJECTSEVEN, ADDTIME, 
+    TYPE, STATE, REMARK1, REMARK2, REMARK3, REMARK4, REMARK5
+  </sql>
+  <select id="selectListPageXfCourseTicklingBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.XfCourseTicklingSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XF_COURSE_TICKLING
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListXfCourseTicklingBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.XfCourseTicklingSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XF_COURSE_TICKLING
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectXfCourseTicklingByPrimaryKey" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.bean.XfCourseTicklingKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from XF_COURSE_TICKLING
+    where USERNUMBER = #{usernumber,jdbcType=VARCHAR}
+      and COURSEID = #{courseid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteXfCourseTicklingByPrimaryKey" parameterType="com.saint.wechat.manager.bean.XfCourseTicklingKey" >
+    delete from XF_COURSE_TICKLING
+    where USERNUMBER = #{usernumber,jdbcType=VARCHAR}
+      and COURSEID = #{courseid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteXfCourseTicklingBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.XfCourseTicklingSqlWhere" >
+    delete from XF_COURSE_TICKLING
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertXfCourseTickling" parameterType="com.saint.wechat.manager.bean.XfCourseTicklingEntity" >
+    insert into XF_COURSE_TICKLING (USERNUMBER, COURSEID, USERNAME, 
+      PROID, PRONAME, HOLDUNIT, 
+      COURSENAME, SUBJECTONE, SUBJECTTWO, 
+      SUBJECTTHREE, SUBJECTFOUR, SUBJECTFIVE, 
+      SUBJECTSIX, SUBJECTSEVEN, ADDTIME, 
+      TYPE, STATE, REMARK1, 
+      REMARK2, REMARK3, REMARK4, 
+      REMARK5)
+    values (#{usernumber,jdbcType=VARCHAR}, #{courseid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{proid,jdbcType=VARCHAR}, #{proname,jdbcType=VARCHAR}, #{holdunit,jdbcType=VARCHAR}, 
+      #{coursename,jdbcType=VARCHAR}, #{subjectone,jdbcType=VARCHAR}, #{subjecttwo,jdbcType=VARCHAR}, 
+      #{subjectthree,jdbcType=VARCHAR}, #{subjectfour,jdbcType=VARCHAR}, #{subjectfive,jdbcType=VARCHAR}, 
+      #{subjectsix,jdbcType=VARCHAR}, #{subjectseven,jdbcType=VARCHAR}, to_date(#{addtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{type,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, 
+      #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, #{remark4,jdbcType=VARCHAR}, 
+      #{remark5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertXfCourseTicklingSelective" parameterType="com.saint.wechat.manager.bean.XfCourseTicklingEntity" >
+    insert into XF_COURSE_TICKLING
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="usernumber != null and usernumber != ''" >
+        USERNUMBER,
+      </if>
+      <if test="courseid != null and courseid != ''" >
+        COURSEID,
+      </if>
+      <if test="username != null and username != ''" >
+        USERNAME,
+      </if>
+      <if test="proid != null and proid != ''" >
+        PROID,
+      </if>
+      <if test="proname != null and proname != ''" >
+        PRONAME,
+      </if>
+      <if test="holdunit != null and holdunit != ''" >
+        HOLDUNIT,
+      </if>
+      <if test="coursename != null and coursename != ''" >
+        COURSENAME,
+      </if>
+      <if test="subjectone != null and subjectone != ''" >
+        SUBJECTONE,
+      </if>
+      <if test="subjecttwo != null and subjecttwo != ''" >
+        SUBJECTTWO,
+      </if>
+      <if test="subjectthree != null and subjectthree != ''" >
+        SUBJECTTHREE,
+      </if>
+      <if test="subjectfour != null and subjectfour != ''" >
+        SUBJECTFOUR,
+      </if>
+      <if test="subjectfive != null and subjectfive != ''" >
+        SUBJECTFIVE,
+      </if>
+      <if test="subjectsix != null and subjectsix != ''" >
+        SUBJECTSIX,
+      </if>
+      <if test="subjectseven != null and subjectseven != ''" >
+        SUBJECTSEVEN,
+      </if>
+      <if test="addtime != null and addtime != ''" >
+        ADDTIME,
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="usernumber != null and usernumber != ''" >
+        #{usernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="courseid != null and courseid != ''" >
+        #{courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null and username != ''" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="proid != null and proid != ''" >
+        #{proid,jdbcType=VARCHAR},
+      </if>
+      <if test="proname != null and proname != ''" >
+        #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="holdunit != null and holdunit != ''" >
+        #{holdunit,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null and coursename != ''" >
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectone != null and subjectone != ''" >
+        #{subjectone,jdbcType=VARCHAR},
+      </if>
+      <if test="subjecttwo != null and subjecttwo != ''" >
+        #{subjecttwo,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectthree != null and subjectthree != ''" >
+        #{subjectthree,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectfour != null and subjectfour != ''" >
+        #{subjectfour,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectfive != null and subjectfive != ''" >
+        #{subjectfive,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectsix != null and subjectsix != ''" >
+        #{subjectsix,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectseven != null and subjectseven != ''" >
+        #{subjectseven,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null and addtime != ''" >
+        to_date(#{addtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="type != null and type != ''" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countXfCourseTicklingBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.XfCourseTicklingSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from XF_COURSE_TICKLING
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateXfCourseTicklingBySqlWhereSelective" parameterType="map" >
+    update XF_COURSE_TICKLING
+    <set >
+      <if test="record.usernumber != null and record.usernumber != ''" >
+        USERNUMBER = #{record.usernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseid != null and record.courseid != ''" >
+        COURSEID = #{record.courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null and record.username != ''" >
+        USERNAME = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proid != null and record.proid != ''" >
+        PROID = #{record.proid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proname != null and record.proname != ''" >
+        PRONAME = #{record.proname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holdunit != null and record.holdunit != ''" >
+        HOLDUNIT = #{record.holdunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coursename != null and record.coursename != ''" >
+        COURSENAME = #{record.coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectone != null and record.subjectone != ''" >
+        SUBJECTONE = #{record.subjectone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjecttwo != null and record.subjecttwo != ''" >
+        SUBJECTTWO = #{record.subjecttwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectthree != null and record.subjectthree != ''" >
+        SUBJECTTHREE = #{record.subjectthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectfour != null and record.subjectfour != ''" >
+        SUBJECTFOUR = #{record.subjectfour,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectfive != null and record.subjectfive != ''" >
+        SUBJECTFIVE = #{record.subjectfive,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectsix != null and record.subjectsix != ''" >
+        SUBJECTSIX = #{record.subjectsix,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectseven != null and record.subjectseven != ''" >
+        SUBJECTSEVEN = #{record.subjectseven,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addtime != null and record.addtime != ''" >
+        ADDTIME = to_date(#{record.addtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.type != null and record.type != ''" >
+        TYPE = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateXfCourseTicklingBySqlWhere" parameterType="map" >
+    update XF_COURSE_TICKLING
+    set USERNUMBER = #{record.usernumber,jdbcType=VARCHAR},
+      COURSEID = #{record.courseid,jdbcType=VARCHAR},
+      USERNAME = #{record.username,jdbcType=VARCHAR},
+      PROID = #{record.proid,jdbcType=VARCHAR},
+      PRONAME = #{record.proname,jdbcType=VARCHAR},
+      HOLDUNIT = #{record.holdunit,jdbcType=VARCHAR},
+      COURSENAME = #{record.coursename,jdbcType=VARCHAR},
+      SUBJECTONE = #{record.subjectone,jdbcType=VARCHAR},
+      SUBJECTTWO = #{record.subjecttwo,jdbcType=VARCHAR},
+      SUBJECTTHREE = #{record.subjectthree,jdbcType=VARCHAR},
+      SUBJECTFOUR = #{record.subjectfour,jdbcType=VARCHAR},
+      SUBJECTFIVE = #{record.subjectfive,jdbcType=VARCHAR},
+      SUBJECTSIX = #{record.subjectsix,jdbcType=VARCHAR},
+      SUBJECTSEVEN = #{record.subjectseven,jdbcType=VARCHAR},
+      ADDTIME = to_date(#{record.addtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      TYPE = #{record.type,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateXfCourseTicklingByPrimaryKeySelective" parameterType="com.saint.wechat.manager.bean.XfCourseTicklingEntity" >
+    update XF_COURSE_TICKLING
+    <set >
+      <if test="username != null and username != ''" >
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="proid != null and proid != ''" >
+        PROID = #{proid,jdbcType=VARCHAR},
+      </if>
+      <if test="proname != null and proname != ''" >
+        PRONAME = #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="holdunit != null and holdunit != ''" >
+        HOLDUNIT = #{holdunit,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null and coursename != ''" >
+        COURSENAME = #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectone != null and subjectone != ''" >
+        SUBJECTONE = #{subjectone,jdbcType=VARCHAR},
+      </if>
+      <if test="subjecttwo != null and subjecttwo != ''" >
+        SUBJECTTWO = #{subjecttwo,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectthree != null and subjectthree != ''" >
+        SUBJECTTHREE = #{subjectthree,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectfour != null and subjectfour != ''" >
+        SUBJECTFOUR = #{subjectfour,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectfive != null and subjectfive != ''" >
+        SUBJECTFIVE = #{subjectfive,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectsix != null and subjectsix != ''" >
+        SUBJECTSIX = #{subjectsix,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectseven != null and subjectseven != ''" >
+        SUBJECTSEVEN = #{subjectseven,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null and addtime != ''" >
+        ADDTIME = to_date(#{addtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USERNUMBER = #{usernumber,jdbcType=VARCHAR}
+      and COURSEID = #{courseid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateXfCourseTicklingByPrimaryKey" parameterType="com.saint.wechat.manager.bean.XfCourseTicklingEntity" >
+    update XF_COURSE_TICKLING
+    set USERNAME = #{username,jdbcType=VARCHAR},
+      PROID = #{proid,jdbcType=VARCHAR},
+      PRONAME = #{proname,jdbcType=VARCHAR},
+      HOLDUNIT = #{holdunit,jdbcType=VARCHAR},
+      COURSENAME = #{coursename,jdbcType=VARCHAR},
+      SUBJECTONE = #{subjectone,jdbcType=VARCHAR},
+      SUBJECTTWO = #{subjecttwo,jdbcType=VARCHAR},
+      SUBJECTTHREE = #{subjectthree,jdbcType=VARCHAR},
+      SUBJECTFOUR = #{subjectfour,jdbcType=VARCHAR},
+      SUBJECTFIVE = #{subjectfive,jdbcType=VARCHAR},
+      SUBJECTSIX = #{subjectsix,jdbcType=VARCHAR},
+      SUBJECTSEVEN = #{subjectseven,jdbcType=VARCHAR},
+      ADDTIME = to_date(#{addtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      TYPE = #{type,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR}
+    where USERNUMBER = #{usernumber,jdbcType=VARCHAR}
+      and COURSEID = #{courseid,jdbcType=VARCHAR}
+  </update>
+</mapper>

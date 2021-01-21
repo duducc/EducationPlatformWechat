@@ -1,0 +1,227 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns='http://www.springframework.org/schema/beans'
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xmlns:p='http://www.springframework.org/schema/p'
+	xmlns:context='http://www.springframework.org/schema/context'
+	xsi:schemaLocation='http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+ http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+ http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd'>
+ 	
+ 	
+	<bean id="jxClassService" class="com.saint.teaching.services.impl.JxClassServiceImpl">
+		<property name="jxClassDao" ref="jxClassDao"></property>
+	</bean>
+	
+	<bean id="jxStudentsService" class="com.saint.teaching.services.impl.JxStudentsServiceImpl">
+		<property name="jxStudentsDao" ref="jxStudentsDao"></property>
+	</bean>
+	<bean id="jxStencilService" class="com.saint.teaching.services.impl.JxStencilServiceImpl">
+		<property name="jxStencilDao" ref="jxStencilDao"/>
+	</bean>
+	<bean id="jxSignInfoService" class="com.saint.teaching.services.impl.JxSignInfoServiceImpl">
+		<property name="jxSignInfoDao" ref="jxSignInfoDao"></property>
+	</bean>
+	<bean id="jxStudentsSignService" class="com.saint.teaching.services.impl.JxStudentsSignServiceImpl">
+		<property name="jxStudentsSignDao" ref="jxStudentsSignDao"/>
+	</bean>
+	<bean id="jxStudentLeaveService" class="com.saint.teaching.services.impl.JxStudentLeaveServiceImpl">
+		<property name="jxStudentLeaveDao" ref="jxStudentLeaveDao"/>
+	</bean>
+	<bean id="jxStudentLeaveCheckService" class="com.saint.teaching.services.impl.JxStudentLeaveCheckServiceImpl">
+		<property name="jxStudentLeaveCheckDao" ref="jxStudentLeaveCheckDao"/>
+	</bean>
+	
+	<!--  -->
+	<bean id="jxStudentsLeaveService" class="com.saint.teaching.services.impl.JxStudentsLeaveServiceImpl">
+		<property name="jxStudentsLeaveDao" ref="jxStudentsLeaveDao"/>
+	</bean>
+	<bean id="jxStudentsLeaveCheckService" class="com.saint.teaching.services.impl.JxStudentsLeaveCheckServiceImpl">
+		<property name="jxStudentsLeaveCheckDao" ref="jxStudentsLeaveCheckDao"/>
+	</bean>
+	
+	<bean id="jxLunxunService" class="com.saint.teaching.services.impl.JxLunxunServiceImpl">
+		<property name="jxLunxunDao" ref="jxLunxunDao"/>
+	</bean>
+	<bean id="jxClassStudentsService" class="com.saint.teaching.services.impl.JxClassStudentsServiceImpl">
+		<property name="JxClassStudentsDao" ref="JxClassStudentsDao"/>
+	</bean>
+	<bean id="jxEvaluateTeacherService" class="com.saint.teaching.services.impl.JxEvaluateTeacherServiceImpl">
+		<property name="JxEvaluateTeacherDao" ref="JxEvaluateTeacherDao"/>
+	</bean>
+	<bean id="jxDepartmentService" class="com.saint.teaching.services.impl.JxDepartmentServiceImpl">
+		<property name="JxDepartmentDao" ref="JxDepartmentDao"/>
+	</bean>
+	<bean id="jxTeachingManualsService" class="com.saint.teaching.services.impl.JxTeachingManualsServiceImpl">
+		<property name="jxTeachingManualsDao" ref="jxTeachingManualsDao"/>
+	</bean>
+	<bean id="jxSignErrorService" class="com.saint.teaching.services.impl.JxSignErrorServiceImpl">
+		<property name="jxSignErrorDao" ref="jxSignErrorDao"/>
+	</bean>
+	
+	<bean id="jxTeacherService" class="com.saint.teaching.services.impl.JxTeacherServiceImpl">
+		<property name="jxTeacherDao" ref="jxTeacherDao"/>
+	</bean>
+	
+	<bean id="jxBreakSchoolService" class="com.saint.teaching.services.impl.JxBreakSchoolServiceImpl">
+		<property name="jxBreakSchoolDao" ref="jxBreakSchoolDao"/>
+	</bean>
+	
+	<bean id="jxCoursePlanService" class="com.saint.teaching.services.impl.JxCoursePlanServiceImpl">
+		<property name="jxCoursePlanDao" ref="jxCoursePlanDao"/>
+	</bean>
+	
+	<bean id="jxCourseArrangeService" class="com.saint.teaching.services.impl.JxCourseArrangeServiceImpl">
+		<property name="jxCourseArrangeDao" ref="jxCourseArrangeDao"/>
+	</bean>
+	
+	<bean id="jxCoursezxTimeService" class="com.saint.teaching.services.impl.JxCoursezxTimeServiceImpl">
+		<property name="jxCoursezxTimeDao" ref="jxCoursezxTimeDao"/>
+	</bean>
+	
+	<bean id="jxStudentsInternshipProveService" class="com.saint.teaching.services.impl.JxStudentsInternshipProveServiceImpl">
+		<property name="jxStudentsInternshipProveDao" ref="jxStudentsInternshipProveDao"/>
+	</bean>
+	
+	<bean id="jxStudyRegistrationService" class="com.saint.teaching.services.impl.JxStudyRegistrationServiceImpl">
+	    <property name="jxStudyRegistrationDao" ref="jxStudyRegistrationDao"></property>
+	</bean>
+	
+	<!-- 问卷调查答案 -->
+	<bean id="jxQuestionnaireAnswerService" class="com.saint.teaching.services.impl.JxQuestionnaireAnswerServiceImpl">
+	    <property name="jxQuestionnaireAnswerDao" ref="jxQuestionnaireAnswerDao"></property>
+	</bean>
+	<!-- 问卷调查 -->
+	<bean id="jxQuestionnaireTestService" class="com.saint.teaching.services.impl.JxQuestionnaireTestServiceImpl">
+	    <property name="jxQuestionnaireTestDao" ref="jxQuestionnaireTestDao"></property>
+	</bean>
+	
+	<bean id="jxGraduateDbempService" class="com.saint.teaching.services.impl.JxGraduateDbempServiceImpl">
+	    <property name="jxGraduateDbempDao" ref="jxGraduateDbempDao"></property>
+	</bean>
+	
+	<bean id="jxGraduateDabianService" class="com.saint.teaching.services.impl.JxGraduateDabianServiceImpl">
+	    <property name="jxGraduateDabianDao" ref="jxGraduateDabianDao"></property>
+	</bean>
+	<bean id = "jxStudentsGradeService" class="com.saint.teaching.services.impl.JxStudentsGradeServiceImpl">
+	    <property name="jxStudentsGradeDao" ref="jxStudentsGradeDao"></property>
+	</bean>
+	<bean id="jxTeachingManusService" class="com.saint.teaching.services.impl.JxTeachingManusServiceImpl">
+	    <property name="jxTeachingManusDao" ref="jxTeachingManusDao"></property>
+	</bean>
+	
+	<bean id="jxTeachingDblService" class="com.saint.teaching.services.impl.JxTeachingDblServiceImpl">
+	    <property name="jxTeachingDblDao" ref="jxTeachingDblDao"></property>
+	</bean>
+	
+	<!-- *************************************以下是DAO类********************************** -->
+	
+	<bean id="jxClassDao" class="com.saint.teaching.dao.impl.JxClassDaoImpl">
+		<property name="sqlSessionTemplate"><ref bean="sqlSessionTemplate"/></property>
+	</bean>
+	<bean id="jxStencilDao" class="com.saint.teaching.dao.impl.JxStencilDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="jxStudentsDao" class="com.saint.teaching.dao.impl.JxStudentsDaoImpl">
+		<property name="sqlSessionTemplate"><ref bean="sqlSessionTemplate"/></property>
+	</bean>
+	
+	<bean id="jxSignInfoDao" class="com.saint.teaching.dao.impl.JxSignInfoDaoImpl">
+		<property name="sqlSessionTemplate"><ref bean="sqlSessionTemplate"/></property>
+	</bean>
+	<bean id="jxStudentsSignDao" class="com.saint.teaching.dao.impl.JxStudentsSignDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="jxStudentLeaveDao" class="com.saint.teaching.dao.impl.JxStudentLeaveDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="jxStudentLeaveCheckDao" class="com.saint.teaching.dao.impl.JxStudentLeaveCheckDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<!--  -->
+	<bean id="jxStudentsLeaveDao" class="com.saint.teaching.dao.impl.JxStudentsLeaveDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="jxStudentsLeaveCheckDao" class="com.saint.teaching.dao.impl.JxStudentsLeaveCheckDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="jxLunxunDao" class="com.saint.teaching.dao.impl.JxLunxunDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="JxClassStudentsDao" class="com.saint.teaching.dao.impl.JxClassStudentsDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="JxEvaluateTeacherDao" class="com.saint.teaching.dao.impl.JxEvaluateTeacherDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="JxDepartmentDao" class="com.saint.teaching.dao.impl.JxDepartmentDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="jxTeachingManualsDao" class="com.saint.teaching.dao.impl.JxTeachingManualsDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="jxSignErrorDao" class="com.saint.teaching.dao.impl.JxSignErrorDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="jxTeacherDao" class="com.saint.teaching.dao.impl.JxTeacherDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="jxBreakSchoolDao" class="com.saint.teaching.dao.impl.JxBreakSchoolDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="jxCoursePlanDao" class="com.saint.teaching.dao.impl.JxCoursePlanDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="jxCourseArrangeDao" class="com.saint.teaching.dao.impl.JxCourseArrangeDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="jxCoursezxTimeDao" class="com.saint.teaching.dao.impl.JxCoursezxTimeDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="jxStudentsInternshipProveDao" class="com.saint.teaching.dao.impl.JxStudentsInternshipProveDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="jxStudyRegistrationDao" class="com.saint.teaching.dao.impl.JxStudyRegistrationDaoImpl">
+        <property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+    </bean>
+    
+    <bean id="jxQuestionnaireAnswerDao" class="com.saint.teaching.dao.impl.JxQuestionnaireAnswerDaoImpl">
+        <property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+    </bean>
+    
+    <bean id="jxQuestionnaireTestDao" class="com.saint.teaching.dao.impl.JxQuestionnaireTestDaoImpl">
+        <property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+    </bean>
+    
+    <bean id="jxGraduateDbempDao" class="com.saint.teaching.dao.impl.JxGraduateDbempDaoImpl">
+	    <property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="jxGraduateDabianDao" class="com.saint.teaching.dao.impl.JxGraduateDabianDaoImpl">
+	    <property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="jxStudentsGradeDao" class="com.saint.teaching.dao.impl.JxStudentsGradeDaoImpl">
+	    <property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="jxTeachingManusDao" class="com.saint.teaching.dao.impl.JxTeachingManusDaoImpl">
+	    <property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="jxTeachingDblDao" class="com.saint.teaching.dao.impl.JxTeachingDblDaoImpl">
+	    <property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+</beans>
+

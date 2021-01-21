@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxClassMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxClassEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="GRADE" property="grade" jdbcType="VARCHAR" />
+    <result column="DEPTID" property="deptid" jdbcType="VARCHAR" />
+    <result column="DEPTNAME" property="deptname" jdbcType="VARCHAR" />
+    <result column="STARTTIME" property="starttime" jdbcType="DATE" />
+    <result column="ENDTIME" property="endtime" jdbcType="DATE" />
+    <result column="EMPNUMBER" property="empnumber" jdbcType="DECIMAL" />
+    <result column="TEACHERID" property="teacherid" jdbcType="VARCHAR" />
+    <result column="TEACHERNAME" property="teachername" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="CREATPERID" property="creatperid" jdbcType="VARCHAR" />
+    <result column="CREATPERNAME" property="creatpername" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="UPDATETIME" property="updatetime" jdbcType="DATE" />
+    
+    <result column="PROFESSTYPEID" property="professtypeid" jdbcType="VARCHAR" />
+    <result column="PROFESSTYPENAME" property="professtypename" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="BANJI" property="banji" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, NAME, GRADE, DEPTID, DEPTNAME, STARTTIME, ENDTIME, EMPNUMBER, TEACHERID, TEACHERNAME, TYPE,
+    DESCRIPTION, CREATPERID, CREATPERNAME, REMARK1, REMARK2, REMARK3, UPDATETIME, PROFESSTYPEID, PROFESSTYPENAME, BANJI
+  </sql>
+  <select id="selectListPageJxClassBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxClassSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_CLASS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxClassBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxClassSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_CLASS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxClassSequence" parameterType="com.saint.teaching.sqlWhere.JxClassSqlWhere" resultType="java.lang.Integer" >
+    SELECT JX_CLASS_INFO.NEXTVAL FROM DUAL
+  </select>
+  <select id="selectJxClassByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_CLASS
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxClassByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_CLASS
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxClassBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxClassSqlWhere" >
+    delete from JX_CLASS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxClass" parameterType="com.saint.teaching.bean.JxClassEntity" >
+    insert into JX_CLASS (XH, NAME, GRADE, 
+      DEPTID, DEPTNAME, STARTTIME, 
+      ENDTIME, EMPNUMBER, 
+      TEACHERID, TEACHERNAME, DESCRIPTION, 
+      CREATPERID, CREATPERNAME, REMARK1, 
+      REMARK2, REMARK3, UPDATETIME, PROFESSTYPEID, PROFESSTYPENAME,TYPE,BANJI
+      )
+    values (#{xh,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR}, 
+      #{deptid,jdbcType=VARCHAR}, #{deptname,jdbcType=VARCHAR}, to_date(#{starttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      to_date(#{endtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{empnumber,jdbcType=DECIMAL}, 
+      #{teacherid,jdbcType=VARCHAR}, #{teachername,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{creatperid,jdbcType=VARCHAR}, #{creatpername,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, 
+      #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, to_date(#{updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{professtypeid,jdbcType=VARCHAR}, #{professtypename,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{banji,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertJxClassSelective" parameterType="com.saint.teaching.bean.JxClassEntity" >
+    insert into JX_CLASS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="name != null and name != ''" >
+        NAME,
+      </if>
+      <if test="grade != null and grade != ''" >
+        GRADE,
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        DEPTID,
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        DEPTNAME,
+      </if>
+      <if test="starttime != null and starttime != ''" >
+        STARTTIME,
+      </if>
+      <if test="endtime != null and endtime != ''" >
+        ENDTIME,
+      </if>
+      <if test="empnumber != null and empnumber != ''" >
+        EMPNUMBER,
+      </if>
+      <if test="teacherid != null and teacherid != ''" >
+        TEACHERID,
+      </if>
+      <if test="teachername != null and teachername != ''" >
+        TEACHERNAME,
+      </if>
+      <if test="description != null and description != ''" >
+        DESCRIPTION,
+      </if>
+      <if test="creatperid != null and creatperid != ''" >
+        CREATPERID,
+      </if>
+      <if test="creatpername != null and creatpername != ''" >
+        CREATPERNAME,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="updatetime != null and updatetime != ''" >
+        UPDATETIME,
+      </if>
+      <if test="professtypeid != null and professtypeid != ''" >
+        PROFESSTYPEID,
+      </if>
+      <if test="professtypename != null and professtypename != ''" >
+        PROFESSTYPENAME,
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE,
+      </if>
+      <if test="banji != null and banji != ''" >
+        BANJI,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null and name != ''" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null and grade != ''" >
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null and starttime != ''" >
+        to_date(#{starttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="endtime != null and endtime != ''" >
+        to_date(#{endtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="empnumber != null and empnumber != ''" >
+        #{empnumber,jdbcType=DECIMAL},
+      </if>
+      <if test="teacherid != null and teacherid != ''" >
+        #{teacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="teachername != null and teachername != ''" >
+        #{teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null and description != ''" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="creatperid != null and creatperid != ''" >
+        #{creatperid,jdbcType=VARCHAR},
+      </if>
+      <if test="creatpername != null and creatpername != ''" >
+        #{creatpername,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null and updatetime != ''" >
+        to_date(#{updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="professtypeid != null and professtypeid != ''" >
+        #{professtypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="professtypename != null and professtypename != ''" >
+        #{professtypename,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null and type != ''" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="banji != null and banji != ''" >
+        #{banji,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxClassBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxClassSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_CLASS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxClassBySqlWhereSelective" parameterType="map" >
+    update JX_CLASS
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null and record.name != ''" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.grade != null and record.grade != ''" >
+        GRADE = #{record.grade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptid != null and record.deptid != ''" >
+        DEPTID = #{record.deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptname != null and record.deptname != ''" >
+        DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starttime != null and record.starttime != ''" >
+        STARTTIME = to_date(#{record.starttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.endtime != null and record.endtime != ''" >
+        ENDTIME = to_date(#{record.endtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.empnumber != null and record.empnumber != ''" >
+        EMPNUMBER = #{record.empnumber,jdbcType=DECIMAL},
+      </if>
+      <if test="record.teacherid != null and record.teacherid != ''" >
+        TEACHERID = #{record.teacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teachername != null and record.teachername != ''" >
+        TEACHERNAME = #{record.teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null and record.description != ''" >
+        DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatperid != null and record.creatperid != ''" >
+        CREATPERID = #{record.creatperid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatpername != null and record.creatpername != ''" >
+        CREATPERNAME = #{record.creatpername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null and record.updatetime != ''" >
+        UPDATETIME = to_date(#{record.updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.professtypeid != null and record.professtypeid != ''" >
+        PROFESSTYPEID = #{record.professtypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.professtypename != null and record.professtypename != ''" >
+        PROFESSTYPENAME = #{record.professtypename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null and record.type != ''" >
+        TYPE = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.banji != null and record.banji != ''" >
+        BANJI = #{record.banji,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxClassBySqlWhere" parameterType="map" >
+    update JX_CLASS
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      GRADE = #{record.grade,jdbcType=VARCHAR},
+      DEPTID = #{record.deptid,jdbcType=VARCHAR},
+      DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      STARTTIME = to_date(#{record.starttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ENDTIME = to_date(#{record.endtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      EMPNUMBER = #{record.empnumber,jdbcType=DECIMAL},
+      TEACHERID = #{record.teacherid,jdbcType=VARCHAR},
+      TEACHERNAME = #{record.teachername,jdbcType=VARCHAR},
+      DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      CREATPERID = #{record.creatperid,jdbcType=VARCHAR},
+      CREATPERNAME = #{record.creatpername,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      UPDATETIME = to_date(#{record.updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      PROFESSTYPEID = #{record.professtypeid,jdbcType=VARCHAR},
+      PROFESSTYPENAME = #{record.professtypename,jdbcType=VARCHAR},
+      TYPE = #{record.type,jdbcType=VARCHAR},
+      BANJI = #{record.banji,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxClassByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxClassEntity" >
+    update JX_CLASS
+    <set >
+      <if test="name != null and name != ''" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null and grade != ''" >
+        GRADE = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        DEPTID = #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null and starttime != ''" >
+        STARTTIME = to_date(#{starttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="endtime != null and endtime != ''" >
+        ENDTIME = to_date(#{endtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="empnumber != null and empnumber != ''" >
+        EMPNUMBER = #{empnumber,jdbcType=DECIMAL},
+      </if>
+      <if test="teacherid != null and teacherid != ''" >
+        TEACHERID = #{teacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="teachername != null and teachername != ''" >
+        TEACHERNAME = #{teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null and description != ''" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="creatperid != null and creatperid != ''" >
+        CREATPERID = #{creatperid,jdbcType=VARCHAR},
+      </if>
+      <if test="creatpername != null and creatpername != ''" >
+        CREATPERNAME = #{creatpername,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="professtypeid != null and professtypeid != ''" >
+        PROFESSTYPEID = #{professtypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="professtypename != null and professtypename != ''" >
+        PROFESSTYPENAME = #{professtypename,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null and updatetime != ''" >
+        UPDATETIME = to_date(#{updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="banji != null and banji != ''" >
+        BANJI = #{banji,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxClassByPrimaryKey" parameterType="com.saint.teaching.bean.JxClassEntity" >
+    update JX_CLASS
+    set NAME = #{name,jdbcType=VARCHAR},
+      GRADE = #{grade,jdbcType=VARCHAR},
+      DEPTID = #{deptid,jdbcType=VARCHAR},
+      DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      STARTTIME = to_date(#{starttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ENDTIME = to_date(#{endtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      EMPNUMBER = #{empnumber,jdbcType=DECIMAL},
+      TEACHERID = #{teacherid,jdbcType=VARCHAR},
+      TEACHERNAME = #{teachername,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      CREATPERID = #{creatperid,jdbcType=VARCHAR},
+      CREATPERNAME = #{creatpername,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      PROFESSTYPEID = #{professtypeid,jdbcType=VARCHAR},
+      PROFESSTYPENAME = #{professtypename,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      BANJI = #{banji,jdbcType=VARCHAR},
+      UPDATETIME = to_date(#{updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.systemManager.FrmZlExlogMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.systemManager.bean.FrmZlExlogEntity" >
+    <id column="IDEN" property="iden" jdbcType="VARCHAR" />
+    <result column="YHDH" property="yhdh" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="GLBM" property="glbm" jdbcType="VARCHAR" />
+    <result column="CZNR" property="cznr" jdbcType="VARCHAR" />
+    <result column="LOGTIME" property="logtime" jdbcType="DATE" />
+    <result column="LOGMESS" property="logmess" jdbcType="VARCHAR" />
+    <result column="IP" property="ip" jdbcType="VARCHAR" />
+    <result column="BZ" property="bz" jdbcType="VARCHAR" />
+    <result column="XM" property="xm" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    IDEN, YHDH, CITY, GLBM, CZNR, LOGTIME, LOGMESS, IP, BZ, XM
+  </sql>
+  <select id="selectListPageFrmZlExlogBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.systemManager.sqlWhere.FrmZlExlogSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from FRM_EXLOG
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListFrmZlExlogBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.systemManager.sqlWhere.FrmZlExlogSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from FRM_EXLOG
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectFrmZlExlogByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from FRM_EXLOG
+    where IDEN = #{iden,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteFrmZlExlogByPrimaryKey" parameterType="java.lang.String" >
+    delete from FRM_EXLOG
+    where IDEN = #{iden,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteFrmZlExlogBySqlWhere" parameterType="com.saint.systemManager.sqlWhere.FrmZlExlogSqlWhere" >
+    delete from FRM_EXLOG
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertFrmZlExlog" parameterType="com.saint.systemManager.bean.FrmZlExlogEntity" >
+  
+  <selectKey resultType="String" keyProperty="iden" order="BEFORE">
+			select ZL_LOG_ID.nextVal from dual
+		</selectKey>
+  
+    insert into FRM_EXLOG (IDEN, YHDH, CITY, 
+      GLBM, CZNR, LOGTIME, 
+      LOGMESS, IP, BZ, XM
+      )
+    values (#{iden,jdbcType=VARCHAR}, #{yhdh,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{glbm,jdbcType=VARCHAR}, #{cznr,jdbcType=VARCHAR}, to_date(#{logtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{logmess,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertFrmZlExlogSelective" parameterType="com.saint.systemManager.bean.FrmZlExlogEntity" >
+  <selectKey resultType="String" keyProperty="iden" order="BEFORE">
+			select SEQ_EXCEPTION_IDEN.nextVal from dual
+		</selectKey>
+    insert into FRM_EXLOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="iden != null" >
+        IDEN,
+      </if>
+      <if test="yhdh != null" >
+        YHDH,
+      </if>
+      <if test="city != null" >
+        CITY,
+      </if>
+      <if test="glbm != null" >
+        GLBM,
+      </if>
+      <if test="cznr != null" >
+        CZNR,
+      </if>
+      <if test="logtime != null" >
+        LOGTIME,
+      </if>
+      <if test="logmess != null" >
+        LOGMESS,
+      </if>
+      <if test="ip != null" >
+        IP,
+      </if>
+      <if test="bz != null" >
+        BZ,
+      </if>
+      <if test="xm != null" >
+        XM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="iden != null" >
+        #{iden,jdbcType=VARCHAR},
+      </if>
+      <if test="yhdh != null" >
+        #{yhdh,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="glbm != null" >
+        #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="cznr != null" >
+        #{cznr,jdbcType=VARCHAR},
+      </if>
+      <if test="logtime != null" >
+        to_date(#{logtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="logmess != null" >
+        #{logmess,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        #{xm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countFrmZlExlogBySqlWhere" parameterType="com.saint.systemManager.sqlWhere.FrmZlExlogSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from FRM_EXLOG
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateFrmZlExlogBySqlWhereSelective" parameterType="map" >
+    update FRM_EXLOG
+    <set >
+      <if test="record.iden != null" >
+        IDEN = #{record.iden,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yhdh != null" >
+        YHDH = #{record.yhdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        CITY = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glbm != null" >
+        GLBM = #{record.glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cznr != null" >
+        CZNR = #{record.cznr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logtime != null" >
+        LOGTIME = to_date(#{record.logtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.logmess != null" >
+        LOGMESS = #{record.logmess,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ip != null" >
+        IP = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bz != null" >
+        BZ = #{record.bz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xm != null" >
+        XM = #{record.xm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateFrmZlExlogBySqlWhere" parameterType="map" >
+    update FRM_EXLOG
+    set IDEN = #{record.iden,jdbcType=VARCHAR},
+      YHDH = #{record.yhdh,jdbcType=VARCHAR},
+      CITY = #{record.city,jdbcType=VARCHAR},
+      GLBM = #{record.glbm,jdbcType=VARCHAR},
+      CZNR = #{record.cznr,jdbcType=VARCHAR},
+      LOGTIME = to_date(#{record.logtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      LOGMESS = #{record.logmess,jdbcType=VARCHAR},
+      IP = #{record.ip,jdbcType=VARCHAR},
+      BZ = #{record.bz,jdbcType=VARCHAR},
+      XM = #{record.xm,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateFrmZlExlogByPrimaryKeySelective" parameterType="com.saint.systemManager.bean.FrmZlExlogEntity" >
+    update FRM_EXLOG
+    <set >
+      <if test="yhdh != null" >
+        YHDH = #{yhdh,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="glbm != null" >
+        GLBM = #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="cznr != null" >
+        CZNR = #{cznr,jdbcType=VARCHAR},
+      </if>
+      <if test="logtime != null" >
+        LOGTIME = to_date(#{logtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="logmess != null" >
+        LOGMESS = #{logmess,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        IP = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        XM = #{xm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where IDEN = #{iden,jdbcType=VARCHAR}
+  </update>
+  <update id="updateFrmZlExlogByPrimaryKey" parameterType="com.saint.systemManager.bean.FrmZlExlogEntity" >
+    update FRM_EXLOG
+    set YHDH = #{yhdh,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      GLBM = #{glbm,jdbcType=VARCHAR},
+      CZNR = #{cznr,jdbcType=VARCHAR},
+      LOGTIME = to_date(#{logtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      LOGMESS = #{logmess,jdbcType=VARCHAR},
+      IP = #{ip,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      XM = #{xm,jdbcType=VARCHAR}
+    where IDEN = #{iden,jdbcType=VARCHAR}
+  </update>
+</mapper>

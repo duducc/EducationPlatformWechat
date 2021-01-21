@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.systemManager.FrmSoftinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.systemManager.bean.FrmSoftinfoEntity" >
+    <id column="SOFTDM" property="softdm" jdbcType="VARCHAR" />
+    <result column="SOFTNAME" property="softname" jdbcType="VARCHAR" />
+    <result column="SOFTVER" property="softver" jdbcType="VARCHAR" />
+    <result column="SOFTCONTEXT" property="softcontext" jdbcType="VARCHAR" />
+    <result column="SOFTGROUP" property="softgroup" jdbcType="VARCHAR" />
+    <result column="SOFTXDR" property="softxdr" jdbcType="VARCHAR" />
+    <result column="SOFTXDRQ" property="softxdrq" jdbcType="DATE" />
+    <result column="SOFTAZSJ" property="softazsj" jdbcType="DATE" />
+    <result column="BZ" property="bz" jdbcType="VARCHAR" />
+    <result column="GXSJ" property="gxsj" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SOFTDM, SOFTNAME, SOFTVER, SOFTCONTEXT, SOFTGROUP, SOFTXDR, SOFTXDRQ, SOFTAZSJ, BZ, 
+    GXSJ
+  </sql>
+  <select id="selectListPageFrmSoftinfoBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.systemManager.sqlWhere.FrmSoftinfoSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from FRM_SOFTINFO
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListFrmSoftinfoBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.systemManager.sqlWhere.FrmSoftinfoSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from FRM_SOFTINFO
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectFrmSoftinfoByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from FRM_SOFTINFO
+    where SOFTDM = #{softdm,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteFrmSoftinfoByPrimaryKey" parameterType="java.lang.String" >
+    delete from FRM_SOFTINFO
+    where SOFTDM = #{softdm,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteFrmSoftinfoBySqlWhere" parameterType="com.saint.systemManager.sqlWhere.FrmSoftinfoSqlWhere" >
+    delete from FRM_SOFTINFO
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertFrmSoftinfo" parameterType="com.saint.systemManager.bean.FrmSoftinfoEntity" >
+    insert into FRM_SOFTINFO (SOFTDM, SOFTNAME, SOFTVER, 
+      SOFTCONTEXT, SOFTGROUP, SOFTXDR, 
+      SOFTXDRQ, SOFTAZSJ, 
+      BZ, GXSJ)
+    values (#{softdm,jdbcType=VARCHAR}, #{softname,jdbcType=VARCHAR}, #{softver,jdbcType=VARCHAR}, 
+      #{softcontext,jdbcType=VARCHAR}, #{softgroup,jdbcType=VARCHAR}, #{softxdr,jdbcType=VARCHAR}, 
+      to_date(#{softxdrq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), to_date(#{softazsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{bz,jdbcType=VARCHAR}, to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'))
+  </insert>
+  <insert id="insertFrmSoftinfoSelective" parameterType="com.saint.systemManager.bean.FrmSoftinfoEntity" >
+    insert into FRM_SOFTINFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="softdm != null" >
+        SOFTDM,
+      </if>
+      <if test="softname != null" >
+        SOFTNAME,
+      </if>
+      <if test="softver != null" >
+        SOFTVER,
+      </if>
+      <if test="softcontext != null" >
+        SOFTCONTEXT,
+      </if>
+      <if test="softgroup != null" >
+        SOFTGROUP,
+      </if>
+      <if test="softxdr != null" >
+        SOFTXDR,
+      </if>
+      <if test="softxdrq != null" >
+        SOFTXDRQ,
+      </if>
+      <if test="softazsj != null" >
+        SOFTAZSJ,
+      </if>
+      <if test="bz != null" >
+        BZ,
+      </if>
+      <if test="gxsj != null" >
+        GXSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="softdm != null" >
+        #{softdm,jdbcType=VARCHAR},
+      </if>
+      <if test="softname != null" >
+        #{softname,jdbcType=VARCHAR},
+      </if>
+      <if test="softver != null" >
+        #{softver,jdbcType=VARCHAR},
+      </if>
+      <if test="softcontext != null" >
+        #{softcontext,jdbcType=VARCHAR},
+      </if>
+      <if test="softgroup != null" >
+        #{softgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="softxdr != null" >
+        #{softxdr,jdbcType=VARCHAR},
+      </if>
+      <if test="softxdrq != null" >
+        to_date(#{softxdrq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="softazsj != null" >
+        to_date(#{softazsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null" >
+        to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </trim>
+  </insert>
+  <select id="countFrmSoftinfoBySqlWhere" parameterType="com.saint.systemManager.sqlWhere.FrmSoftinfoSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from FRM_SOFTINFO
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateFrmSoftinfoBySqlWhereSelective" parameterType="map" >
+    update FRM_SOFTINFO
+    <set >
+      <if test="record.softdm != null" >
+        SOFTDM = #{record.softdm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.softname != null" >
+        SOFTNAME = #{record.softname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.softver != null" >
+        SOFTVER = #{record.softver,jdbcType=VARCHAR},
+      </if>
+      <if test="record.softcontext != null" >
+        SOFTCONTEXT = #{record.softcontext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.softgroup != null" >
+        SOFTGROUP = #{record.softgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.softxdr != null" >
+        SOFTXDR = #{record.softxdr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.softxdrq != null" >
+        SOFTXDRQ = to_date(#{record.softxdrq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.softazsj != null" >
+        SOFTAZSJ = to_date(#{record.softazsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.bz != null" >
+        BZ = #{record.bz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxsj != null" >
+        GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateFrmSoftinfoBySqlWhere" parameterType="map" >
+    update FRM_SOFTINFO
+    set SOFTDM = #{record.softdm,jdbcType=VARCHAR},
+      SOFTNAME = #{record.softname,jdbcType=VARCHAR},
+      SOFTVER = #{record.softver,jdbcType=VARCHAR},
+      SOFTCONTEXT = #{record.softcontext,jdbcType=VARCHAR},
+      SOFTGROUP = #{record.softgroup,jdbcType=VARCHAR},
+      SOFTXDR = #{record.softxdr,jdbcType=VARCHAR},
+      SOFTXDRQ = to_date(#{record.softxdrq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SOFTAZSJ = to_date(#{record.softazsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      BZ = #{record.bz,jdbcType=VARCHAR},
+      GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateFrmSoftinfoByPrimaryKeySelective" parameterType="com.saint.systemManager.bean.FrmSoftinfoEntity" >
+    update FRM_SOFTINFO
+    <set >
+      <if test="softname != null" >
+        SOFTNAME = #{softname,jdbcType=VARCHAR},
+      </if>
+      <if test="softver != null" >
+        SOFTVER = #{softver,jdbcType=VARCHAR},
+      </if>
+      <if test="softcontext != null" >
+        SOFTCONTEXT = #{softcontext,jdbcType=VARCHAR},
+      </if>
+      <if test="softgroup != null" >
+        SOFTGROUP = #{softgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="softxdr != null" >
+        SOFTXDR = #{softxdr,jdbcType=VARCHAR},
+      </if>
+      <if test="softxdrq != null" >
+        SOFTXDRQ = to_date(#{softxdrq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="softazsj != null" >
+        SOFTAZSJ = to_date(#{softazsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="bz != null" >
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null" >
+        GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    where SOFTDM = #{softdm,jdbcType=VARCHAR}
+  </update>
+  <update id="updateFrmSoftinfoByPrimaryKey" parameterType="com.saint.systemManager.bean.FrmSoftinfoEntity" >
+    update FRM_SOFTINFO
+    set SOFTNAME = #{softname,jdbcType=VARCHAR},
+      SOFTVER = #{softver,jdbcType=VARCHAR},
+      SOFTCONTEXT = #{softcontext,jdbcType=VARCHAR},
+      SOFTGROUP = #{softgroup,jdbcType=VARCHAR},
+      SOFTXDR = #{softxdr,jdbcType=VARCHAR},
+      SOFTXDRQ = to_date(#{softxdrq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SOFTAZSJ = to_date(#{softazsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      BZ = #{bz,jdbcType=VARCHAR},
+      GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where SOFTDM = #{softdm,jdbcType=VARCHAR}
+  </update>
+</mapper>

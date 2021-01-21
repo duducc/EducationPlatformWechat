@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.wechat.WechatClientinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.wechat.manager.bean.WechatClientinfoEntity" >
+    <id column="CLIENTSXH" property="clientsxh" jdbcType="VARCHAR" />
+    <result column="CLIENTNAME" property="clientname" jdbcType="VARCHAR" />
+    <result column="CLIENTID" property="clientid" jdbcType="VARCHAR" />
+    <result column="APPID" property="appid" jdbcType="VARCHAR" />
+    <result column="APPSECRET" property="appsecret" jdbcType="VARCHAR" />
+    <result column="TOKEN" property="token" jdbcType="VARCHAR" />
+    <result column="ENCODINGAESKEY" property="encodingaeskey" jdbcType="VARCHAR" />
+    <result column="ISAESKEY" property="isaeskey" jdbcType="VARCHAR" />
+    <result column="WXTYPE" property="wxtype" jdbcType="VARCHAR" />
+    <result column="RZINFO" property="rzinfo" jdbcType="VARCHAR" />
+    <result column="XZQH" property="xzqh" jdbcType="VARCHAR" />
+    <result column="SYJB" property="syjb" jdbcType="VARCHAR" />
+    <result column="GXSJ" property="gxsj" jdbcType="DATE" />
+    <result column="APIURL" property="apiurl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CLIENTSXH, CLIENTNAME, CLIENTID, APPID, APPSECRET, TOKEN, ENCODINGAESKEY, ISAESKEY, 
+    WXTYPE, RZINFO, XZQH, SYJB, GXSJ,APIURL
+  </sql>
+  <select id="selectListPageWechatClientinfoBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.WechatClientinfoSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from WECHAT_CLIENTINFO
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListWechatClientinfoBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.WechatClientinfoSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from WECHAT_CLIENTINFO
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectWechatClientinfoByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from WECHAT_CLIENTINFO
+    where CLIENTSXH = #{clientsxh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteWechatClientinfoByPrimaryKey" parameterType="java.lang.String" >
+    delete from WECHAT_CLIENTINFO
+    where CLIENTSXH = #{clientsxh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteWechatClientinfoBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.WechatClientinfoSqlWhere" >
+    delete from WECHAT_CLIENTINFO
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertWechatClientinfo" parameterType="com.saint.wechat.manager.bean.WechatClientinfoEntity" >
+    insert into WECHAT_CLIENTINFO (CLIENTSXH, CLIENTNAME, CLIENTID, 
+      APPID, APPSECRET, TOKEN, 
+      ENCODINGAESKEY, ISAESKEY, WXTYPE, 
+      RZINFO, XZQH, SYJB, 
+      GXSJ,APIURL)
+    values (#{clientsxh,jdbcType=VARCHAR}, #{clientname,jdbcType=VARCHAR}, #{clientid,jdbcType=VARCHAR}, 
+      #{appid,jdbcType=VARCHAR}, #{appsecret,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, 
+      #{encodingaeskey,jdbcType=VARCHAR}, #{isaeskey,jdbcType=VARCHAR}, #{wxtype,jdbcType=VARCHAR}, 
+      #{rzinfo,jdbcType=VARCHAR}, #{xzqh,jdbcType=VARCHAR}, #{syjb,jdbcType=VARCHAR}, 
+      to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{apiurl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertWechatClientinfoSelective" parameterType="com.saint.wechat.manager.bean.WechatClientinfoEntity" >
+    insert into WECHAT_CLIENTINFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clientsxh != null and clientsxh != ''" >
+        CLIENTSXH,
+      </if>
+      <if test="clientname != null and clientname != ''" >
+        CLIENTNAME,
+      </if>
+      <if test="clientid != null and clientid != ''" >
+        CLIENTID,
+      </if>
+      <if test="appid != null and appid != ''" >
+        APPID,
+      </if>
+      <if test="appsecret != null and appsecret != ''" >
+        APPSECRET,
+      </if>
+      <if test="token != null and token != ''" >
+        TOKEN,
+      </if>
+      <if test="encodingaeskey != null and encodingaeskey != ''" >
+        ENCODINGAESKEY,
+      </if>
+      <if test="isaeskey != null and isaeskey != ''" >
+        ISAESKEY,
+      </if>
+      <if test="wxtype != null and wxtype != ''" >
+        WXTYPE,
+      </if>
+      <if test="rzinfo != null and rzinfo != ''" >
+        RZINFO,
+      </if>
+      <if test="xzqh != null and xzqh != ''" >
+        XZQH,
+      </if>
+      <if test="syjb != null and syjb != ''" >
+        SYJB,
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ,
+      </if>
+      <if test="apiurl != null and apiurl != ''" >
+        APIURL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clientsxh != null and clientsxh != ''" >
+        #{clientsxh,jdbcType=VARCHAR},
+      </if>
+      <if test="clientname != null and clientname != ''" >
+        #{clientname,jdbcType=VARCHAR},
+      </if>
+      <if test="clientid != null and clientid != ''" >
+        #{clientid,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null and appid != ''" >
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecret != null and appsecret != ''" >
+        #{appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null and token != ''" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="encodingaeskey != null and encodingaeskey != ''" >
+        #{encodingaeskey,jdbcType=VARCHAR},
+      </if>
+      <if test="isaeskey != null and isaeskey != ''" >
+        #{isaeskey,jdbcType=VARCHAR},
+      </if>
+      <if test="wxtype != null and wxtype != ''" >
+        #{wxtype,jdbcType=VARCHAR},
+      </if>
+      <if test="rzinfo != null and rzinfo != ''" >
+        #{rzinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="xzqh != null and xzqh != ''" >
+        #{xzqh,jdbcType=VARCHAR},
+      </if>
+      <if test="syjb != null and syjb != ''" >
+        #{syjb,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="apiurl != null and apiurl != ''" >
+        #{apiurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countWechatClientinfoBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.WechatClientinfoSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from WECHAT_CLIENTINFO
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateWechatClientinfoBySqlWhereSelective" parameterType="map" >
+    update WECHAT_CLIENTINFO
+    <set >
+      <if test="record.clientsxh != null and record.clientsxh != ''" >
+        CLIENTSXH = #{record.clientsxh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientname != null and record.clientname != ''" >
+        CLIENTNAME = #{record.clientname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientid != null and record.clientid != ''" >
+        CLIENTID = #{record.clientid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appid != null and record.appid != ''" >
+        APPID = #{record.appid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appsecret != null and record.appsecret != ''" >
+        APPSECRET = #{record.appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="record.token != null and record.token != ''" >
+        TOKEN = #{record.token,jdbcType=VARCHAR},
+      </if>
+      <if test="record.encodingaeskey != null and record.encodingaeskey != ''" >
+        ENCODINGAESKEY = #{record.encodingaeskey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isaeskey != null and record.isaeskey != ''" >
+        ISAESKEY = #{record.isaeskey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxtype != null and record.wxtype != ''" >
+        WXTYPE = #{record.wxtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rzinfo != null and record.rzinfo != ''" >
+        RZINFO = #{record.rzinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xzqh != null and record.xzqh != ''" >
+        XZQH = #{record.xzqh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.syjb != null and record.syjb != ''" >
+        SYJB = #{record.syjb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxsj != null and record.gxsj != ''" >
+        GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      
+      <if test="record.apiurl != null and record.apiurl != ''" >
+        APIURL = #{record.apiurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateWechatClientinfoBySqlWhere" parameterType="map" >
+    update WECHAT_CLIENTINFO
+    set CLIENTSXH = #{record.clientsxh,jdbcType=VARCHAR},
+      CLIENTNAME = #{record.clientname,jdbcType=VARCHAR},
+      CLIENTID = #{record.clientid,jdbcType=VARCHAR},
+      APPID = #{record.appid,jdbcType=VARCHAR},
+      APPSECRET = #{record.appsecret,jdbcType=VARCHAR},
+      TOKEN = #{record.token,jdbcType=VARCHAR},
+      ENCODINGAESKEY = #{record.encodingaeskey,jdbcType=VARCHAR},
+      ISAESKEY = #{record.isaeskey,jdbcType=VARCHAR},
+      WXTYPE = #{record.wxtype,jdbcType=VARCHAR},
+      RZINFO = #{record.rzinfo,jdbcType=VARCHAR},
+      XZQH = #{record.xzqh,jdbcType=VARCHAR},
+      SYJB = #{record.syjb,jdbcType=VARCHAR},
+      GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      APIURL = #{record.apiurl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateWechatClientinfoByPrimaryKeySelective" parameterType="com.saint.wechat.manager.bean.WechatClientinfoEntity" >
+    update WECHAT_CLIENTINFO
+    <set >
+      <if test="clientname != null and clientname != ''" >
+        CLIENTNAME = #{clientname,jdbcType=VARCHAR},
+      </if>
+      <if test="clientid != null and clientid != ''" >
+        CLIENTID = #{clientid,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null and appid != ''" >
+        APPID = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="appsecret != null and appsecret != ''" >
+        APPSECRET = #{appsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null and token != ''" >
+        TOKEN = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="encodingaeskey != null and encodingaeskey != ''" >
+        ENCODINGAESKEY = #{encodingaeskey,jdbcType=VARCHAR},
+      </if>
+      <if test="isaeskey != null and isaeskey != ''" >
+        ISAESKEY = #{isaeskey,jdbcType=VARCHAR},
+      </if>
+      <if test="wxtype != null and wxtype != ''" >
+        WXTYPE = #{wxtype,jdbcType=VARCHAR},
+      </if>
+      <if test="rzinfo != null and rzinfo != ''" >
+        RZINFO = #{rzinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="xzqh != null and xzqh != ''" >
+        XZQH = #{xzqh,jdbcType=VARCHAR},
+      </if>
+      <if test="syjb != null and syjb != ''" >
+        SYJB = #{syjb,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      
+      <if test="apiurl != null and apiurl != ''" >
+        APIURL = #{apiurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CLIENTSXH = #{clientsxh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateWechatClientinfoByPrimaryKey" parameterType="com.saint.wechat.manager.bean.WechatClientinfoEntity" >
+    update WECHAT_CLIENTINFO
+    set CLIENTNAME = #{clientname,jdbcType=VARCHAR},
+      CLIENTID = #{clientid,jdbcType=VARCHAR},
+      APPID = #{appid,jdbcType=VARCHAR},
+      APPSECRET = #{appsecret,jdbcType=VARCHAR},
+      TOKEN = #{token,jdbcType=VARCHAR},
+      ENCODINGAESKEY = #{encodingaeskey,jdbcType=VARCHAR},
+      ISAESKEY = #{isaeskey,jdbcType=VARCHAR},
+      WXTYPE = #{wxtype,jdbcType=VARCHAR},
+      RZINFO = #{rzinfo,jdbcType=VARCHAR},
+      XZQH = #{xzqh,jdbcType=VARCHAR},
+      SYJB = #{syjb,jdbcType=VARCHAR},
+      GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      APIURL = #{apiurl,jdbcType=VARCHAR}
+    where CLIENTSXH = #{clientsxh,jdbcType=VARCHAR}
+  </update>
+</mapper>

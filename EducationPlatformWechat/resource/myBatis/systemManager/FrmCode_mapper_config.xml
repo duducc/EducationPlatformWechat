@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="myBatis.systemManager.FrmCodeMapper">
+  <resultMap id="BaseResultMap" type="com.saint.systemManager.bean.FrmCodeEntity">
+    <id column="XTLB" jdbcType="CHAR" property="xtlb" />
+    <id column="DMLB" jdbcType="VARCHAR" property="dmlb" />
+    <id column="DMZ" jdbcType="VARCHAR" property="dmz" />
+    <result column="DMSM1" jdbcType="VARCHAR" property="dmsm1" />
+    <result column="DMSM2" jdbcType="VARCHAR" property="dmsm2" />
+    <result column="DMSM3" jdbcType="VARCHAR" property="dmsm3" />
+    <result column="DMSM4" jdbcType="VARCHAR" property="dmsm4" />
+    <result column="DMSX" jdbcType="CHAR" property="dmsx" />
+    <result column="SXH" jdbcType="DECIMAL" property="sxh" />
+    <result column="YWDX" jdbcType="VARCHAR" property="ywdx" />
+    <result column="ZT" jdbcType="CHAR" property="zt" />
+    <result column="DMJC" jdbcType="VARCHAR" property="dmjc" />
+    <result column="DMMC" jdbcType="VARCHAR" property="dmmc" />
+  </resultMap>
+  <sql id="Sql_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    XTLB, DMLB, DMZ, DMSM1, DMSM2, DMSM3, DMSM4, DMSX, SXH, YWDX, ZT, DMJC, DMMC
+  </sql>
+  <select id="selectListPageFrmCodeBySqlWhere" parameterType="com.saint.systemManager.sqlWhere.FrmCodeSqlWhere" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from FRM_CODE
+    <if test="_parameter != null">
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListFrmCodeBySqlWhere" parameterType="com.saint.systemManager.sqlWhere.FrmCodeSqlWhere" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from FRM_CODE
+    <if test="_parameter != null">
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectFrmCodeByPrimaryKey" parameterType="com.saint.systemManager.bean.FrmCodeKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from FRM_CODE
+    where XTLB = #{xtlb,jdbcType=CHAR}
+      and DMLB = #{dmlb,jdbcType=VARCHAR}
+      and DMZ = #{dmz,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteFrmCodeByPrimaryKey" parameterType="com.saint.systemManager.bean.FrmCodeKey">
+    delete from FRM_CODE
+    where XTLB = #{xtlb,jdbcType=CHAR}
+      and DMLB = #{dmlb,jdbcType=VARCHAR}
+      and DMZ = #{dmz,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteFrmCodeBySqlWhere" parameterType="com.saint.systemManager.sqlWhere.FrmCodeSqlWhere">
+    delete from FRM_CODE
+    <if test="_parameter != null">
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertFrmCode" parameterType="com.saint.systemManager.bean.FrmCodeEntity">
+    insert into FRM_CODE (XTLB, DMLB, DMZ, 
+      DMSM1, DMSM2, DMSM3, 
+      DMSM4, DMSX, SXH, YWDX, 
+      ZT, DMJC, DMMC)
+    values (#{xtlb,jdbcType=CHAR}, #{dmlb,jdbcType=VARCHAR}, #{dmz,jdbcType=VARCHAR}, 
+      #{dmsm1,jdbcType=VARCHAR}, #{dmsm2,jdbcType=VARCHAR}, #{dmsm3,jdbcType=VARCHAR}, 
+      #{dmsm4,jdbcType=VARCHAR}, #{dmsx,jdbcType=CHAR}, #{sxh,jdbcType=DECIMAL}, #{ywdx,jdbcType=VARCHAR}, 
+      #{zt,jdbcType=CHAR}, #{dmjc,jdbcType=VARCHAR}, #{dmmc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertFrmCodeSelective" parameterType="com.saint.systemManager.bean.FrmCodeEntity">
+    insert into FRM_CODE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="xtlb != null">
+        XTLB,
+      </if>
+      <if test="dmlb != null">
+        DMLB,
+      </if>
+      <if test="dmz != null">
+        DMZ,
+      </if>
+      <if test="dmsm1 != null">
+        DMSM1,
+      </if>
+      <if test="dmsm2 != null">
+        DMSM2,
+      </if>
+      <if test="dmsm3 != null">
+        DMSM3,
+      </if>
+      <if test="dmsm4 != null">
+        DMSM4,
+      </if>
+      <if test="dmsx != null">
+        DMSX,
+      </if>
+      <if test="sxh != null">
+        SXH,
+      </if>
+      <if test="ywdx != null">
+        YWDX,
+      </if>
+      <if test="zt != null">
+        ZT,
+      </if>
+      <if test="dmjc != null">
+        DMJC,
+      </if>
+      <if test="dmmc != null">
+        DMMC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="xtlb != null">
+        #{xtlb,jdbcType=CHAR},
+      </if>
+      <if test="dmlb != null">
+        #{dmlb,jdbcType=VARCHAR},
+      </if>
+      <if test="dmz != null">
+        #{dmz,jdbcType=VARCHAR},
+      </if>
+      <if test="dmsm1 != null">
+        #{dmsm1,jdbcType=VARCHAR},
+      </if>
+      <if test="dmsm2 != null">
+        #{dmsm2,jdbcType=VARCHAR},
+      </if>
+      <if test="dmsm3 != null">
+        #{dmsm3,jdbcType=VARCHAR},
+      </if>
+      <if test="dmsm4 != null">
+        #{dmsm4,jdbcType=VARCHAR},
+      </if>
+      <if test="dmsx != null">
+        #{dmsx,jdbcType=CHAR},
+      </if>
+      <if test="sxh != null">
+        #{sxh,jdbcType=DECIMAL},
+      </if>
+      <if test="ywdx != null">
+        #{ywdx,jdbcType=VARCHAR},
+      </if>
+      <if test="zt != null">
+        #{zt,jdbcType=CHAR},
+      </if>
+      <if test="dmjc != null">
+        #{dmjc,jdbcType=VARCHAR},
+      </if>
+      <if test="dmmc != null">
+        #{dmmc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countFrmCodeBySqlWhere" parameterType="com.saint.systemManager.sqlWhere.FrmCodeSqlWhere" resultType="java.lang.Integer">
+    select count(*) from FRM_CODE
+    <if test="_parameter != null">
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateFrmCodeBySqlWhereSelective" parameterType="map">
+    update FRM_CODE
+    <set>
+      <if test="record.xtlb != null">
+        XTLB = #{record.xtlb,jdbcType=CHAR},
+      </if>
+      <if test="record.dmlb != null">
+        DMLB = #{record.dmlb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dmz != null">
+        DMZ = #{record.dmz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dmsm1 != null">
+        DMSM1 = #{record.dmsm1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dmsm2 != null">
+        DMSM2 = #{record.dmsm2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dmsm3 != null">
+        DMSM3 = #{record.dmsm3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dmsm4 != null">
+        DMSM4 = #{record.dmsm4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dmsx != null">
+        DMSX = #{record.dmsx,jdbcType=CHAR},
+      </if>
+      <if test="record.sxh != null">
+        SXH = #{record.sxh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.ywdx != null">
+        YWDX = #{record.ywdx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zt != null">
+        ZT = #{record.zt,jdbcType=CHAR},
+      </if>
+      <if test="record.dmjc != null">
+        DMJC = #{record.dmjc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dmmc != null">
+        DMMC = #{record.dmmc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateFrmCodeBySqlWhere" parameterType="map">
+    update FRM_CODE
+    set XTLB = #{record.xtlb,jdbcType=CHAR},
+      DMLB = #{record.dmlb,jdbcType=VARCHAR},
+      DMZ = #{record.dmz,jdbcType=VARCHAR},
+      DMSM1 = #{record.dmsm1,jdbcType=VARCHAR},
+      DMSM2 = #{record.dmsm2,jdbcType=VARCHAR},
+      DMSM3 = #{record.dmsm3,jdbcType=VARCHAR},
+      DMSM4 = #{record.dmsm4,jdbcType=VARCHAR},
+      DMSX = #{record.dmsx,jdbcType=CHAR},
+      SXH = #{record.sxh,jdbcType=DECIMAL},
+      YWDX = #{record.ywdx,jdbcType=VARCHAR},
+      ZT = #{record.zt,jdbcType=CHAR},
+      DMJC = #{record.dmjc,jdbcType=VARCHAR},
+      DMMC = #{record.dmmc,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateFrmCodeByPrimaryKeySelective" parameterType="com.saint.systemManager.bean.FrmCodeEntity">
+    update FRM_CODE
+    <set>
+      <if test="dmsm1 != null">
+        DMSM1 = #{dmsm1,jdbcType=VARCHAR},
+      </if>
+      <if test="dmsm2 != null">
+        DMSM2 = #{dmsm2,jdbcType=VARCHAR},
+      </if>
+      <if test="dmsm3 != null">
+        DMSM3 = #{dmsm3,jdbcType=VARCHAR},
+      </if>
+      <if test="dmsm4 != null">
+        DMSM4 = #{dmsm4,jdbcType=VARCHAR},
+      </if>
+      <if test="dmsx != null">
+        DMSX = #{dmsx,jdbcType=CHAR},
+      </if>
+      <if test="sxh != null">
+        SXH = #{sxh,jdbcType=DECIMAL},
+      </if>
+      <if test="ywdx != null">
+        YWDX = #{ywdx,jdbcType=VARCHAR},
+      </if>
+      <if test="zt != null">
+        ZT = #{zt,jdbcType=CHAR},
+      </if>
+      <if test="dmjc != null">
+        DMJC = #{dmjc,jdbcType=VARCHAR},
+      </if>
+      <if test="dmmc != null">
+        DMMC = #{dmmc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XTLB = #{xtlb,jdbcType=CHAR}
+      and DMLB = #{dmlb,jdbcType=VARCHAR}
+      and DMZ = #{dmz,jdbcType=VARCHAR}
+  </update>
+  <update id="updateFrmCodeByPrimaryKey" parameterType="com.saint.systemManager.bean.FrmCodeEntity">
+    update FRM_CODE
+    set DMSM1 = #{dmsm1,jdbcType=VARCHAR},
+      DMSM2 = #{dmsm2,jdbcType=VARCHAR},
+      DMSM3 = #{dmsm3,jdbcType=VARCHAR},
+      DMSM4 = #{dmsm4,jdbcType=VARCHAR},
+      DMSX = #{dmsx,jdbcType=CHAR},
+      SXH = #{sxh,jdbcType=DECIMAL},
+      YWDX = #{ywdx,jdbcType=VARCHAR},
+      ZT = #{zt,jdbcType=CHAR},
+      DMJC = #{dmjc,jdbcType=VARCHAR},
+      DMMC = #{dmmc,jdbcType=VARCHAR}
+    where XTLB = #{xtlb,jdbcType=CHAR}
+      and DMLB = #{dmlb,jdbcType=VARCHAR}
+      and DMZ = #{dmz,jdbcType=VARCHAR}
+  </update>
+  
+
+  
+</mapper>

@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.wechat.XfEmpRegisterMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.wechat.manager.bean.XfEmpRegisterEntity" >
+    <id column="USERNUMBER" property="usernumber" jdbcType="VARCHAR" />
+    <result column="USERNAME" property="username" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="IDCARD" property="idcard" jdbcType="VARCHAR" />
+    <result column="DEPART" property="depart" jdbcType="VARCHAR" />
+    <result column="DEPTNAME" property="deptname" jdbcType="VARCHAR" />
+    <result column="YIYUAN" property="yiyuan" jdbcType="VARCHAR" />
+    <result column="YIYUANNAME" property="yiyuanname" jdbcType="VARCHAR" />
+    <result column="ZHUANYE" property="zhuanye" jdbcType="VARCHAR" />
+    <result column="XUELI" property="xueli" jdbcType="VARCHAR" />
+    <result column="ZHICHENG" property="zhicheng" jdbcType="VARCHAR" />
+    <result column="ZHICHENGLV" property="zhichenglv" jdbcType="VARCHAR" />
+    <result column="MINZU" property="minzu" jdbcType="VARCHAR" />
+    <result column="ZHENGZI" property="zhengzi" jdbcType="VARCHAR" />
+    <result column="ZHIWU" property="zhiwu" jdbcType="VARCHAR" />
+    <result column="XUEWEI" property="xuewei" jdbcType="VARCHAR" />
+    <result column="USERTEL" property="usertel" jdbcType="VARCHAR" />
+    <result column="USERPHONE" property="userphone" jdbcType="VARCHAR" />
+    <result column="USEREMAIL" property="useremail" jdbcType="VARCHAR" />
+    <result column="ADD_TIME" property="addTime" jdbcType="DATE" />
+    <result column="URESOURCE" property="uresource" jdbcType="VARCHAR" />
+    <result column="BEIZHU" property="beizhu" jdbcType="VARCHAR" />
+    <result column="APPLYTIME" property="applytime" jdbcType="DATE" />
+    <result column="CHECKED" property="checked" jdbcType="VARCHAR" />
+    <result column="CHECKNUMBER" property="checknumber" jdbcType="VARCHAR" />
+    <result column="CHECKDATE" property="checkdate" jdbcType="DATE" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    USERNUMBER, USERNAME, SEX, IDCARD, DEPART, DEPTNAME, YIYUAN, YIYUANNAME, ZHUANYE, 
+    XUELI, ZHICHENG, ZHICHENGLV, MINZU, ZHENGZI, ZHIWU, XUEWEI, USERTEL, USERPHONE, USEREMAIL, 
+    ADD_TIME, URESOURCE, BEIZHU, APPLYTIME, CHECKED, CHECKNUMBER, CHECKDATE, REMARK1, 
+    REMARK2, REMARK3
+  </sql>
+  <select id="selectListPageXfEmpRegisterBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.XfEmpRegisterSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XF_EMP_REGISTER
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListXfEmpRegisterBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.XfEmpRegisterSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XF_EMP_REGISTER
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectXfEmpRegisterByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from XF_EMP_REGISTER
+    where USERNUMBER = #{usernumber,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteXfEmpRegisterByPrimaryKey" parameterType="java.lang.String" >
+    delete from XF_EMP_REGISTER
+    where USERNUMBER = #{usernumber,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteXfEmpRegisterBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.XfEmpRegisterSqlWhere" >
+    delete from XF_EMP_REGISTER
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertXfEmpRegister" parameterType="com.saint.wechat.manager.bean.XfEmpRegisterEntity" >
+    insert into XF_EMP_REGISTER (USERNUMBER, USERNAME, SEX, 
+      IDCARD, DEPART, DEPTNAME, 
+      YIYUAN, YIYUANNAME, ZHUANYE, 
+      XUELI, ZHICHENG, ZHICHENGLV, 
+      MINZU, ZHENGZI, ZHIWU, 
+      XUEWEI, USERTEL, USERPHONE, 
+      USEREMAIL, ADD_TIME, 
+      URESOURCE, BEIZHU, APPLYTIME, 
+      CHECKED, CHECKNUMBER, CHECKDATE, 
+      REMARK1, REMARK2, REMARK3
+      )
+    values (#{usernumber,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{idcard,jdbcType=VARCHAR}, #{depart,jdbcType=VARCHAR}, #{deptname,jdbcType=VARCHAR}, 
+      #{yiyuan,jdbcType=VARCHAR}, #{yiyuanname,jdbcType=VARCHAR}, #{zhuanye,jdbcType=VARCHAR}, 
+      #{xueli,jdbcType=VARCHAR}, #{zhicheng,jdbcType=VARCHAR}, #{zhichenglv,jdbcType=VARCHAR}, 
+      #{minzu,jdbcType=VARCHAR}, #{zhengzi,jdbcType=VARCHAR}, #{zhiwu,jdbcType=VARCHAR}, 
+      #{xuewei,jdbcType=VARCHAR}, #{usertel,jdbcType=VARCHAR}, #{userphone,jdbcType=VARCHAR}, 
+      #{useremail,jdbcType=VARCHAR}, to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{uresource,jdbcType=VARCHAR}, #{beizhu,jdbcType=VARCHAR}, to_date(#{applytime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{checked,jdbcType=VARCHAR}, #{checknumber,jdbcType=VARCHAR}, to_date(#{checkdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertXfEmpRegisterSelective" parameterType="com.saint.wechat.manager.bean.XfEmpRegisterEntity" >
+    insert into XF_EMP_REGISTER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="usernumber != null and usernumber != ''" >
+        USERNUMBER,
+      </if>
+      <if test="username != null and username != ''" >
+        USERNAME,
+      </if>
+      <if test="sex != null and sex != ''" >
+        SEX,
+      </if>
+      <if test="idcard != null and idcard != ''" >
+        IDCARD,
+      </if>
+      <if test="depart != null and depart != ''" >
+        DEPART,
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        DEPTNAME,
+      </if>
+      <if test="yiyuan != null and yiyuan != ''" >
+        YIYUAN,
+      </if>
+      <if test="yiyuanname != null and yiyuanname != ''" >
+        YIYUANNAME,
+      </if>
+      <if test="zhuanye != null and zhuanye != ''" >
+        ZHUANYE,
+      </if>
+      <if test="xueli != null and xueli != ''" >
+        XUELI,
+      </if>
+      <if test="zhicheng != null and zhicheng != ''" >
+        ZHICHENG,
+      </if>
+      <if test="zhichenglv != null and zhichenglv != ''" >
+        ZHICHENGLV,
+      </if>
+      <if test="minzu != null and minzu != ''" >
+        MINZU,
+      </if>
+      <if test="zhengzi != null and zhengzi != ''" >
+        ZHENGZI,
+      </if>
+      <if test="zhiwu != null and zhiwu != ''" >
+        ZHIWU,
+      </if>
+      <if test="xuewei != null and xuewei != ''" >
+        XUEWEI,
+      </if>
+      <if test="usertel != null and usertel != ''" >
+        USERTEL,
+      </if>
+      <if test="userphone != null and userphone != ''" >
+        USERPHONE,
+      </if>
+      <if test="useremail != null and useremail != ''" >
+        USEREMAIL,
+      </if>
+      <if test="addTime != null and addTime != ''" >
+        ADD_TIME,
+      </if>
+      <if test="uresource != null and uresource != ''" >
+        URESOURCE,
+      </if>
+      <if test="beizhu != null and beizhu != ''" >
+        BEIZHU,
+      </if>
+      <if test="applytime != null and applytime != ''" >
+        APPLYTIME,
+      </if>
+      <if test="checked != null and checked != ''" >
+        CHECKED,
+      </if>
+      <if test="checknumber != null and checknumber != ''" >
+        CHECKNUMBER,
+      </if>
+      <if test="checkdate != null and checkdate != ''" >
+        CHECKDATE,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="usernumber != null and usernumber != ''" >
+        #{usernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null and username != ''" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null and sex != ''" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null and idcard != ''" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="depart != null and depart != ''" >
+        #{depart,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyuan != null and yiyuan != ''" >
+        #{yiyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyuanname != null and yiyuanname != ''" >
+        #{yiyuanname,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuanye != null and zhuanye != ''" >
+        #{zhuanye,jdbcType=VARCHAR},
+      </if>
+      <if test="xueli != null and xueli != ''" >
+        #{xueli,jdbcType=VARCHAR},
+      </if>
+      <if test="zhicheng != null and zhicheng != ''" >
+        #{zhicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="zhichenglv != null and zhichenglv != ''" >
+        #{zhichenglv,jdbcType=VARCHAR},
+      </if>
+      <if test="minzu != null and minzu != ''" >
+        #{minzu,jdbcType=VARCHAR},
+      </if>
+      <if test="zhengzi != null and zhengzi != ''" >
+        #{zhengzi,jdbcType=VARCHAR},
+      </if>
+      <if test="zhiwu != null and zhiwu != ''" >
+        #{zhiwu,jdbcType=VARCHAR},
+      </if>
+      <if test="xuewei != null and xuewei != ''" >
+        #{xuewei,jdbcType=VARCHAR},
+      </if>
+      <if test="usertel != null and usertel != ''" >
+        #{usertel,jdbcType=VARCHAR},
+      </if>
+      <if test="userphone != null and userphone != ''" >
+        #{userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="useremail != null and useremail != ''" >
+        #{useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null and addTime != ''" >
+        to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="uresource != null and uresource != ''" >
+        #{uresource,jdbcType=VARCHAR},
+      </if>
+      <if test="beizhu != null and beizhu != ''" >
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="applytime != null and applytime != ''" >
+        to_date(#{applytime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="checked != null and checked != ''" >
+        #{checked,jdbcType=VARCHAR},
+      </if>
+      <if test="checknumber != null and checknumber != ''" >
+        #{checknumber,jdbcType=VARCHAR},
+      </if>
+      <if test="checkdate != null and checkdate != ''" >
+        to_date(#{checkdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countXfEmpRegisterBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.XfEmpRegisterSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from XF_EMP_REGISTER
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateXfEmpRegisterBySqlWhereSelective" parameterType="map" >
+    update XF_EMP_REGISTER
+    <set >
+      <if test="record.usernumber != null and record.usernumber != ''" >
+        USERNUMBER = #{record.usernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null and record.username != ''" >
+        USERNAME = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null and record.sex != ''" >
+        SEX = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcard != null and record.idcard != ''" >
+        IDCARD = #{record.idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depart != null and record.depart != ''" >
+        DEPART = #{record.depart,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptname != null and record.deptname != ''" >
+        DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yiyuan != null and record.yiyuan != ''" >
+        YIYUAN = #{record.yiyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yiyuanname != null and record.yiyuanname != ''" >
+        YIYUANNAME = #{record.yiyuanname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhuanye != null and record.zhuanye != ''" >
+        ZHUANYE = #{record.zhuanye,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xueli != null and record.xueli != ''" >
+        XUELI = #{record.xueli,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhicheng != null and record.zhicheng != ''" >
+        ZHICHENG = #{record.zhicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhichenglv != null and record.zhichenglv != ''" >
+        ZHICHENGLV = #{record.zhichenglv,jdbcType=VARCHAR},
+      </if>
+      <if test="record.minzu != null and record.minzu != ''" >
+        MINZU = #{record.minzu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhengzi != null and record.zhengzi != ''" >
+        ZHENGZI = #{record.zhengzi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhiwu != null and record.zhiwu != ''" >
+        ZHIWU = #{record.zhiwu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xuewei != null and record.xuewei != ''" >
+        XUEWEI = #{record.xuewei,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usertel != null and record.usertel != ''" >
+        USERTEL = #{record.usertel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userphone != null and record.userphone != ''" >
+        USERPHONE = #{record.userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useremail != null and record.useremail != ''" >
+        USEREMAIL = #{record.useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null and record.addTime != ''" >
+        ADD_TIME = to_date(#{record.addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.uresource != null and record.uresource != ''" >
+        URESOURCE = #{record.uresource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beizhu != null and record.beizhu != ''" >
+        BEIZHU = #{record.beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applytime != null and record.applytime != ''" >
+        APPLYTIME = to_date(#{record.applytime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.checked != null and record.checked != ''" >
+        CHECKED = #{record.checked,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checknumber != null and record.checknumber != ''" >
+        CHECKNUMBER = #{record.checknumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkdate != null and record.checkdate != ''" >
+        CHECKDATE = to_date(#{record.checkdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateXfEmpRegisterBySqlWhere" parameterType="map" >
+    update XF_EMP_REGISTER
+    set USERNUMBER = #{record.usernumber,jdbcType=VARCHAR},
+      USERNAME = #{record.username,jdbcType=VARCHAR},
+      SEX = #{record.sex,jdbcType=VARCHAR},
+      IDCARD = #{record.idcard,jdbcType=VARCHAR},
+      DEPART = #{record.depart,jdbcType=VARCHAR},
+      DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      YIYUAN = #{record.yiyuan,jdbcType=VARCHAR},
+      YIYUANNAME = #{record.yiyuanname,jdbcType=VARCHAR},
+      ZHUANYE = #{record.zhuanye,jdbcType=VARCHAR},
+      XUELI = #{record.xueli,jdbcType=VARCHAR},
+      ZHICHENG = #{record.zhicheng,jdbcType=VARCHAR},
+      ZHICHENGLV = #{record.zhichenglv,jdbcType=VARCHAR},
+      MINZU = #{record.minzu,jdbcType=VARCHAR},
+      ZHENGZI = #{record.zhengzi,jdbcType=VARCHAR},
+      ZHIWU = #{record.zhiwu,jdbcType=VARCHAR},
+      XUEWEI = #{record.xuewei,jdbcType=VARCHAR},
+      USERTEL = #{record.usertel,jdbcType=VARCHAR},
+      USERPHONE = #{record.userphone,jdbcType=VARCHAR},
+      USEREMAIL = #{record.useremail,jdbcType=VARCHAR},
+      ADD_TIME = to_date(#{record.addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      URESOURCE = #{record.uresource,jdbcType=VARCHAR},
+      BEIZHU = #{record.beizhu,jdbcType=VARCHAR},
+      APPLYTIME = to_date(#{record.applytime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      CHECKED = #{record.checked,jdbcType=VARCHAR},
+      CHECKNUMBER = #{record.checknumber,jdbcType=VARCHAR},
+      CHECKDATE = to_date(#{record.checkdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateXfEmpRegisterByPrimaryKeySelective" parameterType="com.saint.wechat.manager.bean.XfEmpRegisterEntity" >
+    update XF_EMP_REGISTER
+    <set >
+      <if test="username != null and username != ''" >
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null and sex != ''" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null and idcard != ''" >
+        IDCARD = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="depart != null and depart != ''" >
+        DEPART = #{depart,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyuan != null and yiyuan != ''" >
+        YIYUAN = #{yiyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyuanname != null and yiyuanname != ''" >
+        YIYUANNAME = #{yiyuanname,jdbcType=VARCHAR},
+      </if>
+      <if test="zhuanye != null and zhuanye != ''" >
+        ZHUANYE = #{zhuanye,jdbcType=VARCHAR},
+      </if>
+      <if test="xueli != null and xueli != ''" >
+        XUELI = #{xueli,jdbcType=VARCHAR},
+      </if>
+      <if test="zhicheng != null and zhicheng != ''" >
+        ZHICHENG = #{zhicheng,jdbcType=VARCHAR},
+      </if>
+      <if test="zhichenglv != null and zhichenglv != ''" >
+        ZHICHENGLV = #{zhichenglv,jdbcType=VARCHAR},
+      </if>
+      <if test="minzu != null and minzu != ''" >
+        MINZU = #{minzu,jdbcType=VARCHAR},
+      </if>
+      <if test="zhengzi != null and zhengzi != ''" >
+        ZHENGZI = #{zhengzi,jdbcType=VARCHAR},
+      </if>
+      <if test="zhiwu != null and zhiwu != ''" >
+        ZHIWU = #{zhiwu,jdbcType=VARCHAR},
+      </if>
+      <if test="xuewei != null and xuewei != ''" >
+        XUEWEI = #{xuewei,jdbcType=VARCHAR},
+      </if>
+      <if test="usertel != null and usertel != ''" >
+        USERTEL = #{usertel,jdbcType=VARCHAR},
+      </if>
+      <if test="userphone != null and userphone != ''" >
+        USERPHONE = #{userphone,jdbcType=VARCHAR},
+      </if>
+      <if test="useremail != null and useremail != ''" >
+        USEREMAIL = #{useremail,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null and addTime != ''" >
+        ADD_TIME = to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="uresource != null and uresource != ''" >
+        URESOURCE = #{uresource,jdbcType=VARCHAR},
+      </if>
+      <if test="beizhu != null and beizhu != ''" >
+        BEIZHU = #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="applytime != null and applytime != ''" >
+        APPLYTIME = to_date(#{applytime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="checked != null and checked != ''" >
+        CHECKED = #{checked,jdbcType=VARCHAR},
+      </if>
+      <if test="checknumber != null and checknumber != ''" >
+        CHECKNUMBER = #{checknumber,jdbcType=VARCHAR},
+      </if>
+      <if test="checkdate != null and checkdate != ''" >
+        CHECKDATE = to_date(#{checkdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USERNUMBER = #{usernumber,jdbcType=VARCHAR}
+  </update>
+  <update id="updateXfEmpRegisterByPrimaryKey" parameterType="com.saint.wechat.manager.bean.XfEmpRegisterEntity" >
+    update XF_EMP_REGISTER
+    set USERNAME = #{username,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      IDCARD = #{idcard,jdbcType=VARCHAR},
+      DEPART = #{depart,jdbcType=VARCHAR},
+      DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      YIYUAN = #{yiyuan,jdbcType=VARCHAR},
+      YIYUANNAME = #{yiyuanname,jdbcType=VARCHAR},
+      ZHUANYE = #{zhuanye,jdbcType=VARCHAR},
+      XUELI = #{xueli,jdbcType=VARCHAR},
+      ZHICHENG = #{zhicheng,jdbcType=VARCHAR},
+      ZHICHENGLV = #{zhichenglv,jdbcType=VARCHAR},
+      MINZU = #{minzu,jdbcType=VARCHAR},
+      ZHENGZI = #{zhengzi,jdbcType=VARCHAR},
+      ZHIWU = #{zhiwu,jdbcType=VARCHAR},
+      XUEWEI = #{xuewei,jdbcType=VARCHAR},
+      USERTEL = #{usertel,jdbcType=VARCHAR},
+      USERPHONE = #{userphone,jdbcType=VARCHAR},
+      USEREMAIL = #{useremail,jdbcType=VARCHAR},
+      ADD_TIME = to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      URESOURCE = #{uresource,jdbcType=VARCHAR},
+      BEIZHU = #{beizhu,jdbcType=VARCHAR},
+      APPLYTIME = to_date(#{applytime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      CHECKED = #{checked,jdbcType=VARCHAR},
+      CHECKNUMBER = #{checknumber,jdbcType=VARCHAR},
+      CHECKDATE = to_date(#{checkdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR}
+    where USERNUMBER = #{usernumber,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxLunxunMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxLunxunEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="ZUID" property="zuid" jdbcType="VARCHAR" />
+    <result column="ZUNAME" property="zuname" jdbcType="VARCHAR" />
+    <result column="CLASSID" property="classid" jdbcType="VARCHAR" />
+    <result column="CLASSNAME" property="classname" jdbcType="VARCHAR" />
+    <result column="DEPTID" property="deptid" jdbcType="VARCHAR" />
+    <result column="STARTDATE" property="startdate" jdbcType="DATE" />
+    <result column="ENDDATE" property="enddate" jdbcType="DATE" />
+    <result column="TEACHERID" property="teacherid" jdbcType="VARCHAR" />
+    <result column="TEACHERNAME" property="teachername" jdbcType="VARCHAR" />
+    <result column="TEACHERTEL" property="teachertel" jdbcType="VARCHAR" />
+    <result column="TOTAL" property="total" jdbcType="DECIMAL" />
+    <result column="NUM" property="num" jdbcType="VARCHAR" />
+    <result column="WEIZHI" property="weizhi" jdbcType="VARCHAR" />
+    <result column="EXPLAIN" property="explain" jdbcType="VARCHAR" />
+    <result column="OPERATEUSERID" property="operateuserid" jdbcType="VARCHAR" />
+    <result column="OPERATEUSERNAME" property="operateusername" jdbcType="VARCHAR" />
+    <result column="OPERATEDATE" property="operatedate" jdbcType="DATE" />
+    <result column="UPDATEDATE" property="updatedate" jdbcType="DATE" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+    <result column="REMARK6" property="remark6" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, ZUID, ZUNAME, CLASSID, CLASSNAME, DEPTID, STARTDATE, ENDDATE, TEACHERID, TEACHERNAME, 
+    TEACHERTEL, TOTAL, NUM, WEIZHI, EXPLAIN, OPERATEUSERID, OPERATEUSERNAME, OPERATEDATE, 
+    UPDATEDATE, REMARK1, REMARK2, REMARK3, REMARK4, REMARK5, REMARK6
+  </sql>
+  <select id="selectListPageJxLunxunBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxLunxunSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_LUNXUN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxLunxunBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxLunxunSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_LUNXUN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxLunxunByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_LUNXUN
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxLunxunByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_LUNXUN
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxLunxunBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxLunxunSqlWhere" >
+    delete from JX_LUNXUN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxLunxun" parameterType="com.saint.teaching.bean.JxLunxunEntity" >
+    insert into JX_LUNXUN (XH, ZUID, ZUNAME, 
+      CLASSID, CLASSNAME, DEPTID, 
+      STARTDATE, ENDDATE, 
+      TEACHERID, TEACHERNAME, TEACHERTEL, 
+      TOTAL, NUM, WEIZHI, 
+      EXPLAIN, OPERATEUSERID, OPERATEUSERNAME, 
+      OPERATEDATE, UPDATEDATE, 
+      REMARK1, REMARK2, REMARK3, 
+      REMARK4, REMARK5, REMARK6
+      )
+    values (#{xh,jdbcType=VARCHAR}, #{zuid,jdbcType=VARCHAR}, #{zuname,jdbcType=VARCHAR}, 
+      #{classid,jdbcType=VARCHAR}, #{classname,jdbcType=VARCHAR}, #{deptid,jdbcType=VARCHAR}, 
+      to_date(#{startdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), to_date(#{enddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{teacherid,jdbcType=VARCHAR}, #{teachername,jdbcType=VARCHAR}, #{teachertel,jdbcType=VARCHAR}, 
+      #{total,jdbcType=DECIMAL}, #{num,jdbcType=VARCHAR}, #{weizhi,jdbcType=VARCHAR}, 
+      #{explain,jdbcType=VARCHAR}, #{operateuserid,jdbcType=VARCHAR}, #{operateusername,jdbcType=VARCHAR}, 
+      to_date(#{operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), to_date(#{updatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, 
+      #{remark4,jdbcType=VARCHAR}, #{remark5,jdbcType=VARCHAR}, #{remark6,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertJxLunxunSelective" parameterType="com.saint.teaching.bean.JxLunxunEntity" >
+    insert into JX_LUNXUN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="zuid != null and zuid != ''" >
+        ZUID,
+      </if>
+      <if test="zuname != null and zuname != ''" >
+        ZUNAME,
+      </if>
+      <if test="classid != null and classid != ''" >
+        CLASSID,
+      </if>
+      <if test="classname != null and classname != ''" >
+        CLASSNAME,
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        DEPTID,
+      </if>
+      <if test="startdate != null and startdate != ''" >
+        STARTDATE,
+      </if>
+      <if test="enddate != null and enddate != ''" >
+        ENDDATE,
+      </if>
+      <if test="teacherid != null and teacherid != ''" >
+        TEACHERID,
+      </if>
+      <if test="teachername != null and teachername != ''" >
+        TEACHERNAME,
+      </if>
+      <if test="teachertel != null and teachertel != ''" >
+        TEACHERTEL,
+      </if>
+      <if test="total != null and total != ''" >
+        TOTAL,
+      </if>
+      <if test="num != null and num != ''" >
+        NUM,
+      </if>
+      <if test="weizhi != null and weizhi != ''" >
+        WEIZHI,
+      </if>
+      <if test="explain != null and explain != ''" >
+        EXPLAIN,
+      </if>
+      <if test="operateuserid != null and operateuserid != ''" >
+        OPERATEUSERID,
+      </if>
+      <if test="operateusername != null and operateusername != ''" >
+        OPERATEUSERNAME,
+      </if>
+      <if test="operatedate != null and operatedate != ''" >
+        OPERATEDATE,
+      </if>
+      <if test="updatedate != null and updatedate != ''" >
+        UPDATEDATE,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+      <if test="remark6 != null and remark6 != ''" >
+        REMARK6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="zuid != null and zuid != ''" >
+        #{zuid,jdbcType=VARCHAR},
+      </if>
+      <if test="zuname != null and zuname != ''" >
+        #{zuname,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null and classid != ''" >
+        #{classid,jdbcType=VARCHAR},
+      </if>
+      <if test="classname != null and classname != ''" >
+        #{classname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null and startdate != ''" >
+        to_date(#{startdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="enddate != null and enddate != ''" >
+        to_date(#{enddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="teacherid != null and teacherid != ''" >
+        #{teacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="teachername != null and teachername != ''" >
+        #{teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="teachertel != null and teachertel != ''" >
+        #{teachertel,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null and total != ''" >
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="num != null and num != ''" >
+        #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="weizhi != null and weizhi != ''" >
+        #{weizhi,jdbcType=VARCHAR},
+      </if>
+      <if test="explain != null and explain != ''" >
+        #{explain,jdbcType=VARCHAR},
+      </if>
+      <if test="operateuserid != null and operateuserid != ''" >
+        #{operateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="operateusername != null and operateusername != ''" >
+        #{operateusername,jdbcType=VARCHAR},
+      </if>
+      <if test="operatedate != null and operatedate != ''" >
+        to_date(#{operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="updatedate != null and updatedate != ''" >
+        to_date(#{updatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="remark6 != null and remark6 != ''" >
+        #{remark6,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxLunxunBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxLunxunSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_LUNXUN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxLunxunBySqlWhereSelective" parameterType="map" >
+    update JX_LUNXUN
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zuid != null and record.zuid != ''" >
+        ZUID = #{record.zuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zuname != null and record.zuname != ''" >
+        ZUNAME = #{record.zuname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classid != null and record.classid != ''" >
+        CLASSID = #{record.classid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classname != null and record.classname != ''" >
+        CLASSNAME = #{record.classname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptid != null and record.deptid != ''" >
+        DEPTID = #{record.deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startdate != null and record.startdate != ''" >
+        STARTDATE = to_date(#{record.startdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.enddate != null and record.enddate != ''" >
+        ENDDATE = to_date(#{record.enddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.teacherid != null and record.teacherid != ''" >
+        TEACHERID = #{record.teacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teachername != null and record.teachername != ''" >
+        TEACHERNAME = #{record.teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teachertel != null and record.teachertel != ''" >
+        TEACHERTEL = #{record.teachertel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.total != null and record.total != ''" >
+        TOTAL = #{record.total,jdbcType=DECIMAL},
+      </if>
+      <if test="record.num != null and record.num != ''" >
+        NUM = #{record.num,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weizhi != null and record.weizhi != ''" >
+        WEIZHI = #{record.weizhi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.explain != null and record.explain != ''" >
+        EXPLAIN = #{record.explain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateuserid != null and record.operateuserid != ''" >
+        OPERATEUSERID = #{record.operateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateusername != null and record.operateusername != ''" >
+        OPERATEUSERNAME = #{record.operateusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatedate != null and record.operatedate != ''" >
+        OPERATEDATE = to_date(#{record.operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.updatedate != null and record.updatedate != ''" >
+        UPDATEDATE = to_date(#{record.updatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark6 != null and record.remark6 != ''" >
+        REMARK6 = #{record.remark6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxLunxunBySqlWhere" parameterType="map" >
+    update JX_LUNXUN
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      ZUID = #{record.zuid,jdbcType=VARCHAR},
+      ZUNAME = #{record.zuname,jdbcType=VARCHAR},
+      CLASSID = #{record.classid,jdbcType=VARCHAR},
+      CLASSNAME = #{record.classname,jdbcType=VARCHAR},
+      DEPTID = #{record.deptid,jdbcType=VARCHAR},
+      STARTDATE = to_date(#{record.startdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ENDDATE = to_date(#{record.enddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      TEACHERID = #{record.teacherid,jdbcType=VARCHAR},
+      TEACHERNAME = #{record.teachername,jdbcType=VARCHAR},
+      TEACHERTEL = #{record.teachertel,jdbcType=VARCHAR},
+      TOTAL = #{record.total,jdbcType=DECIMAL},
+      NUM = #{record.num,jdbcType=VARCHAR},
+      WEIZHI = #{record.weizhi,jdbcType=VARCHAR},
+      EXPLAIN = #{record.explain,jdbcType=VARCHAR},
+      OPERATEUSERID = #{record.operateuserid,jdbcType=VARCHAR},
+      OPERATEUSERNAME = #{record.operateusername,jdbcType=VARCHAR},
+      OPERATEDATE = to_date(#{record.operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      UPDATEDATE = to_date(#{record.updatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      REMARK6 = #{record.remark6,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxLunxunByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxLunxunEntity" >
+    update JX_LUNXUN
+    <set >
+      <if test="zuid != null and zuid != ''" >
+        ZUID = #{zuid,jdbcType=VARCHAR},
+      </if>
+      <if test="zuname != null and zuname != ''" >
+        ZUNAME = #{zuname,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null and classid != ''" >
+        CLASSID = #{classid,jdbcType=VARCHAR},
+      </if>
+      <if test="classname != null and classname != ''" >
+        CLASSNAME = #{classname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        DEPTID = #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null and startdate != ''" >
+        STARTDATE = to_date(#{startdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="enddate != null and enddate != ''" >
+        ENDDATE = to_date(#{enddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="teacherid != null and teacherid != ''" >
+        TEACHERID = #{teacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="teachername != null and teachername != ''" >
+        TEACHERNAME = #{teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="teachertel != null and teachertel != ''" >
+        TEACHERTEL = #{teachertel,jdbcType=VARCHAR},
+      </if>
+      <if test="total != null and total != ''" >
+        TOTAL = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="num != null and num != ''" >
+        NUM = #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="weizhi != null and weizhi != ''" >
+        WEIZHI = #{weizhi,jdbcType=VARCHAR},
+      </if>
+      <if test="explain != null and explain != ''" >
+        EXPLAIN = #{explain,jdbcType=VARCHAR},
+      </if>
+      <if test="operateuserid != null and operateuserid != ''" >
+        OPERATEUSERID = #{operateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="operateusername != null and operateusername != ''" >
+        OPERATEUSERNAME = #{operateusername,jdbcType=VARCHAR},
+      </if>
+      <if test="operatedate != null and operatedate != ''" >
+        OPERATEDATE = to_date(#{operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="updatedate != null and updatedate != ''" >
+        UPDATEDATE = to_date(#{updatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="remark6 != null and remark6 != ''" >
+        REMARK6 = #{remark6,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxLunxunByPrimaryKey" parameterType="com.saint.teaching.bean.JxLunxunEntity" >
+    update JX_LUNXUN
+    set ZUID = #{zuid,jdbcType=VARCHAR},
+      ZUNAME = #{zuname,jdbcType=VARCHAR},
+      CLASSID = #{classid,jdbcType=VARCHAR},
+      CLASSNAME = #{classname,jdbcType=VARCHAR},
+      DEPTID = #{deptid,jdbcType=VARCHAR},
+      STARTDATE = to_date(#{startdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ENDDATE = to_date(#{enddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      TEACHERID = #{teacherid,jdbcType=VARCHAR},
+      TEACHERNAME = #{teachername,jdbcType=VARCHAR},
+      TEACHERTEL = #{teachertel,jdbcType=VARCHAR},
+      TOTAL = #{total,jdbcType=DECIMAL},
+      NUM = #{num,jdbcType=VARCHAR},
+      WEIZHI = #{weizhi,jdbcType=VARCHAR},
+      EXPLAIN = #{explain,jdbcType=VARCHAR},
+      OPERATEUSERID = #{operateuserid,jdbcType=VARCHAR},
+      OPERATEUSERNAME = #{operateusername,jdbcType=VARCHAR},
+      OPERATEDATE = to_date(#{operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      UPDATEDATE = to_date(#{updatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR},
+      REMARK6 = #{remark6,jdbcType=VARCHAR}
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

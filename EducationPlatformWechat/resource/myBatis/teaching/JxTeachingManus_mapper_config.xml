@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxTeachingManusMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxTeachingManusEntity" >
+    <id column="MANU_ID" property="manuId" jdbcType="VARCHAR" />
+    <result column="MANU_JC" property="manuJc" jdbcType="VARCHAR" />
+    <result column="MANU_NAME" property="manuName" jdbcType="VARCHAR" />
+    <result column="MANU_DM" property="manuDm" jdbcType="VARCHAR" />
+    <result column="MANU_SHL" property="manuShl" jdbcType="DECIMAL" />
+    <result column="MANU_IMG" property="manuImg" jdbcType="VARCHAR" />
+    <result column="MANU_SHM" property="manuShm" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="MANU_TYPE" property="manuType" jdbcType="VARCHAR" />
+    <result column="GLBM" property="glbm" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="MANU_DATE" property="manuDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    MANU_ID, MANU_JC, MANU_NAME, MANU_DM, MANU_SHL, MANU_IMG, MANU_SHM, STATE, MANU_TYPE, 
+    GLBM, REMARK1, REMARK2, REMARK3, MANU_DATE
+  </sql>
+  <select id="selectListPageJxTeachingManusBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxTeachingManusSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_TEACHING_MANUS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxTeachingManusBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxTeachingManusSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_TEACHING_MANUS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxTeachingManusByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_TEACHING_MANUS
+    where MANU_ID = #{manuId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxTeachingManusByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_TEACHING_MANUS
+    where MANU_ID = #{manuId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxTeachingManusBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxTeachingManusSqlWhere" >
+    delete from JX_TEACHING_MANUS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxTeachingManus" parameterType="com.saint.teaching.bean.JxTeachingManusEntity" >
+    insert into JX_TEACHING_MANUS (MANU_ID, MANU_JC, MANU_NAME, 
+      MANU_DM, MANU_SHL, MANU_IMG, 
+      MANU_SHM, STATE, MANU_TYPE, 
+      GLBM, REMARK1, REMARK2, 
+      REMARK3, MANU_DATE
+      )
+    values (#{manuId,jdbcType=VARCHAR}, #{manuJc,jdbcType=VARCHAR}, #{manuName,jdbcType=VARCHAR}, 
+      #{manuDm,jdbcType=VARCHAR}, #{manuShl,jdbcType=DECIMAL}, #{manuImg,jdbcType=VARCHAR}, 
+      #{manuShm,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{manuType,jdbcType=VARCHAR}, 
+      #{glbm,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, 
+      #{remark3,jdbcType=VARCHAR}, to_date(#{manuDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+      )
+  </insert>
+  <insert id="insertJxTeachingManusSelective" parameterType="com.saint.teaching.bean.JxTeachingManusEntity" >
+    insert into JX_TEACHING_MANUS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="manuId != null and manuId != ''" >
+        MANU_ID,
+      </if>
+      <if test="manuJc != null and manuJc != ''" >
+        MANU_JC,
+      </if>
+      <if test="manuName != null and manuName != ''" >
+        MANU_NAME,
+      </if>
+      <if test="manuDm != null and manuDm != ''" >
+        MANU_DM,
+      </if>
+      <if test="manuShl != null and manuShl != ''" >
+        MANU_SHL,
+      </if>
+      <if test="manuImg != null and manuImg != ''" >
+        MANU_IMG,
+      </if>
+      <if test="manuShm != null and manuShm != ''" >
+        MANU_SHM,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="manuType != null and manuType != ''" >
+        MANU_TYPE,
+      </if>
+      <if test="glbm != null and glbm != ''" >
+        GLBM,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="manuDate != null and manuDate != ''" >
+        MANU_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="manuId != null and manuId != ''" >
+        #{manuId,jdbcType=VARCHAR},
+      </if>
+      <if test="manuJc != null and manuJc != ''" >
+        #{manuJc,jdbcType=VARCHAR},
+      </if>
+      <if test="manuName != null and manuName != ''" >
+        #{manuName,jdbcType=VARCHAR},
+      </if>
+      <if test="manuDm != null and manuDm != ''" >
+        #{manuDm,jdbcType=VARCHAR},
+      </if>
+      <if test="manuShl != null and manuShl != ''" >
+        #{manuShl,jdbcType=DECIMAL},
+      </if>
+      <if test="manuImg != null and manuImg != ''" >
+        #{manuImg,jdbcType=VARCHAR},
+      </if>
+      <if test="manuShm != null and manuShm != ''" >
+        #{manuShm,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="manuType != null and manuType != ''" >
+        #{manuType,jdbcType=VARCHAR},
+      </if>
+      <if test="glbm != null and glbm != ''" >
+        #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="manuDate != null and manuDate != ''" >
+        to_date(#{manuDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxTeachingManusBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxTeachingManusSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_TEACHING_MANUS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxTeachingManusBySqlWhereSelective" parameterType="map" >
+    update JX_TEACHING_MANUS
+    <set >
+      <if test="record.manuId != null and record.manuId != ''" >
+        MANU_ID = #{record.manuId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manuJc != null and record.manuJc != ''" >
+        MANU_JC = #{record.manuJc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manuName != null and record.manuName != ''" >
+        MANU_NAME = #{record.manuName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manuDm != null and record.manuDm != ''" >
+        MANU_DM = #{record.manuDm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manuShl != null and record.manuShl != ''" >
+        MANU_SHL = #{record.manuShl,jdbcType=DECIMAL},
+      </if>
+      <if test="record.manuImg != null and record.manuImg != ''" >
+        MANU_IMG = #{record.manuImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manuShm != null and record.manuShm != ''" >
+        MANU_SHM = #{record.manuShm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manuType != null and record.manuType != ''" >
+        MANU_TYPE = #{record.manuType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glbm != null and record.glbm != ''" >
+        GLBM = #{record.glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manuDate != null and record.manuDate != ''" >
+        MANU_DATE = to_date(#{record.manuDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxTeachingManusBySqlWhere" parameterType="map" >
+    update JX_TEACHING_MANUS
+    set MANU_ID = #{record.manuId,jdbcType=VARCHAR},
+      MANU_JC = #{record.manuJc,jdbcType=VARCHAR},
+      MANU_NAME = #{record.manuName,jdbcType=VARCHAR},
+      MANU_DM = #{record.manuDm,jdbcType=VARCHAR},
+      MANU_SHL = #{record.manuShl,jdbcType=DECIMAL},
+      MANU_IMG = #{record.manuImg,jdbcType=VARCHAR},
+      MANU_SHM = #{record.manuShm,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      MANU_TYPE = #{record.manuType,jdbcType=VARCHAR},
+      GLBM = #{record.glbm,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      MANU_DATE = to_date(#{record.manuDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxTeachingManusByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxTeachingManusEntity" >
+    update JX_TEACHING_MANUS
+    <set >
+      <if test="manuJc != null and manuJc != ''" >
+        MANU_JC = #{manuJc,jdbcType=VARCHAR},
+      </if>
+      <if test="manuName != null and manuName != ''" >
+        MANU_NAME = #{manuName,jdbcType=VARCHAR},
+      </if>
+      <if test="manuDm != null and manuDm != ''" >
+        MANU_DM = #{manuDm,jdbcType=VARCHAR},
+      </if>
+      <if test="manuShl != null and manuShl != ''" >
+        MANU_SHL = #{manuShl,jdbcType=DECIMAL},
+      </if>
+      <if test="manuImg != null and manuImg != ''" >
+        MANU_IMG = #{manuImg,jdbcType=VARCHAR},
+      </if>
+      <if test="manuShm != null and manuShm != ''" >
+        MANU_SHM = #{manuShm,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="manuType != null and manuType != ''" >
+        MANU_TYPE = #{manuType,jdbcType=VARCHAR},
+      </if>
+      <if test="glbm != null and glbm != ''" >
+        GLBM = #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="manuDate != null and manuDate != ''" >
+        MANU_DATE = to_date(#{manuDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    where MANU_ID = #{manuId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxTeachingManusByPrimaryKey" parameterType="com.saint.teaching.bean.JxTeachingManusEntity" >
+    update JX_TEACHING_MANUS
+    set MANU_JC = #{manuJc,jdbcType=VARCHAR},
+      MANU_NAME = #{manuName,jdbcType=VARCHAR},
+      MANU_DM = #{manuDm,jdbcType=VARCHAR},
+      MANU_SHL = #{manuShl,jdbcType=DECIMAL},
+      MANU_IMG = #{manuImg,jdbcType=VARCHAR},
+      MANU_SHM = #{manuShm,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      MANU_TYPE = #{manuType,jdbcType=VARCHAR},
+      GLBM = #{glbm,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      MANU_DATE = to_date(#{manuDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where MANU_ID = #{manuId,jdbcType=VARCHAR}
+  </update>
+</mapper>

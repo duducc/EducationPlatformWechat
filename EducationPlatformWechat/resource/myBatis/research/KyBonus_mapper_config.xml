@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.research.KyBonusMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.research.bean.KyBonusEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="BONUSTYPE" property="bonustype" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="BONUSDATE" property="bonusdate" jdbcType="DATE" />
+    <result column="RESULTID" property="resultid" jdbcType="VARCHAR" />
+    <result column="MARK" property="mark" jdbcType="VARCHAR" />
+    <result column="CREATEUSERID" property="createuserid" jdbcType="VARCHAR" />
+    <result column="CREATEUSERNAME" property="createusername" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createdate" jdbcType="DATE" />
+    <result column="OPERATEUSERID" property="operateuserid" jdbcType="VARCHAR" />
+    <result column="OPERATEUSERNAME" property="operateusername" jdbcType="VARCHAR" />
+    <result column="OPERATEDATE" property="operatedate" jdbcType="DATE" />
+    <result column="OBTAINID" property="obtainid" jdbcType="VARCHAR" />
+    <result column="OBTAINNAME" property="obtainname" jdbcType="VARCHAR" />
+    <result column="OBTAINTYPE" property="obtaintype" jdbcType="VARCHAR" />
+    <result column="RESNAME" property="resname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, TITLE, BONUSTYPE, AMOUNT, BONUSDATE, RESULTID, MARK, CREATEUSERID, CREATEUSERNAME, 
+    CREATEDATE, OPERATEUSERID, OPERATEUSERNAME, OPERATEDATE, OBTAINID, OBTAINNAME, OBTAINTYPE
+  </sql>
+  <select id="selectListPageKyBonusBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.research.sqlWhere.KyBonusSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    
+    k.XH, k.TITLE, k.BONUSTYPE, k.AMOUNT, k.BONUSDATE, k.RESULTID, r.RESNAME ,k.MARK, k.CREATEUSERID, k.CREATEUSERNAME, 
+    k.CREATEDATE, k.OPERATEUSERID, k.OPERATEUSERNAME, k.OPERATEDATE, k.OBTAINID, k.OBTAINNAME, k.OBTAINTYPE
+    
+    from KY_BONUS k 
+    
+    LEFT JOIN KY_PRESULTS r  ON k.RESULTID = r.XH 
+    
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListKyBonusBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.research.sqlWhere.KyBonusSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from KY_BONUS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectKyBonusByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    
+    k.XH, k.TITLE, k.BONUSTYPE, k.AMOUNT, k.BONUSDATE, k.RESULTID, r.RESNAME ,k.MARK, k.CREATEUSERID, k.CREATEUSERNAME, 
+    k.CREATEDATE, k.OPERATEUSERID, k.OPERATEUSERNAME, k.OPERATEDATE, k.OBTAINID, k.OBTAINNAME, k.OBTAINTYPE
+    
+    from KY_BONUS k 
+    
+    LEFT JOIN KY_PRESULTS r  ON k.RESULTID = r.XH 
+    
+    where k.XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteKyBonusByPrimaryKey" parameterType="java.lang.String" >
+    delete from KY_BONUS
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteKyBonusBySqlWhere" parameterType="com.saint.research.sqlWhere.KyBonusSqlWhere" >
+    delete from KY_BONUS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertKyBonus" parameterType="com.saint.research.bean.KyBonusEntity" >
+    insert into KY_BONUS (XH, TITLE, BONUSTYPE, 
+      AMOUNT, BONUSDATE, 
+      RESULTID, MARK, CREATEUSERID, 
+      CREATEUSERNAME, CREATEDATE, 
+      OPERATEUSERID, OPERATEUSERNAME, OPERATEDATE, 
+      OBTAINID, OBTAINNAME, OBTAINTYPE
+      )
+    values (#{xh,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{bonustype,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, to_date(#{bonusdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{resultid,jdbcType=VARCHAR}, #{mark,jdbcType=VARCHAR}, #{createuserid,jdbcType=VARCHAR}, 
+      #{createusername,jdbcType=VARCHAR}, to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{operateuserid,jdbcType=VARCHAR}, #{operateusername,jdbcType=VARCHAR}, to_date(#{operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{obtainid,jdbcType=VARCHAR}, #{obtainname,jdbcType=VARCHAR}, #{obtaintype,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertKyBonusSelective" parameterType="com.saint.research.bean.KyBonusEntity" >
+    insert into KY_BONUS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="title != null and title != ''" >
+        TITLE,
+      </if>
+      <if test="bonustype != null and bonustype != ''" >
+        BONUSTYPE,
+      </if>
+      <if test="amount != null and amount != ''" >
+        AMOUNT,
+      </if>
+      <if test="bonusdate != null and bonusdate != ''" >
+        BONUSDATE,
+      </if>
+      <if test="resultid != null and resultid != ''" >
+        RESULTID,
+      </if>
+      <if test="mark != null and mark != ''" >
+        MARK,
+      </if>
+      <if test="createuserid != null and createuserid != ''" >
+        CREATEUSERID,
+      </if>
+      <if test="createusername != null and createusername != ''" >
+        CREATEUSERNAME,
+      </if>
+      <if test="createdate != null and createdate != ''" >
+        CREATEDATE,
+      </if>
+      <if test="operateuserid != null and operateuserid != ''" >
+        OPERATEUSERID,
+      </if>
+      <if test="operateusername != null and operateusername != ''" >
+        OPERATEUSERNAME,
+      </if>
+      <if test="operatedate != null and operatedate != ''" >
+        OPERATEDATE,
+      </if>
+      <if test="obtainid != null and obtainid != ''" >
+        OBTAINID,
+      </if>
+      <if test="obtainname != null and obtainname != ''" >
+        OBTAINNAME,
+      </if>
+      <if test="obtaintype != null and obtaintype != ''" >
+        OBTAINTYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null and title != ''" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="bonustype != null and bonustype != ''" >
+        #{bonustype,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null and amount != ''" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="bonusdate != null and bonusdate != ''" >
+        to_date(#{bonusdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="resultid != null and resultid != ''" >
+        #{resultid,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null and mark != ''" >
+        #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="createuserid != null and createuserid != ''" >
+        #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="createusername != null and createusername != ''" >
+        #{createusername,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null and createdate != ''" >
+        to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="operateuserid != null and operateuserid != ''" >
+        #{operateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="operateusername != null and operateusername != ''" >
+        #{operateusername,jdbcType=VARCHAR},
+      </if>
+      <if test="operatedate != null and operatedate != ''" >
+        to_date(#{operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="obtainid != null and obtainid != ''" >
+        #{obtainid,jdbcType=VARCHAR},
+      </if>
+      <if test="obtainname != null and obtainname != ''" >
+        #{obtainname,jdbcType=VARCHAR},
+      </if>
+      <if test="obtaintype != null and obtaintype != ''" >
+        #{obtaintype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countKyBonusBySqlWhere" parameterType="com.saint.research.sqlWhere.KyBonusSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from KY_BONUS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateKyBonusBySqlWhereSelective" parameterType="map" >
+    update KY_BONUS
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null and record.title != ''" >
+        TITLE = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bonustype != null and record.bonustype != ''" >
+        BONUSTYPE = #{record.bonustype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null and record.amount != ''" >
+        AMOUNT = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bonusdate != null and record.bonusdate != ''" >
+        BONUSDATE = to_date(#{record.bonusdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.resultid != null and record.resultid != ''" >
+        RESULTID = #{record.resultid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mark != null and record.mark != ''" >
+        MARK = #{record.mark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createuserid != null and record.createuserid != ''" >
+        CREATEUSERID = #{record.createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createusername != null and record.createusername != ''" >
+        CREATEUSERNAME = #{record.createusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdate != null and record.createdate != ''" >
+        CREATEDATE = to_date(#{record.createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.operateuserid != null and record.operateuserid != ''" >
+        OPERATEUSERID = #{record.operateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateusername != null and record.operateusername != ''" >
+        OPERATEUSERNAME = #{record.operateusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatedate != null and record.operatedate != ''" >
+        OPERATEDATE = to_date(#{record.operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.obtainid != null and record.obtainid != ''" >
+        OBTAINID = #{record.obtainid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.obtainname != null and record.obtainname != ''" >
+        OBTAINNAME = #{record.obtainname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.obtaintype != null and record.obtaintype != ''" >
+        OBTAINTYPE = #{record.obtaintype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateKyBonusBySqlWhere" parameterType="map" >
+    update KY_BONUS
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      TITLE = #{record.title,jdbcType=VARCHAR},
+      BONUSTYPE = #{record.bonustype,jdbcType=VARCHAR},
+      AMOUNT = #{record.amount,jdbcType=DECIMAL},
+      BONUSDATE = to_date(#{record.bonusdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      RESULTID = #{record.resultid,jdbcType=VARCHAR},
+      MARK = #{record.mark,jdbcType=VARCHAR},
+      CREATEUSERID = #{record.createuserid,jdbcType=VARCHAR},
+      CREATEUSERNAME = #{record.createusername,jdbcType=VARCHAR},
+      CREATEDATE = to_date(#{record.createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      OPERATEUSERID = #{record.operateuserid,jdbcType=VARCHAR},
+      OPERATEUSERNAME = #{record.operateusername,jdbcType=VARCHAR},
+      OPERATEDATE = to_date(#{record.operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      OBTAINID = #{record.obtainid,jdbcType=VARCHAR},
+      OBTAINNAME = #{record.obtainname,jdbcType=VARCHAR},
+      OBTAINTYPE = #{record.obtaintype,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateKyBonusByPrimaryKeySelective" parameterType="com.saint.research.bean.KyBonusEntity" >
+    update KY_BONUS
+    <set >
+      <if test="title != null and title != ''" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="bonustype != null and bonustype != ''" >
+        BONUSTYPE = #{bonustype,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null and amount != ''" >
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="bonusdate != null and bonusdate != ''" >
+        BONUSDATE = to_date(#{bonusdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="resultid != null and resultid != ''" >
+        RESULTID = #{resultid,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null and mark != ''" >
+        MARK = #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="createuserid != null and createuserid != ''" >
+        CREATEUSERID = #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="createusername != null and createusername != ''" >
+        CREATEUSERNAME = #{createusername,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null and createdate != ''" >
+        CREATEDATE = to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="operateuserid != null and operateuserid != ''" >
+        OPERATEUSERID = #{operateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="operateusername != null and operateusername != ''" >
+        OPERATEUSERNAME = #{operateusername,jdbcType=VARCHAR},
+      </if>
+      <if test="operatedate != null and operatedate != ''" >
+        OPERATEDATE = to_date(#{operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="obtainid != null and obtainid != ''" >
+        OBTAINID = #{obtainid,jdbcType=VARCHAR},
+      </if>
+      <if test="obtainname != null and obtainname != ''" >
+        OBTAINNAME = #{obtainname,jdbcType=VARCHAR},
+      </if>
+      <if test="obtaintype != null and obtaintype != ''" >
+        OBTAINTYPE = #{obtaintype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateKyBonusByPrimaryKey" parameterType="com.saint.research.bean.KyBonusEntity" >
+    update KY_BONUS
+    set TITLE = #{title,jdbcType=VARCHAR},
+      BONUSTYPE = #{bonustype,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      BONUSDATE = to_date(#{bonusdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      RESULTID = #{resultid,jdbcType=VARCHAR},
+      MARK = #{mark,jdbcType=VARCHAR},
+      CREATEUSERID = #{createuserid,jdbcType=VARCHAR},
+      CREATEUSERNAME = #{createusername,jdbcType=VARCHAR},
+      CREATEDATE = to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      OPERATEUSERID = #{operateuserid,jdbcType=VARCHAR},
+      OPERATEUSERNAME = #{operateusername,jdbcType=VARCHAR},
+      OPERATEDATE = to_date(#{operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      OBTAINID = #{obtainid,jdbcType=VARCHAR},
+      OBTAINNAME = #{obtainname,jdbcType=VARCHAR},
+      OBTAINTYPE = #{obtaintype,jdbcType=VARCHAR}
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.wechat.XfPayHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.wechat.manager.bean.XfPayHistoryEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="SQXH" property="sqxh" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="YITONGCARD" property="yitongcard" jdbcType="VARCHAR" />
+    <result column="USERNAME" property="username" jdbcType="VARCHAR" />
+    <result column="YIYUAN" property="yiyuan" jdbcType="VARCHAR" />
+    <result column="PAYMETHOD" property="paymethod" jdbcType="VARCHAR" />
+    <result column="PAYMONEY" property="paymoney" jdbcType="VARCHAR" />
+    <result column="YHRECEIPEKH" property="yhreceipekh" jdbcType="VARCHAR" />
+    <result column="YHRECRIPEXM" property="yhrecripexm" jdbcType="VARCHAR" />
+    <result column="RGRECEIPEXM" property="rgreceipexm" jdbcType="VARCHAR" />
+    <result column="RGRECEIPETEL" property="rgreceipetel" jdbcType="VARCHAR" />
+    <result column="RGBZ" property="rgbz" jdbcType="VARCHAR" />
+    <result column="PAYTIME" property="paytime" jdbcType="DATE" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+    <result column="GXSJ" property="gxsj" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, SQXH, STATE, YITONGCARD, USERNAME, YIYUAN, PAYMETHOD, PAYMONEY, YHRECEIPEKH, 
+    YHRECRIPEXM, RGRECEIPEXM, RGRECEIPETEL, RGBZ, PAYTIME, REMARK1, REMARK2, REMARK3, 
+    REMARK4, REMARK5, GXSJ
+  </sql>
+  <select id="selectListPageXfPayHistoryBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.XfPayHistorySqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XF_PAY_HISTORY
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListXfPayHistoryBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.XfPayHistorySqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XF_PAY_HISTORY
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectXfPayHistoryByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from XF_PAY_HISTORY
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteXfPayHistoryByPrimaryKey" parameterType="java.lang.String" >
+    delete from XF_PAY_HISTORY
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteXfPayHistoryBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.XfPayHistorySqlWhere" >
+    delete from XF_PAY_HISTORY
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertXfPayHistory" parameterType="com.saint.wechat.manager.bean.XfPayHistoryEntity" >
+  		<selectKey resultType="String" keyProperty="xh" order="BEFORE">
+			select SQ_PAY_HISTORY.nextVal from dual
+		</selectKey>
+    insert into XF_PAY_HISTORY (XH, SQXH, STATE, 
+      YITONGCARD, USERNAME, YIYUAN, 
+      PAYMETHOD, PAYMONEY, YHRECEIPEKH, 
+      YHRECRIPEXM, RGRECEIPEXM, RGRECEIPETEL, 
+      RGBZ, PAYTIME, 
+      REMARK1, REMARK2, REMARK3, 
+      REMARK4, REMARK5, GXSJ
+      )
+    values (#{xh,jdbcType=VARCHAR}, #{sqxh,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{yitongcard,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{yiyuan,jdbcType=VARCHAR}, 
+      #{paymethod,jdbcType=VARCHAR}, #{paymoney,jdbcType=VARCHAR}, #{yhreceipekh,jdbcType=VARCHAR}, 
+      #{yhrecripexm,jdbcType=VARCHAR}, #{rgreceipexm,jdbcType=VARCHAR}, #{rgreceipetel,jdbcType=VARCHAR}, 
+      #{rgbz,jdbcType=VARCHAR}, to_date(#{paytime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, 
+      #{remark4,jdbcType=VARCHAR}, #{remark5,jdbcType=VARCHAR}, to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+      )
+  </insert>
+  <insert id="insertXfPayHistorySelective" parameterType="com.saint.wechat.manager.bean.XfPayHistoryEntity" >
+     <selectKey resultType="String" keyProperty="xh" order="BEFORE">
+			select SQ_PAY_HISTORY.nextVal from dual
+		</selectKey>
+    insert into XF_PAY_HISTORY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="sqxh != null and sqxh != ''" >
+        SQXH,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="yitongcard != null and yitongcard != ''" >
+        YITONGCARD,
+      </if>
+      <if test="username != null and username != ''" >
+        USERNAME,
+      </if>
+      <if test="yiyuan != null and yiyuan != ''" >
+        YIYUAN,
+      </if>
+      <if test="paymethod != null and paymethod != ''" >
+        PAYMETHOD,
+      </if>
+      <if test="paymoney != null and paymoney != ''" >
+        PAYMONEY,
+      </if>
+      <if test="yhreceipekh != null and yhreceipekh != ''" >
+        YHRECEIPEKH,
+      </if>
+      <if test="yhrecripexm != null and yhrecripexm != ''" >
+        YHRECRIPEXM,
+      </if>
+      <if test="rgreceipexm != null and rgreceipexm != ''" >
+        RGRECEIPEXM,
+      </if>
+      <if test="rgreceipetel != null and rgreceipetel != ''" >
+        RGRECEIPETEL,
+      </if>
+      <if test="rgbz != null and rgbz != ''" >
+        RGBZ,
+      </if>
+      <if test="paytime != null and paytime != ''" >
+        PAYTIME,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="sqxh != null and sqxh != ''" >
+        #{sqxh,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="yitongcard != null and yitongcard != ''" >
+        #{yitongcard,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null and username != ''" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyuan != null and yiyuan != ''" >
+        #{yiyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="paymethod != null and paymethod != ''" >
+        #{paymethod,jdbcType=VARCHAR},
+      </if>
+      <if test="paymoney != null and paymoney != ''" >
+        #{paymoney,jdbcType=VARCHAR},
+      </if>
+      <if test="yhreceipekh != null and yhreceipekh != ''" >
+        #{yhreceipekh,jdbcType=VARCHAR},
+      </if>
+      <if test="yhrecripexm != null and yhrecripexm != ''" >
+        #{yhrecripexm,jdbcType=VARCHAR},
+      </if>
+      <if test="rgreceipexm != null and rgreceipexm != ''" >
+        #{rgreceipexm,jdbcType=VARCHAR},
+      </if>
+      <if test="rgreceipetel != null and rgreceipetel != ''" >
+        #{rgreceipetel,jdbcType=VARCHAR},
+      </if>
+      <if test="rgbz != null and rgbz != ''" >
+        #{rgbz,jdbcType=VARCHAR},
+      </if>
+      <if test="paytime != null and paytime != ''" >
+        to_date(#{paytime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </trim>
+  </insert>
+  <select id="countXfPayHistoryBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.XfPayHistorySqlWhere" resultType="java.lang.Integer" >
+    select count(*) from XF_PAY_HISTORY
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateXfPayHistoryBySqlWhereSelective" parameterType="map" >
+    update XF_PAY_HISTORY
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sqxh != null and record.sqxh != ''" >
+        SQXH = #{record.sqxh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yitongcard != null and record.yitongcard != ''" >
+        YITONGCARD = #{record.yitongcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null and record.username != ''" >
+        USERNAME = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yiyuan != null and record.yiyuan != ''" >
+        YIYUAN = #{record.yiyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymethod != null and record.paymethod != ''" >
+        PAYMETHOD = #{record.paymethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymoney != null and record.paymoney != ''" >
+        PAYMONEY = #{record.paymoney,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yhreceipekh != null and record.yhreceipekh != ''" >
+        YHRECEIPEKH = #{record.yhreceipekh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yhrecripexm != null and record.yhrecripexm != ''" >
+        YHRECRIPEXM = #{record.yhrecripexm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rgreceipexm != null and record.rgreceipexm != ''" >
+        RGRECEIPEXM = #{record.rgreceipexm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rgreceipetel != null and record.rgreceipetel != ''" >
+        RGRECEIPETEL = #{record.rgreceipetel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rgbz != null and record.rgbz != ''" >
+        RGBZ = #{record.rgbz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paytime != null and record.paytime != ''" >
+        PAYTIME = to_date(#{record.paytime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxsj != null and record.gxsj != ''" >
+        GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateXfPayHistoryBySqlWhere" parameterType="map" >
+    update XF_PAY_HISTORY
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      SQXH = #{record.sqxh,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      YITONGCARD = #{record.yitongcard,jdbcType=VARCHAR},
+      USERNAME = #{record.username,jdbcType=VARCHAR},
+      YIYUAN = #{record.yiyuan,jdbcType=VARCHAR},
+      PAYMETHOD = #{record.paymethod,jdbcType=VARCHAR},
+      PAYMONEY = #{record.paymoney,jdbcType=VARCHAR},
+      YHRECEIPEKH = #{record.yhreceipekh,jdbcType=VARCHAR},
+      YHRECRIPEXM = #{record.yhrecripexm,jdbcType=VARCHAR},
+      RGRECEIPEXM = #{record.rgreceipexm,jdbcType=VARCHAR},
+      RGRECEIPETEL = #{record.rgreceipetel,jdbcType=VARCHAR},
+      RGBZ = #{record.rgbz,jdbcType=VARCHAR},
+      PAYTIME = to_date(#{record.paytime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateXfPayHistoryByPrimaryKeySelective" parameterType="com.saint.wechat.manager.bean.XfPayHistoryEntity" >
+    update XF_PAY_HISTORY
+    <set >
+      <if test="sqxh != null and sqxh != ''" >
+        SQXH = #{sqxh,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="yitongcard != null and yitongcard != ''" >
+        YITONGCARD = #{yitongcard,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null and username != ''" >
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyuan != null and yiyuan != ''" >
+        YIYUAN = #{yiyuan,jdbcType=VARCHAR},
+      </if>
+      <if test="paymethod != null and paymethod != ''" >
+        PAYMETHOD = #{paymethod,jdbcType=VARCHAR},
+      </if>
+      <if test="paymoney != null and paymoney != ''" >
+        PAYMONEY = #{paymoney,jdbcType=VARCHAR},
+      </if>
+      <if test="yhreceipekh != null and yhreceipekh != ''" >
+        YHRECEIPEKH = #{yhreceipekh,jdbcType=VARCHAR},
+      </if>
+      <if test="yhrecripexm != null and yhrecripexm != ''" >
+        YHRECRIPEXM = #{yhrecripexm,jdbcType=VARCHAR},
+      </if>
+      <if test="rgreceipexm != null and rgreceipexm != ''" >
+        RGRECEIPEXM = #{rgreceipexm,jdbcType=VARCHAR},
+      </if>
+      <if test="rgreceipetel != null and rgreceipetel != ''" >
+        RGRECEIPETEL = #{rgreceipetel,jdbcType=VARCHAR},
+      </if>
+      <if test="rgbz != null and rgbz != ''" >
+        RGBZ = #{rgbz,jdbcType=VARCHAR},
+      </if>
+      <if test="paytime != null and paytime != ''" >
+        PAYTIME = to_date(#{paytime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateXfPayHistoryByPrimaryKey" parameterType="com.saint.wechat.manager.bean.XfPayHistoryEntity" >
+    update XF_PAY_HISTORY
+    set SQXH = #{sqxh,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      YITONGCARD = #{yitongcard,jdbcType=VARCHAR},
+      USERNAME = #{username,jdbcType=VARCHAR},
+      YIYUAN = #{yiyuan,jdbcType=VARCHAR},
+      PAYMETHOD = #{paymethod,jdbcType=VARCHAR},
+      PAYMONEY = #{paymoney,jdbcType=VARCHAR},
+      YHRECEIPEKH = #{yhreceipekh,jdbcType=VARCHAR},
+      YHRECRIPEXM = #{yhrecripexm,jdbcType=VARCHAR},
+      RGRECEIPEXM = #{rgreceipexm,jdbcType=VARCHAR},
+      RGRECEIPETEL = #{rgreceipetel,jdbcType=VARCHAR},
+      RGBZ = #{rgbz,jdbcType=VARCHAR},
+      PAYTIME = to_date(#{paytime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR},
+      GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxQuestionnaireTestMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxQuestionnaireTestEntity" >
+    <id column="QUESTIONID" property="questionid" jdbcType="VARCHAR" />
+    <result column="SXH" property="sxh" jdbcType="DECIMAL" />
+    <result column="TX" property="tx" jdbcType="VARCHAR" />
+    <result column="WJLB" property="wjlb" jdbcType="VARCHAR" />
+    <result column="ND" property="nd" jdbcType="VARCHAR" />
+    <result column="SFYX" property="sfyx" jdbcType="VARCHAR" />
+    <result column="WT" property="wt" jdbcType="VARCHAR" />
+    <result column="WTDASX" property="wtdasx" jdbcType="VARCHAR" />
+    <result column="WTDA" property="wtda" jdbcType="VARCHAR" />
+    <result column="BZDA" property="bzda" jdbcType="VARCHAR" />
+    <result column="DEPID" property="depid" jdbcType="VARCHAR" />
+    <result column="DEPNAME" property="depname" jdbcType="VARCHAR" />
+    <result column="CTRID" property="ctrid" jdbcType="VARCHAR" />
+    <result column="CTRNAME" property="ctrname" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="DATE" />
+    <result column="UPDATETIME" property="updatetime" jdbcType="DATE" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    QUESTIONID, SXH, TX, WJLB, ND, SFYX, WT, WTDASX, WTDA, BZDA, DEPID, DEPNAME, CTRID, 
+    CTRNAME, CREATETIME, UPDATETIME, REMARK1, REMARK2, REMARK3
+  </sql>
+  <select id="selectListPageJxQuestionnaireTestBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxQuestionnaireTestSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_QUESTIONNAIRE_TEST
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxQuestionnaireTestBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxQuestionnaireTestSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_QUESTIONNAIRE_TEST
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxQuestionnaireTestByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_QUESTIONNAIRE_TEST
+    where QUESTIONID = #{questionid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxQuestionnaireTestByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_QUESTIONNAIRE_TEST
+    where QUESTIONID = #{questionid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxQuestionnaireTestBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxQuestionnaireTestSqlWhere" >
+    delete from JX_QUESTIONNAIRE_TEST
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxQuestionnaireTest" parameterType="com.saint.teaching.bean.JxQuestionnaireTestEntity" >
+    insert into JX_QUESTIONNAIRE_TEST (QUESTIONID, SXH, TX, 
+      WJLB, ND, SFYX, WT, 
+      WTDASX, WTDA, BZDA, 
+      DEPID, DEPNAME, CTRID, 
+      CTRNAME, CREATETIME, 
+      UPDATETIME, REMARK1, 
+      REMARK2, REMARK3)
+    values (#{questionid,jdbcType=VARCHAR}, #{sxh,jdbcType=DECIMAL}, #{tx,jdbcType=VARCHAR}, 
+      #{wjlb,jdbcType=VARCHAR}, #{nd,jdbcType=VARCHAR}, #{sfyx,jdbcType=VARCHAR}, #{wt,jdbcType=VARCHAR}, 
+      #{wtdasx,jdbcType=VARCHAR}, #{wtda,jdbcType=VARCHAR}, #{bzda,jdbcType=VARCHAR}, 
+      #{depid,jdbcType=VARCHAR}, #{depname,jdbcType=VARCHAR}, #{ctrid,jdbcType=VARCHAR}, 
+      #{ctrname,jdbcType=VARCHAR}, to_date(#{createtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      to_date(#{updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{remark1,jdbcType=VARCHAR}, 
+      #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertJxQuestionnaireTestSelective" parameterType="com.saint.teaching.bean.JxQuestionnaireTestEntity" >
+    insert into JX_QUESTIONNAIRE_TEST
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="questionid != null and questionid != ''" >
+        QUESTIONID,
+      </if>
+      <if test="sxh != null and sxh != ''" >
+        SXH,
+      </if>
+      <if test="tx != null and tx != ''" >
+        TX,
+      </if>
+      <if test="wjlb != null and wjlb != ''" >
+        WJLB,
+      </if>
+      <if test="nd != null and nd != ''" >
+        ND,
+      </if>
+      <if test="sfyx != null and sfyx != ''" >
+        SFYX,
+      </if>
+      <if test="wt != null and wt != ''" >
+        WT,
+      </if>
+      <if test="wtdasx != null and wtdasx != ''" >
+        WTDASX,
+      </if>
+      <if test="wtda != null and wtda != ''" >
+        WTDA,
+      </if>
+      <if test="bzda != null and bzda != ''" >
+        BZDA,
+      </if>
+      <if test="depid != null and depid != ''" >
+        DEPID,
+      </if>
+      <if test="depname != null and depname != ''" >
+        DEPNAME,
+      </if>
+      <if test="ctrid != null and ctrid != ''" >
+        CTRID,
+      </if>
+      <if test="ctrname != null and ctrname != ''" >
+        CTRNAME,
+      </if>
+      <if test="createtime != null and createtime != ''" >
+        CREATETIME,
+      </if>
+      <if test="updatetime != null and updatetime != ''" >
+        UPDATETIME,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="questionid != null and questionid != ''" >
+        #{questionid,jdbcType=VARCHAR},
+      </if>
+      <if test="sxh != null and sxh != ''" >
+        #{sxh,jdbcType=DECIMAL},
+      </if>
+      <if test="tx != null and tx != ''" >
+        #{tx,jdbcType=VARCHAR},
+      </if>
+      <if test="wjlb != null and wjlb != ''" >
+        #{wjlb,jdbcType=VARCHAR},
+      </if>
+      <if test="nd != null and nd != ''" >
+        #{nd,jdbcType=VARCHAR},
+      </if>
+      <if test="sfyx != null and sfyx != ''" >
+        #{sfyx,jdbcType=VARCHAR},
+      </if>
+      <if test="wt != null and wt != ''" >
+        #{wt,jdbcType=VARCHAR},
+      </if>
+      <if test="wtdasx != null and wtdasx != ''" >
+        #{wtdasx,jdbcType=VARCHAR},
+      </if>
+      <if test="wtda != null and wtda != ''" >
+        #{wtda,jdbcType=VARCHAR},
+      </if>
+      <if test="bzda != null and bzda != ''" >
+        #{bzda,jdbcType=VARCHAR},
+      </if>
+      <if test="depid != null and depid != ''" >
+        #{depid,jdbcType=VARCHAR},
+      </if>
+      <if test="depname != null and depname != ''" >
+        #{depname,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrid != null and ctrid != ''" >
+        #{ctrid,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrname != null and ctrname != ''" >
+        #{ctrname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null and createtime != ''" >
+        to_date(#{createtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="updatetime != null and updatetime != ''" >
+        to_date(#{updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxQuestionnaireTestBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxQuestionnaireTestSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_QUESTIONNAIRE_TEST
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxQuestionnaireTestBySqlWhereSelective" parameterType="map" >
+    update JX_QUESTIONNAIRE_TEST
+    <set >
+      <if test="record.questionid != null and record.questionid != ''" >
+        QUESTIONID = #{record.questionid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sxh != null and record.sxh != ''" >
+        SXH = #{record.sxh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tx != null and record.tx != ''" >
+        TX = #{record.tx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wjlb != null and record.wjlb != ''" >
+        WJLB = #{record.wjlb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nd != null and record.nd != ''" >
+        ND = #{record.nd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfyx != null and record.sfyx != ''" >
+        SFYX = #{record.sfyx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wt != null and record.wt != ''" >
+        WT = #{record.wt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wtdasx != null and record.wtdasx != ''" >
+        WTDASX = #{record.wtdasx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wtda != null and record.wtda != ''" >
+        WTDA = #{record.wtda,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bzda != null and record.bzda != ''" >
+        BZDA = #{record.bzda,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depid != null and record.depid != ''" >
+        DEPID = #{record.depid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depname != null and record.depname != ''" >
+        DEPNAME = #{record.depname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctrid != null and record.ctrid != ''" >
+        CTRID = #{record.ctrid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctrname != null and record.ctrname != ''" >
+        CTRNAME = #{record.ctrname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null and record.createtime != ''" >
+        CREATETIME = to_date(#{record.createtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.updatetime != null and record.updatetime != ''" >
+        UPDATETIME = to_date(#{record.updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxQuestionnaireTestBySqlWhere" parameterType="map" >
+    update JX_QUESTIONNAIRE_TEST
+    set QUESTIONID = #{record.questionid,jdbcType=VARCHAR},
+      SXH = #{record.sxh,jdbcType=DECIMAL},
+      TX = #{record.tx,jdbcType=VARCHAR},
+      WJLB = #{record.wjlb,jdbcType=VARCHAR},
+      ND = #{record.nd,jdbcType=VARCHAR},
+      SFYX = #{record.sfyx,jdbcType=VARCHAR},
+      WT = #{record.wt,jdbcType=VARCHAR},
+      WTDASX = #{record.wtdasx,jdbcType=VARCHAR},
+      WTDA = #{record.wtda,jdbcType=VARCHAR},
+      BZDA = #{record.bzda,jdbcType=VARCHAR},
+      DEPID = #{record.depid,jdbcType=VARCHAR},
+      DEPNAME = #{record.depname,jdbcType=VARCHAR},
+      CTRID = #{record.ctrid,jdbcType=VARCHAR},
+      CTRNAME = #{record.ctrname,jdbcType=VARCHAR},
+      CREATETIME = to_date(#{record.createtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      UPDATETIME = to_date(#{record.updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxQuestionnaireTestByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxQuestionnaireTestEntity" >
+    update JX_QUESTIONNAIRE_TEST
+    <set >
+      <if test="sxh != null and sxh != ''" >
+        SXH = #{sxh,jdbcType=DECIMAL},
+      </if>
+      <if test="tx != null and tx != ''" >
+        TX = #{tx,jdbcType=VARCHAR},
+      </if>
+      <if test="wjlb != null and wjlb != ''" >
+        WJLB = #{wjlb,jdbcType=VARCHAR},
+      </if>
+      <if test="nd != null and nd != ''" >
+        ND = #{nd,jdbcType=VARCHAR},
+      </if>
+      <if test="sfyx != null and sfyx != ''" >
+        SFYX = #{sfyx,jdbcType=VARCHAR},
+      </if>
+      <if test="wt != null and wt != ''" >
+        WT = #{wt,jdbcType=VARCHAR},
+      </if>
+      <if test="wtdasx != null and wtdasx != ''" >
+        WTDASX = #{wtdasx,jdbcType=VARCHAR},
+      </if>
+      <if test="wtda != null and wtda != ''" >
+        WTDA = #{wtda,jdbcType=VARCHAR},
+      </if>
+      <if test="bzda != null and bzda != ''" >
+        BZDA = #{bzda,jdbcType=VARCHAR},
+      </if>
+      <if test="depid != null and depid != ''" >
+        DEPID = #{depid,jdbcType=VARCHAR},
+      </if>
+      <if test="depname != null and depname != ''" >
+        DEPNAME = #{depname,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrid != null and ctrid != ''" >
+        CTRID = #{ctrid,jdbcType=VARCHAR},
+      </if>
+      <if test="ctrname != null and ctrname != ''" >
+        CTRNAME = #{ctrname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null and createtime != ''" >
+        CREATETIME = to_date(#{createtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="updatetime != null and updatetime != ''" >
+        UPDATETIME = to_date(#{updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where QUESTIONID = #{questionid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxQuestionnaireTestByPrimaryKey" parameterType="com.saint.teaching.bean.JxQuestionnaireTestEntity" >
+    update JX_QUESTIONNAIRE_TEST
+    set SXH = #{sxh,jdbcType=DECIMAL},
+      TX = #{tx,jdbcType=VARCHAR},
+      WJLB = #{wjlb,jdbcType=VARCHAR},
+      ND = #{nd,jdbcType=VARCHAR},
+      SFYX = #{sfyx,jdbcType=VARCHAR},
+      WT = #{wt,jdbcType=VARCHAR},
+      WTDASX = #{wtdasx,jdbcType=VARCHAR},
+      WTDA = #{wtda,jdbcType=VARCHAR},
+      BZDA = #{bzda,jdbcType=VARCHAR},
+      DEPID = #{depid,jdbcType=VARCHAR},
+      DEPNAME = #{depname,jdbcType=VARCHAR},
+      CTRID = #{ctrid,jdbcType=VARCHAR},
+      CTRNAME = #{ctrname,jdbcType=VARCHAR},
+      CREATETIME = to_date(#{createtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      UPDATETIME = to_date(#{updatetime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR}
+    where QUESTIONID = #{questionid,jdbcType=VARCHAR}
+  </update>
+</mapper>

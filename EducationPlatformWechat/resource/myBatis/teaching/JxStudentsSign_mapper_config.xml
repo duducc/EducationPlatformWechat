@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxStudentsSignMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxStudentsSignEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="STUID" property="stuid" jdbcType="VARCHAR" />
+    <result column="STUNAME" property="stuname" jdbcType="VARCHAR" />
+    <result column="SIGNCS" property="signcs" jdbcType="VARCHAR" />
+    <result column="SIGNTIME" property="signtime" jdbcType="VARCHAR" />
+    <result column="SIGNDATE" property="signdate" jdbcType="VARCHAR" />
+    <result column="SIGNSTATE" property="signstate" jdbcType="VARCHAR" />
+    <result column="OPENID" property="openid" jdbcType="VARCHAR" />
+    <result column="LATETIME" property="latetime" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="BZ" property="bz" jdbcType="VARCHAR" />
+    <result column="UPDATETIME" property="updatetime" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, STUID, STUNAME, SIGNCS, SIGNTIME, SIGNDATE, SIGNSTATE, OPENID, LATETIME, TYPE, 
+    BZ, UPDATETIME, REMARK1, REMARK2, REMARK3, REMARK4, REMARK5
+  </sql>
+  <select id="selectListPageJxStudentsSignBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxStudentsSignSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_STUDENTS_SIGN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxStudentsSignBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxStudentsSignSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_STUDENTS_SIGN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxStudentsSignByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_STUDENTS_SIGN
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxStudentsSignByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_STUDENTS_SIGN
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxStudentsSignBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxStudentsSignSqlWhere" >
+    delete from JX_STUDENTS_SIGN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxStudentsSign" parameterType="com.saint.teaching.bean.JxStudentsSignEntity" >
+    insert into JX_STUDENTS_SIGN (XH, STUID, STUNAME, 
+      SIGNCS, SIGNTIME, SIGNDATE, 
+      SIGNSTATE, OPENID, LATETIME, 
+      TYPE, BZ, UPDATETIME, 
+      REMARK1, REMARK2, REMARK3, 
+      REMARK4, REMARK5)
+    values (SEQ_JX_STUDENTS_SIGN.nextVal, #{stuid,jdbcType=VARCHAR}, #{stuname,jdbcType=VARCHAR}, 
+      #{signcs,jdbcType=VARCHAR}, #{signtime,jdbcType=VARCHAR}, #{signdate,jdbcType=VARCHAR}, 
+      #{signstate,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{latetime,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, 
+      #{remark4,jdbcType=VARCHAR}, #{remark5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertJxStudentsSignSelective" parameterType="com.saint.teaching.bean.JxStudentsSignEntity" >
+    insert into JX_STUDENTS_SIGN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="stuid != null and stuid != ''" >
+        STUID,
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        STUNAME,
+      </if>
+      <if test="signcs != null and signcs != ''" >
+        SIGNCS,
+      </if>
+      <if test="signtime != null and signtime != ''" >
+        SIGNTIME,
+      </if>
+      <if test="signdate != null and signdate != ''" >
+        SIGNDATE,
+      </if>
+      <if test="signstate != null and signstate != ''" >
+        SIGNSTATE,
+      </if>
+      <if test="openid != null and openid != ''" >
+        OPENID,
+      </if>
+      <if test="latetime != null and latetime != ''" >
+        LATETIME,
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE,
+      </if>
+      <if test="bz != null and bz != ''" >
+        BZ,
+      </if>
+      <if test="updatetime != null and updatetime != ''" >
+        UPDATETIME,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="stuid != null and stuid != ''" >
+        #{stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="signcs != null and signcs != ''" >
+        #{signcs,jdbcType=VARCHAR},
+      </if>
+      <if test="signtime != null and signtime != ''" >
+        #{signtime,jdbcType=VARCHAR},
+      </if>
+      <if test="signdate != null and signdate != ''" >
+        #{signdate,jdbcType=VARCHAR},
+      </if>
+      <if test="signstate != null and signstate != ''" >
+        #{signstate,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null and openid != ''" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="latetime != null and latetime != ''" >
+        #{latetime,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null and type != ''" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null and bz != ''" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null and updatetime != ''" >
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxStudentsSignBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxStudentsSignSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_STUDENTS_SIGN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxStudentsSignBySqlWhereSelective" parameterType="map" >
+    update JX_STUDENTS_SIGN
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuid != null and record.stuid != ''" >
+        STUID = #{record.stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuname != null and record.stuname != ''" >
+        STUNAME = #{record.stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signcs != null and record.signcs != ''" >
+        SIGNCS = #{record.signcs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signtime != null and record.signtime != ''" >
+        SIGNTIME = #{record.signtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signdate != null and record.signdate != ''" >
+        SIGNDATE = #{record.signdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signstate != null and record.signstate != ''" >
+        SIGNSTATE = #{record.signstate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openid != null and record.openid != ''" >
+        OPENID = #{record.openid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latetime != null and record.latetime != ''" >
+        LATETIME = #{record.latetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null and record.type != ''" >
+        TYPE = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bz != null and record.bz != ''" >
+        BZ = #{record.bz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatetime != null and record.updatetime != ''" >
+        UPDATETIME = #{record.updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxStudentsSignBySqlWhere" parameterType="map" >
+    update JX_STUDENTS_SIGN
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      STUID = #{record.stuid,jdbcType=VARCHAR},
+      STUNAME = #{record.stuname,jdbcType=VARCHAR},
+      SIGNCS = #{record.signcs,jdbcType=VARCHAR},
+      SIGNTIME = #{record.signtime,jdbcType=VARCHAR},
+      SIGNDATE = #{record.signdate,jdbcType=VARCHAR},
+      SIGNSTATE = #{record.signstate,jdbcType=VARCHAR},
+      OPENID = #{record.openid,jdbcType=VARCHAR},
+      LATETIME = #{record.latetime,jdbcType=VARCHAR},
+      TYPE = #{record.type,jdbcType=VARCHAR},
+      BZ = #{record.bz,jdbcType=VARCHAR},
+      UPDATETIME = #{record.updatetime,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxStudentsSignByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxStudentsSignEntity" >
+    update JX_STUDENTS_SIGN
+    <set >
+      <if test="stuid != null and stuid != ''" >
+        STUID = #{stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        STUNAME = #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="signcs != null and signcs != ''" >
+        SIGNCS = #{signcs,jdbcType=VARCHAR},
+      </if>
+      <if test="signtime != null and signtime != ''" >
+        SIGNTIME = #{signtime,jdbcType=VARCHAR},
+      </if>
+      <if test="signdate != null and signdate != ''" >
+        SIGNDATE = #{signdate,jdbcType=VARCHAR},
+      </if>
+      <if test="signstate != null and signstate != ''" >
+        SIGNSTATE = #{signstate,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null and openid != ''" >
+        OPENID = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="latetime != null and latetime != ''" >
+        LATETIME = #{latetime,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null and bz != ''" >
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null and updatetime != ''" >
+        UPDATETIME = #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxStudentsSignByPrimaryKey" parameterType="com.saint.teaching.bean.JxStudentsSignEntity" >
+    update JX_STUDENTS_SIGN
+    set STUID = #{stuid,jdbcType=VARCHAR},
+      STUNAME = #{stuname,jdbcType=VARCHAR},
+      SIGNCS = #{signcs,jdbcType=VARCHAR},
+      SIGNTIME = #{signtime,jdbcType=VARCHAR},
+      SIGNDATE = #{signdate,jdbcType=VARCHAR},
+      SIGNSTATE = #{signstate,jdbcType=VARCHAR},
+      OPENID = #{openid,jdbcType=VARCHAR},
+      LATETIME = #{latetime,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      UPDATETIME = #{updatetime,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR}
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

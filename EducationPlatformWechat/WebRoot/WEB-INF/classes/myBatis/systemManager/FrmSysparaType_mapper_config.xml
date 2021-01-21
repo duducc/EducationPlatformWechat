@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.systemManager.FrmSysparaTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.systemManager.bean.FrmSysparaTypeEntity" >
+    <id column="XTLB" property="xtlb" jdbcType="CHAR" />
+    <id column="GJZ" property="gjz" jdbcType="VARCHAR" />
+    <result column="CSLX" property="cslx" jdbcType="CHAR" />
+    <result column="CSMC" property="csmc" jdbcType="VARCHAR" />
+    <result column="CSSM" property="cssm" jdbcType="VARCHAR" />
+    <result column="MRZ" property="mrz" jdbcType="VARCHAR" />
+    <result column="XGJB" property="xgjb" jdbcType="CHAR" />
+    <result column="SFXS" property="sfxs" jdbcType="CHAR" />
+    <result column="XSSX" property="xssx" jdbcType="DECIMAL" />
+    <result column="CSSX" property="cssx" jdbcType="CHAR" />
+    <result column="BZ" property="bz" jdbcType="VARCHAR" />
+    <result column="JYW" property="jyw" jdbcType="VARCHAR" />
+    <result column="XSXS" property="xsxs" jdbcType="CHAR" />
+    <result column="CSSYJB" property="cssyjb" jdbcType="VARCHAR" />
+    <result column="BYZD1" property="byzd1" jdbcType="VARCHAR" />
+    <result column="BYZD2" property="byzd2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XTLB, GJZ, CSLX, CSMC, CSSM, MRZ, XGJB, SFXS, XSSX, CSSX, BZ, JYW, XSXS, CSSYJB, 
+    BYZD1, BYZD2
+  </sql>
+  <select id="selectListPageFrmSysparaTypeBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.systemManager.sqlWhere.FrmSysparaTypeSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from FRM_SYSPARA_TYPE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListFrmSysparaTypeBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.systemManager.sqlWhere.FrmSysparaTypeSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from FRM_SYSPARA_TYPE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectFrmSysparaTypeByPrimaryKey" resultMap="BaseResultMap" parameterType="com.saint.systemManager.bean.FrmSysparaTypeKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from FRM_SYSPARA_TYPE
+    where XTLB = #{xtlb,jdbcType=CHAR}
+      and GJZ = #{gjz,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteFrmSysparaTypeByPrimaryKey" parameterType="com.saint.systemManager.bean.FrmSysparaTypeKey" >
+    delete from FRM_SYSPARA_TYPE
+    where XTLB = #{xtlb,jdbcType=CHAR}
+      and GJZ = #{gjz,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteFrmSysparaTypeBySqlWhere" parameterType="com.saint.systemManager.sqlWhere.FrmSysparaTypeSqlWhere" >
+    delete from FRM_SYSPARA_TYPE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertFrmSysparaType" parameterType="com.saint.systemManager.bean.FrmSysparaTypeEntity" >
+    insert into FRM_SYSPARA_TYPE (XTLB, GJZ, CSLX, CSMC, 
+      CSSM, MRZ, XGJB, SFXS, 
+      XSSX, CSSX, BZ, JYW, 
+      XSXS, CSSYJB, BYZD1, BYZD2
+      )
+    values (#{xtlb,jdbcType=CHAR}, #{gjz,jdbcType=VARCHAR}, #{cslx,jdbcType=CHAR}, #{csmc,jdbcType=VARCHAR}, 
+      #{cssm,jdbcType=VARCHAR}, #{mrz,jdbcType=VARCHAR}, #{xgjb,jdbcType=CHAR}, #{sfxs,jdbcType=CHAR}, 
+      #{xssx,jdbcType=DECIMAL}, #{cssx,jdbcType=CHAR}, #{bz,jdbcType=VARCHAR}, #{jyw,jdbcType=VARCHAR}, 
+      #{xsxs,jdbcType=CHAR}, #{cssyjb,jdbcType=VARCHAR}, #{byzd1,jdbcType=VARCHAR}, #{byzd2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertFrmSysparaTypeSelective" parameterType="com.saint.systemManager.bean.FrmSysparaTypeEntity" >
+    insert into FRM_SYSPARA_TYPE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xtlb != null" >
+        XTLB,
+      </if>
+      <if test="gjz != null" >
+        GJZ,
+      </if>
+      <if test="cslx != null" >
+        CSLX,
+      </if>
+      <if test="csmc != null" >
+        CSMC,
+      </if>
+      <if test="cssm != null" >
+        CSSM,
+      </if>
+      <if test="mrz != null" >
+        MRZ,
+      </if>
+      <if test="xgjb != null" >
+        XGJB,
+      </if>
+      <if test="sfxs != null" >
+        SFXS,
+      </if>
+      <if test="xssx != null" >
+        XSSX,
+      </if>
+      <if test="cssx != null" >
+        CSSX,
+      </if>
+      <if test="bz != null" >
+        BZ,
+      </if>
+      <if test="jyw != null" >
+        JYW,
+      </if>
+      <if test="xsxs != null" >
+        XSXS,
+      </if>
+      <if test="cssyjb != null" >
+        CSSYJB,
+      </if>
+      <if test="byzd1 != null" >
+        BYZD1,
+      </if>
+      <if test="byzd2 != null" >
+        BYZD2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xtlb != null" >
+        #{xtlb,jdbcType=CHAR},
+      </if>
+      <if test="gjz != null" >
+        #{gjz,jdbcType=VARCHAR},
+      </if>
+      <if test="cslx != null" >
+        #{cslx,jdbcType=CHAR},
+      </if>
+      <if test="csmc != null" >
+        #{csmc,jdbcType=VARCHAR},
+      </if>
+      <if test="cssm != null" >
+        #{cssm,jdbcType=VARCHAR},
+      </if>
+      <if test="mrz != null" >
+        #{mrz,jdbcType=VARCHAR},
+      </if>
+      <if test="xgjb != null" >
+        #{xgjb,jdbcType=CHAR},
+      </if>
+      <if test="sfxs != null" >
+        #{sfxs,jdbcType=CHAR},
+      </if>
+      <if test="xssx != null" >
+        #{xssx,jdbcType=DECIMAL},
+      </if>
+      <if test="cssx != null" >
+        #{cssx,jdbcType=CHAR},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="jyw != null" >
+        #{jyw,jdbcType=VARCHAR},
+      </if>
+      <if test="xsxs != null" >
+        #{xsxs,jdbcType=CHAR},
+      </if>
+      <if test="cssyjb != null" >
+        #{cssyjb,jdbcType=VARCHAR},
+      </if>
+      <if test="byzd1 != null" >
+        #{byzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="byzd2 != null" >
+        #{byzd2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countFrmSysparaTypeBySqlWhere" parameterType="com.saint.systemManager.sqlWhere.FrmSysparaTypeSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from FRM_SYSPARA_TYPE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateFrmSysparaTypeBySqlWhereSelective" parameterType="map" >
+    update FRM_SYSPARA_TYPE
+    <set >
+      <if test="record.xtlb != null" >
+        XTLB = #{record.xtlb,jdbcType=CHAR},
+      </if>
+      <if test="record.gjz != null" >
+        GJZ = #{record.gjz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cslx != null" >
+        CSLX = #{record.cslx,jdbcType=CHAR},
+      </if>
+      <if test="record.csmc != null" >
+        CSMC = #{record.csmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cssm != null" >
+        CSSM = #{record.cssm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mrz != null" >
+        MRZ = #{record.mrz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xgjb != null" >
+        XGJB = #{record.xgjb,jdbcType=CHAR},
+      </if>
+      <if test="record.sfxs != null" >
+        SFXS = #{record.sfxs,jdbcType=CHAR},
+      </if>
+      <if test="record.xssx != null" >
+        XSSX = #{record.xssx,jdbcType=DECIMAL},
+      </if>
+      <if test="record.cssx != null" >
+        CSSX = #{record.cssx,jdbcType=CHAR},
+      </if>
+      <if test="record.bz != null" >
+        BZ = #{record.bz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jyw != null" >
+        JYW = #{record.jyw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xsxs != null" >
+        XSXS = #{record.xsxs,jdbcType=CHAR},
+      </if>
+      <if test="record.cssyjb != null" >
+        CSSYJB = #{record.cssyjb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.byzd1 != null" >
+        BYZD1 = #{record.byzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.byzd2 != null" >
+        BYZD2 = #{record.byzd2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateFrmSysparaTypeBySqlWhere" parameterType="map" >
+    update FRM_SYSPARA_TYPE
+    set XTLB = #{record.xtlb,jdbcType=CHAR},
+      GJZ = #{record.gjz,jdbcType=VARCHAR},
+      CSLX = #{record.cslx,jdbcType=CHAR},
+      CSMC = #{record.csmc,jdbcType=VARCHAR},
+      CSSM = #{record.cssm,jdbcType=VARCHAR},
+      MRZ = #{record.mrz,jdbcType=VARCHAR},
+      XGJB = #{record.xgjb,jdbcType=CHAR},
+      SFXS = #{record.sfxs,jdbcType=CHAR},
+      XSSX = #{record.xssx,jdbcType=DECIMAL},
+      CSSX = #{record.cssx,jdbcType=CHAR},
+      BZ = #{record.bz,jdbcType=VARCHAR},
+      JYW = #{record.jyw,jdbcType=VARCHAR},
+      XSXS = #{record.xsxs,jdbcType=CHAR},
+      CSSYJB = #{record.cssyjb,jdbcType=VARCHAR},
+      BYZD1 = #{record.byzd1,jdbcType=VARCHAR},
+      BYZD2 = #{record.byzd2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateFrmSysparaTypeByPrimaryKeySelective" parameterType="com.saint.systemManager.bean.FrmSysparaTypeEntity" >
+    update FRM_SYSPARA_TYPE
+    <set >
+      <if test="cslx != null" >
+        CSLX = #{cslx,jdbcType=CHAR},
+      </if>
+      <if test="csmc != null" >
+        CSMC = #{csmc,jdbcType=VARCHAR},
+      </if>
+      <if test="cssm != null" >
+        CSSM = #{cssm,jdbcType=VARCHAR},
+      </if>
+      <if test="mrz != null" >
+        MRZ = #{mrz,jdbcType=VARCHAR},
+      </if>
+      <if test="xgjb != null" >
+        XGJB = #{xgjb,jdbcType=CHAR},
+      </if>
+      <if test="sfxs != null" >
+        SFXS = #{sfxs,jdbcType=CHAR},
+      </if>
+      <if test="xssx != null" >
+        XSSX = #{xssx,jdbcType=DECIMAL},
+      </if>
+      <if test="cssx != null" >
+        CSSX = #{cssx,jdbcType=CHAR},
+      </if>
+      <if test="bz != null" >
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="jyw != null" >
+        JYW = #{jyw,jdbcType=VARCHAR},
+      </if>
+      <if test="xsxs != null" >
+        XSXS = #{xsxs,jdbcType=CHAR},
+      </if>
+      <if test="cssyjb != null" >
+        CSSYJB = #{cssyjb,jdbcType=VARCHAR},
+      </if>
+      <if test="byzd1 != null" >
+        BYZD1 = #{byzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="byzd2 != null" >
+        BYZD2 = #{byzd2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XTLB = #{xtlb,jdbcType=CHAR}
+      and GJZ = #{gjz,jdbcType=VARCHAR}
+  </update>
+  <update id="updateFrmSysparaTypeByPrimaryKey" parameterType="com.saint.systemManager.bean.FrmSysparaTypeEntity" >
+    update FRM_SYSPARA_TYPE
+    set CSLX = #{cslx,jdbcType=CHAR},
+      CSMC = #{csmc,jdbcType=VARCHAR},
+      CSSM = #{cssm,jdbcType=VARCHAR},
+      MRZ = #{mrz,jdbcType=VARCHAR},
+      XGJB = #{xgjb,jdbcType=CHAR},
+      SFXS = #{sfxs,jdbcType=CHAR},
+      XSSX = #{xssx,jdbcType=DECIMAL},
+      CSSX = #{cssx,jdbcType=CHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      JYW = #{jyw,jdbcType=VARCHAR},
+      XSXS = #{xsxs,jdbcType=CHAR},
+      CSSYJB = #{cssyjb,jdbcType=VARCHAR},
+      BYZD1 = #{byzd1,jdbcType=VARCHAR},
+      BYZD2 = #{byzd2,jdbcType=VARCHAR}
+    where XTLB = #{xtlb,jdbcType=CHAR}
+      and GJZ = #{gjz,jdbcType=VARCHAR}
+  </update>
+</mapper>

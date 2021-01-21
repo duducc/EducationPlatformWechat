@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.wechat.WechatSysparamMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.wechat.manager.bean.WechatSysparamEntity" >
+    <id column="GJZ" property="gjz" jdbcType="VARCHAR" />
+    <id column="CLIENTSXH" property="clientsxh" jdbcType="VARCHAR" />
+    <result column="DMMC" property="dmmc" jdbcType="VARCHAR" />
+    <result column="DMZ" property="dmz" jdbcType="VARCHAR" />
+    <result column="DMSM" property="dmsm" jdbcType="VARCHAR" />
+    <result column="SFXG" property="sfxg" jdbcType="VARCHAR" />
+    <result column="SFXS" property="sfxs" jdbcType="VARCHAR" />
+    <result column="ZT" property="zt" jdbcType="VARCHAR" />
+    <result column="GXSJ" property="gxsj" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    GJZ, CLIENTSXH, DMMC, DMZ, DMSM, SFXG, SFXS, ZT, GXSJ
+  </sql>
+  <select id="selectListPageWechatSysparamBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.WechatSysparamSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from WECHAT_SYSPARAM
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListWechatSysparamBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.WechatSysparamSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from WECHAT_SYSPARAM
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectWechatSysparamByPrimaryKey" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.bean.WechatSysparamKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from WECHAT_SYSPARAM
+    where GJZ = #{gjz,jdbcType=VARCHAR}
+      and CLIENTSXH = #{clientsxh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteWechatSysparamByPrimaryKey" parameterType="com.saint.wechat.manager.bean.WechatSysparamKey" >
+    delete from WECHAT_SYSPARAM
+    where GJZ = #{gjz,jdbcType=VARCHAR}
+      and CLIENTSXH = #{clientsxh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteWechatSysparamBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.WechatSysparamSqlWhere" >
+    delete from WECHAT_SYSPARAM
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertWechatSysparam" parameterType="com.saint.wechat.manager.bean.WechatSysparamEntity" >
+    insert into WECHAT_SYSPARAM (GJZ, CLIENTSXH, DMMC, 
+      DMZ, DMSM, SFXG, SFXS, 
+      ZT, GXSJ)
+    values (#{gjz,jdbcType=VARCHAR}, #{clientsxh,jdbcType=VARCHAR}, #{dmmc,jdbcType=VARCHAR}, 
+      #{dmz,jdbcType=VARCHAR}, #{dmsm,jdbcType=VARCHAR}, #{sfxg,jdbcType=VARCHAR}, #{sfxs,jdbcType=VARCHAR}, 
+      #{zt,jdbcType=VARCHAR}, to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'))
+  </insert>
+  <insert id="insertWechatSysparamSelective" parameterType="com.saint.wechat.manager.bean.WechatSysparamEntity" >
+    insert into WECHAT_SYSPARAM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gjz != null and gjz != ''" >
+        GJZ,
+      </if>
+      <if test="clientsxh != null and clientsxh != ''" >
+        CLIENTSXH,
+      </if>
+      <if test="dmmc != null and dmmc != ''" >
+        DMMC,
+      </if>
+      <if test="dmz != null and dmz != ''" >
+        DMZ,
+      </if>
+      <if test="dmsm != null and dmsm != ''" >
+        DMSM,
+      </if>
+      <if test="sfxg != null and sfxg != ''" >
+        SFXG,
+      </if>
+      <if test="sfxs != null and sfxs != ''" >
+        SFXS,
+      </if>
+      <if test="zt != null and zt != ''" >
+        ZT,
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gjz != null and gjz != ''" >
+        #{gjz,jdbcType=VARCHAR},
+      </if>
+      <if test="clientsxh != null and clientsxh != ''" >
+        #{clientsxh,jdbcType=VARCHAR},
+      </if>
+      <if test="dmmc != null and dmmc != ''" >
+        #{dmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="dmz != null and dmz != ''" >
+        #{dmz,jdbcType=VARCHAR},
+      </if>
+      <if test="dmsm != null and dmsm != ''" >
+        #{dmsm,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxg != null and sfxg != ''" >
+        #{sfxg,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxs != null and sfxs != ''" >
+        #{sfxs,jdbcType=VARCHAR},
+      </if>
+      <if test="zt != null and zt != ''" >
+        #{zt,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </trim>
+  </insert>
+  <select id="countWechatSysparamBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.WechatSysparamSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from WECHAT_SYSPARAM
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateWechatSysparamBySqlWhereSelective" parameterType="map" >
+    update WECHAT_SYSPARAM
+    <set >
+      <if test="record.gjz != null and record.gjz != ''" >
+        GJZ = #{record.gjz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientsxh != null and record.clientsxh != ''" >
+        CLIENTSXH = #{record.clientsxh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dmmc != null and record.dmmc != ''" >
+        DMMC = #{record.dmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dmz != null and record.dmz != ''" >
+        DMZ = #{record.dmz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dmsm != null and record.dmsm != ''" >
+        DMSM = #{record.dmsm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfxg != null and record.sfxg != ''" >
+        SFXG = #{record.sfxg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfxs != null and record.sfxs != ''" >
+        SFXS = #{record.sfxs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zt != null and record.zt != ''" >
+        ZT = #{record.zt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxsj != null and record.gxsj != ''" >
+        GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateWechatSysparamBySqlWhere" parameterType="map" >
+    update WECHAT_SYSPARAM
+    set GJZ = #{record.gjz,jdbcType=VARCHAR},
+      CLIENTSXH = #{record.clientsxh,jdbcType=VARCHAR},
+      DMMC = #{record.dmmc,jdbcType=VARCHAR},
+      DMZ = #{record.dmz,jdbcType=VARCHAR},
+      DMSM = #{record.dmsm,jdbcType=VARCHAR},
+      SFXG = #{record.sfxg,jdbcType=VARCHAR},
+      SFXS = #{record.sfxs,jdbcType=VARCHAR},
+      ZT = #{record.zt,jdbcType=VARCHAR},
+      GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateWechatSysparamByPrimaryKeySelective" parameterType="com.saint.wechat.manager.bean.WechatSysparamEntity" >
+    update WECHAT_SYSPARAM
+    <set >
+      <if test="dmmc != null and dmmc != ''" >
+        DMMC = #{dmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="dmz != null and dmz != ''" >
+        DMZ = #{dmz,jdbcType=VARCHAR},
+      </if>
+      <if test="dmsm != null and dmsm != ''" >
+        DMSM = #{dmsm,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxg != null and sfxg != ''" >
+        SFXG = #{sfxg,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxs != null and sfxs != ''" >
+        SFXS = #{sfxs,jdbcType=VARCHAR},
+      </if>
+      <if test="zt != null and zt != ''" >
+        ZT = #{zt,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    where GJZ = #{gjz,jdbcType=VARCHAR}
+      and CLIENTSXH = #{clientsxh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateWechatSysparamByPrimaryKey" parameterType="com.saint.wechat.manager.bean.WechatSysparamEntity" >
+    update WECHAT_SYSPARAM
+    set DMMC = #{dmmc,jdbcType=VARCHAR},
+      DMZ = #{dmz,jdbcType=VARCHAR},
+      DMSM = #{dmsm,jdbcType=VARCHAR},
+      SFXG = #{sfxg,jdbcType=VARCHAR},
+      SFXS = #{sfxs,jdbcType=VARCHAR},
+      ZT = #{zt,jdbcType=VARCHAR},
+      GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where GJZ = #{gjz,jdbcType=VARCHAR}
+      and CLIENTSXH = #{clientsxh,jdbcType=VARCHAR}
+  </update>
+</mapper>

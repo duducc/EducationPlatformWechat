@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxCoursePlanMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxCoursePlanEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="COURSEID" property="courseid" jdbcType="VARCHAR" />
+    <result column="COURSENAME" property="coursename" jdbcType="VARCHAR" />
+    <result column="RKJYSHID" property="rkjyshid" jdbcType="VARCHAR" />
+    <result column="RKJYSHMC" property="rkjyshmc" jdbcType="VARCHAR" />
+    <result column="ZXSH" property="zxsh" jdbcType="VARCHAR" />
+    <result column="KCHXZH" property="kchxzh" jdbcType="VARCHAR" />
+    <result column="SHKDID" property="shkdid" jdbcType="VARCHAR" />
+    <result column="EMONUM" property="emonum" jdbcType="VARCHAR" />
+    <result column="XSHSZZHY" property="xshszzhy" jdbcType="VARCHAR" />
+    <result column="SHKBANJ" property="shkbanj" jdbcType="VARCHAR" />
+    <result column="XYJCSHM" property="xyjcshm" jdbcType="VARCHAR" />
+    <result column="XYJCCHBSH" property="xyjcchbsh" jdbcType="VARCHAR" />
+    <result column="XYJCBANC" property="xyjcbanc" jdbcType="VARCHAR" />
+    <result column="XYJCZHB" property="xyjczhb" jdbcType="VARCHAR" />
+    <result column="SHKXUEXID" property="shkxuexid" jdbcType="VARCHAR" />
+    <result column="SHKXUEXNAME" property="shkxuexname" jdbcType="VARCHAR" />
+    <result column="SHKXUEYID" property="shkxueyid" jdbcType="VARCHAR" />
+    <result column="SHKXUEYNAME" property="shkxueyname" jdbcType="VARCHAR" />
+    <result column="NDSHJD" property="ndshjd" jdbcType="VARCHAR" />
+    <result column="SHKXUEQI" property="shkxueqi" jdbcType="VARCHAR" />
+    <result column="KCHSTATE" property="kchstate" jdbcType="VARCHAR" />
+    <result column="KCHTYPE" property="kchtype" jdbcType="VARCHAR" />
+    <result column="OPEMID" property="opemid" jdbcType="VARCHAR" />
+    <result column="OPEMNAME" property="opemname" jdbcType="VARCHAR" />
+    <result column="OPDATE" property="opdate" jdbcType="DATE" />
+    <result column="YEAR" property="year" jdbcType="VARCHAR" />
+    <result column="GLBM" property="glbm" jdbcType="VARCHAR" />
+    <result column="NJ" property="nj" jdbcType="VARCHAR" />
+    <result column="FZLSID" property="fzlsid" jdbcType="VARCHAR" />
+    <result column="FZLSNAME" property="fzlsname" jdbcType="VARCHAR" />
+    <result column="FZLSZC" property="fzlszc" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+    <result column="SJZXS" property="sjzxs" jdbcType="VARCHAR" />
+    <result column="SFJSFY" property="sfjsfy" jdbcType="VARCHAR" />
+    <result column="JXSHKDID" property="jxshkdid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, COURSEID, COURSENAME, RKJYSHID, RKJYSHMC, ZXSH, KCHXZH, SHKDID, EMONUM, XSHSZZHY, 
+    SHKBANJ, XYJCSHM, XYJCCHBSH, XYJCBANC, XYJCZHB, SHKXUEXID, SHKXUEXNAME, SHKXUEYID, 
+    SHKXUEYNAME, NDSHJD, SHKXUEQI, KCHSTATE, KCHTYPE, OPEMID, OPEMNAME, OPDATE, YEAR, 
+    GLBM, NJ, FZLSID, FZLSNAME, FZLSZC, REMARK1, REMARK2, REMARK3, REMARK4, REMARK5, 
+    SJZXS, SFJSFY, JXSHKDID
+  </sql>
+  <select id="selectListPageJxCoursePlanBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxCoursePlanSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_COURSEPLAN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxCoursePlanBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxCoursePlanSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_COURSEPLAN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxCoursePlanByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_COURSEPLAN
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxCoursePlanByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_COURSEPLAN
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxCoursePlanBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxCoursePlanSqlWhere" >
+    delete from JX_COURSEPLAN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxCoursePlan" parameterType="com.saint.teaching.bean.JxCoursePlanEntity" >
+    insert into JX_COURSEPLAN (XH, COURSEID, COURSENAME, 
+      RKJYSHID, RKJYSHMC, ZXSH, 
+      KCHXZH, SHKDID, EMONUM, 
+      XSHSZZHY, SHKBANJ, XYJCSHM, 
+      XYJCCHBSH, XYJCBANC, XYJCZHB, 
+      SHKXUEXID, SHKXUEXNAME, SHKXUEYID, 
+      SHKXUEYNAME, NDSHJD, SHKXUEQI, 
+      KCHSTATE, KCHTYPE, OPEMID, 
+      OPEMNAME, OPDATE, 
+      YEAR, GLBM, NJ, FZLSID, 
+      FZLSNAME, FZLSZC, REMARK1, 
+      REMARK2, REMARK3, REMARK4, 
+      REMARK5, SJZXS, SFJSFY, JXSHKDID
+      )
+    values (#{xh,jdbcType=VARCHAR}, #{courseid,jdbcType=VARCHAR}, #{coursename,jdbcType=VARCHAR}, 
+      #{rkjyshid,jdbcType=VARCHAR}, #{rkjyshmc,jdbcType=VARCHAR}, #{zxsh,jdbcType=VARCHAR}, 
+      #{kchxzh,jdbcType=VARCHAR}, #{shkdid,jdbcType=VARCHAR}, #{emonum,jdbcType=VARCHAR}, 
+      #{xshszzhy,jdbcType=VARCHAR}, #{shkbanj,jdbcType=VARCHAR}, #{xyjcshm,jdbcType=VARCHAR}, 
+      #{xyjcchbsh,jdbcType=VARCHAR}, #{xyjcbanc,jdbcType=VARCHAR}, #{xyjczhb,jdbcType=VARCHAR}, 
+      #{shkxuexid,jdbcType=VARCHAR}, #{shkxuexname,jdbcType=VARCHAR}, #{shkxueyid,jdbcType=VARCHAR}, 
+      #{shkxueyname,jdbcType=VARCHAR}, #{ndshjd,jdbcType=VARCHAR}, #{shkxueqi,jdbcType=VARCHAR}, 
+      #{kchstate,jdbcType=VARCHAR}, #{kchtype,jdbcType=VARCHAR}, #{opemid,jdbcType=VARCHAR}, 
+      #{opemname,jdbcType=VARCHAR}, to_date(#{opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{year,jdbcType=VARCHAR}, #{glbm,jdbcType=VARCHAR}, #{nj,jdbcType=VARCHAR}, #{fzlsid,jdbcType=VARCHAR}, 
+      #{fzlsname,jdbcType=VARCHAR}, #{fzlszc,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, 
+      #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, #{remark4,jdbcType=VARCHAR}, 
+      #{remark5,jdbcType=VARCHAR}, #{sjzxs,jdbcType=VARCHAR}, #{sfjsfy,jdbcType=VARCHAR}, #{sfjsfy,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertJxCoursePlanSelective" parameterType="com.saint.teaching.bean.JxCoursePlanEntity" >
+    insert into JX_COURSEPLAN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="courseid != null and courseid != ''" >
+        COURSEID,
+      </if>
+      <if test="coursename != null and coursename != ''" >
+        COURSENAME,
+      </if>
+      <if test="rkjyshid != null and rkjyshid != ''" >
+        RKJYSHID,
+      </if>
+      <if test="rkjyshmc != null and rkjyshmc != ''" >
+        RKJYSHMC,
+      </if>
+      <if test="zxsh != null and zxsh != ''" >
+        ZXSH,
+      </if>
+      <if test="kchxzh != null and kchxzh != ''" >
+        KCHXZH,
+      </if>
+      <if test="shkdid != null and shkdid != ''" >
+        SHKDID,
+      </if>
+      <if test="emonum != null and emonum != ''" >
+        EMONUM,
+      </if>
+      <if test="xshszzhy != null and xshszzhy != ''" >
+        XSHSZZHY,
+      </if>
+      <if test="shkbanj != null and shkbanj != ''" >
+        SHKBANJ,
+      </if>
+      <if test="xyjcshm != null and xyjcshm != ''" >
+        XYJCSHM,
+      </if>
+      <if test="xyjcchbsh != null and xyjcchbsh != ''" >
+        XYJCCHBSH,
+      </if>
+      <if test="xyjcbanc != null and xyjcbanc != ''" >
+        XYJCBANC,
+      </if>
+      <if test="xyjczhb != null and xyjczhb != ''" >
+        XYJCZHB,
+      </if>
+      <if test="shkxuexid != null and shkxuexid != ''" >
+        SHKXUEXID,
+      </if>
+      <if test="shkxuexname != null and shkxuexname != ''" >
+        SHKXUEXNAME,
+      </if>
+      <if test="shkxueyid != null and shkxueyid != ''" >
+        SHKXUEYID,
+      </if>
+      <if test="shkxueyname != null and shkxueyname != ''" >
+        SHKXUEYNAME,
+      </if>
+      <if test="ndshjd != null and ndshjd != ''" >
+        NDSHJD,
+      </if>
+      <if test="shkxueqi != null and shkxueqi != ''" >
+        SHKXUEQI,
+      </if>
+      <if test="kchstate != null and kchstate != ''" >
+        KCHSTATE,
+      </if>
+      <if test="kchtype != null and kchtype != ''" >
+        KCHTYPE,
+      </if>
+      <if test="opemid != null and opemid != ''" >
+        OPEMID,
+      </if>
+      <if test="opemname != null and opemname != ''" >
+        OPEMNAME,
+      </if>
+      <if test="opdate != null and opdate != ''" >
+        OPDATE,
+      </if>
+      <if test="year != null and year != ''" >
+        YEAR,
+      </if>
+      <if test="glbm != null and glbm != ''" >
+        GLBM,
+      </if>
+      <if test="nj != null and nj != ''" >
+        NJ,
+      </if>
+      <if test="fzlsid != null and fzlsid != ''" >
+        FZLSID,
+      </if>
+      <if test="fzlsname != null and fzlsname != ''" >
+        FZLSNAME,
+      </if>
+      <if test="fzlszc != null and fzlszc != ''" >
+        FZLSZC,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+      <if test="sjzxs != null and sjzxs != ''" >
+        SJZXS,
+      </if>
+      <if test="sfjsfy != null and sfjsfy != ''" >
+        SFJSFY,
+      </if>
+      <if test="jxshkdid != null and jxshkdid != ''" >
+        JXSHKDID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="courseid != null and courseid != ''" >
+        #{courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null and coursename != ''" >
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="rkjyshid != null and rkjyshid != ''" >
+        #{rkjyshid,jdbcType=VARCHAR},
+      </if>
+      <if test="rkjyshmc != null and rkjyshmc != ''" >
+        #{rkjyshmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zxsh != null and zxsh != ''" >
+        #{zxsh,jdbcType=VARCHAR},
+      </if>
+      <if test="kchxzh != null and kchxzh != ''" >
+        #{kchxzh,jdbcType=VARCHAR},
+      </if>
+      <if test="shkdid != null and shkdid != ''" >
+        #{shkdid,jdbcType=VARCHAR},
+      </if>
+      <if test="emonum != null and emonum != ''" >
+        #{emonum,jdbcType=VARCHAR},
+      </if>
+      <if test="xshszzhy != null and xshszzhy != ''" >
+        #{xshszzhy,jdbcType=VARCHAR},
+      </if>
+      <if test="shkbanj != null and shkbanj != ''" >
+        #{shkbanj,jdbcType=VARCHAR},
+      </if>
+      <if test="xyjcshm != null and xyjcshm != ''" >
+        #{xyjcshm,jdbcType=VARCHAR},
+      </if>
+      <if test="xyjcchbsh != null and xyjcchbsh != ''" >
+        #{xyjcchbsh,jdbcType=VARCHAR},
+      </if>
+      <if test="xyjcbanc != null and xyjcbanc != ''" >
+        #{xyjcbanc,jdbcType=VARCHAR},
+      </if>
+      <if test="xyjczhb != null and xyjczhb != ''" >
+        #{xyjczhb,jdbcType=VARCHAR},
+      </if>
+      <if test="shkxuexid != null and shkxuexid != ''" >
+        #{shkxuexid,jdbcType=VARCHAR},
+      </if>
+      <if test="shkxuexname != null and shkxuexname != ''" >
+        #{shkxuexname,jdbcType=VARCHAR},
+      </if>
+      <if test="shkxueyid != null and shkxueyid != ''" >
+        #{shkxueyid,jdbcType=VARCHAR},
+      </if>
+      <if test="shkxueyname != null and shkxueyname != ''" >
+        #{shkxueyname,jdbcType=VARCHAR},
+      </if>
+      <if test="ndshjd != null and ndshjd != ''" >
+        #{ndshjd,jdbcType=VARCHAR},
+      </if>
+      <if test="shkxueqi != null and shkxueqi != ''" >
+        #{shkxueqi,jdbcType=VARCHAR},
+      </if>
+      <if test="kchstate != null and kchstate != ''" >
+        #{kchstate,jdbcType=VARCHAR},
+      </if>
+      <if test="kchtype != null and kchtype != ''" >
+        #{kchtype,jdbcType=VARCHAR},
+      </if>
+      <if test="opemid != null and opemid != ''" >
+        #{opemid,jdbcType=VARCHAR},
+      </if>
+      <if test="opemname != null and opemname != ''" >
+        #{opemname,jdbcType=VARCHAR},
+      </if>
+      <if test="opdate != null and opdate != ''" >
+        to_date(#{opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="year != null and year != ''" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="glbm != null and glbm != ''" >
+        #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="nj != null and nj != ''" >
+        #{nj,jdbcType=VARCHAR},
+      </if>
+      <if test="fzlsid != null and fzlsid != ''" >
+        #{fzlsid,jdbcType=VARCHAR},
+      </if>
+      <if test="fzlsname != null and fzlsname != ''" >
+        #{fzlsname,jdbcType=VARCHAR},
+      </if>
+      <if test="fzlszc != null and fzlszc != ''" >
+        #{fzlszc,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="sjzxs != null and sjzxs != ''" >
+        #{sjzxs,jdbcType=VARCHAR},
+      </if>
+      <if test="sfjsfy != null and sfjsfy != ''" >
+        #{sfjsfy,jdbcType=VARCHAR},
+      </if>
+      <if test="jxshkdid != null and jxshkdid != ''" >
+        #{jxshkdid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxCoursePlanBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxCoursePlanSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_COURSEPLAN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxCoursePlanBySqlWhereSelective" parameterType="map" >
+    update JX_COURSEPLAN
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseid != null and record.courseid != ''" >
+        COURSEID = #{record.courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coursename != null and record.coursename != ''" >
+        COURSENAME = #{record.coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rkjyshid != null and record.rkjyshid != ''" >
+        RKJYSHID = #{record.rkjyshid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rkjyshmc != null and record.rkjyshmc != ''" >
+        RKJYSHMC = #{record.rkjyshmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zxsh != null and record.zxsh != ''" >
+        ZXSH = #{record.zxsh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kchxzh != null and record.kchxzh != ''" >
+        KCHXZH = #{record.kchxzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shkdid != null and record.shkdid != ''" >
+        SHKDID = #{record.shkdid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emonum != null and record.emonum != ''" >
+        EMONUM = #{record.emonum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xshszzhy != null and record.xshszzhy != ''" >
+        XSHSZZHY = #{record.xshszzhy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shkbanj != null and record.shkbanj != ''" >
+        SHKBANJ = #{record.shkbanj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xyjcshm != null and record.xyjcshm != ''" >
+        XYJCSHM = #{record.xyjcshm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xyjcchbsh != null and record.xyjcchbsh != ''" >
+        XYJCCHBSH = #{record.xyjcchbsh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xyjcbanc != null and record.xyjcbanc != ''" >
+        XYJCBANC = #{record.xyjcbanc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xyjczhb != null and record.xyjczhb != ''" >
+        XYJCZHB = #{record.xyjczhb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shkxuexid != null and record.shkxuexid != ''" >
+        SHKXUEXID = #{record.shkxuexid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shkxuexname != null and record.shkxuexname != ''" >
+        SHKXUEXNAME = #{record.shkxuexname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shkxueyid != null and record.shkxueyid != ''" >
+        SHKXUEYID = #{record.shkxueyid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shkxueyname != null and record.shkxueyname != ''" >
+        SHKXUEYNAME = #{record.shkxueyname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ndshjd != null and record.ndshjd != ''" >
+        NDSHJD = #{record.ndshjd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shkxueqi != null and record.shkxueqi != ''" >
+        SHKXUEQI = #{record.shkxueqi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kchstate != null and record.kchstate != ''" >
+        KCHSTATE = #{record.kchstate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kchtype != null and record.kchtype != ''" >
+        KCHTYPE = #{record.kchtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opemid != null and record.opemid != ''" >
+        OPEMID = #{record.opemid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opemname != null and record.opemname != ''" >
+        OPEMNAME = #{record.opemname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opdate != null and record.opdate != ''" >
+        OPDATE = to_date(#{record.opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.year != null and record.year != ''" >
+        YEAR = #{record.year,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glbm != null and record.glbm != ''" >
+        GLBM = #{record.glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nj != null and record.nj != ''" >
+        NJ = #{record.nj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fzlsid != null and record.fzlsid != ''" >
+        FZLSID = #{record.fzlsid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fzlsname != null and record.fzlsname != ''" >
+        FZLSNAME = #{record.fzlsname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fzlszc != null and record.fzlszc != ''" >
+        FZLSZC = #{record.fzlszc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sjzxs != null and record.sjzxs != ''" >
+        SJZXS = #{record.sjzxs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfjsfy != null and record.sfjsfy != ''" >
+        SFJSFY = #{record.sfjsfy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jxshkdid != null and record.jxshkdid != ''" >
+        JXSHKDID = #{record.jxshkdid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxCoursePlanBySqlWhere" parameterType="map" >
+    update JX_COURSEPLAN
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      COURSEID = #{record.courseid,jdbcType=VARCHAR},
+      COURSENAME = #{record.coursename,jdbcType=VARCHAR},
+      RKJYSHID = #{record.rkjyshid,jdbcType=VARCHAR},
+      RKJYSHMC = #{record.rkjyshmc,jdbcType=VARCHAR},
+      ZXSH = #{record.zxsh,jdbcType=VARCHAR},
+      KCHXZH = #{record.kchxzh,jdbcType=VARCHAR},
+      SHKDID = #{record.shkdid,jdbcType=VARCHAR},
+      EMONUM = #{record.emonum,jdbcType=VARCHAR},
+      XSHSZZHY = #{record.xshszzhy,jdbcType=VARCHAR},
+      SHKBANJ = #{record.shkbanj,jdbcType=VARCHAR},
+      XYJCSHM = #{record.xyjcshm,jdbcType=VARCHAR},
+      XYJCCHBSH = #{record.xyjcchbsh,jdbcType=VARCHAR},
+      XYJCBANC = #{record.xyjcbanc,jdbcType=VARCHAR},
+      XYJCZHB = #{record.xyjczhb,jdbcType=VARCHAR},
+      SHKXUEXID = #{record.shkxuexid,jdbcType=VARCHAR},
+      SHKXUEXNAME = #{record.shkxuexname,jdbcType=VARCHAR},
+      SHKXUEYID = #{record.shkxueyid,jdbcType=VARCHAR},
+      SHKXUEYNAME = #{record.shkxueyname,jdbcType=VARCHAR},
+      NDSHJD = #{record.ndshjd,jdbcType=VARCHAR},
+      SHKXUEQI = #{record.shkxueqi,jdbcType=VARCHAR},
+      KCHSTATE = #{record.kchstate,jdbcType=VARCHAR},
+      KCHTYPE = #{record.kchtype,jdbcType=VARCHAR},
+      OPEMID = #{record.opemid,jdbcType=VARCHAR},
+      OPEMNAME = #{record.opemname,jdbcType=VARCHAR},
+      OPDATE = to_date(#{record.opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      YEAR = #{record.year,jdbcType=VARCHAR},
+      GLBM = #{record.glbm,jdbcType=VARCHAR},
+      NJ = #{record.nj,jdbcType=VARCHAR},
+      FZLSID = #{record.fzlsid,jdbcType=VARCHAR},
+      FZLSNAME = #{record.fzlsname,jdbcType=VARCHAR},
+      FZLSZC = #{record.fzlszc,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      SJZXS = #{record.sjzxs,jdbcType=VARCHAR},
+      SFJSFY = #{record.sfjsfy,jdbcType=VARCHAR},
+      JXSHKDID = #{record.jxshkdid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxCoursePlanByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxCoursePlanEntity" >
+    update JX_COURSEPLAN
+    <set >
+      <if test="courseid != null and courseid != ''" >
+        COURSEID = #{courseid,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null and coursename != ''" >
+        COURSENAME = #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="rkjyshid != null and rkjyshid != ''" >
+        RKJYSHID = #{rkjyshid,jdbcType=VARCHAR},
+      </if>
+      <if test="rkjyshmc != null and rkjyshmc != ''" >
+        RKJYSHMC = #{rkjyshmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zxsh != null and zxsh != ''" >
+        ZXSH = #{zxsh,jdbcType=VARCHAR},
+      </if>
+      <if test="kchxzh != null and kchxzh != ''" >
+        KCHXZH = #{kchxzh,jdbcType=VARCHAR},
+      </if>
+      <if test="shkdid != null and shkdid != ''" >
+        SHKDID = #{shkdid,jdbcType=VARCHAR},
+      </if>
+      <if test="emonum != null and emonum != ''" >
+        EMONUM = #{emonum,jdbcType=VARCHAR},
+      </if>
+      <if test="xshszzhy != null and xshszzhy != ''" >
+        XSHSZZHY = #{xshszzhy,jdbcType=VARCHAR},
+      </if>
+      <if test="shkbanj != null and shkbanj != ''" >
+        SHKBANJ = #{shkbanj,jdbcType=VARCHAR},
+      </if>
+      <if test="xyjcshm != null and xyjcshm != ''" >
+        XYJCSHM = #{xyjcshm,jdbcType=VARCHAR},
+      </if>
+      <if test="xyjcchbsh != null and xyjcchbsh != ''" >
+        XYJCCHBSH = #{xyjcchbsh,jdbcType=VARCHAR},
+      </if>
+      <if test="xyjcbanc != null and xyjcbanc != ''" >
+        XYJCBANC = #{xyjcbanc,jdbcType=VARCHAR},
+      </if>
+      <if test="xyjczhb != null and xyjczhb != ''" >
+        XYJCZHB = #{xyjczhb,jdbcType=VARCHAR},
+      </if>
+      <if test="shkxuexid != null and shkxuexid != ''" >
+        SHKXUEXID = #{shkxuexid,jdbcType=VARCHAR},
+      </if>
+      <if test="shkxuexname != null and shkxuexname != ''" >
+        SHKXUEXNAME = #{shkxuexname,jdbcType=VARCHAR},
+      </if>
+      <if test="shkxueyid != null and shkxueyid != ''" >
+        SHKXUEYID = #{shkxueyid,jdbcType=VARCHAR},
+      </if>
+      <if test="shkxueyname != null and shkxueyname != ''" >
+        SHKXUEYNAME = #{shkxueyname,jdbcType=VARCHAR},
+      </if>
+      <if test="ndshjd != null and ndshjd != ''" >
+        NDSHJD = #{ndshjd,jdbcType=VARCHAR},
+      </if>
+      <if test="shkxueqi != null and shkxueqi != ''" >
+        SHKXUEQI = #{shkxueqi,jdbcType=VARCHAR},
+      </if>
+      <if test="kchstate != null and kchstate != ''" >
+        KCHSTATE = #{kchstate,jdbcType=VARCHAR},
+      </if>
+      <if test="kchtype != null and kchtype != ''" >
+        KCHTYPE = #{kchtype,jdbcType=VARCHAR},
+      </if>
+      <if test="opemid != null and opemid != ''" >
+        OPEMID = #{opemid,jdbcType=VARCHAR},
+      </if>
+      <if test="opemname != null and opemname != ''" >
+        OPEMNAME = #{opemname,jdbcType=VARCHAR},
+      </if>
+      <if test="opdate != null and opdate != ''" >
+        OPDATE = to_date(#{opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="year != null and year != ''" >
+        YEAR = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="glbm != null and glbm != ''" >
+        GLBM = #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="nj != null and nj != ''" >
+        NJ = #{nj,jdbcType=VARCHAR},
+      </if>
+      <if test="fzlsid != null and fzlsid != ''" >
+        FZLSID = #{fzlsid,jdbcType=VARCHAR},
+      </if>
+      <if test="fzlsname != null and fzlsname != ''" >
+        FZLSNAME = #{fzlsname,jdbcType=VARCHAR},
+      </if>
+      <if test="fzlszc != null and fzlszc != ''" >
+        FZLSZC = #{fzlszc,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="sjzxs != null and sjzxs != ''" >
+        SJZXS = #{sjzxs,jdbcType=VARCHAR},
+      </if>
+      <if test="sfjsfy != null and sfjsfy != ''" >
+        SFJSFY = #{sfjsfy,jdbcType=VARCHAR},
+      </if>
+      <if test="jxshkdid != null and jxshkdid != ''" >
+        JXSHKDID = #{jxshkdid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxCoursePlanByPrimaryKey" parameterType="com.saint.teaching.bean.JxCoursePlanEntity" >
+    update JX_COURSEPLAN
+    set COURSEID = #{courseid,jdbcType=VARCHAR},
+      COURSENAME = #{coursename,jdbcType=VARCHAR},
+      RKJYSHID = #{rkjyshid,jdbcType=VARCHAR},
+      RKJYSHMC = #{rkjyshmc,jdbcType=VARCHAR},
+      ZXSH = #{zxsh,jdbcType=VARCHAR},
+      KCHXZH = #{kchxzh,jdbcType=VARCHAR},
+      SHKDID = #{shkdid,jdbcType=VARCHAR},
+      EMONUM = #{emonum,jdbcType=VARCHAR},
+      XSHSZZHY = #{xshszzhy,jdbcType=VARCHAR},
+      SHKBANJ = #{shkbanj,jdbcType=VARCHAR},
+      XYJCSHM = #{xyjcshm,jdbcType=VARCHAR},
+      XYJCCHBSH = #{xyjcchbsh,jdbcType=VARCHAR},
+      XYJCBANC = #{xyjcbanc,jdbcType=VARCHAR},
+      XYJCZHB = #{xyjczhb,jdbcType=VARCHAR},
+      SHKXUEXID = #{shkxuexid,jdbcType=VARCHAR},
+      SHKXUEXNAME = #{shkxuexname,jdbcType=VARCHAR},
+      SHKXUEYID = #{shkxueyid,jdbcType=VARCHAR},
+      SHKXUEYNAME = #{shkxueyname,jdbcType=VARCHAR},
+      NDSHJD = #{ndshjd,jdbcType=VARCHAR},
+      SHKXUEQI = #{shkxueqi,jdbcType=VARCHAR},
+      KCHSTATE = #{kchstate,jdbcType=VARCHAR},
+      KCHTYPE = #{kchtype,jdbcType=VARCHAR},
+      OPEMID = #{opemid,jdbcType=VARCHAR},
+      OPEMNAME = #{opemname,jdbcType=VARCHAR},
+      OPDATE = to_date(#{opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      YEAR = #{year,jdbcType=VARCHAR},
+      GLBM = #{glbm,jdbcType=VARCHAR},
+      NJ = #{nj,jdbcType=VARCHAR},
+      FZLSID = #{fzlsid,jdbcType=VARCHAR},
+      FZLSNAME = #{fzlsname,jdbcType=VARCHAR},
+      FZLSZC = #{fzlszc,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR},
+      SJZXS = #{sjzxs,jdbcType=VARCHAR},
+      SFJSFY = #{sfjsfy,jdbcType=VARCHAR},
+      JXSHKDID = #{jxshkdid,jdbcType=VARCHAR}
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <select id="queryNextIndexJxCoursePlan" resultType="java.lang.String">
+      select SEQ_JX_COURSEPLAN.nextVal from dual
+  </select>
+</mapper>

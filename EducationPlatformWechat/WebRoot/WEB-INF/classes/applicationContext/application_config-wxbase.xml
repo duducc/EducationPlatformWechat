@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns='http://www.springframework.org/schema/beans'
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xmlns:p='http://www.springframework.org/schema/p'
+	xmlns:context='http://www.springframework.org/schema/context'
+	xsi:schemaLocation='http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+ http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+ http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd'>
+ 	<bean id="baseservice" class="com.saint.wechat.service.BaseService" abstract="true">
+ 		<property name="wechatBindService"><ref bean="wechatBindService" /></property>
+ 		<property name="wechatSysparamService"><ref bean="wechatSysparamService" /></property>
+ 		<property name="wechatNewsService"><ref bean="wechatNewsService" /></property>
+ 		<property name="xfProjectService"><ref bean="xfProjectService" /></property>
+ 		<property name="xfCourseSignupService" ref="xfCourseSignupService"/>
+ 		<property name="xfCourseService" ref="xfCourseService"/>
+ 		<property name="xfEmployeeService" ref="xfEmployeeService"/>
+ 		<property name="xfStudyRegistrationService" ref="xfStudyRegistrationService"/>
+ 		<property name="frmDepartmentService" ref="frmDepartmentService"/>
+ 		<property name="frmSysparaTypeService" ref="frmSysparaTypeService"/>
+ 		<property name="wechatClientinfoService" ref="wechatClientinfoService"/>
+ 		<property name="jxStudentsService" ref="jxStudentsService"/>
+ 		<property name="wechatMenuinfoService" ref="wechatMenuinfoService"/>
+ 		<property name="jxCourseArrangeService" ref="jxCourseArrangeService"/>
+ 		<property name="frmCodeService" ref="frmCodeService"/>
+ 		<property name="jxCoursePlanService" ref="jxCoursePlanService"/>
+ 		<property name="jxStudyRegistrationService" ref="jxStudyRegistrationService"/>
+ 	</bean> 
+ 	<!-- 微信事件处理 -->
+ 	<bean id="weichatservicefactory" class="com.saint.wechat.servicefactory.WeichatServiceFactory"></bean>
+ 	
+ 	<bean id="textservice" factory-bean="weichatservicefactory" factory-method="createNewInstance" parent="baseservice">
+ 		<constructor-arg value="1"></constructor-arg>
+ 	</bean>
+ 	<bean id="imageservice" factory-bean="weichatservicefactory" factory-method="createNewInstance" parent="baseservice">
+ 		<constructor-arg value="2"></constructor-arg>
+ 	</bean>
+ 	<bean id="eventservice" factory-bean="weichatservicefactory" factory-method="createNewInstance" parent="baseservice">
+ 		<constructor-arg value="3"></constructor-arg>
+ 	</bean>
+ 	<bean id="videoservice" factory-bean="weichatservicefactory" factory-method="createNewInstance" parent="baseservice">
+ 		<constructor-arg value="4"></constructor-arg>
+ 	</bean>
+ 	<bean id="voiceservice" factory-bean="weichatservicefactory" factory-method="createNewInstance" parent="baseservice">
+ 		<constructor-arg value="5"></constructor-arg>
+ 	</bean>
+ 	<bean id="weichatservice" class="com.saint.wechat.manager.services.impl.WeichatServiceImpl">
+ 		<property name="textservice"><ref bean="textservice" /></property>
+ 		<property name="imageservice"><ref bean="imageservice" /></property>
+ 		<property name="videoservice"><ref bean="videoservice" /></property>
+ 		<property name="voiceservice"><ref bean="voiceservice" /></property>
+ 		<property name="eventservice"><ref bean="eventservice" /></property>
+ 	</bean> 	
+ 	
+</beans>
+

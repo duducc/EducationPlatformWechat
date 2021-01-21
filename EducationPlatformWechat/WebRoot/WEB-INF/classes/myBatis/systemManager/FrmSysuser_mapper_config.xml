@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.systemManager.FrmSysuserMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.systemManager.bean.FrmSysuserEntity" >
+    <id column="YHDH" property="yhdh" jdbcType="VARCHAR" />
+    <result column="YHGH" property="yhgh" jdbcType="VARCHAR" />
+    <result column="SFZMHM" property="sfzmhm" jdbcType="VARCHAR" />
+    <result column="XM" property="xm" jdbcType="VARCHAR" />
+    <result column="MM" property="mm" jdbcType="VARCHAR" />
+    <result column="MMYXQ" property="mmyxq" jdbcType="DATE" />
+    <result column="YHYXQ" property="yhyxq" jdbcType="DATE" />
+    <result column="GLBM" property="glbm" jdbcType="VARCHAR" />
+    <result column="YHJB" property="yhjb" jdbcType="VARCHAR" />
+    <result column="YHLB" property="yhlb" jdbcType="VARCHAR" />
+    <result column="QXMS" property="qxms" jdbcType="VARCHAR" />
+    <result column="IPSTART" property="ipstart" jdbcType="VARCHAR" />
+    <result column="IPEND" property="ipend" jdbcType="VARCHAR" />
+    <result column="IP1" property="ip1" jdbcType="VARCHAR" />
+    <result column="IP2" property="ip2" jdbcType="VARCHAR" />
+    <result column="MAC" property="mac" jdbcType="VARCHAR" />
+    <result column="ZT" property="zt" jdbcType="VARCHAR" />
+    <result column="ZHDLSJ" property="zhdlsj" jdbcType="DATE" />
+    <result column="GXSJ" property="gxsj" jdbcType="DATE" />
+    <result column="BZ" property="bz" jdbcType="VARCHAR" />
+    <result column="SFGLY" property="sfgly" jdbcType="VARCHAR" />
+    <result column="SFXZ" property="sfxz" jdbcType="VARCHAR" />
+    <result column="LXDH" property="lxdh" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMapQx" type="com.saint.systemManager.bean.FrmProgramQxgroupEntity" >
+    <id column="QXGROUP" property="qxgroup" jdbcType="VARCHAR" />
+    <result column="QXGROUPMC" property="qxgroupmc" jdbcType="VARCHAR" />
+    <result column="QXCJBM" property="qxcjbm" jdbcType="VARCHAR" />
+    <result column="CXDH" property="cxdh" jdbcType="VARCHAR" />
+    <result column="QXSYJB" property="qxsyjb" jdbcType="VARCHAR" />
+    <result column="CXLB" property="cxlb" jdbcType="VARCHAR" />
+    <result column="XSBJ" property="xsbj" jdbcType="VARCHAR" />
+    <result column="SYBJ" property="sybj" jdbcType="VARCHAR" />
+    <result column="GXSJ" property="gxsj" jdbcType="DATE" />
+    <result column="SFGLY" property="sfgly" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    YHDH, YHGH, SFZMHM, XM, MM, MMYXQ, YHYXQ, GLBM, YHJB, YHLB, QXMS, IPSTART, IPEND, 
+    IP1, IP2, MAC, ZT, ZHDLSJ, GXSJ, BZ, SFGLY, SFXZ, LXDH
+  </sql>
+  <select id="selectListPageFrmSysuserBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.systemManager.sqlWhere.FrmSysuserSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from FRM_SYSUSER
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListFrmSysuserBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.systemManager.sqlWhere.FrmSysuserSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from FRM_SYSUSER
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectFrmSysuserByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from FRM_SYSUSER
+    where YHDH = #{yhdh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteFrmSysuserByPrimaryKey" parameterType="java.lang.String" >
+    delete from FRM_SYSUSER
+    where YHDH = #{yhdh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteFrmSysuserBySqlWhere" parameterType="com.saint.systemManager.sqlWhere.FrmSysuserSqlWhere" >
+    delete from FRM_SYSUSER
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertFrmSysuser" parameterType="com.saint.systemManager.bean.FrmSysuserEntity" >
+  <selectKey resultType="String" keyProperty="mm" order="BEFORE">
+			select zlkjsoftsafe_pkg.encrypt(#{defaultmm},#{sn1},#{sn2},#{sn3}) as mm from dual
+  </selectKey>
+    insert into FRM_SYSUSER (YHDH, YHGH, SFZMHM, 
+      XM, MM, MMYXQ, 
+      YHYXQ, GLBM, 
+      YHJB, YHLB, QXMS, IPSTART, 
+      IPEND, IP1, IP2, MAC, 
+      ZT, ZHDLSJ, 
+      GXSJ, BZ, 
+      SFGLY, SFXZ, LXDH
+      )
+    values (#{yhdh,jdbcType=VARCHAR}, #{yhgh,jdbcType=VARCHAR}, #{sfzmhm,jdbcType=VARCHAR}, 
+      #{xm,jdbcType=VARCHAR}, #{mm,jdbcType=VARCHAR}, to_date(#{mmyxq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      to_date(#{yhyxq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{glbm,jdbcType=VARCHAR}, 
+      #{yhjb,jdbcType=VARCHAR}, #{yhlb,jdbcType=VARCHAR}, #{qxms,jdbcType=VARCHAR}, #{ipstart,jdbcType=VARCHAR}, 
+      #{ipend,jdbcType=VARCHAR}, #{ip1,jdbcType=VARCHAR}, #{ip2,jdbcType=VARCHAR}, #{mac,jdbcType=VARCHAR}, 
+      #{zt,jdbcType=VARCHAR}, to_date(#{zhdlsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{bz,jdbcType=VARCHAR}, 
+      #{sfgly,jdbcType=VARCHAR}, #{sfxz,jdbcType=VARCHAR}, #{lxdh,dbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertFrmSysuserSelective" parameterType="com.saint.systemManager.bean.FrmSysuserEntity" >
+    insert into FRM_SYSUSER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="yhdh != null" >
+        YHDH,
+      </if>
+      <if test="yhgh != null" >
+        YHGH,
+      </if>
+      <if test="sfzmhm != null" >
+        SFZMHM,
+      </if>
+      <if test="xm != null" >
+        XM,
+      </if>
+      <if test="mm != null" >
+        MM,
+      </if>
+      <if test="mmyxq != null" >
+        MMYXQ,
+      </if>
+      <if test="yhyxq != null" >
+        YHYXQ,
+      </if>
+      <if test="glbm != null" >
+        GLBM,
+      </if>
+      <if test="yhjb != null" >
+        YHJB,
+      </if>
+      <if test="yhlb != null" >
+        YHLB,
+      </if>
+      <if test="qxms != null" >
+        QXMS,
+      </if>
+      <if test="ipstart != null" >
+        IPSTART,
+      </if>
+      <if test="ipend != null" >
+        IPEND,
+      </if>
+      <if test="ip1 != null" >
+        IP1,
+      </if>
+      <if test="ip2 != null" >
+        IP2,
+      </if>
+      <if test="mac != null" >
+        MAC,
+      </if>
+      <if test="zt != null" >
+        ZT,
+      </if>
+      <if test="zhdlsj != null" >
+        ZHDLSJ,
+      </if>
+      <if test="gxsj != null" >
+        GXSJ,
+      </if>
+      <if test="bz != null" >
+        BZ,
+      </if>
+      <if test="sfgly != null" >
+        SFGLY,
+      </if>
+      <if test="sfxz != null" >
+        SFXZ,
+      </if>
+      <if test="lxdh != null" >
+        LXDH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="yhdh != null" >
+        #{yhdh,jdbcType=VARCHAR},
+      </if>
+      <if test="yhgh != null" >
+        #{yhgh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzmhm != null" >
+        #{sfzmhm,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="mm != null" >
+        #{mm,jdbcType=VARCHAR},
+      </if>
+      <if test="mmyxq != null" >
+        to_date(#{mmyxq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="yhyxq != null" >
+        to_date(#{yhyxq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="glbm != null" >
+        #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="yhjb != null" >
+        #{yhjb,jdbcType=VARCHAR},
+      </if>
+      <if test="yhlb != null" >
+        #{yhlb,jdbcType=VARCHAR},
+      </if>
+      <if test="qxms != null" >
+        #{qxms,jdbcType=VARCHAR},
+      </if>
+      <if test="ipstart != null" >
+        #{ipstart,jdbcType=VARCHAR},
+      </if>
+      <if test="ipend != null" >
+        #{ipend,jdbcType=VARCHAR},
+      </if>
+      <if test="ip1 != null" >
+        #{ip1,jdbcType=VARCHAR},
+      </if>
+      <if test="ip2 != null" >
+        #{ip2,jdbcType=VARCHAR},
+      </if>
+      <if test="mac != null" >
+        #{mac,jdbcType=VARCHAR},
+      </if>
+      <if test="zt != null" >
+        #{zt,jdbcType=VARCHAR},
+      </if>
+      <if test="zhdlsj != null" >
+        to_date(#{zhdlsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="gxsj != null" >
+        to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="sfgly != null" >
+        #{sfgly,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxz != null" >
+        #{sfxz,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null" >
+        #{lxdh,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countFrmSysuserBySqlWhere" parameterType="com.saint.systemManager.sqlWhere.FrmSysuserSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from FRM_SYSUSER
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateFrmSysuserBySqlWhereSelective" parameterType="map" >
+    update FRM_SYSUSER
+    <set >
+      <if test="record.yhdh != null" >
+        YHDH = #{record.yhdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yhgh != null" >
+        YHGH = #{record.yhgh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfzmhm != null" >
+        SFZMHM = #{record.sfzmhm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xm != null" >
+        XM = #{record.xm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mm != null" >
+        MM = #{record.mm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mmyxq != null" >
+        MMYXQ = to_date(#{record.mmyxq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.yhyxq != null" >
+        YHYXQ = to_date(#{record.yhyxq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.glbm != null" >
+        GLBM = #{record.glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yhjb != null" >
+        YHJB = #{record.yhjb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yhlb != null" >
+        YHLB = #{record.yhlb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qxms != null" >
+        QXMS = #{record.qxms,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ipstart != null" >
+        IPSTART = #{record.ipstart,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ipend != null" >
+        IPEND = #{record.ipend,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ip1 != null" >
+        IP1 = #{record.ip1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ip2 != null" >
+        IP2 = #{record.ip2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mac != null" >
+        MAC = #{record.mac,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zt != null" >
+        ZT = #{record.zt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhdlsj != null" >
+        ZHDLSJ = to_date(#{record.zhdlsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.gxsj != null" >
+        GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.bz != null" >
+        BZ = #{record.bz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfgly != null" >
+        SFGLY = #{record.sfgly,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfxz != null" >
+        SFXZ = #{record.sfxz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lxdh != null" >
+        LXDH = #{record.lxdh,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateFrmSysuserBySqlWhere" parameterType="map" >
+    update FRM_SYSUSER
+    set YHDH = #{record.yhdh,jdbcType=VARCHAR},
+      YHGH = #{record.yhgh,jdbcType=VARCHAR},
+      SFZMHM = #{record.sfzmhm,jdbcType=VARCHAR},
+      XM = #{record.xm,jdbcType=VARCHAR},
+      MM = #{record.mm,jdbcType=VARCHAR},
+      MMYXQ = to_date(#{record.mmyxq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      YHYXQ = to_date(#{record.yhyxq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      GLBM = #{record.glbm,jdbcType=VARCHAR},
+      YHJB = #{record.yhjb,jdbcType=VARCHAR},
+      YHLB = #{record.yhlb,jdbcType=VARCHAR},
+      QXMS = #{record.qxms,jdbcType=VARCHAR},
+      IPSTART = #{record.ipstart,jdbcType=VARCHAR},
+      IPEND = #{record.ipend,jdbcType=VARCHAR},
+      IP1 = #{record.ip1,jdbcType=VARCHAR},
+      IP2 = #{record.ip2,jdbcType=VARCHAR},
+      MAC = #{record.mac,jdbcType=VARCHAR},
+      ZT = #{record.zt,jdbcType=VARCHAR},
+      ZHDLSJ = to_date(#{record.zhdlsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      BZ = #{record.bz,jdbcType=VARCHAR},
+      SFGLY = #{record.sfgly,jdbcType=VARCHAR},
+      SFXZ = #{record.sfxz,jdbcType=VARCHAR},
+      LXDH = #{record.lxdh,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateFrmSysuserByPrimaryKeySelective" parameterType="com.saint.systemManager.bean.FrmSysuserEntity" >
+    update FRM_SYSUSER
+    <set >
+      <if test="yhgh != null" >
+        YHGH = #{yhgh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzmhm != null" >
+        SFZMHM = #{sfzmhm,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        XM = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="mm != null" >
+        MM = #{mm,jdbcType=VARCHAR},
+      </if>
+      <if test="mmyxq != null" >
+        MMYXQ = to_date(#{mmyxq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="yhyxq != null" >
+        YHYXQ = to_date(#{yhyxq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="glbm != null" >
+        GLBM = #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="yhjb != null" >
+        YHJB = #{yhjb,jdbcType=VARCHAR},
+      </if>
+      <if test="yhlb != null" >
+        YHLB = #{yhlb,jdbcType=VARCHAR},
+      </if>
+      <if test="qxms != null" >
+        QXMS = #{qxms,jdbcType=VARCHAR},
+      </if>
+      <if test="ipstart != null" >
+        IPSTART = #{ipstart,jdbcType=VARCHAR},
+      </if>
+      <if test="ipend != null" >
+        IPEND = #{ipend,jdbcType=VARCHAR},
+      </if>
+      <if test="ip1 != null" >
+        IP1 = #{ip1,jdbcType=VARCHAR},
+      </if>
+      <if test="ip2 != null" >
+        IP2 = #{ip2,jdbcType=VARCHAR},
+      </if>
+      <if test="mac != null" >
+        MAC = #{mac,jdbcType=VARCHAR},
+      </if>
+      <if test="zt != null" >
+        ZT = #{zt,jdbcType=VARCHAR},
+      </if>
+      <if test="zhdlsj != null" >
+        ZHDLSJ = to_date(#{zhdlsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="gxsj != null" >
+        GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="bz != null" >
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="sfgly != null" >
+        SFGLY = #{sfgly,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxz != null" >
+        SFXZ = #{sfxz,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null" >
+        LXDH = #{lxdh,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where YHDH = #{yhdh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateFrmSysuserByPrimaryKey" parameterType="com.saint.systemManager.bean.FrmSysuserEntity" >
+    update FRM_SYSUSER
+    set YHGH = #{yhgh,jdbcType=VARCHAR},
+      SFZMHM = #{sfzmhm,jdbcType=VARCHAR},
+      XM = #{xm,jdbcType=VARCHAR},
+      MM = #{mm,jdbcType=VARCHAR},
+      MMYXQ = to_date(#{mmyxq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      YHYXQ = to_date(#{yhyxq,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      GLBM = #{glbm,jdbcType=VARCHAR},
+      YHJB = #{yhjb,jdbcType=VARCHAR},
+      YHLB = #{yhlb,jdbcType=VARCHAR},
+      QXMS = #{qxms,jdbcType=VARCHAR},
+      IPSTART = #{ipstart,jdbcType=VARCHAR},
+      IPEND = #{ipend,jdbcType=VARCHAR},
+      IP1 = #{ip1,jdbcType=VARCHAR},
+      IP2 = #{ip2,jdbcType=VARCHAR},
+      MAC = #{mac,jdbcType=VARCHAR},
+      ZT = #{zt,jdbcType=VARCHAR},
+      ZHDLSJ = to_date(#{zhdlsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      BZ = #{bz,jdbcType=VARCHAR},
+      SFGLY = #{sfgly,jdbcType=VARCHAR},
+      SFXZ = #{sfxz,jdbcType=VARCHAR},
+      LXDH = #{lxdh,jdbcType=VARCHAR}
+    where YHDH = #{yhdh,jdbcType=VARCHAR}
+  </update>
+ <!--  /**********************添加调用存储过程方法*****************-->
+ 	<insert id="saveUserMenu" parameterType="com.saint.systemManager.bean.FrmSysuserEntity">
+    	insert into frm_usermenu(yhdh,cxdh,sybj) values(#{yhdh},#{cxdh},'1')
+    </insert>
+    
+    <update id="updateUserMenu" parameterType="com.saint.systemManager.bean.FrmSysuserEntity">
+		update frm_usermenu set cxdh = #{cxdh},gxsj = sysdate where yhdh = #{yhdh}
+	</update>
+	
+	<delete id="deleteUserMenu" parameterType="com.saint.systemManager.bean.FrmSysuserEntity">
+    	delete from frm_usermenu where yhdh=#{yhdh}
+  	</delete>
+  	
+  	 <select id="selectFrmProgramQxgroupByPrimaryKey" resultMap="BaseResultMapQx" parameterType="java.lang.String" >
+	    select 
+	    *
+	    from FRM_PROGRAM_QXGROUP
+	    where QXGROUP = #{qxgroup,jdbcType=VARCHAR}
+	  </select>
+</mapper>

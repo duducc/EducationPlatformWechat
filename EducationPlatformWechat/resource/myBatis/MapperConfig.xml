@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<settings>
+		<setting name="lazyLoadingEnabled" value="false" />
+		
+	</settings>
+	
+	<typeAliases>
+
+		<typeAlias alias="softinfo" type="com.saint.systemManager.bean.FrmSoftinfoEntity" />
+		<typeAlias alias="syslog" type="com.saint.systemManager.bean.FrmZlExlogEntity" />
+		<typeAlias alias="errlog" type="com.saint.systemManager.bean.FrmZlExlogEntity" />
+		
+		
+	</typeAliases>
+	
+	<plugins>
+		<plugin interceptor="com.saint.pub.plugin.PagePlugin">
+			<property name="dialect" value="oracle"/>
+			<property name="pageSqlId" value=".*ListPage.*"/>
+		</plugin>
+	</plugins>
+	
+	<mappers>
+		<mapper	resource="myBatis/systemManager/FrmCode_mapper_config.xml" /> 
+		<mapper	resource="myBatis/systemManager/FrmCodetype_mapper_config.xml" />
+		<mapper	resource="myBatis/systemManager/FrmDepartment_mapper_config.xml" />
+		<mapper	resource="myBatis/systemManager/FrmSoftinfo_mapper_config.xml" />
+		<mapper	resource="myBatis/systemManager/FrmSysparaType_mapper_config.xml" />
+		<mapper	resource="myBatis/systemManager/FrmSysparaValue_mapper_config.xml" />
+		
+		<mapper	resource="myBatis/systemManager/FrmZlExlog_mapper_config.xml" />
+		<mapper	resource="myBatis/systemManager/FrmZlLog_mapper_config.xml" />
+		<mapper	resource="myBatis/systemManager/FrmSysuser_mapper_config.xml" /> 
+		<!-- 学分 -->
+		<mapper	resource="myBatis/wechat/XfProject_mapper_config.xml" /> 
+		<mapper	resource="myBatis/wechat/XfCourse_mapper_config.xml" />
+		<mapper	resource="myBatis/wechat/XfCreditRecord_mapper_config.xml" />
+		<mapper	resource="myBatis/wechat/XfStudyRegistration_mapper_config.xml" />
+		<mapper	resource="myBatis/wechat/WechatBind_mapper_config.xml" />
+		<mapper	resource="myBatis/wechat/WechatClientinfo_mapper_config.xml" />
+		<mapper	resource="myBatis/wechat/WechatMenugroup_mapper_config.xml" />
+		<mapper	resource="myBatis/wechat/WechatMenuinfo_mapper_config.xml" />
+		<mapper	resource="myBatis/wechat/WechatNews_mapper_config.xml" />
+		<mapper	resource="myBatis/wechat/WechatSysparam_mapper_config.xml" />
+		<mapper	resource="myBatis/wechat/XfCourseSignup_mapper_config.xml" />
+		<mapper	resource="myBatis/wechat/XfApplyChange_mapper_config.xml" />
+		<mapper	resource="myBatis/wechat/XfEmployee_mapper_config.xml" />
+		<mapper	resource="myBatis/wechat/XfPayHistory_mapper_config.xml" />
+		<mapper	resource="myBatis/wechat/XfEmpRegister_mapper_config.xml" />
+		
+		<mapper	resource="myBatis/wechat/XfDept_mapper_config.xml" />
+		<mapper	resource="myBatis/wechat/XfPosRecord_mapper_config.xml" />
+		<mapper	resource="myBatis/wechat/TbDictdata_mapper_config.xml" />
+		<mapper	resource="myBatis/wechat/XfCourseTickling_mapper_config.xml" />
+		
+		<!-- 科研 -->
+		<mapper	resource="myBatis/research/KyProjectPlan_mapper_config.xml" />
+		<mapper	resource="myBatis/research/KyProjectGress_mapper_config.xml" />
+		<mapper	resource="myBatis/research/KyBonus_mapper_config.xml" />
+		<mapper	resource="myBatis/research/KYProject_mapper_config.xml" />
+		
+		<!-- 教学-->
+		<mapper	resource="myBatis/teaching/JxClass_mapper_config.xml" />
+		<mapper	resource="myBatis/teaching/JxStudents_mapper_config.xml" />
+		<mapper	resource="myBatis/teaching/JxSignInfo_mapper_config.xml" />
+		<mapper	resource="myBatis/teaching/JxStudentsSign_mapper_config.xml" />
+		<!-- <mapper	resource="myBatis/teaching/JxStudentLeave_mapper_config.xml" />
+		<mapper	resource="myBatis/teaching/JxStudentLeaveCheck_mapper_config.xml" /> -->
+		
+		
+		<mapper	resource="myBatis/teaching/JxStudentsLeave_mapper_config.xml" />
+		<mapper	resource="myBatis/teaching/JxStudentsLeaveCheck_mapper_config.xml" />
+		
+		
+		<mapper	resource="myBatis/teaching/JxLunxun_mapper_config.xml" />
+		<mapper	resource="myBatis/teaching/JxClassStudents_mapper_config.xml" />
+		<mapper	resource="myBatis/teaching/JxEvaluateTeacher_mapper_config.xml" />
+		<mapper	resource="myBatis/teaching/JxStencil_mapper_config.xml" />
+		<mapper	resource="myBatis/teaching/JxTeachingManuals_mapper_config.xml" />
+		<mapper	resource="myBatis/teaching/JxSignError_mapper_config.xml" />
+		<mapper	resource="myBatis/teaching/JxBreakSchool_mapper_config.xml" />
+		
+		<mapper	resource="myBatis/teaching/JxCoursePlan_mapper_config.xml" />
+		
+		<mapper	resource="myBatis/teaching/JxCourseArrange_mapper_config.xml" />
+		
+		<mapper	resource="myBatis/teaching/JxCoursezxTime_mapper_config.xml" />
+		
+		<mapper	resource="myBatis/teaching/JxTeacher_mapper_config.xml" />
+		
+		<mapper	resource="myBatis/teaching/JxStudentsInternshipProve_mapper_config.xml" />
+		
+		<mapper	resource="myBatis/teaching/JxStudyRegistration_mapper_config.xml" />
+		
+		<mapper	resource="myBatis/teaching/JxQuestionnaireAnswer_mapper_config.xml" />
+		
+		<mapper	resource="myBatis/teaching/JxQuestionnaireTest_mapper_config.xml" />
+		
+		<mapper resource="myBatis/teaching/JxStudentsGrade_mapper_config.xml"/>
+		
+		<mapper resource="myBatis/teaching/JxTeachingManus_mapper_config.xml"/>
+		
+		<mapper resource="myBatis/teaching/JxTeachingDbl_mapper_config.xml"/>
+		
+	</mappers>
+</configuration>

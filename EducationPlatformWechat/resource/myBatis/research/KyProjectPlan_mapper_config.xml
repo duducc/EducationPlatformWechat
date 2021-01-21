@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.research.KyProjectPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.research.bean.KyProjectPlanEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="PROSEQUENCE" property="prosequence" jdbcType="VARCHAR" />
+    <result column="TASKNUM" property="tasknum" jdbcType="DECIMAL" />
+    <result column="TASKSTARTDATE" property="taskstartdate" jdbcType="DATE" />
+    <result column="TASKENDDATE" property="taskenddate" jdbcType="DATE" />
+    <result column="TASKGOAL" property="taskgoal" jdbcType="VARCHAR" />
+    <result column="TASKCON" property="taskcon" jdbcType="VARCHAR" />
+    <result column="PROPORTION" property="proportion" jdbcType="DECIMAL" />
+    <result column="CREATEUSERID" property="createuserid" jdbcType="VARCHAR" />
+    <result column="CREATEUSERNAME" property="createusername" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createdate" jdbcType="DATE" />
+    <result column="EXCUTEUSERID" property="excuteuserid" jdbcType="VARCHAR" />
+    <result column="EXCUTEUSERNAME" property="excuteusername" jdbcType="VARCHAR" />
+    <result column="OPERATEUSERID" property="operateuserid" jdbcType="VARCHAR" />
+    <result column="OPERATEUSERNAME" property="operateusername" jdbcType="VARCHAR" />
+    <result column="OPERATEDATE" property="operatedate" jdbcType="DATE" />
+    <result column="ISFINISHTASK" property="isfinishtask" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, PROSEQUENCE, TASKNUM, TASKSTARTDATE, TASKENDDATE, TASKGOAL, TASKCON, PROPORTION, 
+    CREATEUSERID, CREATEUSERNAME, CREATEDATE, EXCUTEUSERID, EXCUTEUSERNAME, OPERATEUSERID, 
+    OPERATEUSERNAME, OPERATEDATE, ISFINISHTASK, REMARK1, REMARK2, REMARK3, REMARK4, REMARK5
+  </sql>
+  <select id="selectListPageKyProjectPlanBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.research.sqlWhere.KyProjectPlanSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from KY_PROJECTPLAN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListKyProjectPlanBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.research.sqlWhere.KyProjectPlanSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from KY_PROJECTPLAN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectKyProjectPlanByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from KY_PROJECTPLAN
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteKyProjectPlanByPrimaryKey" parameterType="java.lang.String" >
+    delete from KY_PROJECTPLAN
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteKyProjectPlanBySqlWhere" parameterType="com.saint.research.sqlWhere.KyProjectPlanSqlWhere" >
+    delete from KY_PROJECTPLAN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertKyProjectPlan" parameterType="com.saint.research.bean.KyProjectPlanEntity" >
+    insert into KY_PROJECTPLAN (XH, PROSEQUENCE, TASKNUM, 
+      TASKSTARTDATE, TASKENDDATE, 
+      TASKGOAL, TASKCON, PROPORTION, 
+      CREATEUSERID, CREATEUSERNAME, CREATEDATE, 
+      EXCUTEUSERID, EXCUTEUSERNAME, OPERATEUSERID, 
+      OPERATEUSERNAME, OPERATEDATE, 
+      ISFINISHTASK, REMARK1, REMARK2, 
+      REMARK3, REMARK4, REMARK5
+      )
+    values (SQ_KY_PROJECTPLAN.nextVal, #{prosequence,jdbcType=VARCHAR}, #{tasknum,jdbcType=DECIMAL}, 
+      to_date(#{taskstartdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), to_date(#{taskenddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{taskgoal,jdbcType=VARCHAR}, #{taskcon,jdbcType=VARCHAR}, #{proportion,jdbcType=DECIMAL}, 
+      #{createuserid,jdbcType=VARCHAR}, #{createusername,jdbcType=VARCHAR}, to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{excuteuserid,jdbcType=VARCHAR}, #{excuteusername,jdbcType=VARCHAR}, #{operateuserid,jdbcType=VARCHAR}, 
+      #{operateusername,jdbcType=VARCHAR}, to_date(#{operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{isfinishtask,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, 
+      #{remark3,jdbcType=VARCHAR}, #{remark4,jdbcType=VARCHAR}, #{remark5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertKyProjectPlanSelective" parameterType="com.saint.research.bean.KyProjectPlanEntity" >
+    insert into KY_PROJECTPLAN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="prosequence != null and prosequence != ''" >
+        PROSEQUENCE,
+      </if>
+      <if test="tasknum != null and tasknum != ''" >
+        TASKNUM,
+      </if>
+      <if test="taskstartdate != null and taskstartdate != ''" >
+        TASKSTARTDATE,
+      </if>
+      <if test="taskenddate != null and taskenddate != ''" >
+        TASKENDDATE,
+      </if>
+      <if test="taskgoal != null and taskgoal != ''" >
+        TASKGOAL,
+      </if>
+      <if test="taskcon != null and taskcon != ''" >
+        TASKCON,
+      </if>
+      <if test="proportion != null and proportion != ''" >
+        PROPORTION,
+      </if>
+      <if test="createuserid != null and createuserid != ''" >
+        CREATEUSERID,
+      </if>
+      <if test="createusername != null and createusername != ''" >
+        CREATEUSERNAME,
+      </if>
+      <if test="createdate != null and createdate != ''" >
+        CREATEDATE,
+      </if>
+      <if test="excuteuserid != null and excuteuserid != ''" >
+        EXCUTEUSERID,
+      </if>
+      <if test="excuteusername != null and excuteusername != ''" >
+        EXCUTEUSERNAME,
+      </if>
+      <if test="operateuserid != null and operateuserid != ''" >
+        OPERATEUSERID,
+      </if>
+      <if test="operateusername != null and operateusername != ''" >
+        OPERATEUSERNAME,
+      </if>
+      <if test="operatedate != null and operatedate != ''" >
+        OPERATEDATE,
+      </if>
+      <if test="isfinishtask != null and isfinishtask != ''" >
+        ISFINISHTASK,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="prosequence != null and prosequence != ''" >
+        #{prosequence,jdbcType=VARCHAR},
+      </if>
+      <if test="tasknum != null and tasknum != ''" >
+        #{tasknum,jdbcType=DECIMAL},
+      </if>
+      <if test="taskstartdate != null and taskstartdate != ''" >
+        to_date(#{taskstartdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="taskenddate != null and taskenddate != ''" >
+        to_date(#{taskenddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="taskgoal != null and taskgoal != ''" >
+        #{taskgoal,jdbcType=VARCHAR},
+      </if>
+      <if test="taskcon != null and taskcon != ''" >
+        #{taskcon,jdbcType=VARCHAR},
+      </if>
+      <if test="proportion != null and proportion != ''" >
+        #{proportion,jdbcType=DECIMAL},
+      </if>
+      <if test="createuserid != null and createuserid != ''" >
+        #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="createusername != null and createusername != ''" >
+        #{createusername,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null and createdate != ''" >
+        to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="excuteuserid != null and excuteuserid != ''" >
+        #{excuteuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="excuteusername != null and excuteusername != ''" >
+        #{excuteusername,jdbcType=VARCHAR},
+      </if>
+      <if test="operateuserid != null and operateuserid != ''" >
+        #{operateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="operateusername != null and operateusername != ''" >
+        #{operateusername,jdbcType=VARCHAR},
+      </if>
+      <if test="operatedate != null and operatedate != ''" >
+        to_date(#{operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="isfinishtask != null and isfinishtask != ''" >
+        #{isfinishtask,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countKyProjectPlanBySqlWhere" parameterType="com.saint.research.sqlWhere.KyProjectPlanSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from KY_PROJECTPLAN
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateKyProjectPlanBySqlWhereSelective" parameterType="map" >
+    update KY_PROJECTPLAN
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prosequence != null and record.prosequence != ''" >
+        PROSEQUENCE = #{record.prosequence,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tasknum != null and record.tasknum != ''" >
+        TASKNUM = #{record.tasknum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.taskstartdate != null and record.taskstartdate != ''" >
+        TASKSTARTDATE = to_date(#{record.taskstartdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.taskenddate != null and record.taskenddate != ''" >
+        TASKENDDATE = to_date(#{record.taskenddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.taskgoal != null and record.taskgoal != ''" >
+        TASKGOAL = #{record.taskgoal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskcon != null and record.taskcon != ''" >
+        TASKCON = #{record.taskcon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proportion != null and record.proportion != ''" >
+        PROPORTION = #{record.proportion,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createuserid != null and record.createuserid != ''" >
+        CREATEUSERID = #{record.createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createusername != null and record.createusername != ''" >
+        CREATEUSERNAME = #{record.createusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdate != null and record.createdate != ''" >
+        CREATEDATE = to_date(#{record.createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.excuteuserid != null and record.excuteuserid != ''" >
+        EXCUTEUSERID = #{record.excuteuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.excuteusername != null and record.excuteusername != ''" >
+        EXCUTEUSERNAME = #{record.excuteusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateuserid != null and record.operateuserid != ''" >
+        OPERATEUSERID = #{record.operateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operateusername != null and record.operateusername != ''" >
+        OPERATEUSERNAME = #{record.operateusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatedate != null and record.operatedate != ''" >
+        OPERATEDATE = to_date(#{record.operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.isfinishtask != null and record.isfinishtask != ''" >
+        ISFINISHTASK = #{record.isfinishtask,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateKyProjectPlanBySqlWhere" parameterType="map" >
+    update KY_PROJECTPLAN
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      PROSEQUENCE = #{record.prosequence,jdbcType=VARCHAR},
+      TASKNUM = #{record.tasknum,jdbcType=DECIMAL},
+      TASKSTARTDATE = to_date(#{record.taskstartdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      TASKENDDATE = to_date(#{record.taskenddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      TASKGOAL = #{record.taskgoal,jdbcType=VARCHAR},
+      TASKCON = #{record.taskcon,jdbcType=VARCHAR},
+      PROPORTION = #{record.proportion,jdbcType=DECIMAL},
+      CREATEUSERID = #{record.createuserid,jdbcType=VARCHAR},
+      CREATEUSERNAME = #{record.createusername,jdbcType=VARCHAR},
+      CREATEDATE = to_date(#{record.createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      EXCUTEUSERID = #{record.excuteuserid,jdbcType=VARCHAR},
+      EXCUTEUSERNAME = #{record.excuteusername,jdbcType=VARCHAR},
+      OPERATEUSERID = #{record.operateuserid,jdbcType=VARCHAR},
+      OPERATEUSERNAME = #{record.operateusername,jdbcType=VARCHAR},
+      OPERATEDATE = to_date(#{record.operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ISFINISHTASK = #{record.isfinishtask,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateKyProjectPlanByPrimaryKeySelective" parameterType="com.saint.research.bean.KyProjectPlanEntity" >
+    update KY_PROJECTPLAN
+    <set >
+      <if test="prosequence != null and prosequence != ''" >
+        PROSEQUENCE = #{prosequence,jdbcType=VARCHAR},
+      </if>
+      <if test="tasknum != null and tasknum != ''" >
+        TASKNUM = #{tasknum,jdbcType=DECIMAL},
+      </if>
+      <if test="taskstartdate != null and taskstartdate != ''" >
+        TASKSTARTDATE = to_date(#{taskstartdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="taskenddate != null and taskenddate != ''" >
+        TASKENDDATE = to_date(#{taskenddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="taskgoal != null and taskgoal != ''" >
+        TASKGOAL = #{taskgoal,jdbcType=VARCHAR},
+      </if>
+      <if test="taskcon != null and taskcon != ''" >
+        TASKCON = #{taskcon,jdbcType=VARCHAR},
+      </if>
+      <if test="proportion != null and proportion != ''" >
+        PROPORTION = #{proportion,jdbcType=DECIMAL},
+      </if>
+      <if test="createuserid != null and createuserid != ''" >
+        CREATEUSERID = #{createuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="createusername != null and createusername != ''" >
+        CREATEUSERNAME = #{createusername,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null and createdate != ''" >
+        CREATEDATE = to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="excuteuserid != null and excuteuserid != ''" >
+        EXCUTEUSERID = #{excuteuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="excuteusername != null and excuteusername != ''" >
+        EXCUTEUSERNAME = #{excuteusername,jdbcType=VARCHAR},
+      </if>
+      <if test="operateuserid != null and operateuserid != ''" >
+        OPERATEUSERID = #{operateuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="operateusername != null and operateusername != ''" >
+        OPERATEUSERNAME = #{operateusername,jdbcType=VARCHAR},
+      </if>
+      <if test="operatedate != null and operatedate != ''" >
+        OPERATEDATE = to_date(#{operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="isfinishtask != null and isfinishtask != ''" >
+        ISFINISHTASK = #{isfinishtask,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateKyProjectPlanByPrimaryKey" parameterType="com.saint.research.bean.KyProjectPlanEntity" >
+    update KY_PROJECTPLAN
+    set PROSEQUENCE = #{prosequence,jdbcType=VARCHAR},
+      TASKNUM = #{tasknum,jdbcType=DECIMAL},
+      TASKSTARTDATE = to_date(#{taskstartdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      TASKENDDATE = to_date(#{taskenddate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      TASKGOAL = #{taskgoal,jdbcType=VARCHAR},
+      TASKCON = #{taskcon,jdbcType=VARCHAR},
+      PROPORTION = #{proportion,jdbcType=DECIMAL},
+      CREATEUSERID = #{createuserid,jdbcType=VARCHAR},
+      CREATEUSERNAME = #{createusername,jdbcType=VARCHAR},
+      CREATEDATE = to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      EXCUTEUSERID = #{excuteuserid,jdbcType=VARCHAR},
+      EXCUTEUSERNAME = #{excuteusername,jdbcType=VARCHAR},
+      OPERATEUSERID = #{operateuserid,jdbcType=VARCHAR},
+      OPERATEUSERNAME = #{operateusername,jdbcType=VARCHAR},
+      OPERATEDATE = to_date(#{operatedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ISFINISHTASK = #{isfinishtask,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR}
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

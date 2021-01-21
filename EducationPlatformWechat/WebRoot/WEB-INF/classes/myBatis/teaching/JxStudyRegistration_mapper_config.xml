@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxStudyRegistrationMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxStudyRegistrationEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="COURSE_ID" property="courseId" jdbcType="DECIMAL" />
+    <result column="STUID" property="stuid" jdbcType="VARCHAR" />
+    <result column="STUNAME" property="stuname" jdbcType="VARCHAR" />
+    <result column="DEPT_ID" property="deptId" jdbcType="DECIMAL" />
+    <result column="DEPT_NAME" property="deptName" jdbcType="VARCHAR" />
+    <result column="COURSE_NAME" property="courseName" jdbcType="VARCHAR" />
+    <result column="PLACE_NAME" property="placeName" jdbcType="VARCHAR" />
+    <result column="POSITION" property="position" jdbcType="VARCHAR" />
+    <result column="UPTIME" property="uptime" jdbcType="DATE" />
+    <result column="DOWNTIME" property="downtime" jdbcType="DATE" />
+    <result column="DAKA_TIME" property="dakaTime" jdbcType="DATE" />
+    <result column="ADD_YEAR" property="addYear" jdbcType="VARCHAR" />
+    <result column="ISVALID" property="isvalid" jdbcType="DECIMAL" />
+    <result column="ISGRANT" property="isgrant" jdbcType="DECIMAL" />
+    <result column="AWARDSTATE" property="awardstate" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="ADD_TIME" property="addTime" jdbcType="DATE" />
+    <result column="REMARKS1" property="remarks1" jdbcType="VARCHAR" />
+    <result column="REMARKS2" property="remarks2" jdbcType="VARCHAR" />
+    <result column="REMARKS3" property="remarks3" jdbcType="VARCHAR" />
+    <result column="GXSJ" property="gxsj" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, COURSE_ID, STUID, STUNAME, DEPT_ID, DEPT_NAME, COURSE_NAME, PLACE_NAME, POSITION, 
+    UPTIME, DOWNTIME, DAKA_TIME, ADD_YEAR, ISVALID, ISGRANT, AWARDSTATE, STATE, ADD_TIME, 
+    REMARKS1, REMARKS2, REMARKS3, GXSJ
+  </sql>
+  <select id="selectListPageJxStudyRegistrationBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxStudyRegistrationSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_STUDY_REGISTRATION
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxStudyRegistrationBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxStudyRegistrationSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_STUDY_REGISTRATION
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxStudyRegistrationByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_STUDY_REGISTRATION
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxStudyRegistrationByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_STUDY_REGISTRATION
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxStudyRegistrationBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxStudyRegistrationSqlWhere" >
+    delete from JX_STUDY_REGISTRATION
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxStudyRegistration" parameterType="com.saint.teaching.bean.JxStudyRegistrationEntity" >
+    insert into JX_STUDY_REGISTRATION (XH, COURSE_ID, STUID, 
+      STUNAME, DEPT_ID, DEPT_NAME, 
+      COURSE_NAME, PLACE_NAME, POSITION, 
+      UPTIME, DOWNTIME, 
+      DAKA_TIME, ADD_YEAR, 
+      ISVALID, ISGRANT, AWARDSTATE, 
+      STATE, ADD_TIME, 
+      REMARKS1, REMARKS2, REMARKS3, 
+      GXSJ)
+    values (#{xh,jdbcType=VARCHAR}, #{courseId,jdbcType=DECIMAL}, #{stuid,jdbcType=VARCHAR}, 
+      #{stuname,jdbcType=VARCHAR}, #{deptId,jdbcType=DECIMAL}, #{deptName,jdbcType=VARCHAR}, 
+      #{courseName,jdbcType=VARCHAR}, #{placeName,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
+      to_date(#{uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), to_date(#{downtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      to_date(#{dakaTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{addYear,jdbcType=VARCHAR}, 
+      #{isvalid,jdbcType=DECIMAL}, #{isgrant,jdbcType=DECIMAL}, #{awardstate,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{remarks1,jdbcType=VARCHAR}, #{remarks2,jdbcType=VARCHAR}, #{remarks3,jdbcType=VARCHAR}, 
+      to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'))
+  </insert>
+  <insert id="insertJxStudyRegistrationSelective" parameterType="com.saint.teaching.bean.JxStudyRegistrationEntity" >
+    insert into JX_STUDY_REGISTRATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="courseId != null and courseId != ''" >
+        COURSE_ID,
+      </if>
+      <if test="stuid != null and stuid != ''" >
+        STUID,
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        STUNAME,
+      </if>
+      <if test="deptId != null and deptId != ''" >
+        DEPT_ID,
+      </if>
+      <if test="deptName != null and deptName != ''" >
+        DEPT_NAME,
+      </if>
+      <if test="courseName != null and courseName != ''" >
+        COURSE_NAME,
+      </if>
+      <if test="placeName != null and placeName != ''" >
+        PLACE_NAME,
+      </if>
+      <if test="position != null and position != ''" >
+        POSITION,
+      </if>
+      <if test="uptime != null and uptime != ''" >
+        UPTIME,
+      </if>
+      <if test="downtime != null and downtime != ''" >
+        DOWNTIME,
+      </if>
+      <if test="dakaTime != null and dakaTime != ''" >
+        DAKA_TIME,
+      </if>
+      <if test="addYear != null and addYear != ''" >
+        ADD_YEAR,
+      </if>
+      <if test="isvalid != null and isvalid != ''" >
+        ISVALID,
+      </if>
+      <if test="isgrant != null and isgrant != ''" >
+        ISGRANT,
+      </if>
+      <if test="awardstate != null and awardstate != ''" >
+        AWARDSTATE,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="addTime != null and addTime != ''" >
+        ADD_TIME,
+      </if>
+      <if test="remarks1 != null and remarks1 != ''" >
+        REMARKS1,
+      </if>
+      <if test="remarks2 != null and remarks2 != ''" >
+        REMARKS2,
+      </if>
+      <if test="remarks3 != null and remarks3 != ''" >
+        REMARKS3,
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null and courseId != ''" >
+        #{courseId,jdbcType=DECIMAL},
+      </if>
+      <if test="stuid != null and stuid != ''" >
+        #{stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null and deptId != ''" >
+        #{deptId,jdbcType=DECIMAL},
+      </if>
+      <if test="deptName != null and deptName != ''" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null and courseName != ''" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="placeName != null and placeName != ''" >
+        #{placeName,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null and position != ''" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="uptime != null and uptime != ''" >
+        to_date(#{uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="downtime != null and downtime != ''" >
+        to_date(#{downtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="dakaTime != null and dakaTime != ''" >
+        to_date(#{dakaTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="addYear != null and addYear != ''" >
+        #{addYear,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null and isvalid != ''" >
+        #{isvalid,jdbcType=DECIMAL},
+      </if>
+      <if test="isgrant != null and isgrant != ''" >
+        #{isgrant,jdbcType=DECIMAL},
+      </if>
+      <if test="awardstate != null and awardstate != ''" >
+        #{awardstate,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null and addTime != ''" >
+        to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remarks1 != null and remarks1 != ''" >
+        #{remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks2 != null and remarks2 != ''" >
+        #{remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks3 != null and remarks3 != ''" >
+        #{remarks3,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxStudyRegistrationBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxStudyRegistrationSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_STUDY_REGISTRATION
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxStudyRegistrationBySqlWhereSelective" parameterType="map" >
+    update JX_STUDY_REGISTRATION
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseId != null and record.courseId != ''" >
+        COURSE_ID = #{record.courseId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stuid != null and record.stuid != ''" >
+        STUID = #{record.stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuname != null and record.stuname != ''" >
+        STUNAME = #{record.stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptId != null and record.deptId != ''" >
+        DEPT_ID = #{record.deptId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.deptName != null and record.deptName != ''" >
+        DEPT_NAME = #{record.deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseName != null and record.courseName != ''" >
+        COURSE_NAME = #{record.courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.placeName != null and record.placeName != ''" >
+        PLACE_NAME = #{record.placeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.position != null and record.position != ''" >
+        POSITION = #{record.position,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uptime != null and record.uptime != ''" >
+        UPTIME = to_date(#{record.uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.downtime != null and record.downtime != ''" >
+        DOWNTIME = to_date(#{record.downtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.dakaTime != null and record.dakaTime != ''" >
+        DAKA_TIME = to_date(#{record.dakaTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.addYear != null and record.addYear != ''" >
+        ADD_YEAR = #{record.addYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isvalid != null and record.isvalid != ''" >
+        ISVALID = #{record.isvalid,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isgrant != null and record.isgrant != ''" >
+        ISGRANT = #{record.isgrant,jdbcType=DECIMAL},
+      </if>
+      <if test="record.awardstate != null and record.awardstate != ''" >
+        AWARDSTATE = #{record.awardstate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null and record.addTime != ''" >
+        ADD_TIME = to_date(#{record.addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.remarks1 != null and record.remarks1 != ''" >
+        REMARKS1 = #{record.remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks2 != null and record.remarks2 != ''" >
+        REMARKS2 = #{record.remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks3 != null and record.remarks3 != ''" >
+        REMARKS3 = #{record.remarks3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxsj != null and record.gxsj != ''" >
+        GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxStudyRegistrationBySqlWhere" parameterType="map" >
+    update JX_STUDY_REGISTRATION
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      COURSE_ID = #{record.courseId,jdbcType=DECIMAL},
+      STUID = #{record.stuid,jdbcType=VARCHAR},
+      STUNAME = #{record.stuname,jdbcType=VARCHAR},
+      DEPT_ID = #{record.deptId,jdbcType=DECIMAL},
+      DEPT_NAME = #{record.deptName,jdbcType=VARCHAR},
+      COURSE_NAME = #{record.courseName,jdbcType=VARCHAR},
+      PLACE_NAME = #{record.placeName,jdbcType=VARCHAR},
+      POSITION = #{record.position,jdbcType=VARCHAR},
+      UPTIME = to_date(#{record.uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      DOWNTIME = to_date(#{record.downtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      DAKA_TIME = to_date(#{record.dakaTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ADD_YEAR = #{record.addYear,jdbcType=VARCHAR},
+      ISVALID = #{record.isvalid,jdbcType=DECIMAL},
+      ISGRANT = #{record.isgrant,jdbcType=DECIMAL},
+      AWARDSTATE = #{record.awardstate,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      ADD_TIME = to_date(#{record.addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARKS1 = #{record.remarks1,jdbcType=VARCHAR},
+      REMARKS2 = #{record.remarks2,jdbcType=VARCHAR},
+      REMARKS3 = #{record.remarks3,jdbcType=VARCHAR},
+      GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxStudyRegistrationByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxStudyRegistrationEntity" >
+    update JX_STUDY_REGISTRATION
+    <set >
+      <if test="courseId != null and courseId != ''" >
+        COURSE_ID = #{courseId,jdbcType=DECIMAL},
+      </if>
+      <if test="stuid != null and stuid != ''" >
+        STUID = #{stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        STUNAME = #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null and deptId != ''" >
+        DEPT_ID = #{deptId,jdbcType=DECIMAL},
+      </if>
+      <if test="deptName != null and deptName != ''" >
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null and courseName != ''" >
+        COURSE_NAME = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="placeName != null and placeName != ''" >
+        PLACE_NAME = #{placeName,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null and position != ''" >
+        POSITION = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="uptime != null and uptime != ''" >
+        UPTIME = to_date(#{uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="downtime != null and downtime != ''" >
+        DOWNTIME = to_date(#{downtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="dakaTime != null and dakaTime != ''" >
+        DAKA_TIME = to_date(#{dakaTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="addYear != null and addYear != ''" >
+        ADD_YEAR = #{addYear,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null and isvalid != ''" >
+        ISVALID = #{isvalid,jdbcType=DECIMAL},
+      </if>
+      <if test="isgrant != null and isgrant != ''" >
+        ISGRANT = #{isgrant,jdbcType=DECIMAL},
+      </if>
+      <if test="awardstate != null and awardstate != ''" >
+        AWARDSTATE = #{awardstate,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null and addTime != ''" >
+        ADD_TIME = to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remarks1 != null and remarks1 != ''" >
+        REMARKS1 = #{remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks2 != null and remarks2 != ''" >
+        REMARKS2 = #{remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks3 != null and remarks3 != ''" >
+        REMARKS3 = #{remarks3,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxStudyRegistrationByPrimaryKey" parameterType="com.saint.teaching.bean.JxStudyRegistrationEntity" >
+    update JX_STUDY_REGISTRATION
+    set COURSE_ID = #{courseId,jdbcType=DECIMAL},
+      STUID = #{stuid,jdbcType=VARCHAR},
+      STUNAME = #{stuname,jdbcType=VARCHAR},
+      DEPT_ID = #{deptId,jdbcType=DECIMAL},
+      DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      COURSE_NAME = #{courseName,jdbcType=VARCHAR},
+      PLACE_NAME = #{placeName,jdbcType=VARCHAR},
+      POSITION = #{position,jdbcType=VARCHAR},
+      UPTIME = to_date(#{uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      DOWNTIME = to_date(#{downtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      DAKA_TIME = to_date(#{dakaTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ADD_YEAR = #{addYear,jdbcType=VARCHAR},
+      ISVALID = #{isvalid,jdbcType=DECIMAL},
+      ISGRANT = #{isgrant,jdbcType=DECIMAL},
+      AWARDSTATE = #{awardstate,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      ADD_TIME = to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARKS1 = #{remarks1,jdbcType=VARCHAR},
+      REMARKS2 = #{remarks2,jdbcType=VARCHAR},
+      REMARKS3 = #{remarks3,jdbcType=VARCHAR},
+      GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

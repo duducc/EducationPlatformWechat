@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<beans xmlns='http://www.springframework.org/schema/beans'
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xmlns:p='http://www.springframework.org/schema/p'
+	xmlns:context='http://www.springframework.org/schema/context'
+	xsi:schemaLocation='http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+ http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+ http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd'>
+ 	
+ 	<bean id="processService" class="com.saint.pub.services.imp.ProcessResultImpl">
+ 		<property name="frmZlLogService"><ref bean="frmZlLogService"/></property>
+ 		<property name="frmZlExlogService"><ref bean="frmZlExlogService"/></property>
+ 	</bean>
+ 	
+ 	<bean id="wechatBindService" class="com.saint.wechat.manager.services.impl.WechatBindServiceImpl">
+		<property name="wechatBindDao" ref="wechatBindDao"/>
+	</bean>
+ 	<bean id="wechatClientinfoService" class="com.saint.wechat.manager.services.impl.WechatClientinfoServiceImpl">
+		<property name="wechatClientinfoDao" ref="wechatClientinfoDao"/>
+	</bean>
+ 	<bean id="wechatMenugroupService" class="com.saint.wechat.manager.services.impl.WechatMenugroupServiceImpl">
+		<property name="wechatMenugroupDao" ref="wechatMenugroupDao"/>
+	</bean>
+ 	<bean id="wechatMenuinfoService" class="com.saint.wechat.manager.services.impl.WechatMenuinfoServiceImpl">
+		<property name="wechatMenuinfoDao" ref="wechatMenuinfoDao"/>
+		
+		<property name="wechatClientinfoService" ref="wechatClientinfoService"/>
+		<property name="wechatMenugroupService" ref="wechatMenugroupService"/>
+	</bean>
+ 	<bean id="wechatNewsService" class="com.saint.wechat.manager.services.impl.WechatNewsServiceImpl">
+		<property name="wechatNewsDao" ref="wechatNewsDao"/>
+	</bean>
+ 	<bean id="wechatSysparamService" class="com.saint.wechat.manager.services.impl.WechatSysparamServiceImpl">
+		<property name="wechatSysparamDao" ref="wechatSysparamDao"/>
+	</bean>
+ 	<bean id="xfCourseService" class="com.saint.wechat.manager.services.impl.XfCourseServiceImpl">
+		<property name="xfCourseDao" ref="xfCourseDao"/>
+	</bean>
+ 	<bean id="xfCourseSignupService" class="com.saint.wechat.manager.services.impl.XfCourseSignupServiceImpl">
+		<property name="xfCourseSignupDao" ref="xfCourseSignupDao"/>
+		<property name="xfCourseService" ref="xfCourseService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+	</bean>
+	
+ 	<bean id="xfCreditRecordService" class="com.saint.wechat.manager.services.impl.XfCreditRecordServiceImpl">
+		<property name="xfCreditRecordDao" ref="xfCreditRecordDao"/>
+	</bean>
+ 	<bean id="xfProjectService" class="com.saint.wechat.manager.services.impl.XfProjectServiceImpl">
+		<property name="xfProjectDao" ref="xfProjectDao"/>
+	</bean>
+ 	<bean id="xfStudyRegistrationService" class="com.saint.wechat.manager.services.impl.XfStudyRegistrationServiceImpl">
+		<property name="xfStudyRegistrationDao" ref="xfStudyRegistrationDao"/>
+	</bean>
+ 	<bean id="xfApplyChangeService" class="com.saint.wechat.manager.services.impl.XfApplyChangeServiceImpl">
+		<property name="xfApplyChangeDao" ref="xfApplyChangeDao"/>
+	</bean>
+ 	<bean id="xfEmployeeService" class="com.saint.wechat.manager.services.impl.XfEmployeeServiceImpl">
+		<property name="xfEmployeeDao" ref="xfEmployeeDao"/>
+	</bean>
+	
+	<bean id="xfPayHistoryService" class="com.saint.wechat.manager.services.impl.XfPayHistoryServiceImpl">
+		<property name="xfPayHistoryDao" ref="xfPayHistoryDao"/>
+	</bean>
+	<bean id="xfEmpRegisterService" class="com.saint.wechat.manager.services.impl.XfEmpRegisterServiceImpl">
+		<property name="XfEmpRegisterDao" ref="XfEmpRegisterDao"/>
+	</bean>
+	<bean id="xfCourseTicklingService" class="com.saint.wechat.manager.services.impl.XfCourseTicklingServiceImpl">
+		<property name="XfCourseTicklingDao" ref="XfCourseTicklingDao"/>
+	</bean>
+	
+	<bean id="kYProjectService" class="com.saint.research.services.impl.KYProjectServiceImpl">
+		<property name="KYProjectDao" ref="KYProjectDao"/>
+	</bean>
+	<bean id="kyProjectPlanService" class="com.saint.research.services.impl.KyProjectPlanServiceImpl">
+		<property name="KyProjectPlanDao" ref="KyProjectPlanDao"/>
+	</bean>
+	<!-- 科研奖金发放 -->
+	<bean id = "kyBonusService" class = "com.saint.research.services.impl.KyBonusServiceImpl" >
+		<property name="kyBonusDao" ref="kyBonusDao"/>
+	</bean>
+	
+	<bean id="kyProjectGressService" class="com.saint.research.services.impl.KyProjectGressServiceImpl">
+		<property name="KyProjectGressDao" ref="KyProjectGressDao"/>
+	</bean>
+	
+	<!-- *************************************以下是DAO类********************************** -->
+	<bean id="wechatBindDao" class="com.saint.wechat.manager.dao.impl.WechatBindDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="wechatClientinfoDao" class="com.saint.wechat.manager.dao.impl.WechatClientinfoDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+ 	<bean id="wechatMenugroupDao" class="com.saint.wechat.manager.dao.impl.WechatMenugroupDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+ 	<bean id="wechatMenuinfoDao" class="com.saint.wechat.manager.dao.impl.WechatMenuinfoDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+ 	<bean id="wechatNewsDao" class="com.saint.wechat.manager.dao.impl.WechatNewsDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+ 	<bean id="wechatSysparamDao" class="com.saint.wechat.manager.dao.impl.WechatSysparamDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+ 	<bean id="xfCourseDao" class="com.saint.wechat.manager.dao.impl.XfCourseDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+ 	<bean id="xfCourseSignupDao" class="com.saint.wechat.manager.dao.impl.XfCourseSignupDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+ 	<bean id="xfCreditRecordDao" class="com.saint.wechat.manager.dao.impl.XfCreditRecordDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+ 	<bean id="xfProjectDao" class="com.saint.wechat.manager.dao.impl.XfProjectDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+ 	<bean id="xfStudyRegistrationDao" class="com.saint.wechat.manager.dao.impl.XfStudyRegistrationDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+ 	<bean id="xfApplyChangeDao" class="com.saint.wechat.manager.dao.impl.XfApplyChangeDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+ 	<bean id="xfEmployeeDao" class="com.saint.wechat.manager.dao.impl.XfEmployeeDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="xfPayHistoryDao" class="com.saint.wechat.manager.dao.impl.XfPayHistoryDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="XfEmpRegisterDao" class="com.saint.wechat.manager.dao.impl.XfEmpRegisterDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="XfCourseTicklingDao" class="com.saint.wechat.manager.dao.impl.XfCourseTicklingDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id = "kyBonusDao" class = "com.saint.research.dao.impl.KyBonusDaoImpl" >
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="KYProjectDao" class="com.saint.research.dao.impl.KYProjectDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	<bean id="KyProjectPlanDao" class="com.saint.research.dao.impl.KyProjectPlanDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<bean id="KyProjectGressDao" class="com.saint.research.dao.impl.KyProjectGressDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+	
+	<!-- 定时任务配置 -->
+	<!-- 
+	 <bean id="schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers"><list><ref local="databaseTaskManageTrigger"/></list></property>
+        <property name="schedulerName"><value>first</value></property>
+    </bean>
+	<bean id="databaseTaskManageJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass"><value>com.saint.frmworoad.sysManagerrk.task.DatabaseTaskManageJob</value></property>
+        <property name="applicationContextJobDataKey" value="applicationContext"/>
+    </bean>
+    <bean id="databaseTaskManageTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref local="databaseTaskManageJob"/>
+        </property>
+        <property name="cronExpression">
+            <value>1 0/2 * * * ?</value>
+        </property>
+    </bean>
+     -->
+
+</beans>
+

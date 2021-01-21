@@ -1,0 +1,1308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxTeachingManualsMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxTeachingManualsEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="STU_ID" property="stuId" jdbcType="VARCHAR" />
+    <result column="STU_NAME" property="stuName" jdbcType="VARCHAR" />
+    <result column="TEACHER_ID" property="teacherId" jdbcType="VARCHAR" />
+    <result column="TEACHER_NAME" property="teacherName" jdbcType="VARCHAR" />
+    <result column="DEPTID" property="deptid" jdbcType="VARCHAR" />
+    <result column="DEPTNAME" property="deptname" jdbcType="VARCHAR" />
+    <result column="CLASSID" property="classid" jdbcType="VARCHAR" />
+    <result column="CLASSNAME" property="classname" jdbcType="VARCHAR" />
+    <result column="ZUID" property="zuid" jdbcType="VARCHAR" />
+    <result column="ZUNAME" property="zuname" jdbcType="VARCHAR" />
+    <result column="ZTTIME" property="zttime" jdbcType="DATE" />
+    <result column="POSITION" property="position" jdbcType="VARCHAR" />
+    <result column="PATIENT_BS" property="patientBs" jdbcType="VARCHAR" />
+    <result column="PATIENT" property="patient" jdbcType="VARCHAR" />
+    <result column="PATIENT_SEX" property="patientSex" jdbcType="VARCHAR" />
+    <result column="PATIENT_AGE" property="patientAge" jdbcType="VARCHAR" />
+    <result column="PATIENT_BEDNUM" property="patientBednum" jdbcType="VARCHAR" />
+    <result column="PATIENT_BLH" property="patientBlh" jdbcType="VARCHAR" />
+    <result column="PATIENT_MZFS" property="patientMzfs" jdbcType="VARCHAR" />
+    <result column="CF_DIAGNOSE" property="cfDiagnose" jdbcType="VARCHAR" />
+    <result column="CONTENTO" property="contento" jdbcType="VARCHAR" />
+    <result column="CONTENTT" property="contentt" jdbcType="VARCHAR" />
+    <result column="CONTENTTH" property="contentth" jdbcType="VARCHAR" />
+    <result column="CONTENTF" property="contentf" jdbcType="VARCHAR" />
+    <result column="CONTENTW" property="contentw" jdbcType="VARCHAR" />
+    <result column="CZ_GMASSISTANTID" property="czGmassistantid" jdbcType="VARCHAR" />
+    <result column="CZ_GMASSISTANTNAME" property="czGmassistantname" jdbcType="VARCHAR" />
+    <result column="CZ_SZASSISTANTID" property="czSzassistantid" jdbcType="VARCHAR" />
+    <result column="CZ_SZASSISTANTNAME" property="czSzassistantname" jdbcType="VARCHAR" />
+    <result column="CZ_ASSISTANTID1" property="czAssistantid1" jdbcType="VARCHAR" />
+    <result column="CZ_ASSISTANTNAME1" property="czAssistantname1" jdbcType="VARCHAR" />
+    <result column="CZ_ASSISTANTID2" property="czAssistantid2" jdbcType="VARCHAR" />
+    <result column="CZ_ASSISTANTNAME2" property="czAssistantname2" jdbcType="VARCHAR" />
+    <result column="CZ_ASSISTANTID" property="czAssistantid" jdbcType="VARCHAR" />
+    <result column="CZ_ASSISTANTNAME" property="czAssistantname" jdbcType="VARCHAR" />
+    <result column="TL_AMSNMD" property="tlAmsnmd" jdbcType="VARCHAR" />
+    <result column="JZ_COURSE" property="jzCourse" jdbcType="VARCHAR" />
+    <result column="JZ_PERSONID" property="jzPersonid" jdbcType="VARCHAR" />
+    <result column="JZ_PERSONNAME" property="jzPersonname" jdbcType="VARCHAR" />
+    <result column="TEACHOBJID" property="teachobjid" jdbcType="VARCHAR" />
+    <result column="TEACHOBJNAME" property="teachobjname" jdbcType="VARCHAR" />
+    <result column="OTHERSTUDENTID" property="otherstudentid" jdbcType="VARCHAR" />
+    <result column="OTHERSTUDENTNAME" property="otherstudentname" jdbcType="VARCHAR" />
+    <result column="MAINGUANTEACHERID" property="mainguanteacherid" jdbcType="VARCHAR" />
+    <result column="MAINGUANTEACHERNAME" property="mainguanteachername" jdbcType="VARCHAR" />
+    <result column="MAINCHATEACHERID" property="mainchateacherid" jdbcType="VARCHAR" />
+    <result column="MAINCHATEACHERNAME" property="mainchateachername" jdbcType="VARCHAR" />
+    <result column="OTHERTEACHERID" property="otherteacherid" jdbcType="VARCHAR" />
+    <result column="OTHERTEACHERNAME" property="otherteachername" jdbcType="VARCHAR" />
+    <result column="HUIBAOUSERID" property="huibaouserid" jdbcType="VARCHAR" />
+    <result column="HUIBAOUSERNAME" property="huibaousername" jdbcType="VARCHAR" />
+    <result column="MAINUSERID" property="mainuserid" jdbcType="VARCHAR" />
+    <result column="MAINUSERNAME" property="mainusername" jdbcType="VARCHAR" />
+    <result column="WJLJ" property="wjlj" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="OPEMID" property="opemid" jdbcType="VARCHAR" />
+    <result column="OPEMNAME" property="opemname" jdbcType="VARCHAR" />
+    <result column="OPEMDATE" property="opemdate" jdbcType="DATE" />
+    <result column="SPEMID" property="spemid" jdbcType="VARCHAR" />
+    <result column="SPEMNAME" property="spemname" jdbcType="VARCHAR" />
+    <result column="UPTIME" property="uptime" jdbcType="DATE" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+    <result column="REMARK6" property="remark6" jdbcType="VARCHAR" />
+    <result column="REMARK7" property="remark7" jdbcType="VARCHAR" />
+    <result column="REMARK8" property="remark8" jdbcType="VARCHAR" />
+    <result column="REMARK9" property="remark9" jdbcType="VARCHAR" />
+    <result column="REMARK10" property="remark10" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, STU_ID, STU_NAME, TEACHER_ID, TEACHER_NAME, DEPTID, DEPTNAME, CLASSID, CLASSNAME, 
+    ZUID, ZUNAME, ZTTIME, POSITION, PATIENT_BS, PATIENT, PATIENT_SEX, PATIENT_AGE, PATIENT_BEDNUM, 
+    PATIENT_BLH, PATIENT_MZFS, CF_DIAGNOSE, CONTENTO, CONTENTT, CONTENTTH, CONTENTF, 
+    CONTENTW, CZ_GMASSISTANTID, CZ_GMASSISTANTNAME, CZ_SZASSISTANTID, CZ_SZASSISTANTNAME, 
+    CZ_ASSISTANTID1, CZ_ASSISTANTNAME1, CZ_ASSISTANTID2, CZ_ASSISTANTNAME2, CZ_ASSISTANTID, 
+    CZ_ASSISTANTNAME, TL_AMSNMD, JZ_COURSE, JZ_PERSONID, JZ_PERSONNAME, TEACHOBJID, TEACHOBJNAME, 
+    OTHERSTUDENTID, OTHERSTUDENTNAME, MAINGUANTEACHERID, MAINGUANTEACHERNAME, MAINCHATEACHERID, 
+    MAINCHATEACHERNAME, OTHERTEACHERID, OTHERTEACHERNAME, HUIBAOUSERID, HUIBAOUSERNAME, 
+    MAINUSERID, MAINUSERNAME, WJLJ, TYPE, STATE, OPEMID, OPEMNAME, OPEMDATE, SPEMID, 
+    SPEMNAME, UPTIME, REMARK1, REMARK2, REMARK3, REMARK4, REMARK5, REMARK6, REMARK7, 
+    REMARK8, REMARK9, REMARK10
+  </sql>
+  <select id="selectListPageJxTeachingManualsBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxTeachingManualsSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_TEACHING_MANUALS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxTeachingManualsBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxTeachingManualsSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_TEACHING_MANUALS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxTeacherManualsSequence" parameterType="com.saint.teaching.sqlWhere.JxTeachingManualsSqlWhere" resultType="java.lang.Integer" >
+    SELECT SEQ_JX_TEACHERMANU.NEXTVAL FROM DUAL
+  </select>
+  <select id="selectJxTeachingManualsByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_TEACHING_MANUALS
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxTeachingManualsByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_TEACHING_MANUALS
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxTeachingManualsBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxTeachingManualsSqlWhere" >
+    delete from JX_TEACHING_MANUALS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxTeachingManuals" parameterType="com.saint.teaching.bean.JxTeachingManualsEntity" >
+    insert into JX_TEACHING_MANUALS (XH, STU_ID, STU_NAME, 
+      TEACHER_ID, TEACHER_NAME, DEPTID, 
+      DEPTNAME, CLASSID, CLASSNAME, 
+      ZUID, ZUNAME, ZTTIME, 
+      POSITION, PATIENT_BS, PATIENT, 
+      PATIENT_SEX, PATIENT_AGE, PATIENT_BEDNUM, 
+      PATIENT_BLH, PATIENT_MZFS, CF_DIAGNOSE, 
+      CONTENTO, CONTENTT, CONTENTTH, 
+      CONTENTF, CONTENTW, CZ_GMASSISTANTID, 
+      CZ_GMASSISTANTNAME, CZ_SZASSISTANTID, CZ_SZASSISTANTNAME, 
+      CZ_ASSISTANTID1, CZ_ASSISTANTNAME1, CZ_ASSISTANTID2, 
+      CZ_ASSISTANTNAME2, CZ_ASSISTANTID, CZ_ASSISTANTNAME, 
+      TL_AMSNMD, JZ_COURSE, JZ_PERSONID, 
+      JZ_PERSONNAME, TEACHOBJID, TEACHOBJNAME, 
+      OTHERSTUDENTID, OTHERSTUDENTNAME, MAINGUANTEACHERID, 
+      MAINGUANTEACHERNAME, MAINCHATEACHERID, 
+      MAINCHATEACHERNAME, OTHERTEACHERID, OTHERTEACHERNAME, 
+      HUIBAOUSERID, HUIBAOUSERNAME, MAINUSERID, 
+      MAINUSERNAME, WJLJ, TYPE, 
+      STATE, OPEMID, OPEMNAME, 
+      OPEMDATE, SPEMID, 
+      SPEMNAME, UPTIME, 
+      REMARK1, REMARK2, REMARK3, 
+      REMARK4, REMARK5, REMARK6, 
+      REMARK7, REMARK8, REMARK9, 
+      REMARK10)
+    values (SEQ_JX_TEACHERMANU.nextVal, #{stuId,jdbcType=VARCHAR}, #{stuName,jdbcType=VARCHAR}, 
+      #{teacherId,jdbcType=VARCHAR}, #{teacherName,jdbcType=VARCHAR}, #{deptid,jdbcType=VARCHAR}, 
+      #{deptname,jdbcType=VARCHAR}, #{classid,jdbcType=VARCHAR}, #{classname,jdbcType=VARCHAR}, 
+      #{zuid,jdbcType=VARCHAR}, #{zuname,jdbcType=VARCHAR}, to_date(#{zttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{position,jdbcType=VARCHAR}, #{patientBs,jdbcType=VARCHAR}, #{patient,jdbcType=VARCHAR}, 
+      #{patientSex,jdbcType=VARCHAR}, #{patientAge,jdbcType=VARCHAR}, #{patientBednum,jdbcType=VARCHAR}, 
+      #{patientBlh,jdbcType=VARCHAR}, #{patientMzfs,jdbcType=VARCHAR}, #{cfDiagnose,jdbcType=VARCHAR}, 
+      #{contento,jdbcType=VARCHAR}, #{contentt,jdbcType=VARCHAR}, #{contentth,jdbcType=VARCHAR}, 
+      #{contentf,jdbcType=VARCHAR}, #{contentw,jdbcType=VARCHAR}, #{czGmassistantid,jdbcType=VARCHAR}, 
+      #{czGmassistantname,jdbcType=VARCHAR}, #{czSzassistantid,jdbcType=VARCHAR}, #{czSzassistantname,jdbcType=VARCHAR}, 
+      #{czAssistantid1,jdbcType=VARCHAR}, #{czAssistantname1,jdbcType=VARCHAR}, #{czAssistantid2,jdbcType=VARCHAR}, 
+      #{czAssistantname2,jdbcType=VARCHAR}, #{czAssistantid,jdbcType=VARCHAR}, #{czAssistantname,jdbcType=VARCHAR}, 
+      #{tlAmsnmd,jdbcType=VARCHAR}, #{jzCourse,jdbcType=VARCHAR}, #{jzPersonid,jdbcType=VARCHAR}, 
+      #{jzPersonname,jdbcType=VARCHAR}, #{teachobjid,jdbcType=VARCHAR}, #{teachobjname,jdbcType=VARCHAR}, 
+      #{otherstudentid,jdbcType=VARCHAR}, #{otherstudentname,jdbcType=VARCHAR}, #{mainguanteacherid,jdbcType=VARCHAR}, 
+      #{mainguanteachername,jdbcType=VARCHAR}, #{mainchateacherid,jdbcType=VARCHAR}, 
+      #{mainchateachername,jdbcType=VARCHAR}, #{otherteacherid,jdbcType=VARCHAR}, #{otherteachername,jdbcType=VARCHAR}, 
+      #{huibaouserid,jdbcType=VARCHAR}, #{huibaousername,jdbcType=VARCHAR}, #{mainuserid,jdbcType=VARCHAR}, 
+      #{mainusername,jdbcType=VARCHAR}, #{wjlj,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{opemid,jdbcType=VARCHAR}, #{opemname,jdbcType=VARCHAR}, 
+      to_date(#{opemdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{spemid,jdbcType=VARCHAR}, 
+      #{spemname,jdbcType=VARCHAR}, to_date(#{uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, 
+      #{remark4,jdbcType=VARCHAR}, #{remark5,jdbcType=VARCHAR}, #{remark6,jdbcType=VARCHAR}, 
+      #{remark7,jdbcType=VARCHAR}, #{remark8,jdbcType=VARCHAR}, #{remark9,jdbcType=VARCHAR}, 
+      #{remark10,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertJxTeachingManualsSelective" parameterType="com.saint.teaching.bean.JxTeachingManualsEntity" >
+    insert into JX_TEACHING_MANUALS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="stuId != null and stuId != ''" >
+        STU_ID,
+      </if>
+      <if test="stuName != null and stuName != ''" >
+        STU_NAME,
+      </if>
+      <if test="teacherId != null and teacherId != ''" >
+        TEACHER_ID,
+      </if>
+      <if test="teacherName != null and teacherName != ''" >
+        TEACHER_NAME,
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        DEPTID,
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        DEPTNAME,
+      </if>
+      <if test="classid != null and classid != ''" >
+        CLASSID,
+      </if>
+      <if test="classname != null and classname != ''" >
+        CLASSNAME,
+      </if>
+      <if test="zuid != null and zuid != ''" >
+        ZUID,
+      </if>
+      <if test="zuname != null and zuname != ''" >
+        ZUNAME,
+      </if>
+      <if test="zttime != null and zttime != ''" >
+        ZTTIME,
+      </if>
+      <if test="position != null and position != ''" >
+        POSITION,
+      </if>
+      <if test="patientBs != null and patientBs != ''" >
+        PATIENT_BS,
+      </if>
+      <if test="patient != null and patient != ''" >
+        PATIENT,
+      </if>
+      <if test="patientSex != null and patientSex != ''" >
+        PATIENT_SEX,
+      </if>
+      <if test="patientAge != null and patientAge != ''" >
+        PATIENT_AGE,
+      </if>
+      <if test="patientBednum != null and patientBednum != ''" >
+        PATIENT_BEDNUM,
+      </if>
+      <if test="patientBlh != null and patientBlh != ''" >
+        PATIENT_BLH,
+      </if>
+      <if test="patientMzfs != null and patientMzfs != ''" >
+        PATIENT_MZFS,
+      </if>
+      <if test="cfDiagnose != null and cfDiagnose != ''" >
+        CF_DIAGNOSE,
+      </if>
+      <if test="contento != null and contento != ''" >
+        CONTENTO,
+      </if>
+      <if test="contentt != null and contentt != ''" >
+        CONTENTT,
+      </if>
+      <if test="contentth != null and contentth != ''" >
+        CONTENTTH,
+      </if>
+      <if test="contentf != null and contentf != ''" >
+        CONTENTF,
+      </if>
+      <if test="contentw != null and contentw != ''" >
+        CONTENTW,
+      </if>
+      <if test="czGmassistantid != null and czGmassistantid != ''" >
+        CZ_GMASSISTANTID,
+      </if>
+      <if test="czGmassistantname != null and czGmassistantname != ''" >
+        CZ_GMASSISTANTNAME,
+      </if>
+      <if test="czSzassistantid != null and czSzassistantid != ''" >
+        CZ_SZASSISTANTID,
+      </if>
+      <if test="czSzassistantname != null and czSzassistantname != ''" >
+        CZ_SZASSISTANTNAME,
+      </if>
+      <if test="czAssistantid1 != null and czAssistantid1 != ''" >
+        CZ_ASSISTANTID1,
+      </if>
+      <if test="czAssistantname1 != null and czAssistantname1 != ''" >
+        CZ_ASSISTANTNAME1,
+      </if>
+      <if test="czAssistantid2 != null and czAssistantid2 != ''" >
+        CZ_ASSISTANTID2,
+      </if>
+      <if test="czAssistantname2 != null and czAssistantname2 != ''" >
+        CZ_ASSISTANTNAME2,
+      </if>
+      <if test="czAssistantid != null and czAssistantid != ''" >
+        CZ_ASSISTANTID,
+      </if>
+      <if test="czAssistantname != null and czAssistantname != ''" >
+        CZ_ASSISTANTNAME,
+      </if>
+      <if test="tlAmsnmd != null and tlAmsnmd != ''" >
+        TL_AMSNMD,
+      </if>
+      <if test="jzCourse != null and jzCourse != ''" >
+        JZ_COURSE,
+      </if>
+      <if test="jzPersonid != null and jzPersonid != ''" >
+        JZ_PERSONID,
+      </if>
+      <if test="jzPersonname != null and jzPersonname != ''" >
+        JZ_PERSONNAME,
+      </if>
+      <if test="teachobjid != null and teachobjid != ''" >
+        TEACHOBJID,
+      </if>
+      <if test="teachobjname != null and teachobjname != ''" >
+        TEACHOBJNAME,
+      </if>
+      <if test="otherstudentid != null and otherstudentid != ''" >
+        OTHERSTUDENTID,
+      </if>
+      <if test="otherstudentname != null and otherstudentname != ''" >
+        OTHERSTUDENTNAME,
+      </if>
+      <if test="mainguanteacherid != null and mainguanteacherid != ''" >
+        MAINGUANTEACHERID,
+      </if>
+      <if test="mainguanteachername != null and mainguanteachername != ''" >
+        MAINGUANTEACHERNAME,
+      </if>
+      <if test="mainchateacherid != null and mainchateacherid != ''" >
+        MAINCHATEACHERID,
+      </if>
+      <if test="mainchateachername != null and mainchateachername != ''" >
+        MAINCHATEACHERNAME,
+      </if>
+      <if test="otherteacherid != null and otherteacherid != ''" >
+        OTHERTEACHERID,
+      </if>
+      <if test="otherteachername != null and otherteachername != ''" >
+        OTHERTEACHERNAME,
+      </if>
+      <if test="huibaouserid != null and huibaouserid != ''" >
+        HUIBAOUSERID,
+      </if>
+      <if test="huibaousername != null and huibaousername != ''" >
+        HUIBAOUSERNAME,
+      </if>
+      <if test="mainuserid != null and mainuserid != ''" >
+        MAINUSERID,
+      </if>
+      <if test="mainusername != null and mainusername != ''" >
+        MAINUSERNAME,
+      </if>
+      <if test="wjlj != null and wjlj != ''" >
+        WJLJ,
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="opemid != null and opemid != ''" >
+        OPEMID,
+      </if>
+      <if test="opemname != null and opemname != ''" >
+        OPEMNAME,
+      </if>
+      <if test="opemdate != null and opemdate != ''" >
+        OPEMDATE,
+      </if>
+      <if test="spemid != null and spemid != ''" >
+        SPEMID,
+      </if>
+      <if test="spemname != null and spemname != ''" >
+        SPEMNAME,
+      </if>
+      <if test="uptime != null and uptime != ''" >
+        UPTIME,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+      <if test="remark6 != null and remark6 != ''" >
+        REMARK6,
+      </if>
+      <if test="remark7 != null and remark7 != ''" >
+        REMARK7,
+      </if>
+      <if test="remark8 != null and remark8 != ''" >
+        REMARK8,
+      </if>
+      <if test="remark9 != null and remark9 != ''" >
+        REMARK9,
+      </if>
+      <if test="remark10 != null and remark10 != ''" >
+        REMARK10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="stuId != null and stuId != ''" >
+        #{stuId,jdbcType=VARCHAR},
+      </if>
+      <if test="stuName != null and stuName != ''" >
+        #{stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null and teacherId != ''" >
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null and teacherName != ''" >
+        #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null and classid != ''" >
+        #{classid,jdbcType=VARCHAR},
+      </if>
+      <if test="classname != null and classname != ''" >
+        #{classname,jdbcType=VARCHAR},
+      </if>
+      <if test="zuid != null and zuid != ''" >
+        #{zuid,jdbcType=VARCHAR},
+      </if>
+      <if test="zuname != null and zuname != ''" >
+        #{zuname,jdbcType=VARCHAR},
+      </if>
+      <if test="zttime != null and zttime != ''" >
+        to_date(#{zttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="position != null and position != ''" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="patientBs != null and patientBs != ''" >
+        #{patientBs,jdbcType=VARCHAR},
+      </if>
+      <if test="patient != null and patient != ''" >
+        #{patient,jdbcType=VARCHAR},
+      </if>
+      <if test="patientSex != null and patientSex != ''" >
+        #{patientSex,jdbcType=VARCHAR},
+      </if>
+      <if test="patientAge != null and patientAge != ''" >
+        #{patientAge,jdbcType=VARCHAR},
+      </if>
+      <if test="patientBednum != null and patientBednum != ''" >
+        #{patientBednum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientBlh != null and patientBlh != ''" >
+        #{patientBlh,jdbcType=VARCHAR},
+      </if>
+      <if test="patientMzfs != null and patientMzfs != ''" >
+        #{patientMzfs,jdbcType=VARCHAR},
+      </if>
+      <if test="cfDiagnose != null and cfDiagnose != ''" >
+        #{cfDiagnose,jdbcType=VARCHAR},
+      </if>
+      <if test="contento != null and contento != ''" >
+        #{contento,jdbcType=VARCHAR},
+      </if>
+      <if test="contentt != null and contentt != ''" >
+        #{contentt,jdbcType=VARCHAR},
+      </if>
+      <if test="contentth != null and contentth != ''" >
+        #{contentth,jdbcType=VARCHAR},
+      </if>
+      <if test="contentf != null and contentf != ''" >
+        #{contentf,jdbcType=VARCHAR},
+      </if>
+      <if test="contentw != null and contentw != ''" >
+        #{contentw,jdbcType=VARCHAR},
+      </if>
+      <if test="czGmassistantid != null and czGmassistantid != ''" >
+        #{czGmassistantid,jdbcType=VARCHAR},
+      </if>
+      <if test="czGmassistantname != null and czGmassistantname != ''" >
+        #{czGmassistantname,jdbcType=VARCHAR},
+      </if>
+      <if test="czSzassistantid != null and czSzassistantid != ''" >
+        #{czSzassistantid,jdbcType=VARCHAR},
+      </if>
+      <if test="czSzassistantname != null and czSzassistantname != ''" >
+        #{czSzassistantname,jdbcType=VARCHAR},
+      </if>
+      <if test="czAssistantid1 != null and czAssistantid1 != ''" >
+        #{czAssistantid1,jdbcType=VARCHAR},
+      </if>
+      <if test="czAssistantname1 != null and czAssistantname1 != ''" >
+        #{czAssistantname1,jdbcType=VARCHAR},
+      </if>
+      <if test="czAssistantid2 != null and czAssistantid2 != ''" >
+        #{czAssistantid2,jdbcType=VARCHAR},
+      </if>
+      <if test="czAssistantname2 != null and czAssistantname2 != ''" >
+        #{czAssistantname2,jdbcType=VARCHAR},
+      </if>
+      <if test="czAssistantid != null and czAssistantid != ''" >
+        #{czAssistantid,jdbcType=VARCHAR},
+      </if>
+      <if test="czAssistantname != null and czAssistantname != ''" >
+        #{czAssistantname,jdbcType=VARCHAR},
+      </if>
+      <if test="tlAmsnmd != null and tlAmsnmd != ''" >
+        #{tlAmsnmd,jdbcType=VARCHAR},
+      </if>
+      <if test="jzCourse != null and jzCourse != ''" >
+        #{jzCourse,jdbcType=VARCHAR},
+      </if>
+      <if test="jzPersonid != null and jzPersonid != ''" >
+        #{jzPersonid,jdbcType=VARCHAR},
+      </if>
+      <if test="jzPersonname != null and jzPersonname != ''" >
+        #{jzPersonname,jdbcType=VARCHAR},
+      </if>
+      <if test="teachobjid != null and teachobjid != ''" >
+        #{teachobjid,jdbcType=VARCHAR},
+      </if>
+      <if test="teachobjname != null and teachobjname != ''" >
+        #{teachobjname,jdbcType=VARCHAR},
+      </if>
+      <if test="otherstudentid != null and otherstudentid != ''" >
+        #{otherstudentid,jdbcType=VARCHAR},
+      </if>
+      <if test="otherstudentname != null and otherstudentname != ''" >
+        #{otherstudentname,jdbcType=VARCHAR},
+      </if>
+      <if test="mainguanteacherid != null and mainguanteacherid != ''" >
+        #{mainguanteacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="mainguanteachername != null and mainguanteachername != ''" >
+        #{mainguanteachername,jdbcType=VARCHAR},
+      </if>
+      <if test="mainchateacherid != null and mainchateacherid != ''" >
+        #{mainchateacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="mainchateachername != null and mainchateachername != ''" >
+        #{mainchateachername,jdbcType=VARCHAR},
+      </if>
+      <if test="otherteacherid != null and otherteacherid != ''" >
+        #{otherteacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="otherteachername != null and otherteachername != ''" >
+        #{otherteachername,jdbcType=VARCHAR},
+      </if>
+      <if test="huibaouserid != null and huibaouserid != ''" >
+        #{huibaouserid,jdbcType=VARCHAR},
+      </if>
+      <if test="huibaousername != null and huibaousername != ''" >
+        #{huibaousername,jdbcType=VARCHAR},
+      </if>
+      <if test="mainuserid != null and mainuserid != ''" >
+        #{mainuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="mainusername != null and mainusername != ''" >
+        #{mainusername,jdbcType=VARCHAR},
+      </if>
+      <if test="wjlj != null and wjlj != ''" >
+        #{wjlj,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null and type != ''" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="opemid != null and opemid != ''" >
+        #{opemid,jdbcType=VARCHAR},
+      </if>
+      <if test="opemname != null and opemname != ''" >
+        #{opemname,jdbcType=VARCHAR},
+      </if>
+      <if test="opemdate != null and opemdate != ''" >
+        to_date(#{opemdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="spemid != null and spemid != ''" >
+        #{spemid,jdbcType=VARCHAR},
+      </if>
+      <if test="spemname != null and spemname != ''" >
+        #{spemname,jdbcType=VARCHAR},
+      </if>
+      <if test="uptime != null and uptime != ''" >
+        to_date(#{uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="remark6 != null and remark6 != ''" >
+        #{remark6,jdbcType=VARCHAR},
+      </if>
+      <if test="remark7 != null and remark7 != ''" >
+        #{remark7,jdbcType=VARCHAR},
+      </if>
+      <if test="remark8 != null and remark8 != ''" >
+        #{remark8,jdbcType=VARCHAR},
+      </if>
+      <if test="remark9 != null and remark9 != ''" >
+        #{remark9,jdbcType=VARCHAR},
+      </if>
+      <if test="remark10 != null and remark10 != ''" >
+        #{remark10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxTeachingManualsBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxTeachingManualsSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_TEACHING_MANUALS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxTeachingManualsBySqlWhereSelective" parameterType="map" >
+    update JX_TEACHING_MANUALS
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuId != null and record.stuId != ''" >
+        STU_ID = #{record.stuId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuName != null and record.stuName != ''" >
+        STU_NAME = #{record.stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacherId != null and record.teacherId != ''" >
+        TEACHER_ID = #{record.teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacherName != null and record.teacherName != ''" >
+        TEACHER_NAME = #{record.teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptid != null and record.deptid != ''" >
+        DEPTID = #{record.deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptname != null and record.deptname != ''" >
+        DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classid != null and record.classid != ''" >
+        CLASSID = #{record.classid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classname != null and record.classname != ''" >
+        CLASSNAME = #{record.classname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zuid != null and record.zuid != ''" >
+        ZUID = #{record.zuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zuname != null and record.zuname != ''" >
+        ZUNAME = #{record.zuname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zttime != null and record.zttime != ''" >
+        ZTTIME = to_date(#{record.zttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.position != null and record.position != ''" >
+        POSITION = #{record.position,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientBs != null and record.patientBs != ''" >
+        PATIENT_BS = #{record.patientBs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patient != null and record.patient != ''" >
+        PATIENT = #{record.patient,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientSex != null and record.patientSex != ''" >
+        PATIENT_SEX = #{record.patientSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientAge != null and record.patientAge != ''" >
+        PATIENT_AGE = #{record.patientAge,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientBednum != null and record.patientBednum != ''" >
+        PATIENT_BEDNUM = #{record.patientBednum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientBlh != null and record.patientBlh != ''" >
+        PATIENT_BLH = #{record.patientBlh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientMzfs != null and record.patientMzfs != ''" >
+        PATIENT_MZFS = #{record.patientMzfs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cfDiagnose != null and record.cfDiagnose != ''" >
+        CF_DIAGNOSE = #{record.cfDiagnose,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contento != null and record.contento != ''" >
+        CONTENTO = #{record.contento,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contentt != null and record.contentt != ''" >
+        CONTENTT = #{record.contentt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contentth != null and record.contentth != ''" >
+        CONTENTTH = #{record.contentth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contentf != null and record.contentf != ''" >
+        CONTENTF = #{record.contentf,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contentw != null and record.contentw != ''" >
+        CONTENTW = #{record.contentw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.czGmassistantid != null and record.czGmassistantid != ''" >
+        CZ_GMASSISTANTID = #{record.czGmassistantid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.czGmassistantname != null and record.czGmassistantname != ''" >
+        CZ_GMASSISTANTNAME = #{record.czGmassistantname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.czSzassistantid != null and record.czSzassistantid != ''" >
+        CZ_SZASSISTANTID = #{record.czSzassistantid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.czSzassistantname != null and record.czSzassistantname != ''" >
+        CZ_SZASSISTANTNAME = #{record.czSzassistantname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.czAssistantid1 != null and record.czAssistantid1 != ''" >
+        CZ_ASSISTANTID1 = #{record.czAssistantid1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.czAssistantname1 != null and record.czAssistantname1 != ''" >
+        CZ_ASSISTANTNAME1 = #{record.czAssistantname1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.czAssistantid2 != null and record.czAssistantid2 != ''" >
+        CZ_ASSISTANTID2 = #{record.czAssistantid2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.czAssistantname2 != null and record.czAssistantname2 != ''" >
+        CZ_ASSISTANTNAME2 = #{record.czAssistantname2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.czAssistantid != null and record.czAssistantid != ''" >
+        CZ_ASSISTANTID = #{record.czAssistantid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.czAssistantname != null and record.czAssistantname != ''" >
+        CZ_ASSISTANTNAME = #{record.czAssistantname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tlAmsnmd != null and record.tlAmsnmd != ''" >
+        TL_AMSNMD = #{record.tlAmsnmd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jzCourse != null and record.jzCourse != ''" >
+        JZ_COURSE = #{record.jzCourse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jzPersonid != null and record.jzPersonid != ''" >
+        JZ_PERSONID = #{record.jzPersonid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jzPersonname != null and record.jzPersonname != ''" >
+        JZ_PERSONNAME = #{record.jzPersonname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teachobjid != null and record.teachobjid != ''" >
+        TEACHOBJID = #{record.teachobjid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teachobjname != null and record.teachobjname != ''" >
+        TEACHOBJNAME = #{record.teachobjname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherstudentid != null and record.otherstudentid != ''" >
+        OTHERSTUDENTID = #{record.otherstudentid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherstudentname != null and record.otherstudentname != ''" >
+        OTHERSTUDENTNAME = #{record.otherstudentname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainguanteacherid != null and record.mainguanteacherid != ''" >
+        MAINGUANTEACHERID = #{record.mainguanteacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainguanteachername != null and record.mainguanteachername != ''" >
+        MAINGUANTEACHERNAME = #{record.mainguanteachername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainchateacherid != null and record.mainchateacherid != ''" >
+        MAINCHATEACHERID = #{record.mainchateacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainchateachername != null and record.mainchateachername != ''" >
+        MAINCHATEACHERNAME = #{record.mainchateachername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherteacherid != null and record.otherteacherid != ''" >
+        OTHERTEACHERID = #{record.otherteacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherteachername != null and record.otherteachername != ''" >
+        OTHERTEACHERNAME = #{record.otherteachername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huibaouserid != null and record.huibaouserid != ''" >
+        HUIBAOUSERID = #{record.huibaouserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huibaousername != null and record.huibaousername != ''" >
+        HUIBAOUSERNAME = #{record.huibaousername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainuserid != null and record.mainuserid != ''" >
+        MAINUSERID = #{record.mainuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainusername != null and record.mainusername != ''" >
+        MAINUSERNAME = #{record.mainusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wjlj != null and record.wjlj != ''" >
+        WJLJ = #{record.wjlj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null and record.type != ''" >
+        TYPE = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opemid != null and record.opemid != ''" >
+        OPEMID = #{record.opemid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opemname != null and record.opemname != ''" >
+        OPEMNAME = #{record.opemname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opemdate != null and record.opemdate != ''" >
+        OPEMDATE = to_date(#{record.opemdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.spemid != null and record.spemid != ''" >
+        SPEMID = #{record.spemid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spemname != null and record.spemname != ''" >
+        SPEMNAME = #{record.spemname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uptime != null and record.uptime != ''" >
+        UPTIME = to_date(#{record.uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark6 != null and record.remark6 != ''" >
+        REMARK6 = #{record.remark6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark7 != null and record.remark7 != ''" >
+        REMARK7 = #{record.remark7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark8 != null and record.remark8 != ''" >
+        REMARK8 = #{record.remark8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark9 != null and record.remark9 != ''" >
+        REMARK9 = #{record.remark9,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark10 != null and record.remark10 != ''" >
+        REMARK10 = #{record.remark10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxTeachingManualsBySqlWhere" parameterType="map" >
+    update JX_TEACHING_MANUALS
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      STU_ID = #{record.stuId,jdbcType=VARCHAR},
+      STU_NAME = #{record.stuName,jdbcType=VARCHAR},
+      TEACHER_ID = #{record.teacherId,jdbcType=VARCHAR},
+      TEACHER_NAME = #{record.teacherName,jdbcType=VARCHAR},
+      DEPTID = #{record.deptid,jdbcType=VARCHAR},
+      DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      CLASSID = #{record.classid,jdbcType=VARCHAR},
+      CLASSNAME = #{record.classname,jdbcType=VARCHAR},
+      ZUID = #{record.zuid,jdbcType=VARCHAR},
+      ZUNAME = #{record.zuname,jdbcType=VARCHAR},
+      ZTTIME = to_date(#{record.zttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      POSITION = #{record.position,jdbcType=VARCHAR},
+      PATIENT_BS = #{record.patientBs,jdbcType=VARCHAR},
+      PATIENT = #{record.patient,jdbcType=VARCHAR},
+      PATIENT_SEX = #{record.patientSex,jdbcType=VARCHAR},
+      PATIENT_AGE = #{record.patientAge,jdbcType=VARCHAR},
+      PATIENT_BEDNUM = #{record.patientBednum,jdbcType=VARCHAR},
+      PATIENT_BLH = #{record.patientBlh,jdbcType=VARCHAR},
+      PATIENT_MZFS = #{record.patientMzfs,jdbcType=VARCHAR},
+      CF_DIAGNOSE = #{record.cfDiagnose,jdbcType=VARCHAR},
+      CONTENTO = #{record.contento,jdbcType=VARCHAR},
+      CONTENTT = #{record.contentt,jdbcType=VARCHAR},
+      CONTENTTH = #{record.contentth,jdbcType=VARCHAR},
+      CONTENTF = #{record.contentf,jdbcType=VARCHAR},
+      CONTENTW = #{record.contentw,jdbcType=VARCHAR},
+      CZ_GMASSISTANTID = #{record.czGmassistantid,jdbcType=VARCHAR},
+      CZ_GMASSISTANTNAME = #{record.czGmassistantname,jdbcType=VARCHAR},
+      CZ_SZASSISTANTID = #{record.czSzassistantid,jdbcType=VARCHAR},
+      CZ_SZASSISTANTNAME = #{record.czSzassistantname,jdbcType=VARCHAR},
+      CZ_ASSISTANTID1 = #{record.czAssistantid1,jdbcType=VARCHAR},
+      CZ_ASSISTANTNAME1 = #{record.czAssistantname1,jdbcType=VARCHAR},
+      CZ_ASSISTANTID2 = #{record.czAssistantid2,jdbcType=VARCHAR},
+      CZ_ASSISTANTNAME2 = #{record.czAssistantname2,jdbcType=VARCHAR},
+      CZ_ASSISTANTID = #{record.czAssistantid,jdbcType=VARCHAR},
+      CZ_ASSISTANTNAME = #{record.czAssistantname,jdbcType=VARCHAR},
+      TL_AMSNMD = #{record.tlAmsnmd,jdbcType=VARCHAR},
+      JZ_COURSE = #{record.jzCourse,jdbcType=VARCHAR},
+      JZ_PERSONID = #{record.jzPersonid,jdbcType=VARCHAR},
+      JZ_PERSONNAME = #{record.jzPersonname,jdbcType=VARCHAR},
+      TEACHOBJID = #{record.teachobjid,jdbcType=VARCHAR},
+      TEACHOBJNAME = #{record.teachobjname,jdbcType=VARCHAR},
+      OTHERSTUDENTID = #{record.otherstudentid,jdbcType=VARCHAR},
+      OTHERSTUDENTNAME = #{record.otherstudentname,jdbcType=VARCHAR},
+      MAINGUANTEACHERID = #{record.mainguanteacherid,jdbcType=VARCHAR},
+      MAINGUANTEACHERNAME = #{record.mainguanteachername,jdbcType=VARCHAR},
+      MAINCHATEACHERID = #{record.mainchateacherid,jdbcType=VARCHAR},
+      MAINCHATEACHERNAME = #{record.mainchateachername,jdbcType=VARCHAR},
+      OTHERTEACHERID = #{record.otherteacherid,jdbcType=VARCHAR},
+      OTHERTEACHERNAME = #{record.otherteachername,jdbcType=VARCHAR},
+      HUIBAOUSERID = #{record.huibaouserid,jdbcType=VARCHAR},
+      HUIBAOUSERNAME = #{record.huibaousername,jdbcType=VARCHAR},
+      MAINUSERID = #{record.mainuserid,jdbcType=VARCHAR},
+      MAINUSERNAME = #{record.mainusername,jdbcType=VARCHAR},
+      WJLJ = #{record.wjlj,jdbcType=VARCHAR},
+      TYPE = #{record.type,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      OPEMID = #{record.opemid,jdbcType=VARCHAR},
+      OPEMNAME = #{record.opemname,jdbcType=VARCHAR},
+      OPEMDATE = to_date(#{record.opemdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SPEMID = #{record.spemid,jdbcType=VARCHAR},
+      SPEMNAME = #{record.spemname,jdbcType=VARCHAR},
+      UPTIME = to_date(#{record.uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      REMARK6 = #{record.remark6,jdbcType=VARCHAR},
+      REMARK7 = #{record.remark7,jdbcType=VARCHAR},
+      REMARK8 = #{record.remark8,jdbcType=VARCHAR},
+      REMARK9 = #{record.remark9,jdbcType=VARCHAR},
+      REMARK10 = #{record.remark10,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxTeachingManualsByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxTeachingManualsEntity" >
+    update JX_TEACHING_MANUALS
+    <set >
+      <if test="stuId != null and stuId != ''" >
+        STU_ID = #{stuId,jdbcType=VARCHAR},
+      </if>
+      <if test="stuName != null and stuName != ''" >
+        STU_NAME = #{stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null and teacherId != ''" >
+        TEACHER_ID = #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null and teacherName != ''" >
+        TEACHER_NAME = #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        DEPTID = #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null and classid != ''" >
+        CLASSID = #{classid,jdbcType=VARCHAR},
+      </if>
+      <if test="classname != null and classname != ''" >
+        CLASSNAME = #{classname,jdbcType=VARCHAR},
+      </if>
+      <if test="zuid != null and zuid != ''" >
+        ZUID = #{zuid,jdbcType=VARCHAR},
+      </if>
+      <if test="zuname != null and zuname != ''" >
+        ZUNAME = #{zuname,jdbcType=VARCHAR},
+      </if>
+      <if test="zttime != null and zttime != ''" >
+        ZTTIME = to_date(#{zttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="position != null and position != ''" >
+        POSITION = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="patientBs != null and patientBs != ''" >
+        PATIENT_BS = #{patientBs,jdbcType=VARCHAR},
+      </if>
+      <if test="patient != null and patient != ''" >
+        PATIENT = #{patient,jdbcType=VARCHAR},
+      </if>
+      <if test="patientSex != null and patientSex != ''" >
+        PATIENT_SEX = #{patientSex,jdbcType=VARCHAR},
+      </if>
+      <if test="patientAge != null and patientAge != ''" >
+        PATIENT_AGE = #{patientAge,jdbcType=VARCHAR},
+      </if>
+      <if test="patientBednum != null and patientBednum != ''" >
+        PATIENT_BEDNUM = #{patientBednum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientBlh != null and patientBlh != ''" >
+        PATIENT_BLH = #{patientBlh,jdbcType=VARCHAR},
+      </if>
+      <if test="patientMzfs != null and patientMzfs != ''" >
+        PATIENT_MZFS = #{patientMzfs,jdbcType=VARCHAR},
+      </if>
+      <if test="cfDiagnose != null and cfDiagnose != ''" >
+        CF_DIAGNOSE = #{cfDiagnose,jdbcType=VARCHAR},
+      </if>
+      <if test="contento != null and contento != ''" >
+        CONTENTO = #{contento,jdbcType=VARCHAR},
+      </if>
+      <if test="contentt != null and contentt != ''" >
+        CONTENTT = #{contentt,jdbcType=VARCHAR},
+      </if>
+      <if test="contentth != null and contentth != ''" >
+        CONTENTTH = #{contentth,jdbcType=VARCHAR},
+      </if>
+      <if test="contentf != null and contentf != ''" >
+        CONTENTF = #{contentf,jdbcType=VARCHAR},
+      </if>
+      <if test="contentw != null and contentw != ''" >
+        CONTENTW = #{contentw,jdbcType=VARCHAR},
+      </if>
+      <if test="czGmassistantid != null and czGmassistantid != ''" >
+        CZ_GMASSISTANTID = #{czGmassistantid,jdbcType=VARCHAR},
+      </if>
+      <if test="czGmassistantname != null and czGmassistantname != ''" >
+        CZ_GMASSISTANTNAME = #{czGmassistantname,jdbcType=VARCHAR},
+      </if>
+      <if test="czSzassistantid != null and czSzassistantid != ''" >
+        CZ_SZASSISTANTID = #{czSzassistantid,jdbcType=VARCHAR},
+      </if>
+      <if test="czSzassistantname != null and czSzassistantname != ''" >
+        CZ_SZASSISTANTNAME = #{czSzassistantname,jdbcType=VARCHAR},
+      </if>
+      <if test="czAssistantid1 != null and czAssistantid1 != ''" >
+        CZ_ASSISTANTID1 = #{czAssistantid1,jdbcType=VARCHAR},
+      </if>
+      <if test="czAssistantname1 != null and czAssistantname1 != ''" >
+        CZ_ASSISTANTNAME1 = #{czAssistantname1,jdbcType=VARCHAR},
+      </if>
+      <if test="czAssistantid2 != null and czAssistantid2 != ''" >
+        CZ_ASSISTANTID2 = #{czAssistantid2,jdbcType=VARCHAR},
+      </if>
+      <if test="czAssistantname2 != null and czAssistantname2 != ''" >
+        CZ_ASSISTANTNAME2 = #{czAssistantname2,jdbcType=VARCHAR},
+      </if>
+      <if test="czAssistantid != null and czAssistantid != ''" >
+        CZ_ASSISTANTID = #{czAssistantid,jdbcType=VARCHAR},
+      </if>
+      <if test="czAssistantname != null and czAssistantname != ''" >
+        CZ_ASSISTANTNAME = #{czAssistantname,jdbcType=VARCHAR},
+      </if>
+      <if test="tlAmsnmd != null and tlAmsnmd != ''" >
+        TL_AMSNMD = #{tlAmsnmd,jdbcType=VARCHAR},
+      </if>
+      <if test="jzCourse != null and jzCourse != ''" >
+        JZ_COURSE = #{jzCourse,jdbcType=VARCHAR},
+      </if>
+      <if test="jzPersonid != null and jzPersonid != ''" >
+        JZ_PERSONID = #{jzPersonid,jdbcType=VARCHAR},
+      </if>
+      <if test="jzPersonname != null and jzPersonname != ''" >
+        JZ_PERSONNAME = #{jzPersonname,jdbcType=VARCHAR},
+      </if>
+      <if test="teachobjid != null and teachobjid != ''" >
+        TEACHOBJID = #{teachobjid,jdbcType=VARCHAR},
+      </if>
+      <if test="teachobjname != null and teachobjname != ''" >
+        TEACHOBJNAME = #{teachobjname,jdbcType=VARCHAR},
+      </if>
+      <if test="otherstudentid != null and otherstudentid != ''" >
+        OTHERSTUDENTID = #{otherstudentid,jdbcType=VARCHAR},
+      </if>
+      <if test="otherstudentname != null and otherstudentname != ''" >
+        OTHERSTUDENTNAME = #{otherstudentname,jdbcType=VARCHAR},
+      </if>
+      <if test="mainguanteacherid != null and mainguanteacherid != ''" >
+        MAINGUANTEACHERID = #{mainguanteacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="mainguanteachername != null and mainguanteachername != ''" >
+        MAINGUANTEACHERNAME = #{mainguanteachername,jdbcType=VARCHAR},
+      </if>
+      <if test="mainchateacherid != null and mainchateacherid != ''" >
+        MAINCHATEACHERID = #{mainchateacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="mainchateachername != null and mainchateachername != ''" >
+        MAINCHATEACHERNAME = #{mainchateachername,jdbcType=VARCHAR},
+      </if>
+      <if test="otherteacherid != null and otherteacherid != ''" >
+        OTHERTEACHERID = #{otherteacherid,jdbcType=VARCHAR},
+      </if>
+      <if test="otherteachername != null and otherteachername != ''" >
+        OTHERTEACHERNAME = #{otherteachername,jdbcType=VARCHAR},
+      </if>
+      <if test="huibaouserid != null and huibaouserid != ''" >
+        HUIBAOUSERID = #{huibaouserid,jdbcType=VARCHAR},
+      </if>
+      <if test="huibaousername != null and huibaousername != ''" >
+        HUIBAOUSERNAME = #{huibaousername,jdbcType=VARCHAR},
+      </if>
+      <if test="mainuserid != null and mainuserid != ''" >
+        MAINUSERID = #{mainuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="mainusername != null and mainusername != ''" >
+        MAINUSERNAME = #{mainusername,jdbcType=VARCHAR},
+      </if>
+      <if test="wjlj != null and wjlj != ''" >
+        WJLJ = #{wjlj,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="opemid != null and opemid != ''" >
+        OPEMID = #{opemid,jdbcType=VARCHAR},
+      </if>
+      <if test="opemname != null and opemname != ''" >
+        OPEMNAME = #{opemname,jdbcType=VARCHAR},
+      </if>
+      <if test="opemdate != null and opemdate != ''" >
+        OPEMDATE = to_date(#{opemdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="spemid != null and spemid != ''" >
+        SPEMID = #{spemid,jdbcType=VARCHAR},
+      </if>
+      <if test="spemname != null and spemname != ''" >
+        SPEMNAME = #{spemname,jdbcType=VARCHAR},
+      </if>
+      <if test="uptime != null and uptime != ''" >
+        UPTIME = to_date(#{uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="remark6 != null and remark6 != ''" >
+        REMARK6 = #{remark6,jdbcType=VARCHAR},
+      </if>
+      <if test="remark7 != null and remark7 != ''" >
+        REMARK7 = #{remark7,jdbcType=VARCHAR},
+      </if>
+      <if test="remark8 != null and remark8 != ''" >
+        REMARK8 = #{remark8,jdbcType=VARCHAR},
+      </if>
+      <if test="remark9 != null and remark9 != ''" >
+        REMARK9 = #{remark9,jdbcType=VARCHAR},
+      </if>
+      <if test="remark10 != null and remark10 != ''" >
+        REMARK10 = #{remark10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxTeachingManualsByPrimaryKey" parameterType="com.saint.teaching.bean.JxTeachingManualsEntity" >
+    update JX_TEACHING_MANUALS
+    set STU_ID = #{stuId,jdbcType=VARCHAR},
+      STU_NAME = #{stuName,jdbcType=VARCHAR},
+      TEACHER_ID = #{teacherId,jdbcType=VARCHAR},
+      TEACHER_NAME = #{teacherName,jdbcType=VARCHAR},
+      DEPTID = #{deptid,jdbcType=VARCHAR},
+      DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      CLASSID = #{classid,jdbcType=VARCHAR},
+      CLASSNAME = #{classname,jdbcType=VARCHAR},
+      ZUID = #{zuid,jdbcType=VARCHAR},
+      ZUNAME = #{zuname,jdbcType=VARCHAR},
+      ZTTIME = to_date(#{zttime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      POSITION = #{position,jdbcType=VARCHAR},
+      PATIENT_BS = #{patientBs,jdbcType=VARCHAR},
+      PATIENT = #{patient,jdbcType=VARCHAR},
+      PATIENT_SEX = #{patientSex,jdbcType=VARCHAR},
+      PATIENT_AGE = #{patientAge,jdbcType=VARCHAR},
+      PATIENT_BEDNUM = #{patientBednum,jdbcType=VARCHAR},
+      PATIENT_BLH = #{patientBlh,jdbcType=VARCHAR},
+      PATIENT_MZFS = #{patientMzfs,jdbcType=VARCHAR},
+      CF_DIAGNOSE = #{cfDiagnose,jdbcType=VARCHAR},
+      CONTENTO = #{contento,jdbcType=VARCHAR},
+      CONTENTT = #{contentt,jdbcType=VARCHAR},
+      CONTENTTH = #{contentth,jdbcType=VARCHAR},
+      CONTENTF = #{contentf,jdbcType=VARCHAR},
+      CONTENTW = #{contentw,jdbcType=VARCHAR},
+      CZ_GMASSISTANTID = #{czGmassistantid,jdbcType=VARCHAR},
+      CZ_GMASSISTANTNAME = #{czGmassistantname,jdbcType=VARCHAR},
+      CZ_SZASSISTANTID = #{czSzassistantid,jdbcType=VARCHAR},
+      CZ_SZASSISTANTNAME = #{czSzassistantname,jdbcType=VARCHAR},
+      CZ_ASSISTANTID1 = #{czAssistantid1,jdbcType=VARCHAR},
+      CZ_ASSISTANTNAME1 = #{czAssistantname1,jdbcType=VARCHAR},
+      CZ_ASSISTANTID2 = #{czAssistantid2,jdbcType=VARCHAR},
+      CZ_ASSISTANTNAME2 = #{czAssistantname2,jdbcType=VARCHAR},
+      CZ_ASSISTANTID = #{czAssistantid,jdbcType=VARCHAR},
+      CZ_ASSISTANTNAME = #{czAssistantname,jdbcType=VARCHAR},
+      TL_AMSNMD = #{tlAmsnmd,jdbcType=VARCHAR},
+      JZ_COURSE = #{jzCourse,jdbcType=VARCHAR},
+      JZ_PERSONID = #{jzPersonid,jdbcType=VARCHAR},
+      JZ_PERSONNAME = #{jzPersonname,jdbcType=VARCHAR},
+      TEACHOBJID = #{teachobjid,jdbcType=VARCHAR},
+      TEACHOBJNAME = #{teachobjname,jdbcType=VARCHAR},
+      OTHERSTUDENTID = #{otherstudentid,jdbcType=VARCHAR},
+      OTHERSTUDENTNAME = #{otherstudentname,jdbcType=VARCHAR},
+      MAINGUANTEACHERID = #{mainguanteacherid,jdbcType=VARCHAR},
+      MAINGUANTEACHERNAME = #{mainguanteachername,jdbcType=VARCHAR},
+      MAINCHATEACHERID = #{mainchateacherid,jdbcType=VARCHAR},
+      MAINCHATEACHERNAME = #{mainchateachername,jdbcType=VARCHAR},
+      OTHERTEACHERID = #{otherteacherid,jdbcType=VARCHAR},
+      OTHERTEACHERNAME = #{otherteachername,jdbcType=VARCHAR},
+      HUIBAOUSERID = #{huibaouserid,jdbcType=VARCHAR},
+      HUIBAOUSERNAME = #{huibaousername,jdbcType=VARCHAR},
+      MAINUSERID = #{mainuserid,jdbcType=VARCHAR},
+      MAINUSERNAME = #{mainusername,jdbcType=VARCHAR},
+      WJLJ = #{wjlj,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      OPEMID = #{opemid,jdbcType=VARCHAR},
+      OPEMNAME = #{opemname,jdbcType=VARCHAR},
+      OPEMDATE = to_date(#{opemdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SPEMID = #{spemid,jdbcType=VARCHAR},
+      SPEMNAME = #{spemname,jdbcType=VARCHAR},
+      UPTIME = to_date(#{uptime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR},
+      REMARK6 = #{remark6,jdbcType=VARCHAR},
+      REMARK7 = #{remark7,jdbcType=VARCHAR},
+      REMARK8 = #{remark8,jdbcType=VARCHAR},
+      REMARK9 = #{remark9,jdbcType=VARCHAR},
+      REMARK10 = #{remark10,jdbcType=VARCHAR}
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

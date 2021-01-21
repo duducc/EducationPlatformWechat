@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.wechat.WechatMenuinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.wechat.manager.bean.WechatMenuinfoEntity" >
+    <result column="MENUID" property="menuid" jdbcType="VARCHAR" />
+    <result column="MENUNAME" property="menuname" jdbcType="VARCHAR" />
+    <result column="MENUTYPE" property="menutype" jdbcType="VARCHAR" />
+    <result column="MENUKEY" property="menukey" jdbcType="VARCHAR" />
+    <result column="MENUURL" property="menuurl" jdbcType="VARCHAR" />
+    <result column="IMAGEURL" property="imageurl" jdbcType="VARCHAR" />
+    <result column="MENUVALUE" property="menuvalue" jdbcType="VARCHAR" />
+    <result column="SXH" property="sxh" jdbcType="DECIMAL" />
+    <result column="GXSJ" property="gxsj" jdbcType="DATE" />
+    <result column="QYBJ" property="qybj" jdbcType="VARCHAR" />
+    <result column="MENULEVEL" property="menulevel" jdbcType="VARCHAR" />
+    <result column="POWER" property="power" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    MENUID, MENUNAME, MENUTYPE, MENUKEY, MENUURL, IMAGEURL, MENUVALUE, SXH, GXSJ, QYBJ, 
+    MENULEVEL, POWER, REMARK1, REMARK2, REMARK3
+  </sql>
+  <select id="selectListPageWechatMenuinfoBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.WechatMenuinfoSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from WECHAT_MENUINFO
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectWechatMenuinfoByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from WECHAT_MENUINFO
+    where MENUID = #{menuid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectListWechatMenuinfoBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.WechatMenuinfoSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from WECHAT_MENUINFO
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteWechatMenuinfoBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.WechatMenuinfoSqlWhere" >
+    delete from WECHAT_MENUINFO
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertWechatMenuinfo" parameterType="com.saint.wechat.manager.bean.WechatMenuinfoEntity" >
+    insert into WECHAT_MENUINFO (MENUID, MENUNAME, MENUTYPE, 
+      MENUKEY, MENUURL, IMAGEURL, 
+      MENUVALUE, SXH, GXSJ, 
+      QYBJ, MENULEVEL, POWER, 
+      REMARK1, REMARK2, REMARK3
+      )
+    values (#{menuid,jdbcType=VARCHAR}, #{menuname,jdbcType=VARCHAR}, #{menutype,jdbcType=VARCHAR}, 
+      #{menukey,jdbcType=VARCHAR}, #{menuurl,jdbcType=VARCHAR}, #{imageurl,jdbcType=VARCHAR}, 
+      #{menuvalue,jdbcType=VARCHAR}, #{sxh,jdbcType=DECIMAL}, to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{qybj,jdbcType=VARCHAR}, #{menulevel,jdbcType=VARCHAR}, #{power,jdbcType=VARCHAR}, 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertWechatMenuinfoSelective" parameterType="com.saint.wechat.manager.bean.WechatMenuinfoEntity" >
+    insert into WECHAT_MENUINFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="menuid != null and menuid != ''" >
+        MENUID,
+      </if>
+      <if test="menuname != null and menuname != ''" >
+        MENUNAME,
+      </if>
+      <if test="menutype != null and menutype != ''" >
+        MENUTYPE,
+      </if>
+      <if test="menukey != null and menukey != ''" >
+        MENUKEY,
+      </if>
+      <if test="menuurl != null and menuurl != ''" >
+        MENUURL,
+      </if>
+      <if test="imageurl != null and imageurl != ''" >
+        IMAGEURL,
+      </if>
+      <if test="menuvalue != null and menuvalue != ''" >
+        MENUVALUE,
+      </if>
+      <if test="sxh != null and sxh != ''" >
+        SXH,
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ,
+      </if>
+      <if test="qybj != null and qybj != ''" >
+        QYBJ,
+      </if>
+      <if test="menulevel != null and menulevel != ''" >
+        MENULEVEL,
+      </if>
+      <if test="power != null and power != ''" >
+        POWER,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="menuid != null and menuid != ''" >
+        #{menuid,jdbcType=VARCHAR},
+      </if>
+      <if test="menuname != null and menuname != ''" >
+        #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="menutype != null and menutype != ''" >
+        #{menutype,jdbcType=VARCHAR},
+      </if>
+      <if test="menukey != null and menukey != ''" >
+        #{menukey,jdbcType=VARCHAR},
+      </if>
+      <if test="menuurl != null and menuurl != ''" >
+        #{menuurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imageurl != null and imageurl != ''" >
+        #{imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuvalue != null and menuvalue != ''" >
+        #{menuvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="sxh != null and sxh != ''" >
+        #{sxh,jdbcType=DECIMAL},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="qybj != null and qybj != ''" >
+        #{qybj,jdbcType=VARCHAR},
+      </if>
+      <if test="menulevel != null and menulevel != ''" >
+        #{menulevel,jdbcType=VARCHAR},
+      </if>
+      <if test="power != null and power != ''" >
+        #{power,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countWechatMenuinfoBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.WechatMenuinfoSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from WECHAT_MENUINFO
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateWechatMenuinfoBySqlWhereSelective" parameterType="map" >
+    update WECHAT_MENUINFO
+    <set >
+      <if test="record.menuid != null and record.menuid != ''" >
+        MENUID = #{record.menuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuname != null and record.menuname != ''" >
+        MENUNAME = #{record.menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menutype != null and record.menutype != ''" >
+        MENUTYPE = #{record.menutype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menukey != null and record.menukey != ''" >
+        MENUKEY = #{record.menukey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuurl != null and record.menuurl != ''" >
+        MENUURL = #{record.menuurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imageurl != null and record.imageurl != ''" >
+        IMAGEURL = #{record.imageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuvalue != null and record.menuvalue != ''" >
+        MENUVALUE = #{record.menuvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sxh != null and record.sxh != ''" >
+        SXH = #{record.sxh,jdbcType=DECIMAL},
+      </if>
+      <if test="record.gxsj != null and record.gxsj != ''" >
+        GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.qybj != null and record.qybj != ''" >
+        QYBJ = #{record.qybj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menulevel != null and record.menulevel != ''" >
+        MENULEVEL = #{record.menulevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.power != null and record.power != ''" >
+        POWER = #{record.power,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateWechatMenuinfoBySqlWhere" parameterType="map" >
+    update WECHAT_MENUINFO
+    set MENUID = #{record.menuid,jdbcType=VARCHAR},
+      MENUNAME = #{record.menuname,jdbcType=VARCHAR},
+      MENUTYPE = #{record.menutype,jdbcType=VARCHAR},
+      MENUKEY = #{record.menukey,jdbcType=VARCHAR},
+      MENUURL = #{record.menuurl,jdbcType=VARCHAR},
+      IMAGEURL = #{record.imageurl,jdbcType=VARCHAR},
+      MENUVALUE = #{record.menuvalue,jdbcType=VARCHAR},
+      SXH = #{record.sxh,jdbcType=DECIMAL},
+      GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      QYBJ = #{record.qybj,jdbcType=VARCHAR},
+      MENULEVEL = #{record.menulevel,jdbcType=VARCHAR},
+      POWER = #{record.power,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+</mapper>

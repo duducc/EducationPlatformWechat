@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxSignErrorMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxSignErrorEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="STUID" property="stuid" jdbcType="VARCHAR" />
+    <result column="STUNAME" property="stuname" jdbcType="VARCHAR" />
+    <result column="SIGNTIME" property="signtime" jdbcType="DATE" />
+    <result column="CAUSE" property="cause" jdbcType="VARCHAR" />
+    <result column="OPENID" property="openid" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="DEPT" property="dept" jdbcType="VARCHAR" />
+    <result column="REMARKS1" property="remarks1" jdbcType="VARCHAR" />
+    <result column="REMARKS2" property="remarks2" jdbcType="VARCHAR" />
+    <result column="REMARKS3" property="remarks3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, STUID, STUNAME, SIGNTIME, CAUSE, OPENID, TYPE, DEPT, REMARKS1, REMARKS2, REMARKS3
+  </sql>
+  <select id="selectListPageJxSignErrorBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxSignErrorSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_SIGN_ERROR
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxSignErrorBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxSignErrorSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_SIGN_ERROR
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxSignErrorByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_SIGN_ERROR
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxSignErrorByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_SIGN_ERROR
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxSignErrorBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxSignErrorSqlWhere" >
+    delete from JX_SIGN_ERROR
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxSignError" parameterType="com.saint.teaching.bean.JxSignErrorEntity" >
+    insert into JX_SIGN_ERROR (XH, STUID, STUNAME, 
+      SIGNTIME, CAUSE, 
+      OPENID, TYPE, DEPT, 
+      REMARKS1, REMARKS2, REMARKS3
+      )
+    values (SEQ_JX_SIGNERROR.nextVal, #{stuid,jdbcType=VARCHAR}, #{stuname,jdbcType=VARCHAR}, 
+      to_date(#{signtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{cause,jdbcType=VARCHAR}, 
+      #{openid,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{dept,jdbcType=VARCHAR}, 
+      #{remarks1,jdbcType=VARCHAR}, #{remarks2,jdbcType=VARCHAR}, #{remarks3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertJxSignErrorSelective" parameterType="com.saint.teaching.bean.JxSignErrorEntity" >
+    insert into JX_SIGN_ERROR
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="stuid != null and stuid != ''" >
+        STUID,
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        STUNAME,
+      </if>
+      <if test="signtime != null and signtime != ''" >
+        SIGNTIME,
+      </if>
+      <if test="cause != null and cause != ''" >
+        CAUSE,
+      </if>
+      <if test="openid != null and openid != ''" >
+        OPENID,
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE,
+      </if>
+      <if test="dept != null and dept != ''" >
+        DEPT,
+      </if>
+      <if test="remarks1 != null and remarks1 != ''" >
+        REMARKS1,
+      </if>
+      <if test="remarks2 != null and remarks2 != ''" >
+        REMARKS2,
+      </if>
+      <if test="remarks3 != null and remarks3 != ''" >
+        REMARKS3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="stuid != null and stuid != ''" >
+        #{stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="signtime != null and signtime != ''" >
+        to_date(#{signtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="cause != null and cause != ''" >
+        #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null and openid != ''" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null and type != ''" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="dept != null and dept != ''" >
+        #{dept,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks1 != null and remarks1 != ''" >
+        #{remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks2 != null and remarks2 != ''" >
+        #{remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks3 != null and remarks3 != ''" >
+        #{remarks3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxSignErrorBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxSignErrorSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_SIGN_ERROR
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxSignErrorBySqlWhereSelective" parameterType="map" >
+    update JX_SIGN_ERROR
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuid != null and record.stuid != ''" >
+        STUID = #{record.stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuname != null and record.stuname != ''" >
+        STUNAME = #{record.stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signtime != null and record.signtime != ''" >
+        SIGNTIME = to_date(#{record.signtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.cause != null and record.cause != ''" >
+        CAUSE = #{record.cause,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openid != null and record.openid != ''" >
+        OPENID = #{record.openid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null and record.type != ''" >
+        TYPE = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dept != null and record.dept != ''" >
+        DEPT = #{record.dept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks1 != null and record.remarks1 != ''" >
+        REMARKS1 = #{record.remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks2 != null and record.remarks2 != ''" >
+        REMARKS2 = #{record.remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks3 != null and record.remarks3 != ''" >
+        REMARKS3 = #{record.remarks3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxSignErrorBySqlWhere" parameterType="map" >
+    update JX_SIGN_ERROR
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      STUID = #{record.stuid,jdbcType=VARCHAR},
+      STUNAME = #{record.stuname,jdbcType=VARCHAR},
+      SIGNTIME = to_date(#{record.signtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      CAUSE = #{record.cause,jdbcType=VARCHAR},
+      OPENID = #{record.openid,jdbcType=VARCHAR},
+      TYPE = #{record.type,jdbcType=VARCHAR},
+      DEPT = #{record.dept,jdbcType=VARCHAR},
+      REMARKS1 = #{record.remarks1,jdbcType=VARCHAR},
+      REMARKS2 = #{record.remarks2,jdbcType=VARCHAR},
+      REMARKS3 = #{record.remarks3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxSignErrorByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxSignErrorEntity" >
+    update JX_SIGN_ERROR
+    <set >
+      <if test="stuid != null and stuid != ''" >
+        STUID = #{stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        STUNAME = #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="signtime != null and signtime != ''" >
+        SIGNTIME = to_date(#{signtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="cause != null and cause != ''" >
+        CAUSE = #{cause,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null and openid != ''" >
+        OPENID = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="dept != null and dept != ''" >
+        DEPT = #{dept,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks1 != null and remarks1 != ''" >
+        REMARKS1 = #{remarks1,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks2 != null and remarks2 != ''" >
+        REMARKS2 = #{remarks2,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks3 != null and remarks3 != ''" >
+        REMARKS3 = #{remarks3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxSignErrorByPrimaryKey" parameterType="com.saint.teaching.bean.JxSignErrorEntity" >
+    update JX_SIGN_ERROR
+    set STUID = #{stuid,jdbcType=VARCHAR},
+      STUNAME = #{stuname,jdbcType=VARCHAR},
+      SIGNTIME = to_date(#{signtime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      CAUSE = #{cause,jdbcType=VARCHAR},
+      OPENID = #{openid,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      DEPT = #{dept,jdbcType=VARCHAR},
+      REMARKS1 = #{remarks1,jdbcType=VARCHAR},
+      REMARKS2 = #{remarks2,jdbcType=VARCHAR},
+      REMARKS3 = #{remarks3,jdbcType=VARCHAR}
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

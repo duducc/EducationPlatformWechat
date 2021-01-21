@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxSignInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxSignInfoEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="MARKING" property="marking" jdbcType="VARCHAR" />
+    <result column="SIGNCS" property="signcs" jdbcType="DECIMAL" />
+    <result column="STATETIME" property="statetime" jdbcType="VARCHAR" />
+    <result column="ENDTIME" property="endtime" jdbcType="VARCHAR" />
+    <result column="TIMETYPE" property="timetype" jdbcType="VARCHAR" />
+    <result column="POLITIONNAME" property="politionname" jdbcType="VARCHAR" />
+    <result column="POLITIONJD" property="politionjd" jdbcType="VARCHAR" />
+    <result column="POLITIONWD" property="politionwd" jdbcType="VARCHAR" />
+    <result column="SCOPE" property="scope" jdbcType="DECIMAL" />
+    <result column="WIFIIP" property="wifiip" jdbcType="VARCHAR" />
+    <result column="WIFINAME" property="wifiname" jdbcType="VARCHAR" />
+    <result column="WIFIREMARK1" property="wifiremark1" jdbcType="VARCHAR" />
+    <result column="WIFIREMARK2" property="wifiremark2" jdbcType="VARCHAR" />
+    <result column="WIFIREMARK3" property="wifiremark3" jdbcType="VARCHAR" />
+    <result column="OPID" property="opid" jdbcType="VARCHAR" />
+    <result column="OPNAME" property="opname" jdbcType="VARCHAR" />
+    <result column="OPDATE" property="opdate" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, NAME, MARKING, SIGNCS, STATETIME, ENDTIME, TIMETYPE, POLITIONNAME, POLITIONJD, POLITIONWD, SCOPE, 
+    WIFIIP, WIFINAME, WIFIREMARK1, WIFIREMARK2, WIFIREMARK3, OPID, OPNAME, OPDATE, REMARK1, 
+    REMARK2, REMARK3, REMARK4, REMARK5
+  </sql>
+  <select id="selectListPageJxSignInfoBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxSignInfoSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_SIGN_INFO
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxSignInfoBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxSignInfoSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_SIGN_INFO
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxSignInfoByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_SIGN_INFO
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxSignInfoByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_SIGN_INFO
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxSignInfoBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxSignInfoSqlWhere" >
+    delete from JX_SIGN_INFO
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxSignInfo" parameterType="com.saint.teaching.bean.JxSignInfoEntity" >
+    insert into JX_SIGN_INFO (XH, NAME, MARKING, SIGNCS, STATETIME, 
+      ENDTIME, TIMETYPE, POLITIONNAME, 
+      POLITIONJD, POLITIONWD, SCOPE, 
+      WIFIIP, WIFINAME, WIFIREMARK1, 
+      WIFIREMARK2, WIFIREMARK3, OPID, 
+      OPNAME, OPDATE, REMARK1, 
+      REMARK2, REMARK3, REMARK4, 
+      REMARK5)
+    values (#{xh,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{marking,jdbcType=VARCHAR}, #{signcs,jdbcType=DECIMAL}, #{statetime,jdbcType=VARCHAR}, 
+      #{endtime,jdbcType=VARCHAR}, #{timetype,jdbcType=VARCHAR}, #{politionname,jdbcType=VARCHAR}, 
+      #{politionjd,jdbcType=VARCHAR}, #{politionwd,jdbcType=VARCHAR}, #{scope,jdbcType=DECIMAL}, 
+      #{wifiip,jdbcType=VARCHAR}, #{wifiname,jdbcType=VARCHAR}, #{wifiremark1,jdbcType=VARCHAR}, 
+      #{wifiremark2,jdbcType=VARCHAR}, #{wifiremark3,jdbcType=VARCHAR}, #{opid,jdbcType=VARCHAR}, 
+      #{opname,jdbcType=VARCHAR}, #{opdate,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, 
+      #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, #{remark4,jdbcType=VARCHAR}, 
+      #{remark5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertJxSignInfoSelective" parameterType="com.saint.teaching.bean.JxSignInfoEntity" >
+    insert into JX_SIGN_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="name != null and name != ''" >
+        NAME,
+      </if>
+      <if test="marking != null and marking != ''" >
+        MARKING,
+      </if>
+      <if test="signcs != null and signcs != ''" >
+        SIGNCS,
+      </if>
+      <if test="statetime != null and statetime != ''" >
+        STATETIME,
+      </if>
+      <if test="endtime != null and endtime != ''" >
+        ENDTIME,
+      </if>
+      <if test="timetype != null and timetype != ''" >
+        TIMETYPE,
+      </if>
+      <if test="politionname != null and politionname != ''" >
+        POLITIONNAME,
+      </if>
+      <if test="politionjd != null and politionjd != ''" >
+        POLITIONJD,
+      </if>
+      <if test="politionwd != null and politionwd != ''" >
+        POLITIONWD,
+      </if>
+      <if test="scope != null and scope != ''" >
+        SCOPE,
+      </if>
+      <if test="wifiip != null and wifiip != ''" >
+        WIFIIP,
+      </if>
+      <if test="wifiname != null and wifiname != ''" >
+        WIFINAME,
+      </if>
+      <if test="wifiremark1 != null and wifiremark1 != ''" >
+        WIFIREMARK1,
+      </if>
+      <if test="wifiremark2 != null and wifiremark2 != ''" >
+        WIFIREMARK2,
+      </if>
+      <if test="wifiremark3 != null and wifiremark3 != ''" >
+        WIFIREMARK3,
+      </if>
+      <if test="opid != null and opid != ''" >
+        OPID,
+      </if>
+      <if test="opname != null and opname != ''" >
+        OPNAME,
+      </if>
+      <if test="opdate != null and opdate != ''" >
+        OPDATE,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null and name != ''" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="marking != null and marking != ''" >
+        #{marking,jdbcType=VARCHAR},
+      </if>
+      <if test="signcs != null and signcs != ''" >
+        #{signcs,jdbcType=DECIMAL},
+      </if>
+      <if test="statetime != null and statetime != ''" >
+        #{statetime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null and endtime != ''" >
+        #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="timetype != null and timetype != ''" >
+        #{timetype,jdbcType=VARCHAR},
+      </if>
+      <if test="politionname != null and politionname != ''" >
+        #{politionname,jdbcType=VARCHAR},
+      </if>
+      <if test="politionjd != null and politionjd != ''" >
+        #{politionjd,jdbcType=VARCHAR},
+      </if>
+      <if test="politionwd != null and politionwd != ''" >
+        #{politionwd,jdbcType=VARCHAR},
+      </if>
+      <if test="scope != null and scope != ''" >
+        #{scope,jdbcType=DECIMAL},
+      </if>
+      <if test="wifiip != null and wifiip != ''" >
+        #{wifiip,jdbcType=VARCHAR},
+      </if>
+      <if test="wifiname != null and wifiname != ''" >
+        #{wifiname,jdbcType=VARCHAR},
+      </if>
+      <if test="wifiremark1 != null and wifiremark1 != ''" >
+        #{wifiremark1,jdbcType=VARCHAR},
+      </if>
+      <if test="wifiremark2 != null and wifiremark2 != ''" >
+        #{wifiremark2,jdbcType=VARCHAR},
+      </if>
+      <if test="wifiremark3 != null and wifiremark3 != ''" >
+        #{wifiremark3,jdbcType=VARCHAR},
+      </if>
+      <if test="opid != null and opid != ''" >
+        #{opid,jdbcType=VARCHAR},
+      </if>
+      <if test="opname != null and opname != ''" >
+        #{opname,jdbcType=VARCHAR},
+      </if>
+      <if test="opdate != null and opdate != ''" >
+        #{opdate,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxSignInfoBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxSignInfoSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_SIGN_INFO
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxSignInfoBySqlWhereSelective" parameterType="map" >
+    update JX_SIGN_INFO
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null and record.name != ''" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marking != null and record.marking != ''" >
+        MARKING = #{record.marking,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signcs != null and record.signcs != ''" >
+        SIGNCS = #{record.signcs,jdbcType=DECIMAL},
+      </if>
+      <if test="record.statetime != null and record.statetime != ''" >
+        STATETIME = #{record.statetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endtime != null and record.endtime != ''" >
+        ENDTIME = #{record.endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timetype != null and record.timetype != ''" >
+        TIMETYPE = #{record.timetype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.politionname != null and record.politionname != ''" >
+        POLITIONNAME = #{record.politionname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.politionjd != null and record.politionjd != ''" >
+        POLITIONJD = #{record.politionjd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.politionwd != null and record.politionwd != ''" >
+        POLITIONWD = #{record.politionwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scope != null and record.scope != ''" >
+        SCOPE = #{record.scope,jdbcType=DECIMAL},
+      </if>
+      <if test="record.wifiip != null and record.wifiip != ''" >
+        WIFIIP = #{record.wifiip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wifiname != null and record.wifiname != ''" >
+        WIFINAME = #{record.wifiname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wifiremark1 != null and record.wifiremark1 != ''" >
+        WIFIREMARK1 = #{record.wifiremark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wifiremark2 != null and record.wifiremark2 != ''" >
+        WIFIREMARK2 = #{record.wifiremark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wifiremark3 != null and record.wifiremark3 != ''" >
+        WIFIREMARK3 = #{record.wifiremark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opid != null and record.opid != ''" >
+        OPID = #{record.opid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opname != null and record.opname != ''" >
+        OPNAME = #{record.opname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opdate != null and record.opdate != ''" >
+        OPDATE = #{record.opdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxSignInfoBySqlWhere" parameterType="map" >
+    update JX_SIGN_INFO
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      MARKING = #{record.marking,jdbcType=VARCHAR},
+      SIGNCS = #{record.signcs,jdbcType=DECIMAL},
+      STATETIME = #{record.statetime,jdbcType=VARCHAR},
+      ENDTIME = #{record.endtime,jdbcType=VARCHAR},
+      TIMETYPE = #{record.timetype,jdbcType=VARCHAR},
+      POLITIONNAME = #{record.politionname,jdbcType=VARCHAR},
+      POLITIONJD = #{record.politionjd,jdbcType=VARCHAR},
+      POLITIONWD = #{record.politionwd,jdbcType=VARCHAR},
+      SCOPE = #{record.scope,jdbcType=DECIMAL},
+      WIFIIP = #{record.wifiip,jdbcType=VARCHAR},
+      WIFINAME = #{record.wifiname,jdbcType=VARCHAR},
+      WIFIREMARK1 = #{record.wifiremark1,jdbcType=VARCHAR},
+      WIFIREMARK2 = #{record.wifiremark2,jdbcType=VARCHAR},
+      WIFIREMARK3 = #{record.wifiremark3,jdbcType=VARCHAR},
+      OPID = #{record.opid,jdbcType=VARCHAR},
+      OPNAME = #{record.opname,jdbcType=VARCHAR},
+      OPDATE = #{record.opdate,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxSignInfoByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxSignInfoEntity" >
+    update JX_SIGN_INFO
+    <set >
+      <if test="name != null and name != ''" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="marking != null and marking != ''" >
+        MARKING = #{marking,jdbcType=VARCHAR},
+      </if>
+      <if test="signcs != null and signcs != ''" >
+        SIGNCS = #{signcs,jdbcType=DECIMAL},
+      </if>
+      <if test="statetime != null and statetime != ''" >
+        STATETIME = #{statetime,jdbcType=VARCHAR},
+      </if>
+      <if test="endtime != null and endtime != ''" >
+        ENDTIME = #{endtime,jdbcType=VARCHAR},
+      </if>
+      <if test="timetype != null and timetype != ''" >
+        TIMETYPE = #{timetype,jdbcType=VARCHAR},
+      </if>
+      <if test="politionname != null and politionname != ''" >
+        POLITIONNAME = #{politionname,jdbcType=VARCHAR},
+      </if>
+      <if test="politionjd != null and politionjd != ''" >
+        POLITIONJD = #{politionjd,jdbcType=VARCHAR},
+      </if>
+      <if test="politionwd != null and politionwd != ''" >
+        POLITIONWD = #{politionwd,jdbcType=VARCHAR},
+      </if>
+      <if test="scope != null and scope != ''" >
+        SCOPE = #{scope,jdbcType=DECIMAL},
+      </if>
+      <if test="wifiip != null and wifiip != ''" >
+        WIFIIP = #{wifiip,jdbcType=VARCHAR},
+      </if>
+      <if test="wifiname != null and wifiname != ''" >
+        WIFINAME = #{wifiname,jdbcType=VARCHAR},
+      </if>
+      <if test="wifiremark1 != null and wifiremark1 != ''" >
+        WIFIREMARK1 = #{wifiremark1,jdbcType=VARCHAR},
+      </if>
+      <if test="wifiremark2 != null and wifiremark2 != ''" >
+        WIFIREMARK2 = #{wifiremark2,jdbcType=VARCHAR},
+      </if>
+      <if test="wifiremark3 != null and wifiremark3 != ''" >
+        WIFIREMARK3 = #{wifiremark3,jdbcType=VARCHAR},
+      </if>
+      <if test="opid != null and opid != ''" >
+        OPID = #{opid,jdbcType=VARCHAR},
+      </if>
+      <if test="opname != null and opname != ''" >
+        OPNAME = #{opname,jdbcType=VARCHAR},
+      </if>
+      <if test="opdate != null and opdate != ''" >
+        OPDATE = #{opdate,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxSignInfoByPrimaryKey" parameterType="com.saint.teaching.bean.JxSignInfoEntity" >
+    update JX_SIGN_INFO
+    set NAME = #{name,jdbcType=VARCHAR},
+      MARKING = #{marking,jdbcType=VARCHAR}, 
+      SIGNCS = #{signcs,jdbcType=DECIMAL},
+      STATETIME = #{statetime,jdbcType=VARCHAR},
+      ENDTIME = #{endtime,jdbcType=VARCHAR},
+      TIMETYPE = #{timetype,jdbcType=VARCHAR},
+      POLITIONNAME = #{politionname,jdbcType=VARCHAR},
+      POLITIONJD = #{politionjd,jdbcType=VARCHAR},
+      POLITIONWD = #{politionwd,jdbcType=VARCHAR},
+      SCOPE = #{scope,jdbcType=DECIMAL},
+      WIFIIP = #{wifiip,jdbcType=VARCHAR},
+      WIFINAME = #{wifiname,jdbcType=VARCHAR},
+      WIFIREMARK1 = #{wifiremark1,jdbcType=VARCHAR},
+      WIFIREMARK2 = #{wifiremark2,jdbcType=VARCHAR},
+      WIFIREMARK3 = #{wifiremark3,jdbcType=VARCHAR},
+      OPID = #{opid,jdbcType=VARCHAR},
+      OPNAME = #{opname,jdbcType=VARCHAR},
+      OPDATE = #{opdate,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR}
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

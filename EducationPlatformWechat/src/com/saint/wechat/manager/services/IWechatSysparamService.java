@@ -1,0 +1,96 @@
+package com.saint.wechat.manager.services;
+
+import com.saint.pub.database.ExcuteResult;
+import com.saint.wechat.manager.bean.WechatSysparamEntity;
+import com.saint.wechat.manager.bean.WechatSysparamKey;
+import com.saint.wechat.manager.sqlWhere.WechatSysparamSqlWhere;
+import java.util.HashMap;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface IWechatSysparamService {
+    /**
+    * 实现根据sqlWhere传入的条件 COUNT 出记录数
+    * @param sqlWhere
+    * @return
+    */
+    int countWechatSysparamBySqlWhere(WechatSysparamSqlWhere sqlWhere);
+
+    /**
+    * 实现根据sqlWhere传入的条件删除相应的记录
+    * @param sqlWhere
+    * @return
+    */
+    ExcuteResult deleteWechatSysparamBySqlWhere(WechatSysparamSqlWhere sqlWhere);
+
+    /**
+    * 实现根据记录主键删除相应的记录
+    * @return
+    */
+    ExcuteResult deleteWechatSysparamByPrimaryKey(WechatSysparamKey key);
+
+    /**
+    * 新增一行记录
+    * @param record
+    * @return
+    */
+    ExcuteResult insertWechatSysparam(WechatSysparamEntity record);
+
+    /**
+    * 新增一行记录，插入时只插入非空列
+    * @param record
+    * @return
+    */
+    ExcuteResult insertWechatSysparamSelective(WechatSysparamEntity record);
+
+    /**
+    * 实现根据sqlWhere传入的条件查询出信息列表，本方法用于分页查询
+    * @param sqlWhere
+    * @return
+    */
+    List<WechatSysparamEntity> selectListPageWechatSysparamBySqlWhere(WechatSysparamSqlWhere sqlWhere);
+
+    /**
+     * 实现根据sqlWhere传入的条件查询出信息列表
+     * @param sqlWhere
+     * @return
+     */
+    List<WechatSysparamEntity> selectListWechatSysparamBySqlWhere(WechatSysparamSqlWhere sqlWhere);
+
+    /**
+     * 实现根据传入的sql语句查询出信息列表
+     * @param sql
+     * @return
+     */
+    List<HashMap<String,Object>> selectListWechatSysparamBySql(String sql);
+
+    /**
+     * 根据主键查询一条记录
+     * @return
+     */
+    WechatSysparamEntity selectWechatSysparamByPrimaryKey(WechatSysparamKey key);
+
+    /**
+     * 更新满足sqlWhere条件的记录，更新时只更新非空列
+     * @return
+     */
+    ExcuteResult updateWechatSysparamBySqlWhereSelective(@Param("record") WechatSysparamEntity record, @Param("sqlWhere") WechatSysparamSqlWhere example);
+
+    /**
+     * 更新满足sqlWhere条件的记录
+     * @return
+     */
+    ExcuteResult updateWechatSysparamBySqlWhere(@Param("record") WechatSysparamEntity record, @Param("sqlWhere") WechatSysparamSqlWhere example);
+
+    /**
+     * 根据主键更新一条记录，更新时只更新非空列
+     * @return
+     */
+    ExcuteResult updateWechatSysparamByPrimaryKeySelective(WechatSysparamEntity record);
+
+    /**
+     * 根据主键更新一条记录
+     * @return
+     */
+    ExcuteResult updateWechatSysparamByPrimaryKey(WechatSysparamEntity record);
+}

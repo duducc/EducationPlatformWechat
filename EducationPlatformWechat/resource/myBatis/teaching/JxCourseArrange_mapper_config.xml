@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxCourseArrangeMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxCourseArrangeEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="COURSENUM" property="coursenum" jdbcType="VARCHAR" />
+    <result column="COURSENAME" property="coursename" jdbcType="VARCHAR" />
+    <result column="ZXTIMENUM" property="zxtimenum" jdbcType="VARCHAR" />
+    <result column="ZXTIMENAME" property="zxtimename" jdbcType="VARCHAR" />
+    <result column="RKJSHID" property="rkjshid" jdbcType="VARCHAR" />
+    <result column="RKJSHNAME" property="rkjshname" jdbcType="VARCHAR" />
+    <result column="RKJSHZHCH" property="rkjshzhch" jdbcType="VARCHAR" />
+    <result column="LXDH" property="lxdh" jdbcType="VARCHAR" />
+    <result column="KCLB" property="kclb" jdbcType="VARCHAR" />
+    <result column="SHKZHCI" property="shkzhci" jdbcType="VARCHAR" />
+    <result column="SHKXQI" property="shkxqi" jdbcType="VARCHAR" />
+    <result column="SKDATE" property="skdate" jdbcType="DATE" />
+    <result column="SHTIME" property="shtime" jdbcType="VARCHAR" />
+    <result column="SKJSHU" property="skjshu" jdbcType="VARCHAR" />
+    <result column="JSHNR" property="jshnr" jdbcType="VARCHAR" />
+    <result column="SHKXSH" property="shkxsh" jdbcType="VARCHAR" />
+    <result column="BJ" property="bj" jdbcType="VARCHAR" />
+    <result column="SJXS" property="sjxs" jdbcType="VARCHAR" />
+    <result column="OPEMID" property="opemid" jdbcType="VARCHAR" />
+    <result column="OPEMNAME" property="opemname" jdbcType="VARCHAR" />
+    <result column="OPDATE" property="opdate" jdbcType="DATE" />
+    <result column="GLBM" property="glbm" jdbcType="VARCHAR" />
+    <result column="DAYSTATEDX" property="daystatedx" jdbcType="VARCHAR" />
+    <result column="WEEKSTATEDX" property="weekstatedx" jdbcType="VARCHAR" />
+    <result column="DAYREPLYDX" property="dayreplydx" jdbcType="VARCHAR" />
+    <result column="WEEKREPLYDX" property="weekreplydx" jdbcType="VARCHAR" />
+    <result column="DAYSTATEWX" property="daystatewx" jdbcType="VARCHAR" />
+    <result column="WEEKSTATEWX" property="weekstatewx" jdbcType="VARCHAR" />
+    <result column="DAYREPLYWX" property="dayreplywx" jdbcType="VARCHAR" />
+    <result column="WEEKREPLYWX" property="weekreplywx" jdbcType="VARCHAR" />
+    <result column="BEIZHU" property="beizhu" jdbcType="VARCHAR" />
+    <result column="SFDF" property="sfdf" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+    <result column="SHKXUEXID" property="shkxuexid" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="POSITION" property="position" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, COURSENUM, COURSENAME, ZXTIMENUM, ZXTIMENAME, RKJSHID, RKJSHNAME, RKJSHZHCH, 
+    LXDH, KCLB, SHKZHCI, SHKXQI, SKDATE, SHTIME, SKJSHU, JSHNR, SHKXSH, BJ, SJXS, OPEMID, 
+    OPEMNAME, OPDATE, GLBM, DAYSTATEDX, WEEKSTATEDX, DAYREPLYDX, WEEKREPLYDX, DAYSTATEWX, 
+    WEEKSTATEWX, DAYREPLYWX, WEEKREPLYWX, BEIZHU, SFDF, REMARK1, REMARK2, REMARK3, REMARK4, 
+    REMARK5,SHKXUEXID,STATE,POSITION
+  </sql>
+  <select id="selectListPageJxCourseArrangeBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxCourseArrangeSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_COURSEARRANGE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxCourseArrangeBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxCourseArrangeSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_COURSEARRANGE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxCourseArrangeByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_COURSEARRANGE
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxCourseArrangeByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_COURSEARRANGE
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxCourseArrangeBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxCourseArrangeSqlWhere" >
+    delete from JX_COURSEARRANGE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxCourseArrange" parameterType="com.saint.teaching.bean.JxCourseArrangeEntity" >
+    insert into JX_COURSEARRANGE (XH, COURSENUM, COURSENAME, 
+      ZXTIMENUM, ZXTIMENAME, RKJSHID, 
+      RKJSHNAME, RKJSHZHCH, LXDH, 
+      KCLB, SHKZHCI, SHKXQI, 
+      SKDATE, SHTIME, 
+      SKJSHU, JSHNR, SHKXSH, 
+      BJ, SJXS, OPEMID, OPEMNAME, 
+      OPDATE, GLBM, 
+      DAYSTATEDX, WEEKSTATEDX, DAYREPLYDX, 
+      WEEKREPLYDX, DAYSTATEWX, WEEKSTATEWX, 
+      DAYREPLYWX, WEEKREPLYWX, BEIZHU, SFDF, 
+      REMARK1, REMARK2, REMARK3, 
+      REMARK4, REMARK5,SHKXUEXID,STATE,POSITION)
+    values (#{xh,jdbcType=VARCHAR}, #{coursenum,jdbcType=VARCHAR}, #{coursename,jdbcType=VARCHAR}, 
+      #{zxtimenum,jdbcType=VARCHAR}, #{zxtimename,jdbcType=VARCHAR}, #{rkjshid,jdbcType=VARCHAR}, 
+      #{rkjshname,jdbcType=VARCHAR}, #{rkjshzhch,jdbcType=VARCHAR}, #{lxdh,jdbcType=VARCHAR}, 
+      #{kclb,jdbcType=VARCHAR}, #{shkzhci,jdbcType=VARCHAR}, #{shkxqi,jdbcType=VARCHAR}, 
+      to_date(#{skdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{shtime,jdbcType=VARCHAR}, 
+      #{skjshu,jdbcType=VARCHAR}, #{jshnr,jdbcType=VARCHAR}, #{shkxsh,jdbcType=VARCHAR}, 
+      #{bj,jdbcType=VARCHAR}, #{sjxs,jdbcType=VARCHAR}, #{opemid,jdbcType=VARCHAR}, #{opemname,jdbcType=VARCHAR}, 
+      to_date(#{opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{glbm,jdbcType=VARCHAR}, 
+      #{daystatedx,jdbcType=VARCHAR}, #{weekstatedx,jdbcType=VARCHAR}, #{dayreplydx,jdbcType=VARCHAR}, 
+      #{weekreplydx,jdbcType=VARCHAR}, #{daystatewx,jdbcType=VARCHAR}, #{weekstatewx,jdbcType=VARCHAR}, 
+      #{dayreplywx,jdbcType=VARCHAR}, #{weekreplywx,jdbcType=VARCHAR}, #{beizhu,jdbcType=VARCHAR}, 
+      #{sfdf,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR},
+      #{remark3,jdbcType=VARCHAR}, #{remark4,jdbcType=VARCHAR}, #{remark5,jdbcType=VARCHAR}, #{shkxuexid,jdbcType=VARCHAR},#{state,jdbcType=VARCHAR},#{position,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertJxCourseArrangeSelective" parameterType="com.saint.teaching.bean.JxCourseArrangeEntity" >
+    insert into JX_COURSEARRANGE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="coursenum != null and coursenum != ''" >
+        COURSENUM,
+      </if>
+      <if test="coursename != null and coursename != ''" >
+        COURSENAME,
+      </if>
+      <if test="zxtimenum != null and zxtimenum != ''" >
+        ZXTIMENUM,
+      </if>
+      <if test="zxtimename != null and zxtimename != ''" >
+        ZXTIMENAME,
+      </if>
+      <if test="rkjshid != null and rkjshid != ''" >
+        RKJSHID,
+      </if>
+      <if test="rkjshname != null and rkjshname != ''" >
+        RKJSHNAME,
+      </if>
+      <if test="rkjshzhch != null and rkjshzhch != ''" >
+        RKJSHZHCH,
+      </if>
+      <if test="lxdh != null and lxdh != ''" >
+        LXDH,
+      </if>
+      <if test="kclb != null and kclb != ''" >
+        KCLB,
+      </if>
+      <if test="shkzhci != null and shkzhci != ''" >
+        SHKZHCI,
+      </if>
+      <if test="shkxqi != null and shkxqi != ''" >
+        SHKXQI,
+      </if>
+      <if test="skdate != null and skdate != ''" >
+        SKDATE,
+      </if>
+      <if test="shtime != null and shtime != ''" >
+        SHTIME,
+      </if>
+      <if test="skjshu != null and skjshu != ''" >
+        SKJSHU,
+      </if>
+      <if test="jshnr != null and jshnr != ''" >
+        JSHNR,
+      </if>
+      <if test="shkxsh != null and shkxsh != ''" >
+        SHKXSH,
+      </if>
+      <if test="bj != null and bj != ''" >
+        BJ,
+      </if>
+      <if test="sjxs != null and sjxs != ''" >
+        SJXS,
+      </if>
+      <if test="opemid != null and opemid != ''" >
+        OPEMID,
+      </if>
+      <if test="opemname != null and opemname != ''" >
+        OPEMNAME,
+      </if>
+      <if test="opdate != null and opdate != ''" >
+        OPDATE,
+      </if>
+      <if test="glbm != null and glbm != ''" >
+        GLBM,
+      </if>
+      <if test="daystatedx != null and daystatedx != ''" >
+        DAYSTATEDX,
+      </if>
+      <if test="weekstatedx != null and weekstatedx != ''" >
+        WEEKSTATEDX,
+      </if>
+      <if test="dayreplydx != null and dayreplydx != ''" >
+        DAYREPLYDX,
+      </if>
+      <if test="weekreplydx != null and weekreplydx != ''" >
+        WEEKREPLYDX,
+      </if>
+      <if test="daystatewx != null and daystatewx != ''" >
+        DAYSTATEWX,
+      </if>
+      <if test="weekstatewx != null and weekstatewx != ''" >
+        WEEKSTATEWX,
+      </if>
+      <if test="dayreplywx != null and dayreplywx != ''" >
+        DAYREPLYWX,
+      </if>
+      <if test="weekreplywx != null and weekreplywx != ''" >
+        WEEKREPLYWX,
+      </if>
+      <if test="beizhu != null and beizhu != ''" >
+        BEIZHU,
+      </if>
+      <if test="sfdf != null and sfdf != ''" >
+        SFDF,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+      <if test="shkxuexid != null and shkxuexid != ''" >
+        SHKXUEXID,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="position != null and position != ''" >
+        POSITION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="coursenum != null and coursenum != ''" >
+        #{coursenum,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null and coursename != ''" >
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="zxtimenum != null and zxtimenum != ''" >
+        #{zxtimenum,jdbcType=VARCHAR},
+      </if>
+      <if test="zxtimename != null and zxtimename != ''" >
+        #{zxtimename,jdbcType=VARCHAR},
+      </if>
+      <if test="rkjshid != null and rkjshid != ''" >
+        #{rkjshid,jdbcType=VARCHAR},
+      </if>
+      <if test="rkjshname != null and rkjshname != ''" >
+        #{rkjshname,jdbcType=VARCHAR},
+      </if>
+      <if test="rkjshzhch != null and rkjshzhch != ''" >
+        #{rkjshzhch,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null and lxdh != ''" >
+        #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="kclb != null and kclb != ''" >
+        #{kclb,jdbcType=VARCHAR},
+      </if>
+      <if test="shkzhci != null and shkzhci != ''" >
+        #{shkzhci,jdbcType=VARCHAR},
+      </if>
+      <if test="shkxqi != null and shkxqi != ''" >
+        #{shkxqi,jdbcType=VARCHAR},
+      </if>
+      <if test="skdate != null and skdate != ''" >
+        to_date(#{skdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="shtime != null and shtime != ''" >
+        #{shtime,jdbcType=VARCHAR},
+      </if>
+      <if test="skjshu != null and skjshu != ''" >
+        #{skjshu,jdbcType=VARCHAR},
+      </if>
+      <if test="jshnr != null and jshnr != ''" >
+        #{jshnr,jdbcType=VARCHAR},
+      </if>
+      <if test="shkxsh != null and shkxsh != ''" >
+        #{shkxsh,jdbcType=VARCHAR},
+      </if>
+      <if test="bj != null and bj != ''" >
+        #{bj,jdbcType=VARCHAR},
+      </if>
+      <if test="sjxs != null and sjxs != ''" >
+        #{sjxs,jdbcType=VARCHAR},
+      </if>
+      <if test="opemid != null and opemid != ''" >
+        #{opemid,jdbcType=VARCHAR},
+      </if>
+      <if test="opemname != null and opemname != ''" >
+        #{opemname,jdbcType=VARCHAR},
+      </if>
+      <if test="opdate != null and opdate != ''" >
+        to_date(#{opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="glbm != null and glbm != ''" >
+        #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="daystatedx != null and daystatedx != ''" >
+        #{daystatedx,jdbcType=VARCHAR},
+      </if>
+      <if test="weekstatedx != null and weekstatedx != ''" >
+        #{weekstatedx,jdbcType=VARCHAR},
+      </if>
+      <if test="dayreplydx != null and dayreplydx != ''" >
+        #{dayreplydx,jdbcType=VARCHAR},
+      </if>
+      <if test="weekreplydx != null and weekreplydx != ''" >
+        #{weekreplydx,jdbcType=VARCHAR},
+      </if>
+      <if test="daystatewx != null and daystatewx != ''" >
+        #{daystatewx,jdbcType=VARCHAR},
+      </if>
+      <if test="weekstatewx != null and weekstatewx != ''" >
+        #{weekstatewx,jdbcType=VARCHAR},
+      </if>
+      <if test="dayreplywx != null and dayreplywx != ''" >
+        #{dayreplywx,jdbcType=VARCHAR},
+      </if>
+      <if test="weekreplywx != null and weekreplywx != ''" >
+        #{weekreplywx,jdbcType=VARCHAR},
+      </if>
+      <if test="beizhu != null and beizhu != ''" >
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="sfdf != null and sfdf != ''" >
+        #{sfdf,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="shkxuexid != null and shkxuexid != ''" >
+        #{shkxuexid,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null and position != ''" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxCourseArrangeBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxCourseArrangeSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_COURSEARRANGE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxCourseArrangeBySqlWhereSelective" parameterType="map" >
+    update JX_COURSEARRANGE
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coursenum != null and record.coursenum != ''" >
+        COURSENUM = #{record.coursenum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coursename != null and record.coursename != ''" >
+        COURSENAME = #{record.coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zxtimenum != null and record.zxtimenum != ''" >
+        ZXTIMENUM = #{record.zxtimenum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zxtimename != null and record.zxtimename != ''" >
+        ZXTIMENAME = #{record.zxtimename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rkjshid != null and record.rkjshid != ''" >
+        RKJSHID = #{record.rkjshid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rkjshname != null and record.rkjshname != ''" >
+        RKJSHNAME = #{record.rkjshname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rkjshzhch != null and record.rkjshzhch != ''" >
+        RKJSHZHCH = #{record.rkjshzhch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lxdh != null and record.lxdh != ''" >
+        LXDH = #{record.lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kclb != null and record.kclb != ''" >
+        KCLB = #{record.kclb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shkzhci != null and record.shkzhci != ''" >
+        SHKZHCI = #{record.shkzhci,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shkxqi != null and record.shkxqi != ''" >
+        SHKXQI = #{record.shkxqi,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skdate != null and record.skdate != ''" >
+        SKDATE = to_date(#{record.skdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.shtime != null and record.shtime != ''" >
+        SHTIME = #{record.shtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skjshu != null and record.skjshu != ''" >
+        SKJSHU = #{record.skjshu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jshnr != null and record.jshnr != ''" >
+        JSHNR = #{record.jshnr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shkxsh != null and record.shkxsh != ''" >
+        SHKXSH = #{record.shkxsh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bj != null and record.bj != ''" >
+        BJ = #{record.bj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sjxs != null and record.sjxs != ''" >
+        SJXS = #{record.sjxs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opemid != null and record.opemid != ''" >
+        OPEMID = #{record.opemid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opemname != null and record.opemname != ''" >
+        OPEMNAME = #{record.opemname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opdate != null and record.opdate != ''" >
+        OPDATE = to_date(#{record.opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.glbm != null and record.glbm != ''" >
+        GLBM = #{record.glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.daystatedx != null and record.daystatedx != ''" >
+        DAYSTATEDX = #{record.daystatedx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weekstatedx != null and record.weekstatedx != ''" >
+        WEEKSTATEDX = #{record.weekstatedx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dayreplydx != null and record.dayreplydx != ''" >
+        DAYREPLYDX = #{record.dayreplydx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weekreplydx != null and record.weekreplydx != ''" >
+        WEEKREPLYDX = #{record.weekreplydx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.daystatewx != null and record.daystatewx != ''" >
+        DAYSTATEWX = #{record.daystatewx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weekstatewx != null and record.weekstatewx != ''" >
+        WEEKSTATEWX = #{record.weekstatewx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dayreplywx != null and record.dayreplywx != ''" >
+        DAYREPLYWX = #{record.dayreplywx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weekreplywx != null and record.weekreplywx != ''" >
+        WEEKREPLYWX = #{record.weekreplywx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beizhu != null and record.beizhu != ''" >
+        BEIZHU = #{record.beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfdf != null and record.sfdf != ''" >
+        SFDF = #{record.sfdf,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shkxuexid != null and record.shkxuexid != ''" >
+        SHKXUEXID = #{record.shkxuexid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.position != null and record.position != ''" >
+        POSITION = #{record.position,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxCourseArrangeBySqlWhere" parameterType="map" >
+    update JX_COURSEARRANGE
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      COURSENUM = #{record.coursenum,jdbcType=VARCHAR},
+      COURSENAME = #{record.coursename,jdbcType=VARCHAR},
+      ZXTIMENUM = #{record.zxtimenum,jdbcType=VARCHAR},
+      ZXTIMENAME = #{record.zxtimename,jdbcType=VARCHAR},
+      RKJSHID = #{record.rkjshid,jdbcType=VARCHAR},
+      RKJSHNAME = #{record.rkjshname,jdbcType=VARCHAR},
+      RKJSHZHCH = #{record.rkjshzhch,jdbcType=VARCHAR},
+      LXDH = #{record.lxdh,jdbcType=VARCHAR},
+      KCLB = #{record.kclb,jdbcType=VARCHAR},
+      SHKZHCI = #{record.shkzhci,jdbcType=VARCHAR},
+      SHKXQI = #{record.shkxqi,jdbcType=VARCHAR},
+      SKDATE = to_date(#{record.skdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SHTIME = #{record.shtime,jdbcType=VARCHAR},
+      SKJSHU = #{record.skjshu,jdbcType=VARCHAR},
+      JSHNR = #{record.jshnr,jdbcType=VARCHAR},
+      SHKXSH = #{record.shkxsh,jdbcType=VARCHAR},
+      BJ = #{record.bj,jdbcType=VARCHAR},
+      SJXS = #{record.sjxs,jdbcType=VARCHAR},
+      OPEMID = #{record.opemid,jdbcType=VARCHAR},
+      OPEMNAME = #{record.opemname,jdbcType=VARCHAR},
+      OPDATE = to_date(#{record.opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      GLBM = #{record.glbm,jdbcType=VARCHAR},
+      DAYSTATEDX = #{record.daystatedx,jdbcType=VARCHAR},
+      WEEKSTATEDX = #{record.weekstatedx,jdbcType=VARCHAR},
+      DAYREPLYDX = #{record.dayreplydx,jdbcType=VARCHAR},
+      WEEKREPLYDX = #{record.weekreplydx,jdbcType=VARCHAR},
+      DAYSTATEWX = #{record.daystatewx,jdbcType=VARCHAR},
+      WEEKSTATEWX = #{record.weekstatewx,jdbcType=VARCHAR},
+      DAYREPLYWX = #{record.dayreplywx,jdbcType=VARCHAR},
+      WEEKREPLYWX = #{record.weekreplywx,jdbcType=VARCHAR},
+      BEIZHU = #{record.beizhu,jdbcType=VARCHAR},
+      SFDF = #{record.sfdf,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      SHKXUEXID = #{record.shkxuexid,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      POSITION = #{record.position,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxCourseArrangeByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxCourseArrangeEntity" >
+    update JX_COURSEARRANGE
+    <set >
+      <if test="coursenum != null and coursenum != ''" >
+        COURSENUM = #{coursenum,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null and coursename != ''" >
+        COURSENAME = #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="zxtimenum != null and zxtimenum != ''" >
+        ZXTIMENUM = #{zxtimenum,jdbcType=VARCHAR},
+      </if>
+      <if test="zxtimename != null and zxtimename != ''" >
+        ZXTIMENAME = #{zxtimename,jdbcType=VARCHAR},
+      </if>
+      <if test="rkjshid != null and rkjshid != ''" >
+        RKJSHID = #{rkjshid,jdbcType=VARCHAR},
+      </if>
+      <if test="rkjshname != null and rkjshname != ''" >
+        RKJSHNAME = #{rkjshname,jdbcType=VARCHAR},
+      </if>
+      <if test="rkjshzhch != null and rkjshzhch != ''" >
+        RKJSHZHCH = #{rkjshzhch,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null and lxdh != ''" >
+        LXDH = #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="kclb != null and kclb != ''" >
+        KCLB = #{kclb,jdbcType=VARCHAR},
+      </if>
+      <if test="shkzhci != null and shkzhci != ''" >
+        SHKZHCI = #{shkzhci,jdbcType=VARCHAR},
+      </if>
+      <if test="shkxqi != null and shkxqi != ''" >
+        SHKXQI = #{shkxqi,jdbcType=VARCHAR},
+      </if>
+      <if test="skdate != null and skdate != ''" >
+        SKDATE = to_date(#{skdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="shtime != null and shtime != ''" >
+        SHTIME = #{shtime,jdbcType=VARCHAR},
+      </if>
+      <if test="skjshu != null and skjshu != ''" >
+        SKJSHU = #{skjshu,jdbcType=VARCHAR},
+      </if>
+      <if test="jshnr != null and jshnr != ''" >
+        JSHNR = #{jshnr,jdbcType=VARCHAR},
+      </if>
+      <if test="shkxsh != null and shkxsh != ''" >
+        SHKXSH = #{shkxsh,jdbcType=VARCHAR},
+      </if>
+      <if test="bj != null and bj != ''" >
+        BJ = #{bj,jdbcType=VARCHAR},
+      </if>
+      <if test="sjxs != null and sjxs != ''" >
+        SJXS = #{sjxs,jdbcType=VARCHAR},
+      </if>
+      <if test="opemid != null and opemid != ''" >
+        OPEMID = #{opemid,jdbcType=VARCHAR},
+      </if>
+      <if test="opemname != null and opemname != ''" >
+        OPEMNAME = #{opemname,jdbcType=VARCHAR},
+      </if>
+      <if test="opdate != null and opdate != ''" >
+        OPDATE = to_date(#{opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="glbm != null and glbm != ''" >
+        GLBM = #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="daystatedx != null and daystatedx != ''" >
+        DAYSTATEDX = #{daystatedx,jdbcType=VARCHAR},
+      </if>
+      <if test="weekstatedx != null and weekstatedx != ''" >
+        WEEKSTATEDX = #{weekstatedx,jdbcType=VARCHAR},
+      </if>
+      <if test="dayreplydx != null and dayreplydx != ''" >
+        DAYREPLYDX = #{dayreplydx,jdbcType=VARCHAR},
+      </if>
+      <if test="weekreplydx != null and weekreplydx != ''" >
+        WEEKREPLYDX = #{weekreplydx,jdbcType=VARCHAR},
+      </if>
+      <if test="daystatewx != null and daystatewx != ''" >
+        DAYSTATEWX = #{daystatewx,jdbcType=VARCHAR},
+      </if>
+      <if test="weekstatewx != null and weekstatewx != ''" >
+        WEEKSTATEWX = #{weekstatewx,jdbcType=VARCHAR},
+      </if>
+      <if test="dayreplywx != null and dayreplywx != ''" >
+        DAYREPLYWX = #{dayreplywx,jdbcType=VARCHAR},
+      </if>
+      <if test="weekreplywx != null and weekreplywx != ''" >
+        WEEKREPLYWX = #{weekreplywx,jdbcType=VARCHAR},
+      </if>
+      <if test="beizhu != null and beizhu != ''" >
+        BEIZHU = #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="sfdf != null and sfdf != ''" >
+        SFDF = #{sfdf,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="shkxuexid != null and shkxuexid != ''" >
+        SHKXUEXID = #{shkxuexid,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null and position != ''" >
+        POSITION = #{position,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxCourseArrangeByPrimaryKey" parameterType="com.saint.teaching.bean.JxCourseArrangeEntity" >
+    update JX_COURSEARRANGE
+    set COURSENUM = #{coursenum,jdbcType=VARCHAR},
+      COURSENAME = #{coursename,jdbcType=VARCHAR},
+      ZXTIMENUM = #{zxtimenum,jdbcType=VARCHAR},
+      ZXTIMENAME = #{zxtimename,jdbcType=VARCHAR},
+      RKJSHID = #{rkjshid,jdbcType=VARCHAR},
+      RKJSHNAME = #{rkjshname,jdbcType=VARCHAR},
+      RKJSHZHCH = #{rkjshzhch,jdbcType=VARCHAR},
+      LXDH = #{lxdh,jdbcType=VARCHAR},
+      KCLB = #{kclb,jdbcType=VARCHAR},
+      SHKZHCI = #{shkzhci,jdbcType=VARCHAR},
+      SHKXQI = #{shkxqi,jdbcType=VARCHAR},
+      SKDATE = to_date(#{skdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      SHTIME = #{shtime,jdbcType=VARCHAR},
+      SKJSHU = #{skjshu,jdbcType=VARCHAR},
+      JSHNR = #{jshnr,jdbcType=VARCHAR},
+      SHKXSH = #{shkxsh,jdbcType=VARCHAR},
+      BJ = #{bj,jdbcType=VARCHAR},
+      SJXS = #{sjxs,jdbcType=VARCHAR},
+      OPEMID = #{opemid,jdbcType=VARCHAR},
+      OPEMNAME = #{opemname,jdbcType=VARCHAR},
+      OPDATE = to_date(#{opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      GLBM = #{glbm,jdbcType=VARCHAR},
+      DAYSTATEDX = #{daystatedx,jdbcType=VARCHAR},
+      WEEKSTATEDX = #{weekstatedx,jdbcType=VARCHAR},
+      DAYREPLYDX = #{dayreplydx,jdbcType=VARCHAR},
+      WEEKREPLYDX = #{weekreplydx,jdbcType=VARCHAR},
+      DAYSTATEWX = #{daystatewx,jdbcType=VARCHAR},
+      WEEKSTATEWX = #{weekstatewx,jdbcType=VARCHAR},
+      DAYREPLYWX = #{dayreplywx,jdbcType=VARCHAR},
+      WEEKREPLYWX = #{weekreplywx,jdbcType=VARCHAR},
+      BEIZHU = #{beizhu,jdbcType=VARCHAR},
+      SFDF = #{sfdf,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR},
+      SHKXUEXID = #{shkxuexid,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      POSITION = #{position,jdbcType=VARCHAR}
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <select id="selectListPageJxCourseArrangeCostStatisticsMessage"  resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxCourseArrangeSqlWhere">
+    select
+    DISTINCT RKJSHNAME,RKJSHZHCH,LXDH,REMARK1,REMARK3 
+    from JX_COURSEARRANGE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="queryNextIndexJxCourseArrange" resultType="java.lang.String">
+      select SEQ_JX_COURSEARRANGE.nextVal from dual
+  </select>
+  <select id="selectListJxCourseArrangeAllCostMessage" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxCourseArrangeSqlWhere">
+     select
+     DISTINCT RKJSHNAME,RKJSHZHCH,LXDH   
+     from JX_COURSEARRANGE
+  </select>
+  <select id="selectJxCourseArrangeByRkjshname" resultType="java.lang.Double" parameterType="java.lang.String">
+       SELECT SUM(SHKXSH) FROM JX_COURSEARRANGE WHERE RKJSHNAME= #{rkjshname,jdbcType=VARCHAR}
+  </select>
+  <update id="updateJxCourseArrangeByName" parameterType="com.saint.teaching.bean.JxCourseArrangeEntity">
+      UPDATE JX_COURSEARRANGE
+      <set>
+      <if test="remark1 != null and remark1 != ''" >
+         REMARK1=#{remark1,jdbcType=VARCHAR},
+      </if> 
+      <if test="remark2 != null and remark2 != ''" >
+         REMARK2=#{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+         REMARK3=#{remark3,jdbcType=VARCHAR},
+      </if>
+     </set> 
+      WHERE RKJSHNAME = #{rkjshname,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxGraduateDbempMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxGraduateDbempEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="DBXH" property="dbxh" jdbcType="VARCHAR" />
+    <result column="SCHOOLID" property="schoolid" jdbcType="VARCHAR" />
+    <result column="SCHOOLNAME" property="schoolname" jdbcType="VARCHAR" />
+    <result column="EMPID" property="empid" jdbcType="VARCHAR" />
+    <result column="EMPNAME" property="empname" jdbcType="VARCHAR" />
+    <result column="JXZHICHENGID" property="jxzhichengid" jdbcType="VARCHAR" />
+    <result column="JXZHICHENGNAME" property="jxzhichengname" jdbcType="VARCHAR" />
+    <result column="LLZHICHENGID" property="llzhichengid" jdbcType="VARCHAR" />
+    <result column="LLZHICHENGNAME" property="llzhichengname" jdbcType="VARCHAR" />
+    <result column="DYXUELI" property="dyxueli" jdbcType="VARCHAR" />
+    <result column="ZGXUELI" property="zgxueli" jdbcType="VARCHAR" />
+    <result column="SFSHD" property="sfshd" jdbcType="VARCHAR" />
+    <result column="BAIZHU" property="baizhu" jdbcType="VARCHAR" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+    <result column="CREDITDATE" property="creditdate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, DBXH, SCHOOLID, SCHOOLNAME, EMPID, EMPNAME, JXZHICHENGID, JXZHICHENGNAME, LLZHICHENGID, 
+    LLZHICHENGNAME, DYXUELI, ZGXUELI, SFSHD, BAIZHU, REMARK1, REMARK2, REMARK3, REMARK4, 
+    REMARK5, CREDITDATE
+  </sql>
+  <select id="selectListPageJxGraduateDbempBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxGraduateDbempSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_GRADUATE_DBEMP
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxGraduateDbempBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxGraduateDbempSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_GRADUATE_DBEMP
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxGraduateDbempByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_GRADUATE_DBEMP
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxGraduateDbempByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_GRADUATE_DBEMP
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxGraduateDbempBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxGraduateDbempSqlWhere" >
+    delete from JX_GRADUATE_DBEMP
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxGraduateDbemp" parameterType="com.saint.teaching.bean.JxGraduateDbempEntity" >
+    insert into JX_GRADUATE_DBEMP (XH, DBXH, SCHOOLID, 
+      SCHOOLNAME, EMPID, EMPNAME, 
+      JXZHICHENGID, JXZHICHENGNAME, LLZHICHENGID, 
+      LLZHICHENGNAME, DYXUELI, ZGXUELI, 
+      SFSHD, BAIZHU, REMARK1, 
+      REMARK2, REMARK3, REMARK4, 
+      REMARK5, CREDITDATE
+      )
+    values (#{xh,jdbcType=VARCHAR}, #{dbxh,jdbcType=VARCHAR}, #{schoolid,jdbcType=VARCHAR}, 
+      #{schoolname,jdbcType=VARCHAR}, #{empid,jdbcType=VARCHAR}, #{empname,jdbcType=VARCHAR}, 
+      #{jxzhichengid,jdbcType=VARCHAR}, #{jxzhichengname,jdbcType=VARCHAR}, #{llzhichengid,jdbcType=VARCHAR}, 
+      #{llzhichengname,jdbcType=VARCHAR}, #{dyxueli,jdbcType=VARCHAR}, #{zgxueli,jdbcType=VARCHAR}, 
+      #{sfshd,jdbcType=VARCHAR}, #{baizhu,jdbcType=VARCHAR}, #{remark1,jdbcType=VARCHAR}, 
+      #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, #{remark4,jdbcType=VARCHAR}, 
+      #{remark5,jdbcType=VARCHAR}, to_date(#{creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+      )
+  </insert>
+  <insert id="insertJxGraduateDbempSelective" parameterType="com.saint.teaching.bean.JxGraduateDbempEntity" >
+    insert into JX_GRADUATE_DBEMP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="dbxh != null and dbxh != ''" >
+        DBXH,
+      </if>
+      <if test="schoolid != null and schoolid != ''" >
+        SCHOOLID,
+      </if>
+      <if test="schoolname != null and schoolname != ''" >
+        SCHOOLNAME,
+      </if>
+      <if test="empid != null and empid != ''" >
+        EMPID,
+      </if>
+      <if test="empname != null and empname != ''" >
+        EMPNAME,
+      </if>
+      <if test="jxzhichengid != null and jxzhichengid != ''" >
+        JXZHICHENGID,
+      </if>
+      <if test="jxzhichengname != null and jxzhichengname != ''" >
+        JXZHICHENGNAME,
+      </if>
+      <if test="llzhichengid != null and llzhichengid != ''" >
+        LLZHICHENGID,
+      </if>
+      <if test="llzhichengname != null and llzhichengname != ''" >
+        LLZHICHENGNAME,
+      </if>
+      <if test="dyxueli != null and dyxueli != ''" >
+        DYXUELI,
+      </if>
+      <if test="zgxueli != null and zgxueli != ''" >
+        ZGXUELI,
+      </if>
+      <if test="sfshd != null and sfshd != ''" >
+        SFSHD,
+      </if>
+      <if test="baizhu != null and baizhu != ''" >
+        BAIZHU,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+      <if test="creditdate != null and creditdate != ''" >
+        CREDITDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="dbxh != null and dbxh != ''" >
+        #{dbxh,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolid != null and schoolid != ''" >
+        #{schoolid,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolname != null and schoolname != ''" >
+        #{schoolname,jdbcType=VARCHAR},
+      </if>
+      <if test="empid != null and empid != ''" >
+        #{empid,jdbcType=VARCHAR},
+      </if>
+      <if test="empname != null and empname != ''" >
+        #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="jxzhichengid != null and jxzhichengid != ''" >
+        #{jxzhichengid,jdbcType=VARCHAR},
+      </if>
+      <if test="jxzhichengname != null and jxzhichengname != ''" >
+        #{jxzhichengname,jdbcType=VARCHAR},
+      </if>
+      <if test="llzhichengid != null and llzhichengid != ''" >
+        #{llzhichengid,jdbcType=VARCHAR},
+      </if>
+      <if test="llzhichengname != null and llzhichengname != ''" >
+        #{llzhichengname,jdbcType=VARCHAR},
+      </if>
+      <if test="dyxueli != null and dyxueli != ''" >
+        #{dyxueli,jdbcType=VARCHAR},
+      </if>
+      <if test="zgxueli != null and zgxueli != ''" >
+        #{zgxueli,jdbcType=VARCHAR},
+      </if>
+      <if test="sfshd != null and sfshd != ''" >
+        #{sfshd,jdbcType=VARCHAR},
+      </if>
+      <if test="baizhu != null and baizhu != ''" >
+        #{baizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="creditdate != null and creditdate != ''" >
+        to_date(#{creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxGraduateDbempBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxGraduateDbempSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_GRADUATE_DBEMP
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxGraduateDbempBySqlWhereSelective" parameterType="map" >
+    update JX_GRADUATE_DBEMP
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dbxh != null and record.dbxh != ''" >
+        DBXH = #{record.dbxh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolid != null and record.schoolid != ''" >
+        SCHOOLID = #{record.schoolid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolname != null and record.schoolname != ''" >
+        SCHOOLNAME = #{record.schoolname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empid != null and record.empid != ''" >
+        EMPID = #{record.empid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empname != null and record.empname != ''" >
+        EMPNAME = #{record.empname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jxzhichengid != null and record.jxzhichengid != ''" >
+        JXZHICHENGID = #{record.jxzhichengid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jxzhichengname != null and record.jxzhichengname != ''" >
+        JXZHICHENGNAME = #{record.jxzhichengname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.llzhichengid != null and record.llzhichengid != ''" >
+        LLZHICHENGID = #{record.llzhichengid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.llzhichengname != null and record.llzhichengname != ''" >
+        LLZHICHENGNAME = #{record.llzhichengname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dyxueli != null and record.dyxueli != ''" >
+        DYXUELI = #{record.dyxueli,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zgxueli != null and record.zgxueli != ''" >
+        ZGXUELI = #{record.zgxueli,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfshd != null and record.sfshd != ''" >
+        SFSHD = #{record.sfshd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.baizhu != null and record.baizhu != ''" >
+        BAIZHU = #{record.baizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creditdate != null and record.creditdate != ''" >
+        CREDITDATE = to_date(#{record.creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxGraduateDbempBySqlWhere" parameterType="map" >
+    update JX_GRADUATE_DBEMP
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      DBXH = #{record.dbxh,jdbcType=VARCHAR},
+      SCHOOLID = #{record.schoolid,jdbcType=VARCHAR},
+      SCHOOLNAME = #{record.schoolname,jdbcType=VARCHAR},
+      EMPID = #{record.empid,jdbcType=VARCHAR},
+      EMPNAME = #{record.empname,jdbcType=VARCHAR},
+      JXZHICHENGID = #{record.jxzhichengid,jdbcType=VARCHAR},
+      JXZHICHENGNAME = #{record.jxzhichengname,jdbcType=VARCHAR},
+      LLZHICHENGID = #{record.llzhichengid,jdbcType=VARCHAR},
+      LLZHICHENGNAME = #{record.llzhichengname,jdbcType=VARCHAR},
+      DYXUELI = #{record.dyxueli,jdbcType=VARCHAR},
+      ZGXUELI = #{record.zgxueli,jdbcType=VARCHAR},
+      SFSHD = #{record.sfshd,jdbcType=VARCHAR},
+      BAIZHU = #{record.baizhu,jdbcType=VARCHAR},
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      CREDITDATE = to_date(#{record.creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxGraduateDbempByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxGraduateDbempEntity" >
+    update JX_GRADUATE_DBEMP
+    <set >
+      <if test="dbxh != null and dbxh != ''" >
+        DBXH = #{dbxh,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolid != null and schoolid != ''" >
+        SCHOOLID = #{schoolid,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolname != null and schoolname != ''" >
+        SCHOOLNAME = #{schoolname,jdbcType=VARCHAR},
+      </if>
+      <if test="empid != null and empid != ''" >
+        EMPID = #{empid,jdbcType=VARCHAR},
+      </if>
+      <if test="empname != null and empname != ''" >
+        EMPNAME = #{empname,jdbcType=VARCHAR},
+      </if>
+      <if test="jxzhichengid != null and jxzhichengid != ''" >
+        JXZHICHENGID = #{jxzhichengid,jdbcType=VARCHAR},
+      </if>
+      <if test="jxzhichengname != null and jxzhichengname != ''" >
+        JXZHICHENGNAME = #{jxzhichengname,jdbcType=VARCHAR},
+      </if>
+      <if test="llzhichengid != null and llzhichengid != ''" >
+        LLZHICHENGID = #{llzhichengid,jdbcType=VARCHAR},
+      </if>
+      <if test="llzhichengname != null and llzhichengname != ''" >
+        LLZHICHENGNAME = #{llzhichengname,jdbcType=VARCHAR},
+      </if>
+      <if test="dyxueli != null and dyxueli != ''" >
+        DYXUELI = #{dyxueli,jdbcType=VARCHAR},
+      </if>
+      <if test="zgxueli != null and zgxueli != ''" >
+        ZGXUELI = #{zgxueli,jdbcType=VARCHAR},
+      </if>
+      <if test="sfshd != null and sfshd != ''" >
+        SFSHD = #{sfshd,jdbcType=VARCHAR},
+      </if>
+      <if test="baizhu != null and baizhu != ''" >
+        BAIZHU = #{baizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="creditdate != null and creditdate != ''" >
+        CREDITDATE = to_date(#{creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxGraduateDbempByPrimaryKey" parameterType="com.saint.teaching.bean.JxGraduateDbempEntity" >
+    update JX_GRADUATE_DBEMP
+    set DBXH = #{dbxh,jdbcType=VARCHAR},
+      SCHOOLID = #{schoolid,jdbcType=VARCHAR},
+      SCHOOLNAME = #{schoolname,jdbcType=VARCHAR},
+      EMPID = #{empid,jdbcType=VARCHAR},
+      EMPNAME = #{empname,jdbcType=VARCHAR},
+      JXZHICHENGID = #{jxzhichengid,jdbcType=VARCHAR},
+      JXZHICHENGNAME = #{jxzhichengname,jdbcType=VARCHAR},
+      LLZHICHENGID = #{llzhichengid,jdbcType=VARCHAR},
+      LLZHICHENGNAME = #{llzhichengname,jdbcType=VARCHAR},
+      DYXUELI = #{dyxueli,jdbcType=VARCHAR},
+      ZGXUELI = #{zgxueli,jdbcType=VARCHAR},
+      SFSHD = #{sfshd,jdbcType=VARCHAR},
+      BAIZHU = #{baizhu,jdbcType=VARCHAR},
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR},
+      CREDITDATE = to_date(#{creditdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.wechat.WechatNewsMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.wechat.manager.bean.WechatNewsEntity" >
+    <id column="YWXH" property="ywxh" jdbcType="VARCHAR" />
+    <result column="YWLX" property="ywlx" jdbcType="VARCHAR" />
+    <result column="FBBT" property="fbbt" jdbcType="VARCHAR" />
+    <result column="FBNR" property="fbnr" jdbcType="VARCHAR" />
+    <result column="FBR" property="fbr" jdbcType="VARCHAR" />
+    <result column="FBSJ" property="fbsj" jdbcType="DATE" />
+    <result column="FBQX" property="fbqx" jdbcType="VARCHAR" />
+    <result column="FBSH" property="fbsh" jdbcType="VARCHAR" />
+    <result column="FBGZH" property="fbgzh" jdbcType="VARCHAR" />
+    <result column="FBGJZ" property="fbgjz" jdbcType="VARCHAR" />
+    <result column="FBTOP" property="fbtop" jdbcType="VARCHAR" />
+    <result column="YWBM" property="ywbm" jdbcType="VARCHAR" />
+    <result column="YWLB" property="ywlb" jdbcType="VARCHAR" />
+    <result column="SJ" property="sj" jdbcType="VARCHAR" />
+    <result column="BZ" property="bz" jdbcType="VARCHAR" />
+    <result column="GXSJ" property="gxsj" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    YWXH, YWLX, FBBT, FBNR, FBR, FBSJ, FBQX, FBSH, FBGZH, FBGJZ, FBTOP, YWBM, YWLB, SJ, 
+    BZ, GXSJ
+  </sql>
+  <select id="selectListPageWechatNewsBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.WechatNewsSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from WECHAT_NEWS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListWechatNewsBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.WechatNewsSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from WECHAT_NEWS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectWechatNewsByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from WECHAT_NEWS
+    where YWXH = #{ywxh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteWechatNewsByPrimaryKey" parameterType="java.lang.String" >
+    delete from WECHAT_NEWS
+    where YWXH = #{ywxh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteWechatNewsBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.WechatNewsSqlWhere" >
+    delete from WECHAT_NEWS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertWechatNews" parameterType="com.saint.wechat.manager.bean.WechatNewsEntity" >
+    insert into WECHAT_NEWS (YWXH, YWLX, FBBT, 
+      FBNR, FBR, FBSJ, 
+      FBQX, FBSH, FBGZH, 
+      FBGJZ, FBTOP, YWBM, 
+      YWLB, SJ, BZ, GXSJ
+      )
+    values (#{ywxh,jdbcType=VARCHAR}, #{ywlx,jdbcType=VARCHAR}, #{fbbt,jdbcType=VARCHAR}, 
+      #{fbnr,jdbcType=VARCHAR}, #{fbr,jdbcType=VARCHAR}, to_date(#{fbsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{fbqx,jdbcType=VARCHAR}, #{fbsh,jdbcType=VARCHAR}, #{fbgzh,jdbcType=VARCHAR}, 
+      #{fbgjz,jdbcType=VARCHAR}, #{fbtop,jdbcType=VARCHAR}, #{ywbm,jdbcType=VARCHAR}, 
+      #{ywlb,jdbcType=VARCHAR}, #{sj,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+      )
+  </insert>
+  <insert id="insertWechatNewsSelective" parameterType="com.saint.wechat.manager.bean.WechatNewsEntity" >
+    insert into WECHAT_NEWS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ywxh != null and ywxh != ''" >
+        YWXH,
+      </if>
+      <if test="ywlx != null and ywlx != ''" >
+        YWLX,
+      </if>
+      <if test="fbbt != null and fbbt != ''" >
+        FBBT,
+      </if>
+      <if test="fbnr != null and fbnr != ''" >
+        FBNR,
+      </if>
+      <if test="fbr != null and fbr != ''" >
+        FBR,
+      </if>
+      <if test="fbsj != null and fbsj != ''" >
+        FBSJ,
+      </if>
+      <if test="fbqx != null and fbqx != ''" >
+        FBQX,
+      </if>
+      <if test="fbsh != null and fbsh != ''" >
+        FBSH,
+      </if>
+      <if test="fbgzh != null and fbgzh != ''" >
+        FBGZH,
+      </if>
+      <if test="fbgjz != null and fbgjz != ''" >
+        FBGJZ,
+      </if>
+      <if test="fbtop != null and fbtop != ''" >
+        FBTOP,
+      </if>
+      <if test="ywbm != null and ywbm != ''" >
+        YWBM,
+      </if>
+      <if test="ywlb != null and ywlb != ''" >
+        YWLB,
+      </if>
+      <if test="sj != null and sj != ''" >
+        SJ,
+      </if>
+      <if test="bz != null and bz != ''" >
+        BZ,
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ywxh != null and ywxh != ''" >
+        #{ywxh,jdbcType=VARCHAR},
+      </if>
+      <if test="ywlx != null and ywlx != ''" >
+        #{ywlx,jdbcType=VARCHAR},
+      </if>
+      <if test="fbbt != null and fbbt != ''" >
+        #{fbbt,jdbcType=VARCHAR},
+      </if>
+      <if test="fbnr != null and fbnr != ''" >
+        #{fbnr,jdbcType=VARCHAR},
+      </if>
+      <if test="fbr != null and fbr != ''" >
+        #{fbr,jdbcType=VARCHAR},
+      </if>
+      <if test="fbsj != null and fbsj != ''" >
+        to_date(#{fbsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="fbqx != null and fbqx != ''" >
+        #{fbqx,jdbcType=VARCHAR},
+      </if>
+      <if test="fbsh != null and fbsh != ''" >
+        #{fbsh,jdbcType=VARCHAR},
+      </if>
+      <if test="fbgzh != null and fbgzh != ''" >
+        #{fbgzh,jdbcType=VARCHAR},
+      </if>
+      <if test="fbgjz != null and fbgjz != ''" >
+        #{fbgjz,jdbcType=VARCHAR},
+      </if>
+      <if test="fbtop != null and fbtop != ''" >
+        #{fbtop,jdbcType=VARCHAR},
+      </if>
+      <if test="ywbm != null and ywbm != ''" >
+        #{ywbm,jdbcType=VARCHAR},
+      </if>
+      <if test="ywlb != null and ywlb != ''" >
+        #{ywlb,jdbcType=VARCHAR},
+      </if>
+      <if test="sj != null and sj != ''" >
+        #{sj,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null and bz != ''" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </trim>
+  </insert>
+  <select id="countWechatNewsBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.WechatNewsSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from WECHAT_NEWS
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateWechatNewsBySqlWhereSelective" parameterType="map" >
+    update WECHAT_NEWS
+    <set >
+      <if test="record.ywxh != null and record.ywxh != ''" >
+        YWXH = #{record.ywxh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ywlx != null and record.ywlx != ''" >
+        YWLX = #{record.ywlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fbbt != null and record.fbbt != ''" >
+        FBBT = #{record.fbbt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fbnr != null and record.fbnr != ''" >
+        FBNR = #{record.fbnr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fbr != null and record.fbr != ''" >
+        FBR = #{record.fbr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fbsj != null and record.fbsj != ''" >
+        FBSJ = to_date(#{record.fbsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.fbqx != null and record.fbqx != ''" >
+        FBQX = #{record.fbqx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fbsh != null and record.fbsh != ''" >
+        FBSH = #{record.fbsh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fbgzh != null and record.fbgzh != ''" >
+        FBGZH = #{record.fbgzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fbgjz != null and record.fbgjz != ''" >
+        FBGJZ = #{record.fbgjz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fbtop != null and record.fbtop != ''" >
+        FBTOP = #{record.fbtop,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ywbm != null and record.ywbm != ''" >
+        YWBM = #{record.ywbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ywlb != null and record.ywlb != ''" >
+        YWLB = #{record.ywlb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sj != null and record.sj != ''" >
+        SJ = #{record.sj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bz != null and record.bz != ''" >
+        BZ = #{record.bz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxsj != null and record.gxsj != ''" >
+        GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateWechatNewsBySqlWhere" parameterType="map" >
+    update WECHAT_NEWS
+    set YWXH = #{record.ywxh,jdbcType=VARCHAR},
+      YWLX = #{record.ywlx,jdbcType=VARCHAR},
+      FBBT = #{record.fbbt,jdbcType=VARCHAR},
+      FBNR = #{record.fbnr,jdbcType=VARCHAR},
+      FBR = #{record.fbr,jdbcType=VARCHAR},
+      FBSJ = to_date(#{record.fbsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      FBQX = #{record.fbqx,jdbcType=VARCHAR},
+      FBSH = #{record.fbsh,jdbcType=VARCHAR},
+      FBGZH = #{record.fbgzh,jdbcType=VARCHAR},
+      FBGJZ = #{record.fbgjz,jdbcType=VARCHAR},
+      FBTOP = #{record.fbtop,jdbcType=VARCHAR},
+      YWBM = #{record.ywbm,jdbcType=VARCHAR},
+      YWLB = #{record.ywlb,jdbcType=VARCHAR},
+      SJ = #{record.sj,jdbcType=VARCHAR},
+      BZ = #{record.bz,jdbcType=VARCHAR},
+      GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateWechatNewsByPrimaryKeySelective" parameterType="com.saint.wechat.manager.bean.WechatNewsEntity" >
+    update WECHAT_NEWS
+    <set >
+      <if test="ywlx != null and ywlx != ''" >
+        YWLX = #{ywlx,jdbcType=VARCHAR},
+      </if>
+      <if test="fbbt != null and fbbt != ''" >
+        FBBT = #{fbbt,jdbcType=VARCHAR},
+      </if>
+      <if test="fbnr != null and fbnr != ''" >
+        FBNR = #{fbnr,jdbcType=VARCHAR},
+      </if>
+      <if test="fbr != null and fbr != ''" >
+        FBR = #{fbr,jdbcType=VARCHAR},
+      </if>
+      <if test="fbsj != null and fbsj != ''" >
+        FBSJ = to_date(#{fbsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="fbqx != null and fbqx != ''" >
+        FBQX = #{fbqx,jdbcType=VARCHAR},
+      </if>
+      <if test="fbsh != null and fbsh != ''" >
+        FBSH = #{fbsh,jdbcType=VARCHAR},
+      </if>
+      <if test="fbgzh != null and fbgzh != ''" >
+        FBGZH = #{fbgzh,jdbcType=VARCHAR},
+      </if>
+      <if test="fbgjz != null and fbgjz != ''" >
+        FBGJZ = #{fbgjz,jdbcType=VARCHAR},
+      </if>
+      <if test="fbtop != null and fbtop != ''" >
+        FBTOP = #{fbtop,jdbcType=VARCHAR},
+      </if>
+      <if test="ywbm != null and ywbm != ''" >
+        YWBM = #{ywbm,jdbcType=VARCHAR},
+      </if>
+      <if test="ywlb != null and ywlb != ''" >
+        YWLB = #{ywlb,jdbcType=VARCHAR},
+      </if>
+      <if test="sj != null and sj != ''" >
+        SJ = #{sj,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null and bz != ''" >
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    where YWXH = #{ywxh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateWechatNewsByPrimaryKey" parameterType="com.saint.wechat.manager.bean.WechatNewsEntity" >
+    update WECHAT_NEWS
+    set YWLX = #{ywlx,jdbcType=VARCHAR},
+      FBBT = #{fbbt,jdbcType=VARCHAR},
+      FBNR = #{fbnr,jdbcType=VARCHAR},
+      FBR = #{fbr,jdbcType=VARCHAR},
+      FBSJ = to_date(#{fbsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      FBQX = #{fbqx,jdbcType=VARCHAR},
+      FBSH = #{fbsh,jdbcType=VARCHAR},
+      FBGZH = #{fbgzh,jdbcType=VARCHAR},
+      FBGJZ = #{fbgjz,jdbcType=VARCHAR},
+      FBTOP = #{fbtop,jdbcType=VARCHAR},
+      YWBM = #{ywbm,jdbcType=VARCHAR},
+      YWLB = #{ywlb,jdbcType=VARCHAR},
+      SJ = #{sj,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where YWXH = #{ywxh,jdbcType=VARCHAR}
+  </update>
+</mapper>

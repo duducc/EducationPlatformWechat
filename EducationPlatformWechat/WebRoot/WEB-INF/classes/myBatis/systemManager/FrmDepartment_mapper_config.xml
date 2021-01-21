@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.systemManager.FrmDepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.systemManager.bean.FrmDepartmentEntity" >
+    <id column="GLBM" property="glbm" jdbcType="VARCHAR" />
+    <result column="BMMC" property="bmmc" jdbcType="VARCHAR" />
+    <result column="BMJC" property="bmjc" jdbcType="VARCHAR" />
+    <result column="YZMC" property="yzmc" jdbcType="VARCHAR" />
+    <result column="BMJB" property="bmjb" jdbcType="CHAR" />
+    <result column="KCLYW" property="kclyw" jdbcType="VARCHAR" />
+    <result column="YWLB" property="ywlb" jdbcType="VARCHAR" />
+    <result column="FZR" property="fzr" jdbcType="VARCHAR" />
+    <result column="LXR" property="lxr" jdbcType="VARCHAR" />
+    <result column="LXDH" property="lxdh" jdbcType="VARCHAR" />
+    <result column="CZHM" property="czhm" jdbcType="VARCHAR" />
+    <result column="LXDZ" property="lxdz" jdbcType="VARCHAR" />
+    <result column="SJBM" property="sjbm" jdbcType="VARCHAR" />
+    <result column="BZ" property="bz" jdbcType="VARCHAR" />
+    <result column="JLZT" property="jlzt" jdbcType="CHAR" />
+    <result column="GXSJ" property="gxsj" jdbcType="DATE" />
+    <result column="TYPE" property="type" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    GLBM, BMMC, BMJC, YZMC, BMJB, KCLYW, YWLB, FZR, LXR, LXDH, CZHM, LXDZ, SJBM, BZ, 
+    JLZT, GXSJ, TYPE
+  </sql>
+  <select id="selectListPageFrmDepartmentBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.systemManager.sqlWhere.FrmDepartmentSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from FRM_DEPARTMENT
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListFrmDepartmentBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.systemManager.sqlWhere.FrmDepartmentSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from FRM_DEPARTMENT
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectFrmDepartmentByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from FRM_DEPARTMENT
+    where GLBM = #{glbm,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteFrmDepartmentByPrimaryKey" parameterType="java.lang.String" >
+    delete from FRM_DEPARTMENT
+    where GLBM = #{glbm,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteFrmDepartmentBySqlWhere" parameterType="com.saint.systemManager.sqlWhere.FrmDepartmentSqlWhere" >
+    delete from FRM_DEPARTMENT
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertFrmDepartment" parameterType="com.saint.systemManager.bean.FrmDepartmentEntity" >
+    insert into FRM_DEPARTMENT (GLBM, BMMC, BMJC, 
+      YZMC, BMJB, KCLYW, YWLB, 
+      FZR, LXR, LXDH, CZHM, 
+      LXDZ, SJBM, BZ, JLZT, 
+      GXSJ, TYPE)
+    values (#{glbm,jdbcType=VARCHAR}, #{bmmc,jdbcType=VARCHAR}, #{bmjc,jdbcType=VARCHAR}, 
+      #{yzmc,jdbcType=VARCHAR}, #{bmjb,jdbcType=CHAR}, #{kclyw,jdbcType=VARCHAR}, #{ywlb,jdbcType=VARCHAR}, 
+      #{fzr,jdbcType=VARCHAR}, #{lxr,jdbcType=VARCHAR}, #{lxdh,jdbcType=VARCHAR}, #{czhm,jdbcType=VARCHAR}, 
+      #{lxdz,jdbcType=VARCHAR}, #{sjbm,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{jlzt,jdbcType=CHAR}, 
+      to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{type,jdbcType=CHAR})
+  </insert>
+  <insert id="insertFrmDepartmentSelective" parameterType="com.saint.systemManager.bean.FrmDepartmentEntity" >
+    insert into FRM_DEPARTMENT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="glbm != null and glbm != ''" >
+        GLBM,
+      </if>
+      <if test="bmmc != null and bmmc != ''" >
+        BMMC,
+      </if>
+      <if test="bmjc != null and bmjc != ''" >
+        BMJC,
+      </if>
+      <if test="yzmc != null and yzmc != ''" >
+        YZMC,
+      </if>
+      <if test="bmjb != null and bmjb != ''" >
+        BMJB,
+      </if>
+      <if test="kclyw != null and kclyw != ''" >
+        KCLYW,
+      </if>
+      <if test="ywlb != null and ywlb != ''" >
+        YWLB,
+      </if>
+      <if test="fzr != null and fzr != ''" >
+        FZR,
+      </if>
+      <if test="lxr != null and lxr != ''" >
+        LXR,
+      </if>
+      <if test="lxdh != null and lxdh != ''" >
+        LXDH,
+      </if>
+      <if test="czhm != null and czhm != ''" >
+        CZHM,
+      </if>
+      <if test="lxdz != null and lxdz != ''" >
+        LXDZ,
+      </if>
+      <if test="sjbm != null and sjbm != ''" >
+        SJBM,
+      </if>
+      <if test="bz != null and bz != ''" >
+        BZ,
+      </if>
+      <if test="jlzt != null and jlzt != ''" >
+        JLZT,
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ,
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="glbm != null and glbm != ''" >
+        #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="bmmc != null and bmmc != ''" >
+        #{bmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="bmjc != null and bmjc != ''" >
+        #{bmjc,jdbcType=VARCHAR},
+      </if>
+      <if test="yzmc != null and yzmc != ''" >
+        #{yzmc,jdbcType=VARCHAR},
+      </if>
+      <if test="bmjb != null and bmjb != ''" >
+        #{bmjb,jdbcType=CHAR},
+      </if>
+      <if test="kclyw != null and kclyw != ''" >
+        #{kclyw,jdbcType=VARCHAR},
+      </if>
+      <if test="ywlb != null and ywlb != ''" >
+        #{ywlb,jdbcType=VARCHAR},
+      </if>
+      <if test="fzr != null and fzr != ''" >
+        #{fzr,jdbcType=VARCHAR},
+      </if>
+      <if test="lxr != null and lxr != ''" >
+        #{lxr,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null and lxdh != ''" >
+        #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="czhm != null and czhm != ''" >
+        #{czhm,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdz != null and lxdz != ''" >
+        #{lxdz,jdbcType=VARCHAR},
+      </if>
+      <if test="sjbm != null and sjbm != ''" >
+        #{sjbm,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null and bz != ''" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="jlzt != null and jlzt != ''" >
+        #{jlzt,jdbcType=CHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="type != null and type != ''" >
+        #{type,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countFrmDepartmentBySqlWhere" parameterType="com.saint.systemManager.sqlWhere.FrmDepartmentSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from FRM_DEPARTMENT
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateFrmDepartmentBySqlWhereSelective" parameterType="map" >
+    update FRM_DEPARTMENT
+    <set >
+      <if test="record.glbm != null and record.glbm != ''" >
+        GLBM = #{record.glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bmmc != null and record.bmmc != ''" >
+        BMMC = #{record.bmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bmjc != null and record.bmjc != ''" >
+        BMJC = #{record.bmjc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yzmc != null and record.yzmc != ''" >
+        YZMC = #{record.yzmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bmjb != null and record.bmjb != ''" >
+        BMJB = #{record.bmjb,jdbcType=CHAR},
+      </if>
+      <if test="record.kclyw != null and record.kclyw != ''" >
+        KCLYW = #{record.kclyw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ywlb != null and record.ywlb != ''" >
+        YWLB = #{record.ywlb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fzr != null and record.fzr != ''" >
+        FZR = #{record.fzr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lxr != null and record.lxr != ''" >
+        LXR = #{record.lxr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lxdh != null and record.lxdh != ''" >
+        LXDH = #{record.lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.czhm != null and record.czhm != ''" >
+        CZHM = #{record.czhm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lxdz != null and record.lxdz != ''" >
+        LXDZ = #{record.lxdz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sjbm != null and record.sjbm != ''" >
+        SJBM = #{record.sjbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bz != null and record.bz != ''" >
+        BZ = #{record.bz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jlzt != null and record.jlzt != ''" >
+        JLZT = #{record.jlzt,jdbcType=CHAR},
+      </if>
+      <if test="record.gxsj != null and record.gxsj != ''" >
+        GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.type != null and record.type != ''" >
+        TYPE = #{record.type,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateFrmDepartmentBySqlWhere" parameterType="map" >
+    update FRM_DEPARTMENT
+    set GLBM = #{record.glbm,jdbcType=VARCHAR},
+      BMMC = #{record.bmmc,jdbcType=VARCHAR},
+      BMJC = #{record.bmjc,jdbcType=VARCHAR},
+      YZMC = #{record.yzmc,jdbcType=VARCHAR},
+      BMJB = #{record.bmjb,jdbcType=CHAR},
+      KCLYW = #{record.kclyw,jdbcType=VARCHAR},
+      YWLB = #{record.ywlb,jdbcType=VARCHAR},
+      FZR = #{record.fzr,jdbcType=VARCHAR},
+      LXR = #{record.lxr,jdbcType=VARCHAR},
+      LXDH = #{record.lxdh,jdbcType=VARCHAR},
+      CZHM = #{record.czhm,jdbcType=VARCHAR},
+      LXDZ = #{record.lxdz,jdbcType=VARCHAR},
+      SJBM = #{record.sjbm,jdbcType=VARCHAR},
+      BZ = #{record.bz,jdbcType=VARCHAR},
+      JLZT = #{record.jlzt,jdbcType=CHAR},
+      GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      TYPE = #{record.type,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateFrmDepartmentByPrimaryKeySelective" parameterType="com.saint.systemManager.bean.FrmDepartmentEntity" >
+    update FRM_DEPARTMENT
+    <set >
+      <if test="bmmc != null and bmmc != ''" >
+        BMMC = #{bmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="bmjc != null and bmjc != ''" >
+        BMJC = #{bmjc,jdbcType=VARCHAR},
+      </if>
+      <if test="yzmc != null and yzmc != ''" >
+        YZMC = #{yzmc,jdbcType=VARCHAR},
+      </if>
+      <if test="bmjb != null and bmjb != ''" >
+        BMJB = #{bmjb,jdbcType=CHAR},
+      </if>
+      <if test="kclyw != null and kclyw != ''" >
+        KCLYW = #{kclyw,jdbcType=VARCHAR},
+      </if>
+      <if test="ywlb != null and ywlb != ''" >
+        YWLB = #{ywlb,jdbcType=VARCHAR},
+      </if>
+      <if test="fzr != null and fzr != ''" >
+        FZR = #{fzr,jdbcType=VARCHAR},
+      </if>
+      <if test="lxr != null and lxr != ''" >
+        LXR = #{lxr,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null and lxdh != ''" >
+        LXDH = #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="czhm != null and czhm != ''" >
+        CZHM = #{czhm,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdz != null and lxdz != ''" >
+        LXDZ = #{lxdz,jdbcType=VARCHAR},
+      </if>
+      <if test="sjbm != null and sjbm != ''" >
+        SJBM = #{sjbm,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null and bz != ''" >
+        BZ = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="jlzt != null and jlzt != ''" >
+        JLZT = #{jlzt,jdbcType=CHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="type != null and type != ''" >
+        TYPE = #{type,jdbcType=CHAR},
+      </if>
+    </set>
+    where GLBM = #{glbm,jdbcType=VARCHAR}
+  </update>
+  <update id="updateFrmDepartmentByPrimaryKey" parameterType="com.saint.systemManager.bean.FrmDepartmentEntity" >
+    update FRM_DEPARTMENT
+    set BMMC = #{bmmc,jdbcType=VARCHAR},
+      BMJC = #{bmjc,jdbcType=VARCHAR},
+      YZMC = #{yzmc,jdbcType=VARCHAR},
+      BMJB = #{bmjb,jdbcType=CHAR},
+      KCLYW = #{kclyw,jdbcType=VARCHAR},
+      YWLB = #{ywlb,jdbcType=VARCHAR},
+      FZR = #{fzr,jdbcType=VARCHAR},
+      LXR = #{lxr,jdbcType=VARCHAR},
+      LXDH = #{lxdh,jdbcType=VARCHAR},
+      CZHM = #{czhm,jdbcType=VARCHAR},
+      LXDZ = #{lxdz,jdbcType=VARCHAR},
+      SJBM = #{sjbm,jdbcType=VARCHAR},
+      BZ = #{bz,jdbcType=VARCHAR},
+      JLZT = #{jlzt,jdbcType=CHAR},
+      GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      TYPE = #{type,jdbcType=CHAR}
+    where GLBM = #{glbm,jdbcType=VARCHAR}
+  </update>
+</mapper>

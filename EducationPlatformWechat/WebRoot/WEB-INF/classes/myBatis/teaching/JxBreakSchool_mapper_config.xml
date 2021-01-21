@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxBreakSchoolMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxBreakSchoolEntity" >
+    <id column="XH" property="xh" jdbcType="VARCHAR" />
+    <result column="STUID" property="stuid" jdbcType="VARCHAR" />
+    <result column="STUNAME" property="stuname" jdbcType="VARCHAR" />
+    <result column="DEPTID" property="deptid" jdbcType="VARCHAR" />
+    <result column="DEPTNAME" property="deptname" jdbcType="VARCHAR" />
+    <result column="BREAKTYPE" property="breaktype" jdbcType="VARCHAR" />
+    <result column="STUSCHOOLID" property="stuschoolid" jdbcType="VARCHAR" />
+    <result column="STUSCHOOLNAME" property="stuschoolname" jdbcType="VARCHAR" />
+    <result column="EDUCATION" property="education" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="DEPDISPOSEMOD" property="depdisposemod" jdbcType="VARCHAR" />
+    <result column="DEPDISPOSERESULT" property="depdisposeresult" jdbcType="VARCHAR" />
+    <result column="DEPDISPOSEYJ" property="depdisposeyj" jdbcType="VARCHAR" />
+    <result column="DEPDISPOSEDATE" property="depdisposedate" jdbcType="DATE" />
+    <result column="JXBDISPOSEMOD" property="jxbdisposemod" jdbcType="VARCHAR" />
+    <result column="JXBDISPOSERESULT" property="jxbdisposeresult" jdbcType="VARCHAR" />
+    <result column="JXBDISPOSEYJ" property="jxbdisposeyj" jdbcType="VARCHAR" />
+    <result column="JXBDISPOSEDATE" property="jxbdisposedate" jdbcType="DATE" />
+    <result column="XXBDISPOSEMOD" property="xxbdisposemod" jdbcType="VARCHAR" />
+    <result column="XXBDISPOSERESULT" property="xxbdisposeresult" jdbcType="VARCHAR" />
+    <result column="XXBDISPOSEYJ" property="xxbdisposeyj" jdbcType="VARCHAR" />
+    <result column="XXBDISPOSEDATE" property="xxbdisposedate" jdbcType="DATE" />
+    <result column="OPEMID" property="opemid" jdbcType="VARCHAR" />
+    <result column="OPEMNAME" property="opemname" jdbcType="VARCHAR" />
+    <result column="OPDATE" property="opdate" jdbcType="DATE" />
+    <result column="REMARK1" property="remark1" jdbcType="VARCHAR" />
+    <result column="REMARK2" property="remark2" jdbcType="VARCHAR" />
+    <result column="REMARK3" property="remark3" jdbcType="VARCHAR" />
+    <result column="REMARK4" property="remark4" jdbcType="VARCHAR" />
+    <result column="REMARK5" property="remark5" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.saint.teaching.bean.JxBreakSchoolEntity" extends="BaseResultMap" >
+    <result column="CONTENT" property="content" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XH, STUID, STUNAME, DEPTID, DEPTNAME, BREAKTYPE, STUSCHOOLID, STUSCHOOLNAME, EDUCATION, 
+    STATE, DEPDISPOSEMOD, DEPDISPOSERESULT, DEPDISPOSEYJ, DEPDISPOSEDATE, JXBDISPOSEMOD, 
+    JXBDISPOSERESULT, JXBDISPOSEYJ, JXBDISPOSEDATE, XXBDISPOSEMOD, XXBDISPOSERESULT, 
+    XXBDISPOSEYJ, XXBDISPOSEDATE, OPEMID, OPEMNAME, OPDATE, REMARK1, REMARK2, REMARK3, 
+    REMARK4, REMARK5
+  </sql>
+  <sql id="Blob_Column_List" >
+    CONTENT
+  </sql>
+  <select id="selectJxBreakSchoolBySqlWhereWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.saint.teaching.sqlWhere.JxBreakSchoolSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from JX_BREAKSCHOOL
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListPageJxBreakSchoolBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxBreakSchoolSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_BREAKSCHOOL
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxBreakSchoolBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxBreakSchoolSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_BREAKSCHOOL
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxBreakSchoolByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from JX_BREAKSCHOOL
+    where XH = #{xh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxBreakSchoolByPrimaryKey" parameterType="java.lang.String" >
+    delete from JX_BREAKSCHOOL
+    where XH = #{xh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxBreakSchoolBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxBreakSchoolSqlWhere" >
+    delete from JX_BREAKSCHOOL
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxBreakSchool" parameterType="com.saint.teaching.bean.JxBreakSchoolEntity" >
+    insert into JX_BREAKSCHOOL (XH, STUID, STUNAME, 
+      DEPTID, DEPTNAME, BREAKTYPE, 
+      STUSCHOOLID, STUSCHOOLNAME, EDUCATION, 
+      STATE, DEPDISPOSEMOD, DEPDISPOSERESULT, 
+      DEPDISPOSEYJ, DEPDISPOSEDATE, 
+      JXBDISPOSEMOD, JXBDISPOSERESULT, JXBDISPOSEYJ, 
+      JXBDISPOSEDATE, XXBDISPOSEMOD, 
+      XXBDISPOSERESULT, XXBDISPOSEYJ, XXBDISPOSEDATE, 
+      OPEMID, OPEMNAME, OPDATE, 
+      REMARK1, REMARK2, REMARK3, 
+      REMARK4, REMARK5, CONTENT
+      )
+    values (#{xh,jdbcType=VARCHAR}, #{stuid,jdbcType=VARCHAR}, #{stuname,jdbcType=VARCHAR}, 
+      #{deptid,jdbcType=VARCHAR}, #{deptname,jdbcType=VARCHAR}, #{breaktype,jdbcType=VARCHAR}, 
+      #{stuschoolid,jdbcType=VARCHAR}, #{stuschoolname,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{depdisposemod,jdbcType=VARCHAR}, #{depdisposeresult,jdbcType=VARCHAR}, 
+      #{depdisposeyj,jdbcType=VARCHAR}, to_date(#{depdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{jxbdisposemod,jdbcType=VARCHAR}, #{jxbdisposeresult,jdbcType=VARCHAR}, #{jxbdisposeyj,jdbcType=VARCHAR}, 
+      to_date(#{jxbdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{xxbdisposemod,jdbcType=VARCHAR}, 
+      #{xxbdisposeresult,jdbcType=VARCHAR}, #{xxbdisposeyj,jdbcType=VARCHAR}, to_date(#{xxbdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{opemid,jdbcType=VARCHAR}, #{opemname,jdbcType=VARCHAR}, to_date(#{opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{remark3,jdbcType=VARCHAR}, 
+      #{remark4,jdbcType=VARCHAR}, #{remark5,jdbcType=VARCHAR}, #{content,jdbcType=CLOB}
+      )
+  </insert>
+  <insert id="insertJxBreakSchoolSelective" parameterType="com.saint.teaching.bean.JxBreakSchoolEntity" >
+    insert into JX_BREAKSCHOOL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        XH,
+      </if>
+      <if test="stuid != null and stuid != ''" >
+        STUID,
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        STUNAME,
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        DEPTID,
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        DEPTNAME,
+      </if>
+      <if test="breaktype != null and breaktype != ''" >
+        BREAKTYPE,
+      </if>
+      <if test="stuschoolid != null and stuschoolid != ''" >
+        STUSCHOOLID,
+      </if>
+      <if test="stuschoolname != null and stuschoolname != ''" >
+        STUSCHOOLNAME,
+      </if>
+      <if test="education != null and education != ''" >
+        EDUCATION,
+      </if>
+      <if test="state != null and state != ''" >
+        STATE,
+      </if>
+      <if test="depdisposemod != null and depdisposemod != ''" >
+        DEPDISPOSEMOD,
+      </if>
+      <if test="depdisposeresult != null and depdisposeresult != ''" >
+        DEPDISPOSERESULT,
+      </if>
+      <if test="depdisposeyj != null and depdisposeyj != ''" >
+        DEPDISPOSEYJ,
+      </if>
+      <if test="depdisposedate != null and depdisposedate != ''" >
+        DEPDISPOSEDATE,
+      </if>
+      <if test="jxbdisposemod != null and jxbdisposemod != ''" >
+        JXBDISPOSEMOD,
+      </if>
+      <if test="jxbdisposeresult != null and jxbdisposeresult != ''" >
+        JXBDISPOSERESULT,
+      </if>
+      <if test="jxbdisposeyj != null and jxbdisposeyj != ''" >
+        JXBDISPOSEYJ,
+      </if>
+      <if test="jxbdisposedate != null and jxbdisposedate != ''" >
+        JXBDISPOSEDATE,
+      </if>
+      <if test="xxbdisposemod != null and xxbdisposemod != ''" >
+        XXBDISPOSEMOD,
+      </if>
+      <if test="xxbdisposeresult != null and xxbdisposeresult != ''" >
+        XXBDISPOSERESULT,
+      </if>
+      <if test="xxbdisposeyj != null and xxbdisposeyj != ''" >
+        XXBDISPOSEYJ,
+      </if>
+      <if test="xxbdisposedate != null and xxbdisposedate != ''" >
+        XXBDISPOSEDATE,
+      </if>
+      <if test="opemid != null and opemid != ''" >
+        OPEMID,
+      </if>
+      <if test="opemname != null and opemname != ''" >
+        OPEMNAME,
+      </if>
+      <if test="opdate != null and opdate != ''" >
+        OPDATE,
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1,
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2,
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3,
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4,
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5,
+      </if>
+      <if test="content != null and content != ''" >
+        CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xh != null and xh != ''" >
+        #{xh,jdbcType=VARCHAR},
+      </if>
+      <if test="stuid != null and stuid != ''" >
+        #{stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="breaktype != null and breaktype != ''" >
+        #{breaktype,jdbcType=VARCHAR},
+      </if>
+      <if test="stuschoolid != null and stuschoolid != ''" >
+        #{stuschoolid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuschoolname != null and stuschoolname != ''" >
+        #{stuschoolname,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null and education != ''" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="depdisposemod != null and depdisposemod != ''" >
+        #{depdisposemod,jdbcType=VARCHAR},
+      </if>
+      <if test="depdisposeresult != null and depdisposeresult != ''" >
+        #{depdisposeresult,jdbcType=VARCHAR},
+      </if>
+      <if test="depdisposeyj != null and depdisposeyj != ''" >
+        #{depdisposeyj,jdbcType=VARCHAR},
+      </if>
+      <if test="depdisposedate != null and depdisposedate != ''" >
+        to_date(#{depdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="jxbdisposemod != null and jxbdisposemod != ''" >
+        #{jxbdisposemod,jdbcType=VARCHAR},
+      </if>
+      <if test="jxbdisposeresult != null and jxbdisposeresult != ''" >
+        #{jxbdisposeresult,jdbcType=VARCHAR},
+      </if>
+      <if test="jxbdisposeyj != null and jxbdisposeyj != ''" >
+        #{jxbdisposeyj,jdbcType=VARCHAR},
+      </if>
+      <if test="jxbdisposedate != null and jxbdisposedate != ''" >
+        to_date(#{jxbdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="xxbdisposemod != null and xxbdisposemod != ''" >
+        #{xxbdisposemod,jdbcType=VARCHAR},
+      </if>
+      <if test="xxbdisposeresult != null and xxbdisposeresult != ''" >
+        #{xxbdisposeresult,jdbcType=VARCHAR},
+      </if>
+      <if test="xxbdisposeyj != null and xxbdisposeyj != ''" >
+        #{xxbdisposeyj,jdbcType=VARCHAR},
+      </if>
+      <if test="xxbdisposedate != null and xxbdisposedate != ''" >
+        to_date(#{xxbdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="opemid != null and opemid != ''" >
+        #{opemid,jdbcType=VARCHAR},
+      </if>
+      <if test="opemname != null and opemname != ''" >
+        #{opemname,jdbcType=VARCHAR},
+      </if>
+      <if test="opdate != null and opdate != ''" >
+        to_date(#{opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null and content != ''" >
+        #{content,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxBreakSchoolBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxBreakSchoolSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_BREAKSCHOOL
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxBreakSchoolBySqlWhereSelective" parameterType="map" >
+    update JX_BREAKSCHOOL
+    <set >
+      <if test="record.xh != null and record.xh != ''" >
+        XH = #{record.xh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuid != null and record.stuid != ''" >
+        STUID = #{record.stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuname != null and record.stuname != ''" >
+        STUNAME = #{record.stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptid != null and record.deptid != ''" >
+        DEPTID = #{record.deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptname != null and record.deptname != ''" >
+        DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.breaktype != null and record.breaktype != ''" >
+        BREAKTYPE = #{record.breaktype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuschoolid != null and record.stuschoolid != ''" >
+        STUSCHOOLID = #{record.stuschoolid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuschoolname != null and record.stuschoolname != ''" >
+        STUSCHOOLNAME = #{record.stuschoolname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education != null and record.education != ''" >
+        EDUCATION = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null and record.state != ''" >
+        STATE = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depdisposemod != null and record.depdisposemod != ''" >
+        DEPDISPOSEMOD = #{record.depdisposemod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depdisposeresult != null and record.depdisposeresult != ''" >
+        DEPDISPOSERESULT = #{record.depdisposeresult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depdisposeyj != null and record.depdisposeyj != ''" >
+        DEPDISPOSEYJ = #{record.depdisposeyj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depdisposedate != null and record.depdisposedate != ''" >
+        DEPDISPOSEDATE = to_date(#{record.depdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.jxbdisposemod != null and record.jxbdisposemod != ''" >
+        JXBDISPOSEMOD = #{record.jxbdisposemod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jxbdisposeresult != null and record.jxbdisposeresult != ''" >
+        JXBDISPOSERESULT = #{record.jxbdisposeresult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jxbdisposeyj != null and record.jxbdisposeyj != ''" >
+        JXBDISPOSEYJ = #{record.jxbdisposeyj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jxbdisposedate != null and record.jxbdisposedate != ''" >
+        JXBDISPOSEDATE = to_date(#{record.jxbdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.xxbdisposemod != null and record.xxbdisposemod != ''" >
+        XXBDISPOSEMOD = #{record.xxbdisposemod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xxbdisposeresult != null and record.xxbdisposeresult != ''" >
+        XXBDISPOSERESULT = #{record.xxbdisposeresult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xxbdisposeyj != null and record.xxbdisposeyj != ''" >
+        XXBDISPOSEYJ = #{record.xxbdisposeyj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xxbdisposedate != null and record.xxbdisposedate != ''" >
+        XXBDISPOSEDATE = to_date(#{record.xxbdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.opemid != null and record.opemid != ''" >
+        OPEMID = #{record.opemid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opemname != null and record.opemname != ''" >
+        OPEMNAME = #{record.opemname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opdate != null and record.opdate != ''" >
+        OPDATE = to_date(#{record.opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.remark1 != null and record.remark1 != ''" >
+        REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark2 != null and record.remark2 != ''" >
+        REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark3 != null and record.remark3 != ''" >
+        REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark4 != null and record.remark4 != ''" >
+        REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark5 != null and record.remark5 != ''" >
+        REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null and record.content != ''" >
+        CONTENT = #{record.content,jdbcType=CLOB},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxBreakSchoolBySqlWhereWithBLOBs" parameterType="map" >
+    update JX_BREAKSCHOOL
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      STUID = #{record.stuid,jdbcType=VARCHAR},
+      STUNAME = #{record.stuname,jdbcType=VARCHAR},
+      DEPTID = #{record.deptid,jdbcType=VARCHAR},
+      DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      BREAKTYPE = #{record.breaktype,jdbcType=VARCHAR},
+      STUSCHOOLID = #{record.stuschoolid,jdbcType=VARCHAR},
+      STUSCHOOLNAME = #{record.stuschoolname,jdbcType=VARCHAR},
+      EDUCATION = #{record.education,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      DEPDISPOSEMOD = #{record.depdisposemod,jdbcType=VARCHAR},
+      DEPDISPOSERESULT = #{record.depdisposeresult,jdbcType=VARCHAR},
+      DEPDISPOSEYJ = #{record.depdisposeyj,jdbcType=VARCHAR},
+      DEPDISPOSEDATE = to_date(#{record.depdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      JXBDISPOSEMOD = #{record.jxbdisposemod,jdbcType=VARCHAR},
+      JXBDISPOSERESULT = #{record.jxbdisposeresult,jdbcType=VARCHAR},
+      JXBDISPOSEYJ = #{record.jxbdisposeyj,jdbcType=VARCHAR},
+      JXBDISPOSEDATE = to_date(#{record.jxbdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      XXBDISPOSEMOD = #{record.xxbdisposemod,jdbcType=VARCHAR},
+      XXBDISPOSERESULT = #{record.xxbdisposeresult,jdbcType=VARCHAR},
+      XXBDISPOSEYJ = #{record.xxbdisposeyj,jdbcType=VARCHAR},
+      XXBDISPOSEDATE = to_date(#{record.xxbdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      OPEMID = #{record.opemid,jdbcType=VARCHAR},
+      OPEMNAME = #{record.opemname,jdbcType=VARCHAR},
+      OPDATE = to_date(#{record.opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR},
+      CONTENT = #{record.content,jdbcType=CLOB}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxBreakSchoolBySqlWhere" parameterType="map" >
+    update JX_BREAKSCHOOL
+    set XH = #{record.xh,jdbcType=VARCHAR},
+      STUID = #{record.stuid,jdbcType=VARCHAR},
+      STUNAME = #{record.stuname,jdbcType=VARCHAR},
+      DEPTID = #{record.deptid,jdbcType=VARCHAR},
+      DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      BREAKTYPE = #{record.breaktype,jdbcType=VARCHAR},
+      STUSCHOOLID = #{record.stuschoolid,jdbcType=VARCHAR},
+      STUSCHOOLNAME = #{record.stuschoolname,jdbcType=VARCHAR},
+      EDUCATION = #{record.education,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=VARCHAR},
+      DEPDISPOSEMOD = #{record.depdisposemod,jdbcType=VARCHAR},
+      DEPDISPOSERESULT = #{record.depdisposeresult,jdbcType=VARCHAR},
+      DEPDISPOSEYJ = #{record.depdisposeyj,jdbcType=VARCHAR},
+      DEPDISPOSEDATE = to_date(#{record.depdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      JXBDISPOSEMOD = #{record.jxbdisposemod,jdbcType=VARCHAR},
+      JXBDISPOSERESULT = #{record.jxbdisposeresult,jdbcType=VARCHAR},
+      JXBDISPOSEYJ = #{record.jxbdisposeyj,jdbcType=VARCHAR},
+      JXBDISPOSEDATE = to_date(#{record.jxbdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      XXBDISPOSEMOD = #{record.xxbdisposemod,jdbcType=VARCHAR},
+      XXBDISPOSERESULT = #{record.xxbdisposeresult,jdbcType=VARCHAR},
+      XXBDISPOSEYJ = #{record.xxbdisposeyj,jdbcType=VARCHAR},
+      XXBDISPOSEDATE = to_date(#{record.xxbdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      OPEMID = #{record.opemid,jdbcType=VARCHAR},
+      OPEMNAME = #{record.opemname,jdbcType=VARCHAR},
+      OPDATE = to_date(#{record.opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{record.remark1,jdbcType=VARCHAR},
+      REMARK2 = #{record.remark2,jdbcType=VARCHAR},
+      REMARK3 = #{record.remark3,jdbcType=VARCHAR},
+      REMARK4 = #{record.remark4,jdbcType=VARCHAR},
+      REMARK5 = #{record.remark5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxBreakSchoolByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxBreakSchoolEntity" >
+    update JX_BREAKSCHOOL
+    <set >
+      <if test="stuid != null and stuid != ''" >
+        STUID = #{stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuname != null and stuname != ''" >
+        STUNAME = #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null and deptid != ''" >
+        DEPTID = #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null and deptname != ''" >
+        DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="breaktype != null and breaktype != ''" >
+        BREAKTYPE = #{breaktype,jdbcType=VARCHAR},
+      </if>
+      <if test="stuschoolid != null and stuschoolid != ''" >
+        STUSCHOOLID = #{stuschoolid,jdbcType=VARCHAR},
+      </if>
+      <if test="stuschoolname != null and stuschoolname != ''" >
+        STUSCHOOLNAME = #{stuschoolname,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null and education != ''" >
+        EDUCATION = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null and state != ''" >
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="depdisposemod != null and depdisposemod != ''" >
+        DEPDISPOSEMOD = #{depdisposemod,jdbcType=VARCHAR},
+      </if>
+      <if test="depdisposeresult != null and depdisposeresult != ''" >
+        DEPDISPOSERESULT = #{depdisposeresult,jdbcType=VARCHAR},
+      </if>
+      <if test="depdisposeyj != null and depdisposeyj != ''" >
+        DEPDISPOSEYJ = #{depdisposeyj,jdbcType=VARCHAR},
+      </if>
+      <if test="depdisposedate != null and depdisposedate != ''" >
+        DEPDISPOSEDATE = to_date(#{depdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="jxbdisposemod != null and jxbdisposemod != ''" >
+        JXBDISPOSEMOD = #{jxbdisposemod,jdbcType=VARCHAR},
+      </if>
+      <if test="jxbdisposeresult != null and jxbdisposeresult != ''" >
+        JXBDISPOSERESULT = #{jxbdisposeresult,jdbcType=VARCHAR},
+      </if>
+      <if test="jxbdisposeyj != null and jxbdisposeyj != ''" >
+        JXBDISPOSEYJ = #{jxbdisposeyj,jdbcType=VARCHAR},
+      </if>
+      <if test="jxbdisposedate != null and jxbdisposedate != ''" >
+        JXBDISPOSEDATE = to_date(#{jxbdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="xxbdisposemod != null and xxbdisposemod != ''" >
+        XXBDISPOSEMOD = #{xxbdisposemod,jdbcType=VARCHAR},
+      </if>
+      <if test="xxbdisposeresult != null and xxbdisposeresult != ''" >
+        XXBDISPOSERESULT = #{xxbdisposeresult,jdbcType=VARCHAR},
+      </if>
+      <if test="xxbdisposeyj != null and xxbdisposeyj != ''" >
+        XXBDISPOSEYJ = #{xxbdisposeyj,jdbcType=VARCHAR},
+      </if>
+      <if test="xxbdisposedate != null and xxbdisposedate != ''" >
+        XXBDISPOSEDATE = to_date(#{xxbdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="opemid != null and opemid != ''" >
+        OPEMID = #{opemid,jdbcType=VARCHAR},
+      </if>
+      <if test="opemname != null and opemname != ''" >
+        OPEMNAME = #{opemname,jdbcType=VARCHAR},
+      </if>
+      <if test="opdate != null and opdate != ''" >
+        OPDATE = to_date(#{opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="remark1 != null and remark1 != ''" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null and remark2 != ''" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null and remark3 != ''" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null and remark4 != ''" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+      <if test="remark5 != null and remark5 != ''" >
+        REMARK5 = #{remark5,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null and content != ''" >
+        CONTENT = #{content,jdbcType=CLOB},
+      </if>
+    </set>
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxBreakSchoolByPrimaryKeyWithBLOBs" parameterType="com.saint.teaching.bean.JxBreakSchoolEntity" >
+    update JX_BREAKSCHOOL
+    set STUID = #{stuid,jdbcType=VARCHAR},
+      STUNAME = #{stuname,jdbcType=VARCHAR},
+      DEPTID = #{deptid,jdbcType=VARCHAR},
+      DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      BREAKTYPE = #{breaktype,jdbcType=VARCHAR},
+      STUSCHOOLID = #{stuschoolid,jdbcType=VARCHAR},
+      STUSCHOOLNAME = #{stuschoolname,jdbcType=VARCHAR},
+      EDUCATION = #{education,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      DEPDISPOSEMOD = #{depdisposemod,jdbcType=VARCHAR},
+      DEPDISPOSERESULT = #{depdisposeresult,jdbcType=VARCHAR},
+      DEPDISPOSEYJ = #{depdisposeyj,jdbcType=VARCHAR},
+      DEPDISPOSEDATE = to_date(#{depdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      JXBDISPOSEMOD = #{jxbdisposemod,jdbcType=VARCHAR},
+      JXBDISPOSERESULT = #{jxbdisposeresult,jdbcType=VARCHAR},
+      JXBDISPOSEYJ = #{jxbdisposeyj,jdbcType=VARCHAR},
+      JXBDISPOSEDATE = to_date(#{jxbdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      XXBDISPOSEMOD = #{xxbdisposemod,jdbcType=VARCHAR},
+      XXBDISPOSERESULT = #{xxbdisposeresult,jdbcType=VARCHAR},
+      XXBDISPOSEYJ = #{xxbdisposeyj,jdbcType=VARCHAR},
+      XXBDISPOSEDATE = to_date(#{xxbdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      OPEMID = #{opemid,jdbcType=VARCHAR},
+      OPEMNAME = #{opemname,jdbcType=VARCHAR},
+      OPDATE = to_date(#{opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=CLOB}
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxBreakSchoolByPrimaryKey" parameterType="com.saint.teaching.bean.JxBreakSchoolEntity" >
+    update JX_BREAKSCHOOL
+    set STUID = #{stuid,jdbcType=VARCHAR},
+      STUNAME = #{stuname,jdbcType=VARCHAR},
+      DEPTID = #{deptid,jdbcType=VARCHAR},
+      DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      BREAKTYPE = #{breaktype,jdbcType=VARCHAR},
+      STUSCHOOLID = #{stuschoolid,jdbcType=VARCHAR},
+      STUSCHOOLNAME = #{stuschoolname,jdbcType=VARCHAR},
+      EDUCATION = #{education,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      DEPDISPOSEMOD = #{depdisposemod,jdbcType=VARCHAR},
+      DEPDISPOSERESULT = #{depdisposeresult,jdbcType=VARCHAR},
+      DEPDISPOSEYJ = #{depdisposeyj,jdbcType=VARCHAR},
+      DEPDISPOSEDATE = to_date(#{depdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      JXBDISPOSEMOD = #{jxbdisposemod,jdbcType=VARCHAR},
+      JXBDISPOSERESULT = #{jxbdisposeresult,jdbcType=VARCHAR},
+      JXBDISPOSEYJ = #{jxbdisposeyj,jdbcType=VARCHAR},
+      JXBDISPOSEDATE = to_date(#{jxbdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      XXBDISPOSEMOD = #{xxbdisposemod,jdbcType=VARCHAR},
+      XXBDISPOSERESULT = #{xxbdisposeresult,jdbcType=VARCHAR},
+      XXBDISPOSEYJ = #{xxbdisposeyj,jdbcType=VARCHAR},
+      XXBDISPOSEDATE = to_date(#{xxbdisposedate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      OPEMID = #{opemid,jdbcType=VARCHAR},
+      OPEMNAME = #{opemname,jdbcType=VARCHAR},
+      OPDATE = to_date(#{opdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      REMARK1 = #{remark1,jdbcType=VARCHAR},
+      REMARK2 = #{remark2,jdbcType=VARCHAR},
+      REMARK3 = #{remark3,jdbcType=VARCHAR},
+      REMARK4 = #{remark4,jdbcType=VARCHAR},
+      REMARK5 = #{remark5,jdbcType=VARCHAR}
+    where XH = #{xh,jdbcType=VARCHAR}
+  </update>
+</mapper>

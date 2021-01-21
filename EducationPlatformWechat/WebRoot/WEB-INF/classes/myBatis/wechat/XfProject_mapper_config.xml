@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.wechat.XfProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.wechat.manager.bean.XfProjectEntity" >
+    <id column="PRO_ID" property="proId" jdbcType="VARCHAR" />
+    <result column="PRO_CODE" property="proCode" jdbcType="VARCHAR" />
+    <result column="PRO_NAME" property="proName" jdbcType="VARCHAR" />
+    <result column="HOLD_UNIT" property="holdUnit" jdbcType="VARCHAR" />
+    <result column="MANE" property="mane" jdbcType="VARCHAR" />
+    <result column="MAN_TEL" property="manTel" jdbcType="VARCHAR" />
+    <result column="HOLD_DAYS" property="holdDays" jdbcType="DECIMAL" />
+    <result column="HOLD_START_DATE" property="holdStartDate" jdbcType="DATE" />
+    <result column="HOLD_END_DATE" property="holdEndDate" jdbcType="DATE" />
+    <result column="HOLD_LOCATION" property="holdLocation" jdbcType="VARCHAR" />
+    <result column="EDU_CREDIT" property="eduCredit" jdbcType="DECIMAL" />
+    <result column="EDU_OBJECT" property="eduObject" jdbcType="VARCHAR" />
+    <result column="EDU_OBJ_COUNT" property="eduObjCount" jdbcType="DECIMAL" />
+    <result column="ADD_YEAR" property="addYear" jdbcType="VARCHAR" />
+    <result column="ADD_TIME" property="addTime" jdbcType="DATE" />
+    <result column="ADD_UNIT" property="addUnit" jdbcType="DECIMAL" />
+    <result column="ADD_UNIT_MAN" property="addUnitMan" jdbcType="VARCHAR" />
+    <result column="ADD_UNIT_PHONE" property="addUnitPhone" jdbcType="VARCHAR" />
+    <result column="SUBJECT" property="subject" jdbcType="VARCHAR" />
+    <result column="SUBJECT_THREE" property="subjectThree" jdbcType="VARCHAR" />
+    <result column="HOLD_MODE" property="holdMode" jdbcType="VARCHAR" />
+    <result column="EDU_EXAM_MODE" property="eduExamMode" jdbcType="VARCHAR" />
+    <result column="EDU_HOURS" property="eduHours" jdbcType="DECIMAL" />
+    <result column="EDU_THEORY_HOURS" property="eduTheoryHours" jdbcType="DECIMAL" />
+    <result column="EDU_EXPERIMENT_HOURS" property="eduExperimentHours" jdbcType="DECIMAL" />
+    <result column="HOLD_UNIT_MAN" property="holdUnitMan" jdbcType="VARCHAR" />
+    <result column="HOLD_UNIT_PHONE" property="holdUnitPhone" jdbcType="VARCHAR" />
+    <result column="PRO_TYPE" property="proType" jdbcType="VARCHAR" />
+    <result column="PRO_SOURCE" property="proSource" jdbcType="VARCHAR" />
+    <result column="EVALUATE" property="evaluate" jdbcType="VARCHAR" />
+    <result column="GXSJ" property="gxsj" jdbcType="DATE" />
+  </resultMap>
+  <resultMap id="BaseResultMap2" type="com.saint.wechat.manager.bean.CourseOrProjectEntity" >
+  	<result column="COURSE_ID" property="c_courseId" jdbcType="VARCHAR" />
+    <result column="COURSES_TASK" property="c_task" jdbcType="VARCHAR" />
+    <result column="HOURS" property="c_hours" jdbcType="VARCHAR" />
+    <result column="DEPT_ID" property="c_deptid" jdbcType="VARCHAR" />
+    <result column="PRO_ID" property="p_proId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PRO_ID, PRO_CODE, PRO_NAME, HOLD_UNIT, MANE, MAN_TEL, HOLD_DAYS, HOLD_START_DATE, 
+    HOLD_END_DATE, HOLD_LOCATION, EDU_CREDIT, EDU_OBJECT, EDU_OBJ_COUNT, ADD_YEAR, ADD_TIME, 
+    ADD_UNIT, ADD_UNIT_MAN, ADD_UNIT_PHONE, SUBJECT, SUBJECT_THREE, HOLD_MODE, EDU_EXAM_MODE, 
+    EDU_HOURS, EDU_THEORY_HOURS, EDU_EXPERIMENT_HOURS, HOLD_UNIT_MAN, HOLD_UNIT_PHONE, 
+    PRO_TYPE, PRO_SOURCE, EVALUATE, GXSJ
+  </sql>
+  <select id="selectListPageXfProjectBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.XfProjectSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XF_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListXfProjectBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.sqlWhere.XfProjectSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from XF_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectXfProjectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from XF_PROJECT
+    where PRO_ID = #{proId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteXfProjectByPrimaryKey" parameterType="java.lang.String" >
+    delete from XF_PROJECT
+    where PRO_ID = #{proId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteXfProjectBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.XfProjectSqlWhere" >
+    delete from XF_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertXfProject" parameterType="com.saint.wechat.manager.bean.XfProjectEntity" >
+    insert into XF_PROJECT (PRO_ID, PRO_CODE, PRO_NAME, 
+      HOLD_UNIT, MANE, MAN_TEL, 
+      HOLD_DAYS, HOLD_START_DATE, 
+      HOLD_END_DATE, HOLD_LOCATION, 
+      EDU_CREDIT, EDU_OBJECT, EDU_OBJ_COUNT, 
+      ADD_YEAR, ADD_TIME, 
+      ADD_UNIT, ADD_UNIT_MAN, ADD_UNIT_PHONE, 
+      SUBJECT, SUBJECT_THREE, HOLD_MODE, 
+      EDU_EXAM_MODE, EDU_HOURS, EDU_THEORY_HOURS, 
+      EDU_EXPERIMENT_HOURS, HOLD_UNIT_MAN, HOLD_UNIT_PHONE, 
+      PRO_TYPE, PRO_SOURCE, EVALUATE, 
+      GXSJ)
+    values (#{proId,jdbcType=VARCHAR}, #{proCode,jdbcType=VARCHAR}, #{proName,jdbcType=VARCHAR}, 
+      #{holdUnit,jdbcType=VARCHAR}, #{mane,jdbcType=VARCHAR}, #{manTel,jdbcType=VARCHAR}, 
+      #{holdDays,jdbcType=DECIMAL}, to_date(#{holdStartDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      to_date(#{holdEndDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), #{holdLocation,jdbcType=VARCHAR}, 
+      #{eduCredit,jdbcType=DECIMAL}, #{eduObject,jdbcType=VARCHAR}, #{eduObjCount,jdbcType=DECIMAL}, 
+      #{addYear,jdbcType=VARCHAR}, to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'), 
+      #{addUnit,jdbcType=DECIMAL}, #{addUnitMan,jdbcType=VARCHAR}, #{addUnitPhone,jdbcType=VARCHAR}, 
+      #{subject,jdbcType=VARCHAR}, #{subjectThree,jdbcType=VARCHAR}, #{holdMode,jdbcType=VARCHAR}, 
+      #{eduExamMode,jdbcType=VARCHAR}, #{eduHours,jdbcType=DECIMAL}, #{eduTheoryHours,jdbcType=DECIMAL}, 
+      #{eduExperimentHours,jdbcType=DECIMAL}, #{holdUnitMan,jdbcType=VARCHAR}, #{holdUnitPhone,jdbcType=VARCHAR}, 
+      #{proType,jdbcType=VARCHAR}, #{proSource,jdbcType=VARCHAR}, #{evaluate,jdbcType=VARCHAR}, 
+      to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'))
+  </insert>
+  <insert id="insertXfProjectSelective" parameterType="com.saint.wechat.manager.bean.XfProjectEntity" >
+    insert into XF_PROJECT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="proId != null and proId != ''" >
+        PRO_ID,
+      </if>
+      <if test="proCode != null and proCode != ''" >
+        PRO_CODE,
+      </if>
+      <if test="proName != null and proName != ''" >
+        PRO_NAME,
+      </if>
+      <if test="holdUnit != null and holdUnit != ''" >
+        HOLD_UNIT,
+      </if>
+      <if test="mane != null and mane != ''" >
+        MANE,
+      </if>
+      <if test="manTel != null and manTel != ''" >
+        MAN_TEL,
+      </if>
+      <if test="holdDays != null and holdDays != ''" >
+        HOLD_DAYS,
+      </if>
+      <if test="holdStartDate != null and holdStartDate != ''" >
+        HOLD_START_DATE,
+      </if>
+      <if test="holdEndDate != null and holdEndDate != ''" >
+        HOLD_END_DATE,
+      </if>
+      <if test="holdLocation != null and holdLocation != ''" >
+        HOLD_LOCATION,
+      </if>
+      <if test="eduCredit != null and eduCredit != ''" >
+        EDU_CREDIT,
+      </if>
+      <if test="eduObject != null and eduObject != ''" >
+        EDU_OBJECT,
+      </if>
+      <if test="eduObjCount != null and eduObjCount != ''" >
+        EDU_OBJ_COUNT,
+      </if>
+      <if test="addYear != null and addYear != ''" >
+        ADD_YEAR,
+      </if>
+      <if test="addTime != null and addTime != ''" >
+        ADD_TIME,
+      </if>
+      <if test="addUnit != null and addUnit != ''" >
+        ADD_UNIT,
+      </if>
+      <if test="addUnitMan != null and addUnitMan != ''" >
+        ADD_UNIT_MAN,
+      </if>
+      <if test="addUnitPhone != null and addUnitPhone != ''" >
+        ADD_UNIT_PHONE,
+      </if>
+      <if test="subject != null and subject != ''" >
+        SUBJECT,
+      </if>
+      <if test="subjectThree != null and subjectThree != ''" >
+        SUBJECT_THREE,
+      </if>
+      <if test="holdMode != null and holdMode != ''" >
+        HOLD_MODE,
+      </if>
+      <if test="eduExamMode != null and eduExamMode != ''" >
+        EDU_EXAM_MODE,
+      </if>
+      <if test="eduHours != null and eduHours != ''" >
+        EDU_HOURS,
+      </if>
+      <if test="eduTheoryHours != null and eduTheoryHours != ''" >
+        EDU_THEORY_HOURS,
+      </if>
+      <if test="eduExperimentHours != null and eduExperimentHours != ''" >
+        EDU_EXPERIMENT_HOURS,
+      </if>
+      <if test="holdUnitMan != null and holdUnitMan != ''" >
+        HOLD_UNIT_MAN,
+      </if>
+      <if test="holdUnitPhone != null and holdUnitPhone != ''" >
+        HOLD_UNIT_PHONE,
+      </if>
+      <if test="proType != null and proType != ''" >
+        PRO_TYPE,
+      </if>
+      <if test="proSource != null and proSource != ''" >
+        PRO_SOURCE,
+      </if>
+      <if test="evaluate != null and evaluate != ''" >
+        EVALUATE,
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="proId != null and proId != ''" >
+        #{proId,jdbcType=VARCHAR},
+      </if>
+      <if test="proCode != null and proCode != ''" >
+        #{proCode,jdbcType=VARCHAR},
+      </if>
+      <if test="proName != null and proName != ''" >
+        #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="holdUnit != null and holdUnit != ''" >
+        #{holdUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="mane != null and mane != ''" >
+        #{mane,jdbcType=VARCHAR},
+      </if>
+      <if test="manTel != null and manTel != ''" >
+        #{manTel,jdbcType=VARCHAR},
+      </if>
+      <if test="holdDays != null and holdDays != ''" >
+        #{holdDays,jdbcType=DECIMAL},
+      </if>
+      <if test="holdStartDate != null and holdStartDate != ''" >
+        to_date(#{holdStartDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="holdEndDate != null and holdEndDate != ''" >
+        to_date(#{holdEndDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="holdLocation != null and holdLocation != ''" >
+        #{holdLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="eduCredit != null and eduCredit != ''" >
+        #{eduCredit,jdbcType=DECIMAL},
+      </if>
+      <if test="eduObject != null and eduObject != ''" >
+        #{eduObject,jdbcType=VARCHAR},
+      </if>
+      <if test="eduObjCount != null and eduObjCount != ''" >
+        #{eduObjCount,jdbcType=DECIMAL},
+      </if>
+      <if test="addYear != null and addYear != ''" >
+        #{addYear,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null and addTime != ''" >
+        to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="addUnit != null and addUnit != ''" >
+        #{addUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="addUnitMan != null and addUnitMan != ''" >
+        #{addUnitMan,jdbcType=VARCHAR},
+      </if>
+      <if test="addUnitPhone != null and addUnitPhone != ''" >
+        #{addUnitPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null and subject != ''" >
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectThree != null and subjectThree != ''" >
+        #{subjectThree,jdbcType=VARCHAR},
+      </if>
+      <if test="holdMode != null and holdMode != ''" >
+        #{holdMode,jdbcType=VARCHAR},
+      </if>
+      <if test="eduExamMode != null and eduExamMode != ''" >
+        #{eduExamMode,jdbcType=VARCHAR},
+      </if>
+      <if test="eduHours != null and eduHours != ''" >
+        #{eduHours,jdbcType=DECIMAL},
+      </if>
+      <if test="eduTheoryHours != null and eduTheoryHours != ''" >
+        #{eduTheoryHours,jdbcType=DECIMAL},
+      </if>
+      <if test="eduExperimentHours != null and eduExperimentHours != ''" >
+        #{eduExperimentHours,jdbcType=DECIMAL},
+      </if>
+      <if test="holdUnitMan != null and holdUnitMan != ''" >
+        #{holdUnitMan,jdbcType=VARCHAR},
+      </if>
+      <if test="holdUnitPhone != null and holdUnitPhone != ''" >
+        #{holdUnitPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="proType != null and proType != ''" >
+        #{proType,jdbcType=VARCHAR},
+      </if>
+      <if test="proSource != null and proSource != ''" >
+        #{proSource,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluate != null and evaluate != ''" >
+        #{evaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </trim>
+  </insert>
+  <select id="countXfProjectBySqlWhere" parameterType="com.saint.wechat.manager.sqlWhere.XfProjectSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from XF_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateXfProjectBySqlWhereSelective" parameterType="map" >
+    update XF_PROJECT
+    <set >
+      <if test="record.proId != null and record.proId != ''" >
+        PRO_ID = #{record.proId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proCode != null and record.proCode != ''" >
+        PRO_CODE = #{record.proCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proName != null and record.proName != ''" >
+        PRO_NAME = #{record.proName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holdUnit != null and record.holdUnit != ''" >
+        HOLD_UNIT = #{record.holdUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mane != null and record.mane != ''" >
+        MANE = #{record.mane,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manTel != null and record.manTel != ''" >
+        MAN_TEL = #{record.manTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holdDays != null and record.holdDays != ''" >
+        HOLD_DAYS = #{record.holdDays,jdbcType=DECIMAL},
+      </if>
+      <if test="record.holdStartDate != null and record.holdStartDate != ''" >
+        HOLD_START_DATE = to_date(#{record.holdStartDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.holdEndDate != null and record.holdEndDate != ''" >
+        HOLD_END_DATE = to_date(#{record.holdEndDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.holdLocation != null and record.holdLocation != ''" >
+        HOLD_LOCATION = #{record.holdLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eduCredit != null and record.eduCredit != ''" >
+        EDU_CREDIT = #{record.eduCredit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.eduObject != null and record.eduObject != ''" >
+        EDU_OBJECT = #{record.eduObject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eduObjCount != null and record.eduObjCount != ''" >
+        EDU_OBJ_COUNT = #{record.eduObjCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.addYear != null and record.addYear != ''" >
+        ADD_YEAR = #{record.addYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null and record.addTime != ''" >
+        ADD_TIME = to_date(#{record.addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="record.addUnit != null and record.addUnit != ''" >
+        ADD_UNIT = #{record.addUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.addUnitMan != null and record.addUnitMan != ''" >
+        ADD_UNIT_MAN = #{record.addUnitMan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addUnitPhone != null and record.addUnitPhone != ''" >
+        ADD_UNIT_PHONE = #{record.addUnitPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subject != null and record.subject != ''" >
+        SUBJECT = #{record.subject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subjectThree != null and record.subjectThree != ''" >
+        SUBJECT_THREE = #{record.subjectThree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holdMode != null and record.holdMode != ''" >
+        HOLD_MODE = #{record.holdMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eduExamMode != null and record.eduExamMode != ''" >
+        EDU_EXAM_MODE = #{record.eduExamMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eduHours != null and record.eduHours != ''" >
+        EDU_HOURS = #{record.eduHours,jdbcType=DECIMAL},
+      </if>
+      <if test="record.eduTheoryHours != null and record.eduTheoryHours != ''" >
+        EDU_THEORY_HOURS = #{record.eduTheoryHours,jdbcType=DECIMAL},
+      </if>
+      <if test="record.eduExperimentHours != null and record.eduExperimentHours != ''" >
+        EDU_EXPERIMENT_HOURS = #{record.eduExperimentHours,jdbcType=DECIMAL},
+      </if>
+      <if test="record.holdUnitMan != null and record.holdUnitMan != ''" >
+        HOLD_UNIT_MAN = #{record.holdUnitMan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holdUnitPhone != null and record.holdUnitPhone != ''" >
+        HOLD_UNIT_PHONE = #{record.holdUnitPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proType != null and record.proType != ''" >
+        PRO_TYPE = #{record.proType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proSource != null and record.proSource != ''" >
+        PRO_SOURCE = #{record.proSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.evaluate != null and record.evaluate != ''" >
+        EVALUATE = #{record.evaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxsj != null and record.gxsj != ''" >
+        GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateXfProjectBySqlWhere" parameterType="map" >
+    update XF_PROJECT
+    set PRO_ID = #{record.proId,jdbcType=VARCHAR},
+      PRO_CODE = #{record.proCode,jdbcType=VARCHAR},
+      PRO_NAME = #{record.proName,jdbcType=VARCHAR},
+      HOLD_UNIT = #{record.holdUnit,jdbcType=VARCHAR},
+      MANE = #{record.mane,jdbcType=VARCHAR},
+      MAN_TEL = #{record.manTel,jdbcType=VARCHAR},
+      HOLD_DAYS = #{record.holdDays,jdbcType=DECIMAL},
+      HOLD_START_DATE = to_date(#{record.holdStartDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      HOLD_END_DATE = to_date(#{record.holdEndDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      HOLD_LOCATION = #{record.holdLocation,jdbcType=VARCHAR},
+      EDU_CREDIT = #{record.eduCredit,jdbcType=DECIMAL},
+      EDU_OBJECT = #{record.eduObject,jdbcType=VARCHAR},
+      EDU_OBJ_COUNT = #{record.eduObjCount,jdbcType=DECIMAL},
+      ADD_YEAR = #{record.addYear,jdbcType=VARCHAR},
+      ADD_TIME = to_date(#{record.addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ADD_UNIT = #{record.addUnit,jdbcType=DECIMAL},
+      ADD_UNIT_MAN = #{record.addUnitMan,jdbcType=VARCHAR},
+      ADD_UNIT_PHONE = #{record.addUnitPhone,jdbcType=VARCHAR},
+      SUBJECT = #{record.subject,jdbcType=VARCHAR},
+      SUBJECT_THREE = #{record.subjectThree,jdbcType=VARCHAR},
+      HOLD_MODE = #{record.holdMode,jdbcType=VARCHAR},
+      EDU_EXAM_MODE = #{record.eduExamMode,jdbcType=VARCHAR},
+      EDU_HOURS = #{record.eduHours,jdbcType=DECIMAL},
+      EDU_THEORY_HOURS = #{record.eduTheoryHours,jdbcType=DECIMAL},
+      EDU_EXPERIMENT_HOURS = #{record.eduExperimentHours,jdbcType=DECIMAL},
+      HOLD_UNIT_MAN = #{record.holdUnitMan,jdbcType=VARCHAR},
+      HOLD_UNIT_PHONE = #{record.holdUnitPhone,jdbcType=VARCHAR},
+      PRO_TYPE = #{record.proType,jdbcType=VARCHAR},
+      PRO_SOURCE = #{record.proSource,jdbcType=VARCHAR},
+      EVALUATE = #{record.evaluate,jdbcType=VARCHAR},
+      GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateXfProjectByPrimaryKeySelective" parameterType="com.saint.wechat.manager.bean.XfProjectEntity" >
+    update XF_PROJECT
+    <set >
+      <if test="proCode != null and proCode != ''" >
+        PRO_CODE = #{proCode,jdbcType=VARCHAR},
+      </if>
+      <if test="proName != null and proName != ''" >
+        PRO_NAME = #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="holdUnit != null and holdUnit != ''" >
+        HOLD_UNIT = #{holdUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="mane != null and mane != ''" >
+        MANE = #{mane,jdbcType=VARCHAR},
+      </if>
+      <if test="manTel != null and manTel != ''" >
+        MAN_TEL = #{manTel,jdbcType=VARCHAR},
+      </if>
+      <if test="holdDays != null and holdDays != ''" >
+        HOLD_DAYS = #{holdDays,jdbcType=DECIMAL},
+      </if>
+      <if test="holdStartDate != null and holdStartDate != ''" >
+        HOLD_START_DATE = to_date(#{holdStartDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="holdEndDate != null and holdEndDate != ''" >
+        HOLD_END_DATE = to_date(#{holdEndDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="holdLocation != null and holdLocation != ''" >
+        HOLD_LOCATION = #{holdLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="eduCredit != null and eduCredit != ''" >
+        EDU_CREDIT = #{eduCredit,jdbcType=DECIMAL},
+      </if>
+      <if test="eduObject != null and eduObject != ''" >
+        EDU_OBJECT = #{eduObject,jdbcType=VARCHAR},
+      </if>
+      <if test="eduObjCount != null and eduObjCount != ''" >
+        EDU_OBJ_COUNT = #{eduObjCount,jdbcType=DECIMAL},
+      </if>
+      <if test="addYear != null and addYear != ''" >
+        ADD_YEAR = #{addYear,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null and addTime != ''" >
+        ADD_TIME = to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+      <if test="addUnit != null and addUnit != ''" >
+        ADD_UNIT = #{addUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="addUnitMan != null and addUnitMan != ''" >
+        ADD_UNIT_MAN = #{addUnitMan,jdbcType=VARCHAR},
+      </if>
+      <if test="addUnitPhone != null and addUnitPhone != ''" >
+        ADD_UNIT_PHONE = #{addUnitPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null and subject != ''" >
+        SUBJECT = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectThree != null and subjectThree != ''" >
+        SUBJECT_THREE = #{subjectThree,jdbcType=VARCHAR},
+      </if>
+      <if test="holdMode != null and holdMode != ''" >
+        HOLD_MODE = #{holdMode,jdbcType=VARCHAR},
+      </if>
+      <if test="eduExamMode != null and eduExamMode != ''" >
+        EDU_EXAM_MODE = #{eduExamMode,jdbcType=VARCHAR},
+      </if>
+      <if test="eduHours != null and eduHours != ''" >
+        EDU_HOURS = #{eduHours,jdbcType=DECIMAL},
+      </if>
+      <if test="eduTheoryHours != null and eduTheoryHours != ''" >
+        EDU_THEORY_HOURS = #{eduTheoryHours,jdbcType=DECIMAL},
+      </if>
+      <if test="eduExperimentHours != null and eduExperimentHours != ''" >
+        EDU_EXPERIMENT_HOURS = #{eduExperimentHours,jdbcType=DECIMAL},
+      </if>
+      <if test="holdUnitMan != null and holdUnitMan != ''" >
+        HOLD_UNIT_MAN = #{holdUnitMan,jdbcType=VARCHAR},
+      </if>
+      <if test="holdUnitPhone != null and holdUnitPhone != ''" >
+        HOLD_UNIT_PHONE = #{holdUnitPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="proType != null and proType != ''" >
+        PRO_TYPE = #{proType,jdbcType=VARCHAR},
+      </if>
+      <if test="proSource != null and proSource != ''" >
+        PRO_SOURCE = #{proSource,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluate != null and evaluate != ''" >
+        EVALUATE = #{evaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null and gxsj != ''" >
+        GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    where PRO_ID = #{proId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateXfProjectByPrimaryKey" parameterType="com.saint.wechat.manager.bean.XfProjectEntity" >
+    update XF_PROJECT
+    set PRO_CODE = #{proCode,jdbcType=VARCHAR},
+      PRO_NAME = #{proName,jdbcType=VARCHAR},
+      HOLD_UNIT = #{holdUnit,jdbcType=VARCHAR},
+      MANE = #{mane,jdbcType=VARCHAR},
+      MAN_TEL = #{manTel,jdbcType=VARCHAR},
+      HOLD_DAYS = #{holdDays,jdbcType=DECIMAL},
+      HOLD_START_DATE = to_date(#{holdStartDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      HOLD_END_DATE = to_date(#{holdEndDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      HOLD_LOCATION = #{holdLocation,jdbcType=VARCHAR},
+      EDU_CREDIT = #{eduCredit,jdbcType=DECIMAL},
+      EDU_OBJECT = #{eduObject,jdbcType=VARCHAR},
+      EDU_OBJ_COUNT = #{eduObjCount,jdbcType=DECIMAL},
+      ADD_YEAR = #{addYear,jdbcType=VARCHAR},
+      ADD_TIME = to_date(#{addTime,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      ADD_UNIT = #{addUnit,jdbcType=DECIMAL},
+      ADD_UNIT_MAN = #{addUnitMan,jdbcType=VARCHAR},
+      ADD_UNIT_PHONE = #{addUnitPhone,jdbcType=VARCHAR},
+      SUBJECT = #{subject,jdbcType=VARCHAR},
+      SUBJECT_THREE = #{subjectThree,jdbcType=VARCHAR},
+      HOLD_MODE = #{holdMode,jdbcType=VARCHAR},
+      EDU_EXAM_MODE = #{eduExamMode,jdbcType=VARCHAR},
+      EDU_HOURS = #{eduHours,jdbcType=DECIMAL},
+      EDU_THEORY_HOURS = #{eduTheoryHours,jdbcType=DECIMAL},
+      EDU_EXPERIMENT_HOURS = #{eduExperimentHours,jdbcType=DECIMAL},
+      HOLD_UNIT_MAN = #{holdUnitMan,jdbcType=VARCHAR},
+      HOLD_UNIT_PHONE = #{holdUnitPhone,jdbcType=VARCHAR},
+      PRO_TYPE = #{proType,jdbcType=VARCHAR},
+      PRO_SOURCE = #{proSource,jdbcType=VARCHAR},
+      EVALUATE = #{evaluate,jdbcType=VARCHAR},
+      GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where PRO_ID = #{proId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectListXfProjectByAddtime" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.bean.XfProjectEntity" >
+    select
+    *
+    from XF_PROJECT
+    where HOLD_START_DATE >=to_date(#{holdStartDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+  </select>
+  <select id="findListXfProject" resultMap="BaseResultMap" parameterType="com.saint.wechat.manager.bean.XfProjectEntity" >
+    select
+    *
+    from XF_PROJECT
+    where HOLD_START_DATE >=to_date(#{holdStartDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    and PRO_NAME like concat(concat('%',#{proName}),'%')
+  </select>
+  <!-- 项目和课题的联合查询 -->
+  <select id="selectXfCourseorProjectlist" resultMap="BaseResultMap2" parameterType="java.lang.String">
+  	SELECT c.COURSE_ID,c.COURSES_TASK,c.HOURS,c.DEPT_ID,p.PRO_ID
+  	from  
+  	xf_project p, xf_course c 
+  	where 
+  	p.pro_id = c.pro_id
+  	<!-- and p.HOLD_START_DATE >=to_date(#{holdStartDate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss') -->
+  </select>
+</mapper>

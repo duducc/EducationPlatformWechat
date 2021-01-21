@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.teaching.JxStudentsInternshipProveMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.teaching.bean.JxStudentsInternshipProveEntity" >
+    <id column="STUDENTSID" property="studentsid" jdbcType="VARCHAR" />
+    <id column="DEPID" property="depid" jdbcType="VARCHAR" />
+    <result column="DEPNAME" property="depname" jdbcType="VARCHAR" />
+    <result column="STUDENTSNAME" property="studentsname" jdbcType="VARCHAR" />
+    <result column="STARTDATE" property="startdate" jdbcType="VARCHAR" />
+    <result column="ENDDATE" property="enddate" jdbcType="VARCHAR" />
+    <result column="ZMRID" property="zmrid" jdbcType="VARCHAR" />
+    <result column="ZMR" property="zmr" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createdate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    STUDENTSID, DEPID, DEPNAME, STUDENTSNAME, STARTDATE, ENDDATE, ZMR, CREATEDATE, ZMRID
+  </sql>
+  <select id="selectListPageJxStudentsInternshipProveBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxStudentsInternshipProveSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_STUDENTS_INTERNSHIP_PROVE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListJxStudentsInternshipProveBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.teaching.sqlWhere.JxStudentsInternshipProveSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from JX_STUDENTS_INTERNSHIP_PROVE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectJxStudentsInternshipProveByPrimaryKey" resultMap="BaseResultMap" parameterType="com.saint.teaching.bean.JxStudentsInternshipProveKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from JX_STUDENTS_INTERNSHIP_PROVE
+    where STUDENTSID = #{studentsid,jdbcType=VARCHAR}
+      and DEPID = #{depid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteJxStudentsInternshipProveByPrimaryKey" parameterType="com.saint.teaching.bean.JxStudentsInternshipProveKey" >
+    delete from JX_STUDENTS_INTERNSHIP_PROVE
+    where STUDENTSID = #{studentsid,jdbcType=VARCHAR}
+      and DEPID = #{depid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteJxStudentsInternshipProveBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxStudentsInternshipProveSqlWhere" >
+    delete from JX_STUDENTS_INTERNSHIP_PROVE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertJxStudentsInternshipProve" parameterType="com.saint.teaching.bean.JxStudentsInternshipProveEntity" >
+    insert into JX_STUDENTS_INTERNSHIP_PROVE (STUDENTSID, DEPID, DEPNAME, 
+      STUDENTSNAME, STARTDATE, ENDDATE, 
+      ZMR, CREATEDATE, ZMRID
+      )
+    values (#{studentsid,jdbcType=VARCHAR}, #{depid,jdbcType=VARCHAR}, #{depname,jdbcType=VARCHAR}, 
+      #{studentsname,jdbcType=VARCHAR}, #{startdate,jdbcType=VARCHAR}, #{enddate,jdbcType=VARCHAR}, 
+      #{zmr,jdbcType=VARCHAR},#{zmrid,jdbcType=VARCHAR}, to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+      )
+  </insert>
+  <insert id="insertJxStudentsInternshipProveSelective" parameterType="com.saint.teaching.bean.JxStudentsInternshipProveEntity" >
+    insert into JX_STUDENTS_INTERNSHIP_PROVE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentsid != null and studentsid != ''" >
+        STUDENTSID,
+      </if>
+      <if test="depid != null and depid != ''" >
+        DEPID,
+      </if>
+      <if test="depname != null and depname != ''" >
+        DEPNAME,
+      </if>
+      <if test="studentsname != null and studentsname != ''" >
+        STUDENTSNAME,
+      </if>
+      <if test="startdate != null and startdate != ''" >
+        STARTDATE,
+      </if>
+      <if test="enddate != null and enddate != ''" >
+        ENDDATE,
+      </if>
+      <if test="zmr != null and zmr != ''" >
+        ZMR,
+      </if>
+      <if test="zmrid != null and zmrid != ''" >
+        ZMRID,
+      </if>
+      <if test="createdate != null and createdate != ''" >
+        CREATEDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentsid != null and studentsid != ''" >
+        #{studentsid,jdbcType=VARCHAR},
+      </if>
+      <if test="depid != null and depid != ''" >
+        #{depid,jdbcType=VARCHAR},
+      </if>
+      <if test="depname != null and depname != ''" >
+        #{depname,jdbcType=VARCHAR},
+      </if>
+      <if test="studentsname != null and studentsname != ''" >
+        #{studentsname,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null and startdate != ''" >
+        #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="enddate != null and enddate != ''" >
+        #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="zmr != null and zmr != ''" >
+        #{zmr,jdbcType=VARCHAR},
+      </if>
+      <if test="zmrid != null and zmrid != ''" >
+        #{zmrid,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null and createdate != ''" >
+        to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </trim>
+  </insert>
+  <select id="countJxStudentsInternshipProveBySqlWhere" parameterType="com.saint.teaching.sqlWhere.JxStudentsInternshipProveSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from JX_STUDENTS_INTERNSHIP_PROVE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateJxStudentsInternshipProveBySqlWhereSelective" parameterType="map" >
+    update JX_STUDENTS_INTERNSHIP_PROVE
+    <set >
+      <if test="record.studentsid != null and record.studentsid != ''" >
+        STUDENTSID = #{record.studentsid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depid != null and record.depid != ''" >
+        DEPID = #{record.depid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depname != null and record.depname != ''" >
+        DEPNAME = #{record.depname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentsname != null and record.studentsname != ''" >
+        STUDENTSNAME = #{record.studentsname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startdate != null and record.startdate != ''" >
+        STARTDATE = #{record.startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enddate != null and record.enddate != ''" >
+        ENDDATE = #{record.enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zmr != null and record.zmr != ''" >
+        ZMR = #{record.zmr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zmrid != null and record.zmrid != ''" >
+        ZMRID = #{record.zmrid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdate != null and record.createdate != ''" >
+        CREATEDATE = to_date(#{record.createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxStudentsInternshipProveBySqlWhere" parameterType="map" >
+    update JX_STUDENTS_INTERNSHIP_PROVE
+    set STUDENTSID = #{record.studentsid,jdbcType=VARCHAR},
+      DEPID = #{record.depid,jdbcType=VARCHAR},
+      DEPNAME = #{record.depname,jdbcType=VARCHAR},
+      STUDENTSNAME = #{record.studentsname,jdbcType=VARCHAR},
+      STARTDATE = #{record.startdate,jdbcType=VARCHAR},
+      ENDDATE = #{record.enddate,jdbcType=VARCHAR},
+      ZMR = #{record.zmr,jdbcType=VARCHAR},
+      ZMRID = #{record.zmrid,jdbcType=VARCHAR},
+      CREATEDATE = to_date(#{record.createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateJxStudentsInternshipProveByPrimaryKeySelective" parameterType="com.saint.teaching.bean.JxStudentsInternshipProveEntity" >
+    update JX_STUDENTS_INTERNSHIP_PROVE
+    <set >
+      <if test="depname != null and depname != ''" >
+        DEPNAME = #{depname,jdbcType=VARCHAR},
+      </if>
+      <if test="studentsname != null and studentsname != ''" >
+        STUDENTSNAME = #{studentsname,jdbcType=VARCHAR},
+      </if>
+      <if test="startdate != null and startdate != ''" >
+        STARTDATE = #{startdate,jdbcType=VARCHAR},
+      </if>
+      <if test="enddate != null and enddate != ''" >
+        ENDDATE = #{enddate,jdbcType=VARCHAR},
+      </if>
+      <if test="zmr != null and zmr != ''" >
+        ZMR = #{zmr,jdbcType=VARCHAR},
+      </if>
+      <if test="zmrid != null and zmrid != ''" >
+        ZMRID = #{zmrid,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null and createdate != ''" >
+        CREATEDATE = to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    where STUDENTSID = #{studentsid,jdbcType=VARCHAR}
+      and DEPID = #{depid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateJxStudentsInternshipProveByPrimaryKey" parameterType="com.saint.teaching.bean.JxStudentsInternshipProveEntity" >
+    update JX_STUDENTS_INTERNSHIP_PROVE
+    set DEPNAME = #{depname,jdbcType=VARCHAR},
+      STUDENTSNAME = #{studentsname,jdbcType=VARCHAR},
+      STARTDATE = #{startdate,jdbcType=VARCHAR},
+      ENDDATE = #{enddate,jdbcType=VARCHAR},
+      ZMR = #{zmr,jdbcType=VARCHAR},
+      ZMRID = #{zmrid,jdbcType=VARCHAR},
+      CREATEDATE = to_date(#{createdate,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where STUDENTSID = #{studentsid,jdbcType=VARCHAR}
+      and DEPID = #{depid,jdbcType=VARCHAR}
+  </update>
+</mapper>

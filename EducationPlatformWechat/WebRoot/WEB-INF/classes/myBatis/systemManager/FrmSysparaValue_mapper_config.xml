@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myBatis.systemManager.FrmSysparaValueMapper" >
+  <resultMap id="BaseResultMap" type="com.saint.systemManager.bean.FrmSysparaValueEntity" >
+    <id column="XTLB" property="xtlb" jdbcType="VARCHAR" />
+    <id column="GLBM" property="glbm" jdbcType="VARCHAR" />
+    <id column="GJZ" property="gjz" jdbcType="VARCHAR" />
+    <result column="CSZ" property="csz" jdbcType="VARCHAR" />
+    <result column="JYW" property="jyw" jdbcType="VARCHAR" />
+    <result column="GXSJ" property="gxsj" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Sql_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Sql_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    XTLB, GLBM, GJZ, CSZ, JYW, GXSJ
+  </sql>
+  <select id="selectListPageFrmSysparaValueBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.systemManager.sqlWhere.FrmSysparaValueSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from FRM_SYSPARA_VALUE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectListFrmSysparaValueBySqlWhere" resultMap="BaseResultMap" parameterType="com.saint.systemManager.sqlWhere.FrmSysparaValueSqlWhere" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from FRM_SYSPARA_VALUE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectFrmSysparaValueByPrimaryKey" resultMap="BaseResultMap" parameterType="com.saint.systemManager.bean.FrmSysparaValueKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from FRM_SYSPARA_VALUE
+    <where>
+       		1=1
+    	<if test="xtlb!=null">
+    	  and XTLB = #{xtlb,jdbcType=VARCHAR}
+    	</if>
+    	<if test="glbm!=null">
+    	  and GLBM = #{glbm,jdbcType=VARCHAR}
+    	</if>
+        <if test="gjz!=null">
+          and	GJZ = #{gjz,jdbcType=VARCHAR}
+        </if>
+    </where>
+  </select>
+  <delete id="deleteFrmSysparaValueByPrimaryKey" parameterType="com.saint.systemManager.bean.FrmSysparaValueKey" >
+    delete from FRM_SYSPARA_VALUE
+    where XTLB = #{xtlb,jdbcType=VARCHAR}
+      and GLBM = #{glbm,jdbcType=VARCHAR}
+      and GJZ = #{gjz,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteFrmSysparaValueBySqlWhere" parameterType="com.saint.systemManager.sqlWhere.FrmSysparaValueSqlWhere" >
+    delete from FRM_SYSPARA_VALUE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insertFrmSysparaValue" parameterType="com.saint.systemManager.bean.FrmSysparaValueEntity" >
+    insert into FRM_SYSPARA_VALUE (XTLB, GLBM, GJZ, 
+      CSZ, JYW, GXSJ
+      )
+    values (#{xtlb,jdbcType=VARCHAR}, #{glbm,jdbcType=VARCHAR}, #{gjz,jdbcType=VARCHAR}, 
+      #{csz,jdbcType=VARCHAR}, #{jyw,jdbcType=VARCHAR}, to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+      )
+  </insert>
+  <insert id="insertFrmSysparaValueSelective" parameterType="com.saint.systemManager.bean.FrmSysparaValueEntity" >
+    insert into FRM_SYSPARA_VALUE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xtlb != null" >
+        XTLB,
+      </if>
+      <if test="glbm != null" >
+        GLBM,
+      </if>
+      <if test="gjz != null" >
+        GJZ,
+      </if>
+      <if test="csz != null" >
+        CSZ,
+      </if>
+      <if test="jyw != null" >
+        JYW,
+      </if>
+      <if test="gxsj != null" >
+        GXSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xtlb != null" >
+        #{xtlb,jdbcType=VARCHAR},
+      </if>
+      <if test="glbm != null" >
+        #{glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="gjz != null" >
+        #{gjz,jdbcType=VARCHAR},
+      </if>
+      <if test="csz != null" >
+        #{csz,jdbcType=VARCHAR},
+      </if>
+      <if test="jyw != null" >
+        #{jyw,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null" >
+        to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </trim>
+  </insert>
+  <select id="countFrmSysparaValueBySqlWhere" parameterType="com.saint.systemManager.sqlWhere.FrmSysparaValueSqlWhere" resultType="java.lang.Integer" >
+    select count(*) from FRM_SYSPARA_VALUE
+    <if test="_parameter != null" >
+      <include refid="Sql_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateFrmSysparaValueBySqlWhereSelective" parameterType="map" >
+    update FRM_SYSPARA_VALUE
+    <set >
+      <if test="record.xtlb != null" >
+        XTLB = #{record.xtlb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.glbm != null" >
+        GLBM = #{record.glbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gjz != null" >
+        GJZ = #{record.gjz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.csz != null" >
+        CSZ = #{record.csz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jyw != null" >
+        JYW = #{record.jyw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gxsj != null" >
+        GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateFrmSysparaValueBySqlWhere" parameterType="map" >
+    update FRM_SYSPARA_VALUE
+    set XTLB = #{record.xtlb,jdbcType=VARCHAR},
+      GLBM = #{record.glbm,jdbcType=VARCHAR},
+      GJZ = #{record.gjz,jdbcType=VARCHAR},
+      CSZ = #{record.csz,jdbcType=VARCHAR},
+      JYW = #{record.jyw,jdbcType=VARCHAR},
+      GXSJ = to_date(#{record.gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    <if test="_parameter != null" >
+      <include refid="Update_By_Sql_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateFrmSysparaValueByPrimaryKeySelective" parameterType="com.saint.systemManager.bean.FrmSysparaValueEntity" >
+    update FRM_SYSPARA_VALUE
+    <set >
+      <if test="csz != null" >
+        CSZ = #{csz,jdbcType=VARCHAR},
+      </if>
+      <if test="jyw != null" >
+        JYW = #{jyw,jdbcType=VARCHAR},
+      </if>
+      <if test="gxsj != null" >
+        GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss'),
+      </if>
+    </set>
+    where XTLB = #{xtlb,jdbcType=VARCHAR}
+      and GLBM = #{glbm,jdbcType=VARCHAR}
+      and GJZ = #{gjz,jdbcType=VARCHAR}
+  </update>
+  <update id="updateFrmSysparaValueByPrimaryKey" parameterType="com.saint.systemManager.bean.FrmSysparaValueEntity" >
+    update FRM_SYSPARA_VALUE
+    set CSZ = #{csz,jdbcType=VARCHAR},
+      JYW = #{jyw,jdbcType=VARCHAR},
+      GXSJ = to_date(#{gxsj,jdbcType=DATE},'yyyy-mm-dd hh24:mi:ss')
+    where XTLB = #{xtlb,jdbcType=VARCHAR}
+      and GLBM = #{glbm,jdbcType=VARCHAR}
+      and GJZ = #{gjz,jdbcType=VARCHAR}
+  </update>
+</mapper>

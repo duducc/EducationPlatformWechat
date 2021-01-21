@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns='http://www.springframework.org/schema/beans'
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xmlns:p='http://www.springframework.org/schema/p'
+	xmlns:context='http://www.springframework.org/schema/context'
+	xsi:schemaLocation='http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+ http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+ http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd'>
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/WEB-INF/pages/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+		<property name="interceptors">
+		<list>
+			<bean class="com.saint.interceptor.AuthorityInterceptor" />
+		</list>
+		</property>
+	</bean>
+	<bean id="paramResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+		<property name="paramName">
+			<value>method</value>
+		</property>
+	</bean>
+	<bean name="/sysuser.do" class="com.saint.systemManager.ctrl.FrmSysuserAction">
+		<property name="methodNameResolver"><ref bean="paramResolver"/></property>
+		<property name="processResultImpl" ref="processService"/>
+		<property name="frmZlExlogService" ref="frmZlExlogService"/>
+		<property name="frmSysuserService" ref="frmSysuserService"/>
+	</bean>
+	<bean name="/index.do" class="com.saint.wechat.manager.ctrl.IndexAction"   >
+		<property name="methodNameResolver"><ref bean="paramResolver"/></property>
+		<property name="wechatClientinfoService"><ref bean="wechatClientinfoService" /></property>
+		<property name="weichatservice"><ref bean="weichatservice" /></property>
+		<property name="wechatMenuinfoService" ref="wechatMenuinfoService"/>
+		<property name="wechatSysparamService" ref="wechatSysparamService"/>
+	</bean>
+	<bean name="/code.do" class="com.saint.systemManager.ctrl.FrmCodeAction">  <!--项目信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="frmCodeService" ref="frmCodeService"/>
+	</bean>
+	<bean name="/dept.do" class="com.saint.systemManager.ctrl.FrmDepartmentAction">  <!--项目信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="frmDepartmentService" ref="frmDepartmentService"/>
+	</bean>
+	<bean name="/xfProject.do" class="com.saint.wechat.manager.ctrl.XfProjectAction">  <!--项目信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="xfCourseService" ref="xfCourseService"/>
+		<property name="xfProjectService" ref="xfProjectService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="frmDepartmentService" ref="frmDepartmentService"/>
+		<property name="frmSysparaTypeService" ref="frmSysparaTypeService"/>
+		<property name="wechatClientinfoService" ref="wechatClientinfoService"/>
+	</bean>
+	<bean name="/xfCourse.do" class="com.saint.wechat.manager.ctrl.XfCourseAction">  <!--学分课程报名信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		
+		<property name="xfCourseService" ref="xfCourseService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="xfProjectService" ref="xfProjectService"/>
+		
+	</bean>
+	
+	<bean name="/xfCourseSignup.do" class="com.saint.wechat.manager.ctrl.XfCourseSignupAction">  <!--学分课程信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		
+		<property name="xfCourseSignupService" ref="xfCourseSignupService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="xfCourseService" ref="xfCourseService"/>
+		<property name="frmDepartmentService" ref="frmDepartmentService"/>
+	</bean>
+	<bean name="/applyInfo.do" class="com.saint.wechat.manager.ctrl.XfApplyChangeAction">  <!--信息变更  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		
+		<property name="xfApplyChangeService" ref="xfApplyChangeService"/>
+		<property name="xfEmployeeService" ref="xfEmployeeService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="frmDepartmentService" ref="frmDepartmentService"/>
+		<property name="frmSysparaTypeService" ref="frmSysparaTypeService"/>
+	</bean>
+	
+	<bean name="/xfCreditRecord.do" class="com.saint.wechat.manager.ctrl.XfCreditRecordAction">  <!--学分纪录信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="xfCreditRecordService" ref="xfCreditRecordService"/>
+		<property name="xfCourseService" ref="xfCourseService"/>
+		<property name="XfProjectService" ref="xfProjectService"/>
+		<property name="xfStudyRegistrationService" ref="xfStudyRegistrationService"/>
+		<property name="xfEmployeeService" ref="xfEmployeeService"/>
+		<property name="frmDepartmentService" ref="frmDepartmentService"/>
+		<property name="jxStudentsService" ref="jxStudentsService"></property>
+		<property name="jxStudentsGradeService" ref="jxStudentsGradeService"></property>
+	</bean>
+	<bean name="/xfStudyRegistration.do" class="com.saint.wechat.manager.ctrl.XfStudyRegistrationAction">  <!--学习登记信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		
+		<property name="xfStudyRegistrationService" ref="xfStudyRegistrationService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="xfCourseService" ref="xfCourseService"/>
+		<property name="xfEmployeeService" ref="xfEmployeeService"/>
+		<property name="jxStudentsService" ref="jxStudentsService"/>
+	</bean>
+	<bean name="/wechatMenuinfo.do" class="com.saint.wechat.manager.ctrl.WechatMenuinfoAction">  <!--学习登记信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		
+		<property name="wechatMenuinfoService" ref="wechatMenuinfoService"/>
+	</bean>
+	<bean name="/wechatBind.do" class="com.saint.wechat.manager.ctrl.WechatBindAction">  <!--微信绑定信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="xfEmployeeService" ref="xfEmployeeService"/>
+		<property name="frmDepartmentService" ref="frmDepartmentService"/>
+		<property name="wechatClientinfoService" ref="wechatClientinfoService"/>
+		<property name="xfCourseSignupService" ref="xfCourseSignupService"/>
+		<property name="xfCourseService" ref="xfCourseService"/>
+		<property name="xfStudyRegistrationService" ref="xfStudyRegistrationService"/>
+		<property name="frmSysparaTypeService" ref="frmSysparaTypeService"/>
+	</bean>
+
+	<bean name="/paymentManage.do" class="com.saint.wechat.manager.ctrl.XfPayHistoryAction">  <!--缴费管理  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="xfPayHistoryService" ref="xfPayHistoryService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="xfEmployeeService" ref="xfEmployeeService"/>
+		<property name="xfApplyChangeService" ref="xfApplyChangeService"/>
+	</bean>
+	<bean name="/xfemployee.do" class="com.saint.wechat.manager.ctrl.XfEmployeeAction">  <!--人员管理  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="xfEmployeeService" ref="xfEmployeeService"/>
+		<property name="frmDepartmentService" ref="frmDepartmentService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+	</bean>
+	<bean name="/xfempregister.do" class="com.saint.wechat.manager.ctrl.XfEmpRegisterAction">  <!--人员管理  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="xfEmpRegisterService" ref="xfEmpRegisterService"/>
+		<property name="xfEmployeeService" ref="xfEmployeeService"/>
+		<property name="frmSysparaTypeService" ref="frmSysparaTypeService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="frmDepartmentService" ref="frmDepartmentService"/>
+	</bean>
+	<bean name="/xfcoursetickling.do" class="com.saint.wechat.manager.ctrl.XfCourseTicklingAction">  <!--人员管理  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="xfCourseTicklingService" ref="xfCourseTicklingService"/>
+		<property name="xfCourseService" ref="xfCourseService"/>
+		<property name="xfStudyRegistrationService" ref="xfStudyRegistrationService"/>
+	</bean>
+	<bean name="/kyProjectPlan.do" class="com.saint.research.ctrl.KyProjectPlanAction">  <!--人员管理  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="kyProjectPlanService" ref="kyProjectPlanService"/>
+		<property name="kYProjectService" ref="kYProjectService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="kyProjectGressService" ref="kyProjectGressService"/>
+	</bean>
+	
+	<bean name="/kybonus.do" class="com.saint.research.ctrl.KyBonusAction"> 
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="kyBonusService" ref="kyBonusService"/> <!--固定  -->
+		<property name="wechatClientinfoService" ref="wechatClientinfoService"/> <!--固定  -->
+		<property name="wechatBindService" ref="wechatBindService"/> <!--固定  -->
+	</bean>
+	
+	<bean name="/kyProject.do" class="com.saint.research.ctrl.KYProjectAction"> 
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="kYProjectService" ref="kYProjectService"/> <!--固定  -->
+	</bean>
+	
+	<bean name="/jxcommon.do" class="com.saint.teaching.ctrl.JxCommonAction">
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxClassStudentsService" ref="jxClassStudentsService"/>
+		<property name="jxLunxunService" ref="jxLunxunService"/>
+		<property name="frmSysparaTypeService" ref="frmSysparaTypeService"/>
+	</bean>
+	
+	<bean name="/jxClass.do" class="com.saint.teaching.ctrl.JxClassAction"> 
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxClassService" ref="jxClassService"/>
+		<property name="jxStudentsService" ref="jxStudentsService"/>
+	</bean>
+	
+	<bean name="/jxStudents.do" class="com.saint.teaching.ctrl.JxStudentsAction"> 
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxClassService" ref="jxClassService"/>
+		<property name="jxStudentsService" ref="jxStudentsService"/>
+		<property name="frmCodeService" ref="frmCodeService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="xfEmployeeService" ref="xfEmployeeService"/>
+		<property name="frmDepartmentService" ref="frmDepartmentService"/>
+		<property name="frmSysparaTypeService" ref="frmSysparaTypeService"/>
+		<property name="wechatSysparamService" ref="wechatSysparamService"/>
+	</bean>
+	
+	<bean name="/jxSignInfo.do" class="com.saint.teaching.ctrl.JxSignInfoAction"> 
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxSignInfoService" ref="jxSignInfoService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="wechatClientinfoService" ref="wechatClientinfoService"/>
+		<property name="frmSysparaTypeService" ref="frmSysparaTypeService"/>
+		<property name="jxStudentsService" ref="jxStudentsService"/>
+	</bean>
+	<bean name="/jxstusign.do" class="com.saint.teaching.ctrl.JxStudentsSignAction">  <!-- 进修申请  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxStudentsSignService" ref="jxStudentsSignService"/>
+		<property name="jxSignInfoService" ref="jxSignInfoService"/>
+	</bean>
+	
+	<bean name="/jxstuleave.do" class="com.saint.teaching.ctrl.JxStudentsLeaveAction">  <!-- 进修申请  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxStudentsLeaveService" ref="jxStudentsLeaveService"/>
+		<property name="jxStudentsLeaveCheckService" ref="jxStudentsLeaveCheckService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="jxStudentsService" ref="jxStudentsService"/>
+		<property name="jxLunxunService" ref="jxLunxunService"/>
+		<property name="wechatSysparamService" ref="wechatSysparamService"/>
+		<property name="jxClassStudentsService" ref="jxClassStudentsService"/>
+		<property name="frmSysparaTypeService" ref="frmSysparaTypeService"/>
+		<property name="jxStudentsInternshipProveService" ref="jxStudentsInternshipProveService"/>
+		<property name="frmCodeService" ref="frmCodeService"/>
+		<property name="jxCourseArrangeService" ref="jxCourseArrangeService"/>
+	</bean>
+	
+	<bean name="/jxstuleaveCheck.do" class="com.saint.teaching.ctrl.JxStudentsLeaveCheckAction">  <!-- 进修申请  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxStudentsLeaveService" ref="jxStudentsLeaveService"/>
+		<property name="jxStudentsLeaveCheckService" ref="jxStudentsLeaveCheckService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="wechatSysparamService" ref="wechatSysparamService"/>
+		<property name="frmSysparaTypeService" ref="frmSysparaTypeService"/>
+		<property name="jxStudentsService" ref="jxStudentsService"/> <!--固定  -->
+		<property name="frmCodeService" ref="frmCodeService"/>
+		<property name="jxCourseArrangeService" ref="jxCourseArrangeService"/>
+	</bean>
+	
+	
+	
+	<bean name="/jxLunxun.do" class="com.saint.teaching.ctrl.JxLunxunAction">  <!-- 轮训安排 -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxLunxunService" ref="jxLunxunService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="jxClassStudentsService" ref="jxClassStudentsService"/>
+		<property name="frmDepartmentService" ref="frmDepartmentService"/>
+		<property name="jxStudentsService" ref="jxStudentsService"/> <!--固定  -->
+		<property name="jxClassService" ref="jxClassService"/>
+		<property name="jxStudentsInternshipProveService" ref="jxStudentsInternshipProveService"/>
+	</bean>
+	<bean name="/jxClassStudents.do" class="com.saint.teaching.ctrl.JxClassStudentsAction">  <!-- 学生班级信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxClassStudentsService" ref="jxClassStudentsService"/>
+		<property name="jxClassService" ref="jxClassService"/> <!--固定  -->
+		
+	</bean>
+	
+	<bean name="/jxEvaluateTeacher.do" class="com.saint.teaching.ctrl.JxEvaluateTeacherAction">  <!-- 评价教师  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxEvaluateTeacherService" ref="jxEvaluateTeacherService"/>
+		<property name="jxDepartmentService" ref="jxDepartmentService"/>
+		<property name="jxLunxunService" ref="jxLunxunService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="jxClassStudentsService" ref="jxClassStudentsService"/>
+		<property name="xfEmployeeService" ref="xfEmployeeService"/>
+		<property name="jxStudentsService" ref="jxStudentsService"/> <!--固定  -->
+		<property name="jxStencilService" ref="jxStencilService"/>
+	</bean>
+	
+	<bean name="/jxStencil.do" class="com.saint.teaching.ctrl.JxStencilAction">  <!-- 评价模板  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		
+		<property name="jxStencilService" ref="jxStencilService"/>
+	</bean>
+	
+	<bean name="/Jxteacherman.do" class="com.saint.teaching.ctrl.JxTeachingManualsAction">  <!-- 学生班级信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxTeachingManualsService" ref="jxTeachingManualsService"/>
+		<property name="wechatBindService"><ref bean="wechatBindService" /></property>
+		<property name="frmDepartmentService" ref="frmDepartmentService"/>
+		<property name="jxStudentsService" ref="jxStudentsService"/> <!--固定  -->
+		<property name="jxDepartmentService" ref="jxDepartmentService"/>
+		<property name="jxLunxunService" ref="jxLunxunService"/>
+		<property name="jxClassStudentsService" ref="jxClassStudentsService"/>
+		<property name="frmCodeService" ref="frmCodeService"/>
+		<property name="jxTeachingManusService" ref="jxTeachingManusService"/>
+		<property name="jxTeachingDblService" ref="jxTeachingDblService"/>
+	</bean>
+	
+	<bean name="/Jxsignerror.do" class="com.saint.teaching.ctrl.JxSignErrorAction">  <!-- 学生班级信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxSignErrorService" ref="jxSignErrorService"/>
+	</bean>
+	
+	<bean name="/jxTeacher.do" class="com.saint.teaching.ctrl.JxTeacherAction">  <!-- 班级信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxTeacherService" ref="jxTeacherService"/>
+	</bean>
+	
+	<bean name="/jxBreakSchool.do" class="com.saint.teaching.ctrl.JxBreakSchoolAction">  <!-- 学生班级信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxBreakSchoolService" ref="jxBreakSchoolService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+	</bean>
+	
+	<bean name="/JxCoursePlan.do" class="com.saint.teaching.ctrl.JxCoursePlanAction">  <!-- 学生班级信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxCoursePlanService" ref="jxCoursePlanService"/>
+	</bean>
+	
+	<bean name="/JxCourseArrange.do" class="com.saint.teaching.ctrl.JxCourseArrangeAction">  <!-- 学生班级信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxCourseArrangeService" ref="jxCourseArrangeService"/>
+		<property name="jxCoursePlanService" ref="jxCoursePlanService"></property>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="frmCodeService" ref="frmCodeService"></property>
+		<property name="frmSysparaTypeService" ref="frmSysparaTypeService"/>
+		<property name="jxStudentsService" ref="jxStudentsService"/> <!--固定  -->
+		<property name="jxStudentsLeaveService" ref="jxStudentsLeaveService"/>
+	</bean>
+	
+	<bean name="/JxCoursezxTime.do" class="com.saint.teaching.ctrl.JxCoursezxTimeAction">  <!-- 学生班级信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxCoursezxTimeService" ref="jxCoursezxTimeService"/>
+	</bean>
+	
+	<bean name="/JxStuInterPro.do" class="com.saint.teaching.ctrl.JxStudentsInternshipProveAction">  <!-- 学生班级信息  -->
+		<property name="methodNameResolver" ref="paramResolver"/>	<!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"/> <!--固定  -->
+		<property name="processResultImpl" ref="processService"/> <!--固定  -->
+		<property name="jxStudentsInternshipProveService" ref="jxStudentsInternshipProveService"/>
+		<property name="jxLunxunService" ref="jxLunxunService"/>
+		<property name="jxClassStudentsService" ref="jxClassStudentsService"/>
+	</bean>
+	
+	<bean name="/jxStudyregistra.do" class="com.saint.teaching.ctrl.JxStudyRegistrationAction"> <!--问卷调查  -->
+		<property name="methodNameResolver" ref="paramResolver"></property>  <!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"></property>  <!--固定  -->
+		<property name="processResultImpl" ref="processService"></property>  <!--固定  -->
+		<property name="jxStudyRegistrationService" ref="jxStudyRegistrationService"></property>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="jxCourseArrangeService" ref="jxCourseArrangeService"/>
+		<property name="jxStudentsService" ref="jxStudentsService"/> <!--固定  -->
+		<property name="frmCodeService" ref="frmCodeService"></property>
+	</bean>
+	<bean name="/jxQuestionnaireAnswer.do" class="com.saint.teaching.ctrl.JxQuestionnaireAnswerAction"> <!--问卷调查答案  -->
+		<property name="methodNameResolver" ref="paramResolver"></property>  <!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"></property>  <!--固定  -->
+		<property name="processResultImpl" ref="processService"></property>  <!--固定  -->
+		<property name="jxQuestionnaireAnswerService" ref="jxQuestionnaireAnswerService"></property>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="jxStudyRegistrationService" ref="jxStudyRegistrationService"></property>
+	</bean>
+	<bean name="/jxQuestionnaireTest.do" class="com.saint.teaching.ctrl.JxQuestionnaireTestAction"> <!--问卷调查  -->
+		<property name="methodNameResolver" ref="paramResolver"></property>  <!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"></property>  <!--固定  -->
+		<property name="processResultImpl" ref="processService"></property>  <!--固定  -->
+		<property name="jxQuestionnaireTestService" ref="jxQuestionnaireTestService"></property>
+		<property name="wechatBindService" ref="wechatBindService"/>
+		<property name="jxCourseArrangeService" ref="jxCourseArrangeService"/>
+		<property name="jxCoursePlanService" ref="jxCoursePlanService"></property>
+	</bean>
+	<bean name="/jxGraduDbemp.do" class="com.saint.teaching.ctrl.JxGraduateDbempAction"> <!--问卷调查  -->
+		<property name="methodNameResolver" ref="paramResolver"></property>  <!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"></property>  <!--固定  -->
+		<property name="processResultImpl" ref="processService"></property>  <!--固定  -->
+		<property name="jxGraduateDbempService" ref="jxGraduateDbempService"/>
+	</bean>
+	
+	<bean name="/jxGraduDb.do" class="com.saint.teaching.ctrl.JxGraduateDabianAction"> <!--问卷调查  -->
+		<property name="methodNameResolver" ref="paramResolver"></property>  <!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"></property>  <!--固定  -->
+		<property name="processResultImpl" ref="processService"></property>  <!--固定  -->
+		<property name="jxGraduateDabianService" ref="jxGraduateDabianService"/>
+	</bean>
+	
+	<bean name="/jxTeachingManus.do" class="com.saint.teaching.ctrl.JxTeachingManusAction">
+		<property name="methodNameResolver" ref="paramResolver"></property>  <!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"></property>  <!--固定  -->
+		<property name="processResultImpl" ref="processService"></property>  <!--固定  -->
+		<property name="jxTeachingManusService" ref="jxTeachingManusService"/>
+	</bean>
+	
+	<bean name="/jxTeachingDbl.do" class="com.saint.teaching.ctrl.JxTeachingDblAction">
+		<property name="methodNameResolver" ref="paramResolver"></property>  <!--固定  -->
+		<property name="frmZlExlogService" ref="frmZlExlogService"></property>  <!--固定  -->
+		<property name="processResultImpl" ref="processService"></property>  <!--固定  -->
+		<property name="jxTeachingDblService" ref="jxTeachingDblService"/>
+		<property name="wechatBindService" ref="wechatBindService"/>
+	</bean>
+	
+</beans>
